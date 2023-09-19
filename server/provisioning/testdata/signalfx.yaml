@@ -1,7 +1,0 @@
-type: DataStore
-spec:
-  name: SignalFX
-  type: signalfx
-  signalfx:
-    token: thetoken
-    realm: us1

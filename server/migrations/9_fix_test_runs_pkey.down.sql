@@ -1,8 +1,0 @@
-BEGIN;
-
-  ALTER TABLE test_runs
-    DROP CONSTRAINT test_runs_pkey,
-    DROP COLUMN id,
-    ADD COLUMN id SERIAL PRIMARY KEY;
-
-COMMIT;

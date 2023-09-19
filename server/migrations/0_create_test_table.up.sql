@@ -1,4 +1,0 @@
-CREATE TABLE IF NOT EXISTS tests  (
-	id UUID NOT NULL PRIMARY KEY,
-	test json NOT NULL
-);

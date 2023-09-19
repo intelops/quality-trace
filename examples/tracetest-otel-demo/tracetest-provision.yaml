@@ -1,5 +1,0 @@
----
-type: DataStore
-spec:
-  name: Lightstep
-  type: lightstep
