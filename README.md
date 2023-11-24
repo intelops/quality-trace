@@ -254,7 +254,7 @@ spec:
           - tracetest.span.duration < "50ms"
 ```
 
-# 🤖 How to run an automated test?
+# 🤖 How to run an automated test?.
 
 Save a test definition file above as `pokeshop_import.yaml`. Use the CLI to run a test.
 
