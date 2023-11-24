@@ -21,7 +21,7 @@ dist/tracetest: generate-cli $(CLI_SRC_FILES)
 #	find ./dist -name 'tracetest' -exec cp {} ./dist \;
 
 SERVER_SRC_FILES := $(shell find server -type f)
-dist/tracetest-server: generate-server $(SERVER_SRC_FILES)
+dist/quality-trace-server: generate-server $(SERVER_SRC_FILES)
 	@echo "Choose a command run:"
 	env GOOS=linux CGO_ENABLED=0 GO111MODULE=on go build -o tracetest-server server/main.go
 
@@ -53,7 +53,7 @@ view-open-api: ## Run SwaggerUI locally to see OpenAPI documentation
 .PHONY: run build build-go build-web build-docker
 run: build-docker ## build and run tracetest using docker compose
 	docker compose up
-build-go: dist/tracetest dist/tracetest-server ## build all go code
+build-go: dist/tracetest dist/quality-trace-server ## build all go code
 build-web: web/build ## build web
 build-docker: goreleaser-version web/build .goreleaser.dev.yaml dist/docker-image-$(TAG).tar ## build and tag docker image as defined in .goreleaser.dev.yaml
 
