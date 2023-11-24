@@ -1,4 +1,4 @@
-name: Tracetest Docker Image CI
+name: Quality-Trace Docker Image CI
 
 on:
   pull_request:
@@ -33,7 +33,7 @@ jobs:
 
       - 
         name: Build server
-        run: make dist/tracetest-server
+        run: make dist/quality-trace-server
         env:
           GO111MODULE: on
 
