@@ -286,4 +286,4 @@ Whether it's big or small, we love contributions.
 Not sure where to get started? You can :
 
 - Visit our [Community Page](https://tracetest.io/community).
-- See our contributing guidelines [here](./CONTRIBUTING.md).
+- See our contributing guidelines [here](./CONTRIBUTING.md)
