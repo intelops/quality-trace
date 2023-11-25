@@ -15,15 +15,15 @@ PROJECT_ROOT=${PWD}
 
 
 CLI_SRC_FILES := $(shell find cli -type f)
-dist/tracetest: generate-cli $(CLI_SRC_FILES)
-	env GOOS=linux CGO_ENABLED=0 GO111MODULE=on /usr/local/go/bin/go build -o builds/tracetest-server server/main.go
+dist/quality-trace: generate-cli $(CLI_SRC_FILES)
+	env GOOS=linux CGO_ENABLED=0 GO111MODULE=on /usr/local/go/bin/go build -o builds/quality-trace-server server/main.go
 #	goreleaser build --single-target --clean --snapshot --id cli
 #	find ./dist -name 'tracetest' -exec cp {} ./dist \;
 
 SERVER_SRC_FILES := $(shell find server -type f)
 dist/quality-trace-server: generate-server $(SERVER_SRC_FILES)
 	@echo "Choose a command run:"
-	env GOOS=linux CGO_ENABLED=0 GO111MODULE=on go build -o tracetest-server server/main.go
+	env GOOS=linux CGO_ENABLED=0 GO111MODULE=on go build -o quality-trace-server server/main.go
 
 #goreleaser build --single-target --clean --snapshot --id server
 #	find ./dist -name 'tracetest-server' -exec cp {} ./dist \;
