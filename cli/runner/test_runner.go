@@ -26,6 +26,8 @@ func TestRunner(
 	openapiClient *openapi.APIClient,
 	formatter testFormatter,
 ) Runner {
+	fmt.Println("Creating a new TestRunner") //debug
+	
 	return testRunner{
 		client:        client,
 		openapiClient: openapiClient,
@@ -69,6 +71,8 @@ func (r testRunner) Apply(ctx context.Context, df fileutil.File) (resource any, 
 
 func (r testRunner) StartRun(ctx context.Context, resource any, runInfo openapi.RunInformation) (RunResult, error) {
 	test := resource.(openapi.TestResource)
+	fmt.Printf("Starting run for test '%s'\n", test.Spec.GetId()) //debug
+
 	run, resp, err := r.openapiClient.ApiApi.
 		RunTest(ctx, test.Spec.GetId()).
 		RunInformation(runInfo).
@@ -97,6 +101,8 @@ func (r testRunner) StartRun(ctx context.Context, resource any, runInfo openapi.
 func (r testRunner) UpdateResult(ctx context.Context, result RunResult) (RunResult, error) {
 	test := result.Resource.(openapi.TestResource)
 	run := result.Run.(openapi.TestRun)
+
+	fmt.Printf("Updating result for test '%s', run ID: %s\n", test.Spec.GetId(), run.GetId()) //debug
 	runID, err := strconv.Atoi(run.GetId())
 	if err != nil {
 		return RunResult{}, fmt.Errorf("invalid test run id format: %w", err)
@@ -123,6 +129,8 @@ func (r testRunner) UpdateResult(ctx context.Context, result RunResult) (RunResu
 func (r testRunner) JUnitResult(ctx context.Context, result RunResult) (string, error) {
 	test := result.Resource.(openapi.TestResource)
 	run := result.Run.(openapi.TestRun)
+
+	fmt.Printf("Retrieving JUnit results for test '%s', run ID: %s\n", test.Spec.GetId(), run.GetId()) //debug
 	runID, err := strconv.Atoi(run.GetId())
 	if err != nil {
 		return "", fmt.Errorf("invalid run id format: %w", err)
@@ -146,6 +154,7 @@ func (r testRunner) FormatResult(result RunResult, format string) string {
 	test := result.Resource.(openapi.TestResource)
 	run := result.Run.(openapi.TestRun)
 
+	fmt.Printf("Formatting result for test '%s', run ID: %s\n", test.Spec.GetId(), run.GetId()) // debug
 	tro := formatters.TestRunOutput{
 		HasResults: result.Finished,
 		IsFailed:   isStateFailed(run.GetState()),

@@ -103,6 +103,8 @@ func setupOutputFormat(cmd *cobra.Command) {
 }
 
 func loadConfig(cmd *cobra.Command, args []string) {
+	fmt.Println("Loading configuration...") // Debug line
+
 	config, err := config.LoadConfig(configFile)
 	if err != nil {
 		cliLogger.Fatal("could not load config", zap.Error(err))
@@ -112,6 +114,8 @@ func loadConfig(cmd *cobra.Command, args []string) {
 }
 
 func validateConfig(cmd *cobra.Command, args []string) {
+	fmt.Println("Validating configuration...") // Debug line
+
 	if cliConfig.IsEmpty() {
 		cliLogger.Warn("You haven't configured your CLI, some commands might fail!")
 		cliLogger.Warn("Run 'qt configure' to configure your CLI")
@@ -119,6 +123,8 @@ func validateConfig(cmd *cobra.Command, args []string) {
 }
 
 func setupLogger(cmd *cobra.Command, args []string) {
+	fmt.Println("Setting up logger...") // Debug line
+
 	atom := zap.NewAtomicLevel()
 	if verbose {
 		atom.SetLevel(zap.DebugLevel)
@@ -150,10 +156,14 @@ func setupLogger(cmd *cobra.Command, args []string) {
 }
 
 func teardownCommand(cmd *cobra.Command, args []string) {
+	fmt.Println("Tearing down command...") // Debug line
+
 	cliLogger.Sync()
 }
 
 func setupVersion() {
+	fmt.Println("Setting up version...") // Debug line
+
 	versionText, isVersionMatch = actions.GetVersion(
 		context.Background(),
 		cliConfig,
@@ -162,6 +172,8 @@ func setupVersion() {
 }
 
 func validateVersionMismatch() {
+	fmt.Println("Validating version mismatch...") // Debug line
+	
 	if !isVersionMatch && os.Getenv("TRACETEST_DEV") == "" {
 		fmt.Fprintf(os.Stderr, versionText+`
 ✖️ Error: Version Mismatch

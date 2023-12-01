@@ -43,6 +43,14 @@ type RunOptions struct {
 
 	// Overrides the default required gates for the resource
 	RequiredGates []string
+
+	// New parameters
+	GitRepo   string
+	GitUsername string
+	GitToken    string
+	RepoName    string
+	Branch      string
+	GitFile     string
 }
 
 // RunResult holds the result of the run

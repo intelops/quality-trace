@@ -37,6 +37,8 @@ func (c Config) IsEmpty() bool {
 }
 
 func LoadConfig(configFile string) (Config, error) {
+	fmt.Println("Loading configuration from:", configFile) // Debug line
+	
 	config, err := loadConfig(configFile)
 	if err != nil {
 		return Config{}, err
@@ -62,6 +64,7 @@ func loadConfig(configFile string) (Config, error) {
 	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
 	viper.AutomaticEnv()
 
+	fmt.Println("Reading configuration from:", configFile) // Debug line
 	if err := viper.ReadInConfig(); err != nil {
 		// No configuration file found, return empty config
 		return Config{}, nil
@@ -76,6 +79,8 @@ func loadConfig(configFile string) (Config, error) {
 }
 
 func ValidateServerURL(serverURL string) error {
+	fmt.Println("Validating server URL:", serverURL) // Debug line
+
 	if !strings.HasPrefix(serverURL, "http://") && !strings.HasPrefix(serverURL, "https://") {
 		return fmt.Errorf(`the server URL must start with the scheme, either "http://" or "https://"`)
 	}
@@ -84,6 +89,8 @@ func ValidateServerURL(serverURL string) error {
 }
 
 func ParseServerURL(serverURL string) (scheme, endpoint string, err error) {
+	fmt.Println("Parsing server URL:", serverURL) // Debug line
+
 	urlParts := strings.Split(serverURL, "://")
 	if len(urlParts) != 2 {
 		return "", "", fmt.Errorf("invalid server url")
