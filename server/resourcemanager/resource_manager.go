@@ -101,6 +101,7 @@ func CanBeAugmented() managerOption {
 }
 
 func New[T ResourceSpec](resourceTypeSingular, resourceTypePlural string, handler any, opts ...managerOption) Manager {
+	fmt.Printf("Creating a new resource manager for '%s'\n", resourceTypeSingular) //debug
 	rh := &resourceHandler[T]{}
 
 	cfg := config{
@@ -141,6 +142,8 @@ func (m *manager[T]) Handler() any {
 }
 
 func (m *manager[T]) RegisterRoutes(r *mux.Router) *mux.Router {
+	fmt.Printf("Registering routes for resource manager '%s'\n", m.resourceTypeSingular) //debug
+
 	// prefix is /{resourceType | lowercase}/
 	subrouter := r.PathPrefix("/" + strings.ToLower(m.resourceTypePlural)).Subrouter()
 
@@ -319,6 +322,17 @@ func (m *manager[T]) upsert(w http.ResponseWriter, r *http.Request) {
 	// the resurce exists, update it
 	m.doUpdate(ctx, w, r, encoder, targetResource.Spec)
 }
+func printJSONBody(targetResource interface{}) {
+    // Marshal the targetResource into JSON
+    bodyJSON, err := json.Marshal(targetResource)
+    if err != nil {
+        fmt.Printf("Error marshaling JSON: %v\n", err)
+        return
+    }
+
+    // Print the raw JSON string
+    fmt.Printf("Request body: %s\n", bodyJSON)
+}
 
 func (m *manager[T]) update(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
@@ -346,6 +360,14 @@ func (m *manager[T]) update(w http.ResponseWriter, r *http.Request) {
 	}
 	targetResource.Spec = m.rh.SetID(targetResource.Spec, urlID)
 
+	// Print information about the incoming request
+	fmt.Printf("Received update request for ID %s with method: %s, URL: %s\n", urlID, r.Method, r.URL)
+	
+	// Print request parameters, headers, etc.
+	fmt.Printf("Request parameters: %v\n", mux.Vars(r))
+	fmt.Printf("Request headers: %v\n", r.Header)
+	printJSONBody(targetResource) // Print the JSON body
+	
 	m.doUpdate(ctx, w, r, encoder, targetResource.Spec)
 }
 

@@ -49,6 +49,12 @@ func init() {
 				SkipResultWait:  runParams.SkipResultWait,
 				JUnitOuptutFile: runParams.JUnitOuptutFile,
 				RequiredGates:   runParams.RequriedGates,
+				GitRepo:         runParams.GitRepo,
+   				GitUsername:     runParams.GitUsername,
+   				GitToken:        runParams.GitToken,
+   				RepoName:        runParams.RepoName,
+   				Branch:          runParams.Branch,
+				GitFile:         runParams.GitFile,
 			}
 
 			exitCode, err := orchestrator.Run(ctx, r, runParams, output)
@@ -71,6 +77,13 @@ func init() {
 	runCmd.Flags().BoolVarP(&runParams.SkipResultWait, "skip-result-wait", "W", false, "do not wait for results. exit immediately after test run started")
 	runCmd.Flags().StringVarP(&runParams.JUnitOuptutFile, "junit", "j", "", "file path to save test results in junit format")
 	runCmd.Flags().StringSliceVar(&runParams.RequriedGates, "required-gates", []string{}, "override default required gate. "+validRequiredGatesMsg())
+
+	runCmd.Flags().StringVarP(&runParams.GitRepo, "gitrepo", "", "", "Git repository name")
+	runCmd.Flags().StringVarP(&runParams.GitUsername, "gitusername", "", "", "Git username")
+	runCmd.Flags().StringVarP(&runParams.GitToken, "gittoken", "", "", "Git token")
+	runCmd.Flags().StringVarP(&runParams.RepoName, "reponame", "", "", "Repository name")
+	runCmd.Flags().StringVarP(&runParams.Branch, "branch", "", "", "Branch name")
+	runCmd.Flags().StringVarP(&runParams.GitFile, "gitfile", "", "", "Git file name")
 
 	//deprecated
 	runCmd.Flags().StringVarP(&runParams.EnvID, "environment", "e", "", "environment file or ID to be used")
@@ -97,6 +110,12 @@ type runParameters struct {
 	SkipResultWait  bool
 	JUnitOuptutFile string
 	RequriedGates   []string
+	GitRepo         string
+   	GitUsername     string
+   	GitToken        string
+   	RepoName        string
+   	Branch          string
+	GitFile         string
 }
 
 func (p runParameters) Validate(cmd *cobra.Command, args []string) []error {
@@ -119,6 +138,48 @@ func (p runParameters) Validate(cmd *cobra.Command, args []string) []error {
 		errs = append(errs, paramError{
 			Parameter: "junit",
 			Message:   "--junit option is incompatible with --skip-result-wait option",
+		})
+	}
+
+	// New checks for Git parameters
+	if p.GitRepo == "" {
+		errs = append(errs, paramError{
+			Parameter: "git-repo",
+			Message:   "you must specify a Git repository",
+		})
+	}
+
+	if p.GitUsername == "" {
+		errs = append(errs, paramError{
+			Parameter: "git-username",
+			Message:   "you must specify a Git username",
+		})
+	}
+	if p.GitToken == "" {
+		errs = append(errs, paramError{
+			Parameter: "git-token",
+			Message:   "you must specify a Git token",
+		})
+	}
+
+	if p.RepoName == "" {
+		errs = append(errs, paramError{
+			Parameter: "repo-name",
+			Message:   "you must specify a repository name",
+		})
+	}
+
+	if p.Branch == "" {
+		errs = append(errs, paramError{
+			Parameter: "branch",
+			Message:   "you must specify a branch name",
+		})
+	}
+
+	if p.GitFile == "" {
+		errs = append(errs, paramError{
+			Parameter: "git-file",
+			Message:   "you must specify a file name",
 		})
 	}
 
