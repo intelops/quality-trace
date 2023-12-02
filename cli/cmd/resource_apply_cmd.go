@@ -56,15 +56,21 @@ func init() {
 
 type applyParameters struct {
 	DefinitionFile string
+	GitRepo        string
+	GitUsername    string
+	GitToken       string
+	RepoName       string
+	Branch         string
+	GitFile        string
 }
 
 func (p applyParameters) Validate(cmd *cobra.Command, args []string) []error {
 	errors := make([]error, 0)
 
-	if p.DefinitionFile == "" {
+	if p.DefinitionFile == "" && (p.GitRepo == "" || p.GitUsername == "" || p.GitToken == "" || p.RepoName == "" || p.Branch == "" || p.GitFile == "") {
 		errors = append(errors, paramError{
-			Parameter: "file",
-			Message:   "Definition file must be provided",
+			Parameter: "file/git parameters",
+			Message:   "Either a definition file or Git parameters (GitRepo, GitUsername, GitToken, RepoName, Branch, GitFile) must be provided",
 		})
 	}
 

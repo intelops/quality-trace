@@ -7,6 +7,7 @@ import (
 	"net/url"
 	"path"
 	"strings"
+	//"github.com/spf13/cobra"
 
 	"go.uber.org/zap"
 	"golang.org/x/text/cases"
@@ -67,6 +68,7 @@ func NewClient(
 	httpClient *HTTPClient,
 	logger *zap.Logger,
 	resourceName, resourceNamePlural string,
+	//cmd *cobra.Command, // Pass the command here
 	opts ...option) Client {
 	c := Client{
 		client:             httpClient,
@@ -74,6 +76,8 @@ func NewClient(
 		resourceNamePlural: resourceNamePlural,
 		logger:             logger,
 	}
+	//Include the cmd in options
+    //opts = append(opts, WithCmd(cmd))
 
 	for _, opt := range opts {
 		opt(&c.options)

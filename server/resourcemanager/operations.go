@@ -100,10 +100,16 @@ type resourceHandler[T ResourceSpec] struct {
 
 func (rh *resourceHandler[T]) bindOperations(enabledOperations []Operation, handler any) error {
 	if len(enabledOperations) < 1 {
+
+		fmt.Println("Error: no operations enabled") //debug
 		return fmt.Errorf("no operations enabled")
 	}
 
+	fmt.Println("Binding operations for handler...") //debug
+
 	if slices.Contains(enabledOperations, OperationList) {
+		fmt.Println("Binding List operation...") //debug
+
 		err := rh.bindListOperation(handler)
 		if err != nil {
 			return err
@@ -111,6 +117,8 @@ func (rh *resourceHandler[T]) bindOperations(enabledOperations []Operation, hand
 	}
 
 	if slices.Contains(enabledOperations, OperationCreate) {
+		fmt.Println("Binding Create operation...") //debug
+
 		err := rh.bindCreateOperation(handler)
 		if err != nil {
 			return err
@@ -118,6 +126,8 @@ func (rh *resourceHandler[T]) bindOperations(enabledOperations []Operation, hand
 	}
 
 	if slices.Contains(enabledOperations, OperationUpdate) {
+
+		fmt.Println("Binding Update operation...") //debug
 		err := rh.bindUpdateOperation(handler)
 		if err != nil {
 			return err
@@ -125,6 +135,8 @@ func (rh *resourceHandler[T]) bindOperations(enabledOperations []Operation, hand
 	}
 
 	if slices.Contains(enabledOperations, OperationGet) {
+
+		fmt.Println("Binding Get operation...") //debug
 		err := rh.bindGetOperation(handler)
 		if err != nil {
 			return err
@@ -132,6 +144,8 @@ func (rh *resourceHandler[T]) bindOperations(enabledOperations []Operation, hand
 	}
 
 	if slices.Contains(enabledOperations, OperationDelete) {
+
+		fmt.Println("Binding Delete operation...") //debug
 		err := rh.bindDeleteOperation(handler)
 		if err != nil {
 			return err
@@ -151,20 +165,26 @@ func (rh *resourceHandler[T]) bindOperations(enabledOperations []Operation, hand
 			return err
 		}
 	}
+	fmt.Println("Binding Provision operation...") //debug
 
 	err := rh.bindProvisionOperation(handler)
 	if err != nil {
 		return err
 	}
 
+	fmt.Println("Operations binding completed.") //debug
 	return nil
 }
 
 func (rh *resourceHandler[T]) bindListOperation(handler any) error {
 	casted, ok := handler.(List[T])
+
 	if !ok {
+		fmt.Println("Error: handler does not implement interface `List[T]`") //debug
 		return fmt.Errorf("handler does not implement interface `List[T]`")
 	}
+
+	fmt.Println("List operation binding completed.") //debug
 	rh.List = casted.List
 	rh.Count = casted.Count
 	rh.SortingFields = casted.SortingFields
@@ -178,6 +198,7 @@ func (rh *resourceHandler[T]) bindCreateOperation(handler any) error {
 		return fmt.Errorf("handler does not implement interface `Create[T]`")
 	}
 
+	fmt.Println("Create operation binding completed.") //debug
 	rh.Create = casted.Create
 	rh.SetID = casted.SetID
 
@@ -190,6 +211,7 @@ func (rh *resourceHandler[T]) bindUpdateOperation(handler any) error {
 		return fmt.Errorf("handler does not implement interface `Update[T]`")
 	}
 
+	fmt.Println("Update operation binding completed.") //debug
 	rh.Update = casted.Update
 
 	return nil
@@ -200,6 +222,8 @@ func (rh *resourceHandler[T]) bindGetOperation(handler any) error {
 	if !ok {
 		return fmt.Errorf("handler does not implement interface `Get[T]`")
 	}
+
+	fmt.Println("Get operation binding completed.") //debug
 	rh.Get = casted.Get
 
 	return nil
@@ -210,6 +234,8 @@ func (rh *resourceHandler[T]) bindDeleteOperation(handler any) error {
 	if !ok {
 		return fmt.Errorf("handler does not implement interface `Delete[T]`")
 	}
+
+	fmt.Println("Delete operation binding completed.") //debug
 	rh.Delete = casted.Delete
 
 	return nil
@@ -220,6 +246,8 @@ func (rh *resourceHandler[T]) bindProvisionOperation(handler any) error {
 	if !ok {
 		return fmt.Errorf("handler does not implement interface `Provision[T]`")
 	}
+
+	fmt.Println("Provision operation binding completed.") //debug
 	rh.Provision = casted.Provision
 	rh.SetID = casted.SetID
 

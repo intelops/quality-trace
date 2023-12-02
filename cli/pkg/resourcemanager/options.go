@@ -1,5 +1,7 @@
 package resourcemanager
 
+import "github.com/spf13/cobra"
+
 type options struct {
 	applyPreProcessor applyPreProcessorFn
 	tableConfig       TableConfig
@@ -7,6 +9,7 @@ type options struct {
 	resourceType      string
 	deprecatedAlias   string
 	proxyResource     string
+	cmd               *cobra.Command // Include the command reference
 }
 
 type option func(*options)
@@ -46,3 +49,11 @@ func WithProxyResource(proxyResource string) option {
 		o.proxyResource = proxyResource
 	}
 }
+
+// WithCmd is an option to set the command reference in options.
+func WithCmd(cmd *cobra.Command) option {
+    return func(o *options) {
+        o.cmd = cmd
+    }
+}
+
