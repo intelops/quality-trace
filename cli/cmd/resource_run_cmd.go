@@ -120,14 +120,6 @@ type runParameters struct {
 
 func (p runParameters) Validate(cmd *cobra.Command, args []string) []error {
 
-	// Print Git parameters for debugging
-    fmt.Println("Git Repo:", p.GitRepo)
-    fmt.Println("Git Username:", p.GitUsername)
-    fmt.Println("Git Token:", p.GitToken)
-    fmt.Println("Repo Name:", p.RepoName)
-    fmt.Println("Branch:", p.Branch)
-    fmt.Println("Git File:", p.GitFile)
-
 	errs := []error{}
 	// Check for incompatibility between JUnit and SkipResultWait options
     if p.JUnitOuptutFile != "" && p.SkipResultWait {
@@ -138,6 +130,15 @@ func (p runParameters) Validate(cmd *cobra.Command, args []string) []error {
     }
 
 	if p.GitRepo != "" || p.GitUsername != "" || p.GitToken != "" || p.RepoName != "" || p.Branch != "" || p.GitFile != "" {
+		
+		// Print Git parameters for debugging
+		fmt.Println("Git Repo:", p.GitRepo)
+		fmt.Println("Git Username:", p.GitUsername)
+		fmt.Println("Git Token:", p.GitToken)
+		fmt.Println("Repo Name:", p.RepoName)
+		fmt.Println("Branch:", p.Branch)
+		fmt.Println("Git File:", p.GitFile)
+		
 		// Call the validateGitParameters function
 		gitErrors := p.validateGitParameters()
 		errs = append(errs, gitErrors...)
@@ -148,7 +149,7 @@ func (p runParameters) Validate(cmd *cobra.Command, args []string) []error {
             Parameter: "resource",
             Message:   "you must specify a definition file or resource ID",
         })
-		
+
     } else if p.DefinitionFile != "" && p.ID != "" {
         errs = append(errs, paramError{
             Parameter: "resource",
