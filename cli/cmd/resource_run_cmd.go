@@ -42,7 +42,7 @@ func init() {
 				runParams.VarsID = runParams.EnvID
 			}
 
-			runParams := runner.RunOptions{
+			params := runner.RunOptions{
 				ID:              runParams.ID,
 				DefinitionFile:  runParams.DefinitionFile,
 				VarsID:          runParams.VarsID,
@@ -57,7 +57,7 @@ func init() {
 				GitFile:         runParams.GitFile,
 			}
 
-			exitCode, err := orchestrator.Run(ctx, r, runParams, output)
+			exitCode, err := orchestrator.Run(ctx, r, params, output)
 			if err != nil {
 				return "", err
 			}
@@ -89,7 +89,7 @@ func init() {
 	runCmd.Flags().StringVarP(&runParams.EnvID, "environment", "e", "", "environment file or ID to be used")
 	runCmd.Flags().MarkDeprecated("environment", "use --vars instead")
 	runCmd.Flags().MarkShorthandDeprecated("e", "use --vars instead")
-
+	
 	rootCmd.AddCommand(runCmd)
 }
 
@@ -119,79 +119,101 @@ type runParameters struct {
 }
 
 func (p runParameters) Validate(cmd *cobra.Command, args []string) []error {
+
+	// Print Git parameters for debugging
+    fmt.Println("Git Repo:", p.GitRepo)
+    fmt.Println("Git Username:", p.GitUsername)
+    fmt.Println("Git Token:", p.GitToken)
+    fmt.Println("Repo Name:", p.RepoName)
+    fmt.Println("Branch:", p.Branch)
+    fmt.Println("Git File:", p.GitFile)
+
 	errs := []error{}
-	if p.DefinitionFile == "" && p.ID == "" {
-		errs = append(errs, paramError{
-			Parameter: "resource",
-			Message:   "you must specify a definition file or resource ID",
-		})
-	}
+	// Check for incompatibility between JUnit and SkipResultWait options
+    if p.JUnitOuptutFile != "" && p.SkipResultWait {
+        errs = append(errs, paramError{
+            Parameter: "junit",
+            Message:   "--junit option is incompatible with --skip-result-wait option",
+        })
+    }
 
-	if p.DefinitionFile != "" && p.ID != "" {
-		errs = append(errs, paramError{
-			Parameter: "resource",
-			Message:   "you cannot specify both a definition file and resource ID",
-		})
-	}
+	if p.GitRepo != "" || p.GitUsername != "" || p.GitToken != "" || p.RepoName != "" || p.Branch != "" || p.GitFile != "" {
+		// Call the validateGitParameters function
+		gitErrors := p.validateGitParameters()
+		errs = append(errs, gitErrors...)
 
-	if p.JUnitOuptutFile != "" && p.SkipResultWait {
-		errs = append(errs, paramError{
-			Parameter: "junit",
-			Message:   "--junit option is incompatible with --skip-result-wait option",
-		})
-	}
+	} else if p.DefinitionFile == "" && p.ID == "" {
+		// Check for either DefinitionFile or ID
+        errs = append(errs, paramError{
+            Parameter: "resource",
+            Message:   "you must specify a definition file or resource ID",
+        })
+		
+    } else if p.DefinitionFile != "" && p.ID != "" {
+        errs = append(errs, paramError{
+            Parameter: "resource",
+            Message:   "you cannot specify both a definition file and resource ID",
+        })
+    }
+	
 
-	// New checks for Git parameters
-	if p.GitRepo == "" {
-		errs = append(errs, paramError{
-			Parameter: "git-repo",
-			Message:   "you must specify a Git repository",
-		})
-	}
+    // Validate required gates
+    for _, rg := range p.RequriedGates {
+        _, err := openapi.NewSupportedGatesFromValue(rg)
+        if err != nil {
+            errs = append(errs, paramError{
+                Parameter: "required-gates",
+                Message:   fmt.Sprintf("invalid option '%s'. "+validRequiredGatesMsg(), rg),
+            })
+        }
+    }
 
+    return errs
+}
+
+func (p runParameters) validateGitParameters() []error {
+    gitErrors := make([]error, 0)
+
+    // Add specific validation checks for Git parameters
+    if p.GitRepo == "" {
+        gitErrors = append(gitErrors, paramError{
+            Parameter: "git-repo",
+            Message:   "Git repository is required",
+        })
+    }
 	if p.GitUsername == "" {
-		errs = append(errs, paramError{
-			Parameter: "git-username",
-			Message:   "you must specify a Git username",
-		})
-	}
-	if p.GitToken == "" {
-		errs = append(errs, paramError{
-			Parameter: "git-token",
-			Message:   "you must specify a Git token",
-		})
-	}
+        gitErrors = append(gitErrors, paramError{
+            Parameter: "gitusername",
+            Message:   "Git username is required",
+        })
+    }
 
-	if p.RepoName == "" {
-		errs = append(errs, paramError{
-			Parameter: "repo-name",
-			Message:   "you must specify a repository name",
-		})
-	}
+    if p.GitToken == "" {
+        gitErrors = append(gitErrors, paramError{
+            Parameter: "gittoken",
+            Message:   "Git token is required",
+        })
+    }
 
-	if p.Branch == "" {
-		errs = append(errs, paramError{
-			Parameter: "branch",
-			Message:   "you must specify a branch name",
-		})
-	}
+    if p.RepoName == "" {
+        gitErrors = append(gitErrors, paramError{
+            Parameter: "reponame",
+            Message:   "Repository name is required",
+        })
+    }
 
-	if p.GitFile == "" {
-		errs = append(errs, paramError{
-			Parameter: "git-file",
-			Message:   "you must specify a file name",
-		})
-	}
+    if p.Branch == "" {
+        gitErrors = append(gitErrors, paramError{
+            Parameter: "branch",
+            Message:   "Branch name is required",
+        })
+    }
 
-	for _, rg := range p.RequriedGates {
-		_, err := openapi.NewSupportedGatesFromValue(rg)
-		if err != nil {
-			errs = append(errs, paramError{
-				Parameter: "required-gates",
-				Message:   fmt.Sprintf("invalid option '%s'. "+validRequiredGatesMsg(), rg),
-			})
-		}
-	}
-
-	return errs
+    if p.GitFile == "" {
+        gitErrors = append(gitErrors, paramError{
+            Parameter: "gitfile",
+            Message:   "Git file name is required",
+        })
+    }
+	return gitErrors
 }

@@ -26,9 +26,10 @@ func WithDeleteSuccessMessage(deleteSuccessMssg string) option {
 	}
 }
 
-func WithTableConfig(tableConfig TableConfig) option {
+func WithTableConfig(tableConfig TableConfig) option{
 	return func(o *options) {
 		o.tableConfig = tableConfig
+		//o.cmd =cmd
 	}
 }
 

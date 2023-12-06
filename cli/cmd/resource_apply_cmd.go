@@ -3,6 +3,7 @@ package cmd
 import (
 	"context"
 	"fmt"
+	"encoding/json"
 
 	"github.com/kubeshop/tracetest/cli/pkg/fileutil"
 	"github.com/kubeshop/tracetest/cli/pkg/resourcemanager"
@@ -25,6 +26,9 @@ func init() {
 			resourceType := resourceParams.ResourceName
 			ctx := context.Background()
 
+			// Debug: Print the value of the "gitrepo" flag
+			fmt.Println("Git Repo Flag:", applyParams.GitRepo)
+
 			resourceClient, err := resources.Get(resourceType)
 			if err != nil {
 				return "", err
@@ -34,23 +38,52 @@ func init() {
 			if err != nil {
 				return "", err
 			}
+			
+			// Check if a definition file is provided
+			if applyParams.DefinitionFile != "" {
+			// If a file name is provided, read its contents
+        		inputFile, err := fileutil.Read(applyParams.DefinitionFile)
+				if err != nil {
+					return "", fmt.Errorf("cannot read file %s: %w", applyParams.DefinitionFile, err)
+				}
 
-			inputFile, err := fileutil.Read(applyParams.DefinitionFile)
-			if err != nil {
-				return "", fmt.Errorf("cannot read file %s: %w", applyParams.DefinitionFile, err)
+				result, err := resourceClient.Apply(ctx, inputFile, resultFormat)
+				if err != nil {
+					return "", err
+				}
+
+				return result, nil
+			} else {
+				// If no file name is provided, use Git parameters as JSON body
+				// Construct the JSON body using Git parameters
+				gitParams := map[string]string{
+					"gitRepo":     applyParams.GitRepo,
+					"gitUsername": applyParams.GitUsername,
+					"gitToken":    applyParams.GitToken,
+					"repoName":    applyParams.RepoName,
+					"branch":      applyParams.Branch,
+					"gitFile":     applyParams.GitFile,
+				}
+				// Convert the map to JSON
+				jsonBody, err := json.Marshal(gitParams)
+				if err != nil {
+					return "", fmt.Errorf("error creating JSON body: %w", err)
+				}
+		
+				return string(jsonBody), nil
 			}
-
-			result, err := resourceClient.Apply(ctx, inputFile, resultFormat)
-			if err != nil {
-				return "", err
-			}
-
-			return result, nil
 		}, applyParams),
 		PostRun: teardownCommand,
 	}
 
 	applyCmd.Flags().StringVarP(&applyParams.DefinitionFile, "file", "f", "", "path to the definition file")
+	applyCmd.Flags().StringVarP(&applyParams.GitRepo, "gitrepo", "", "", "Git repository name")
+	applyCmd.Flags().StringVarP(&applyParams.GitUsername, "gitusername", "", "", "Git username")
+	applyCmd.Flags().StringVarP(&applyParams.GitToken, "gittoken", "", "", "Git token")
+	applyCmd.Flags().StringVarP(&applyParams.RepoName, "reponame", "", "", "Repository name")
+	applyCmd.Flags().StringVarP(&applyParams.Branch, "branch", "", "", "Branch name")
+	applyCmd.Flags().StringVarP(&applyParams.GitFile, "gitfile", "", "", "Git file name")
+
 	rootCmd.AddCommand(applyCmd)
 }
 
@@ -65,14 +98,59 @@ type applyParameters struct {
 }
 
 func (p applyParameters) Validate(cmd *cobra.Command, args []string) []error {
-	errors := make([]error, 0)
+    errors := make([]error, 0)
 
-	if p.DefinitionFile == "" && (p.GitRepo == "" || p.GitUsername == "" || p.GitToken == "" || p.RepoName == "" || p.Branch == "" || p.GitFile == "") {
-		errors = append(errors, paramError{
-			Parameter: "file/git parameters",
-			Message:   "Either a definition file or Git parameters (GitRepo, GitUsername, GitToken, RepoName, Branch, GitFile) must be provided",
-		})
-	}
+    if p.DefinitionFile == "" {
+        gitErrors := p.validateGitParameters()
+        errors = append(errors, gitErrors...)
+    }
 
-	return errors
+    return errors
+}
+
+func (p applyParameters) validateGitParameters() []error {
+    gitErrors := make([]error, 0)
+
+    // Add specific validation checks for Git parameters
+    if p.GitRepo == "" {
+        gitErrors = append(gitErrors, paramError{
+            Parameter: "git-repo",
+            Message:   "Git repository is required",
+        })
+    }
+	if p.GitUsername == "" {
+        gitErrors = append(gitErrors, paramError{
+            Parameter: "gitusername",
+            Message:   "Git username is required",
+        })
+    }
+
+    if p.GitToken == "" {
+        gitErrors = append(gitErrors, paramError{
+            Parameter: "gittoken",
+            Message:   "Git token is required",
+        })
+    }
+
+    if p.RepoName == "" {
+        gitErrors = append(gitErrors, paramError{
+            Parameter: "reponame",
+            Message:   "Repository name is required",
+        })
+    }
+
+    if p.Branch == "" {
+        gitErrors = append(gitErrors, paramError{
+            Parameter: "branch",
+            Message:   "Branch name is required",
+        })
+    }
+
+    if p.GitFile == "" {
+        gitErrors = append(gitErrors, paramError{
+            Parameter: "gitfile",
+            Message:   "Git file name is required",
+        })
+    }
+	return gitErrors
 }

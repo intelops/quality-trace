@@ -10,6 +10,13 @@ import (
 	"strconv"
 	"strings"
 
+	"log"
+	"os"
+	"path/filepath"
+
+	"gopkg.in/src-d/go-git.v4"
+	"gopkg.in/src-d/go-git.v4/plumbing"
+
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/codes"
@@ -58,6 +65,15 @@ type config struct {
 	enabledOperations []Operation
 	idgen             func() id.ID
 	tracer            trace.Tracer
+}
+
+// Add Git parameters
+type GitParams struct {
+	RepoURL  string `json:"repoURL"`
+	FileName string `json:"fileName"`
+	Branch   string `json:"branch"`
+	Username string `json:"username"`
+	Token    string `json:"token"`
 }
 
 type managerOption func(*config)
@@ -184,6 +200,9 @@ func (m *manager[T]) RegisterRoutes(r *mux.Router) *mux.Router {
 		deleteHandler = m.delete
 	}
 	m.instrumentRoute(subrouter.HandleFunc("/{id}", deleteHandler).Methods(http.MethodDelete).Name(fmt.Sprintf("%s.Delete", m.resourceTypePlural)))
+
+	// Add the Git clone endpoint
+	m.instrumentRoute(subrouter.HandleFunc("/git-clone", m.cloneFromGit).Methods(http.MethodPost).Name(fmt.Sprintf("%s.GitClone", m.resourceTypePlural)))
 
 	return subrouter
 }
@@ -323,15 +342,15 @@ func (m *manager[T]) upsert(w http.ResponseWriter, r *http.Request) {
 	m.doUpdate(ctx, w, r, encoder, targetResource.Spec)
 }
 func printJSONBody(targetResource interface{}) {
-    // Marshal the targetResource into JSON
-    bodyJSON, err := json.Marshal(targetResource)
-    if err != nil {
-        fmt.Printf("Error marshaling JSON: %v\n", err)
-        return
-    }
+	// Marshal the targetResource into JSON
+	bodyJSON, err := json.Marshal(targetResource)
+	if err != nil {
+		fmt.Printf("Error marshaling JSON: %v\n", err)
+		return
+	}
 
-    // Print the raw JSON string
-    fmt.Printf("Request body: %s\n", bodyJSON)
+	// Print the raw JSON string
+	fmt.Printf("Request body: %s\n", bodyJSON)
 }
 
 func (m *manager[T]) update(w http.ResponseWriter, r *http.Request) {
@@ -362,12 +381,12 @@ func (m *manager[T]) update(w http.ResponseWriter, r *http.Request) {
 
 	// Print information about the incoming request
 	fmt.Printf("Received update request for ID %s with method: %s, URL: %s\n", urlID, r.Method, r.URL)
-	
+
 	// Print request parameters, headers, etc.
 	fmt.Printf("Request parameters: %v\n", mux.Vars(r))
 	fmt.Printf("Request headers: %v\n", r.Header)
 	printJSONBody(targetResource) // Print the JSON body
-	
+
 	m.doUpdate(ctx, w, r, encoder, targetResource.Spec)
 }
 
@@ -584,4 +603,73 @@ func writeError(ctx context.Context, w http.ResponseWriter, enc Encoder, code in
 		// any errors means there's something very very wrong
 		panic(fmt.Errorf("cannot marshal error: %w", err))
 	}
+}
+
+// Include the Git clone function in your manager struct
+func (m *manager[T]) cloneFromGit(w http.ResponseWriter, r *http.Request) {
+	encoder := EncoderFromRequest(r)
+	
+	gitParams := GitParams{}
+	err := encoder.DecodeRequestBody(&gitParams)
+
+	if err != nil {
+		writeError(r.Context(), w, encoder, http.StatusBadRequest, err)
+		return
+	}
+
+	// Pass authentication information to CloneAndParse
+	fileContent, err := CloneAndParse(gitParams.RepoURL, gitParams.FileName, gitParams.Branch, gitParams.Username, gitParams.Token)
+	if err != nil {
+		writeError(r.Context(), w, encoder, http.StatusInternalServerError, err)
+		return
+	}
+
+	// Do something with the file content, e.g., return it as a response
+	// ...
+
+	// For demonstration purposes, let's log the file content
+	log.Printf("Cloned file content: %s", fileContent)
+
+	// Respond with success status
+	encoder.WriteEncodedResponse(w, http.StatusOK, map[string]string{"status": "success"})
+}
+
+// CloneAndParse clones a file from a Git repository and returns its content.
+func CloneAndParse(repoURL, fileName, branch, username, password string) ([]byte, error) {
+	
+	// Set up Basic Authentication
+	auth := &http.BasicAuth{
+		Username: username,
+		Password: password,
+	}
+
+	// Clone the Git repository
+	repo, err := git.PlainClone("/tmp/myRepo", false, &git.CloneOptions{
+		URL:  repoURL,
+		Auth: auth,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	// Check out the specified branch
+	wt, err := repo.Worktree()
+	if err != nil {
+		return nil, err
+	}
+	err = wt.Checkout(&git.CheckoutOptions{
+		Branch: plumbing.ReferenceName("refs/heads/" + branch),
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	// Read the contents of the specified file
+	filePath := filepath.Join("/tmp/myRepo", fileName)
+	file, err := os.ReadFile(filePath)
+	if err != nil {
+		return nil, err
+	}
+
+	return file, nil
 }

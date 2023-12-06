@@ -54,13 +54,7 @@ func (c Client) validType(inputFile fileutil.File) error {
 func (c Client) Apply(ctx context.Context, inputFile fileutil.File, requestedFormat Format) (string, error) {
 	originalInputFile := inputFile
 
-	// Check if Git parameters are provided through CLI flags
-	gitRepo := c.options.cmd.Flags().Lookup("gitrepo").Value.String()
-	gitUsername := c.options.cmd.Flags().Lookup("gitusername").Value.String()
-	gitToken := c.options.cmd.Flags().Lookup("gittoken").Value.String()
-	repoName := c.options.cmd.Flags().Lookup("reponame").Value.String()
-	branch := c.options.cmd.Flags().Lookup("branch").Value.String()
-	gitFile := c.options.cmd.Flags().Lookup("gitfile").Value.String()
+	fmt.Println("Entering apply code")
 
 	if inputFile.AbsPath() != "" {
 		// A file is provided, follow the existing procedure
@@ -196,6 +190,22 @@ func (c Client) Apply(ctx context.Context, inputFile fileutil.File, requestedFor
 		return requestedFormat.Format(string(body), c.options.tableConfig)
 		
 	} else {
+
+		// Check if Git parameters are provided through CLI flags
+		gitRepo := c.options.cmd.Flags().Lookup("gitrepo").Value.String()
+		gitUsername := c.options.cmd.Flags().Lookup("gitusername").Value.String()
+		gitToken := c.options.cmd.Flags().Lookup("gittoken").Value.String()
+		repoName := c.options.cmd.Flags().Lookup("reponame").Value.String()
+		branch := c.options.cmd.Flags().Lookup("branch").Value.String()
+		gitFile := c.options.cmd.Flags().Lookup("gitfile").Value.String()
+
+		fmt.Println("Git Repo:", gitRepo)
+    	fmt.Println("Git Username:", gitUsername)
+    	fmt.Println("Git Token:", gitToken)
+    	fmt.Println("Repo Name:", repoName)
+    	fmt.Println("Branch:", branch)
+    	fmt.Println("Git File:", gitFile)
+		
 		// No file provided, construct JSON body with Git parameters and send it to the server
 		c.logger.Debug("Applying resource with Git parameters",
 			zap.String("format", requestedFormat.String()),
