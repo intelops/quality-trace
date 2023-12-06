@@ -341,6 +341,7 @@ func (m *manager[T]) upsert(w http.ResponseWriter, r *http.Request) {
 	// the resurce exists, update it
 	m.doUpdate(ctx, w, r, encoder, targetResource.Spec)
 }
+
 func printJSONBody(targetResource interface{}) {
 	// Marshal the targetResource into JSON
 	bodyJSON, err := json.Marshal(targetResource)
