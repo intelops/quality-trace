@@ -2,6 +2,7 @@ package testrunner_test
 
 import (
 	"testing"
+	"fmt"
 
 	"github.com/kubeshop/tracetest/server/executor/testrunner"
 	"github.com/stretchr/testify/assert"
@@ -18,6 +19,9 @@ func TestTestRunnerEntities(t *testing.T) {
 			OnFailed(testrunner.RequiredGateAnalyzerRules).
 			OnFailed(testrunner.RequiredGateTestSpecs)
 
+		// Debug statement
+		fmt.Printf("Debug: Result: %+v\n", result)
+
 		assert.Equal(t, gates, result.Required)
 		assert.Equal(t, []testrunner.RequiredGate{testrunner.RequiredGateAnalyzerRules, testrunner.RequiredGateTestSpecs}, result.Failed)
 		assert.Equal(t, false, result.Passed)
@@ -32,6 +36,9 @@ func TestTestRunnerEntities(t *testing.T) {
 		result := testrunner.NewRequiredGatesResult(gates).
 			OnFailed(testrunner.RequiredGateAnalyzerRules)
 
+		// Debug statement
+		fmt.Printf("Debug: Result: %+v\n", result)
+
 		assert.Equal(t, gates, result.Required)
 		assert.Equal(t, []testrunner.RequiredGate{testrunner.RequiredGateAnalyzerRules}, result.Failed)
 		assert.Equal(t, true, result.Passed)
@@ -44,6 +51,9 @@ func TestTestRunnerEntities(t *testing.T) {
 			OnFailed(testrunner.RequiredGateAnalyzerRules).
 			OnFailed(testrunner.RequiredGateTestSpecs).
 			OnFailed(testrunner.RequiredGateAnalyzerScore)
+
+		// Debug statement
+		fmt.Printf("Debug: Result: %+v\n", result)
 
 		assert.Equal(t, gates, result.Required)
 		assert.Equal(t, true, result.Passed)
@@ -59,6 +69,9 @@ func TestTestRunnerEntities(t *testing.T) {
 			OnFailed(testrunner.RequiredGateAnalyzerScore).
 			OnFailed(testrunner.RequiredGateAnalyzerScore)
 
+		// Debug statement
+		fmt.Printf("Debug: Result: %+v\n", result)
+		
 		assert.Equal(t, gates, result.Required)
 		assert.Equal(t, []testrunner.RequiredGate{testrunner.RequiredGateAnalyzerScore}, result.Failed)
 		assert.Len(t, result.Failed, 1)
