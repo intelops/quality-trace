@@ -1,9 +1,0 @@
-go 1.21
-
-toolchain go1.21.3
-
-use (
-	./cli
-	./server
-	./testing/cli-e2etest
-)

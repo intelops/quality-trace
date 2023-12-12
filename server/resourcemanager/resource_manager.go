@@ -14,7 +14,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"gopkg.in/src-d/go-git.v4"
+	git "gopkg.in/src-d/go-git.v4"
 	"gopkg.in/src-d/go-git.v4/plumbing"
 
 	"go.opentelemetry.io/otel"
@@ -74,6 +74,7 @@ type GitParams struct {
 	Branch   string `json:"branch"`
 	Username string `json:"username"`
 	Token    string `json:"token"`
+	RepoName string `json:"repoName"`
 }
 
 type managerOption func(*config)
@@ -392,6 +393,8 @@ func (m *manager[T]) update(w http.ResponseWriter, r *http.Request) {
 }
 
 func (m *manager[T]) doUpdate(ctx context.Context, w http.ResponseWriter, r *http.Request, encoder Encoder, specs T) {
+
+	fmt.Printf("Performing update for resource ID: %s\n", specs.GetID())
 	if err := specs.Validate(); err != nil {
 		err := fmt.Errorf(
 			"an error occurred while validating the resource: %s. error: %s",
@@ -609,7 +612,7 @@ func writeError(ctx context.Context, w http.ResponseWriter, enc Encoder, code in
 // Include the Git clone function in your manager struct
 func (m *manager[T]) cloneFromGit(w http.ResponseWriter, r *http.Request) {
 	encoder := EncoderFromRequest(r)
-	
+
 	gitParams := GitParams{}
 	err := encoder.DecodeRequestBody(&gitParams)
 
@@ -619,16 +622,13 @@ func (m *manager[T]) cloneFromGit(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Pass authentication information to CloneAndParse
-	fileContent, err := CloneAndParse(gitParams.RepoURL, gitParams.FileName, gitParams.Branch, gitParams.Username, gitParams.Token)
+	fileContent, err := CloneAndParse(gitParams.RepoURL, gitParams.FileName, gitParams.RepoName, gitParams.Branch, gitParams.Username, gitParams.Token)
 	if err != nil {
 		writeError(r.Context(), w, encoder, http.StatusInternalServerError, err)
 		return
 	}
 
-	// Do something with the file content, e.g., return it as a response
-	// ...
-
-	// For demonstration purposes, let's log the file content
+	// For demonstration purposes, log the file content
 	log.Printf("Cloned file content: %s", fileContent)
 
 	// Respond with success status
@@ -636,8 +636,8 @@ func (m *manager[T]) cloneFromGit(w http.ResponseWriter, r *http.Request) {
 }
 
 // CloneAndParse clones a file from a Git repository and returns its content.
-func CloneAndParse(repoURL, fileName, branch, username, password string) ([]byte, error) {
-	
+func CloneAndParse(repoURL, fileName, branch, username, repoName, password string) ([]byte, error) {
+
 	// Set up Basic Authentication
 	auth := &http.BasicAuth{
 		Username: username,
