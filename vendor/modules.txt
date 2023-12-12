@@ -1,0 +1,1548 @@
+# atomicgo.dev/cursor v0.2.0
+## explicit; go 1.15
+atomicgo.dev/cursor
+# atomicgo.dev/keyboard v0.2.9
+## explicit; go 1.15
+atomicgo.dev/keyboard
+atomicgo.dev/keyboard/internal
+atomicgo.dev/keyboard/keys
+# atomicgo.dev/schedule v0.1.0
+## explicit; go 1.18
+atomicgo.dev/schedule
+# github.com/Azure/azure-sdk-for-go/sdk/azcore v1.6.0
+## explicit; go 1.18
+github.com/Azure/azure-sdk-for-go/sdk/azcore
+github.com/Azure/azure-sdk-for-go/sdk/azcore/cloud
+github.com/Azure/azure-sdk-for-go/sdk/azcore/internal/exported
+github.com/Azure/azure-sdk-for-go/sdk/azcore/internal/log
+github.com/Azure/azure-sdk-for-go/sdk/azcore/internal/pollers
+github.com/Azure/azure-sdk-for-go/sdk/azcore/internal/pollers/async
+github.com/Azure/azure-sdk-for-go/sdk/azcore/internal/pollers/body
+github.com/Azure/azure-sdk-for-go/sdk/azcore/internal/pollers/loc
+github.com/Azure/azure-sdk-for-go/sdk/azcore/internal/pollers/op
+github.com/Azure/azure-sdk-for-go/sdk/azcore/internal/shared
+github.com/Azure/azure-sdk-for-go/sdk/azcore/log
+github.com/Azure/azure-sdk-for-go/sdk/azcore/policy
+github.com/Azure/azure-sdk-for-go/sdk/azcore/runtime
+github.com/Azure/azure-sdk-for-go/sdk/azcore/streaming
+github.com/Azure/azure-sdk-for-go/sdk/azcore/to
+github.com/Azure/azure-sdk-for-go/sdk/azcore/tracing
+# github.com/Azure/azure-sdk-for-go/sdk/azidentity v1.3.0
+## explicit; go 1.18
+github.com/Azure/azure-sdk-for-go/sdk/azidentity
+# github.com/Azure/azure-sdk-for-go/sdk/internal v1.3.0
+## explicit; go 1.18
+github.com/Azure/azure-sdk-for-go/sdk/internal/diag
+github.com/Azure/azure-sdk-for-go/sdk/internal/errorinfo
+github.com/Azure/azure-sdk-for-go/sdk/internal/exported
+github.com/Azure/azure-sdk-for-go/sdk/internal/log
+github.com/Azure/azure-sdk-for-go/sdk/internal/poller
+github.com/Azure/azure-sdk-for-go/sdk/internal/temporal
+github.com/Azure/azure-sdk-for-go/sdk/internal/uuid
+# github.com/Azure/azure-sdk-for-go/sdk/monitor/azquery v1.1.0
+## explicit; go 1.18
+github.com/Azure/azure-sdk-for-go/sdk/monitor/azquery
+# github.com/AzureAD/microsoft-authentication-library-for-go v1.0.0
+## explicit; go 1.18
+github.com/AzureAD/microsoft-authentication-library-for-go/apps/cache
+github.com/AzureAD/microsoft-authentication-library-for-go/apps/confidential
+github.com/AzureAD/microsoft-authentication-library-for-go/apps/errors
+github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/base
+github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/base/internal/storage
+github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/exported
+github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/json
+github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/json/types/time
+github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/local
+github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/oauth
+github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/oauth/ops
+github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/oauth/ops/accesstokens
+github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/oauth/ops/authority
+github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/oauth/ops/internal/comm
+github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/oauth/ops/internal/grant
+github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/oauth/ops/wstrust
+github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/oauth/ops/wstrust/defs
+github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/options
+github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/shared
+github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/version
+github.com/AzureAD/microsoft-authentication-library-for-go/apps/public
+# github.com/IBM/sarama v1.40.1
+## explicit; go 1.17
+github.com/IBM/sarama
+# github.com/Jeffail/gabs/v2 v2.7.0
+## explicit; go 1.16
+github.com/Jeffail/gabs/v2
+# github.com/Microsoft/go-winio v0.5.2
+## explicit; go 1.13
+github.com/Microsoft/go-winio
+github.com/Microsoft/go-winio/pkg/guid
+# github.com/PuerkitoBio/purell v1.1.1
+## explicit
+github.com/PuerkitoBio/purell
+# github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578
+## explicit
+github.com/PuerkitoBio/urlesc
+# github.com/agnivade/levenshtein v1.0.1
+## explicit
+github.com/agnivade/levenshtein
+# github.com/alecthomas/participle/v2 v2.0.0-alpha8
+## explicit; go 1.16
+github.com/alecthomas/participle/v2
+github.com/alecthomas/participle/v2/lexer
+# github.com/alexeyco/simpletable v1.0.0
+## explicit; go 1.16
+github.com/alexeyco/simpletable
+# github.com/aws/aws-sdk-go v1.44.196
+## explicit; go 1.11
+github.com/aws/aws-sdk-go/aws
+github.com/aws/aws-sdk-go/aws/awserr
+github.com/aws/aws-sdk-go/aws/awsutil
+github.com/aws/aws-sdk-go/aws/client
+github.com/aws/aws-sdk-go/aws/client/metadata
+github.com/aws/aws-sdk-go/aws/corehandlers
+github.com/aws/aws-sdk-go/aws/credentials
+github.com/aws/aws-sdk-go/aws/credentials/ec2rolecreds
+github.com/aws/aws-sdk-go/aws/credentials/endpointcreds
+github.com/aws/aws-sdk-go/aws/credentials/processcreds
+github.com/aws/aws-sdk-go/aws/credentials/ssocreds
+github.com/aws/aws-sdk-go/aws/credentials/stscreds
+github.com/aws/aws-sdk-go/aws/csm
+github.com/aws/aws-sdk-go/aws/defaults
+github.com/aws/aws-sdk-go/aws/ec2metadata
+github.com/aws/aws-sdk-go/aws/endpoints
+github.com/aws/aws-sdk-go/aws/request
+github.com/aws/aws-sdk-go/aws/session
+github.com/aws/aws-sdk-go/aws/signer/v4
+github.com/aws/aws-sdk-go/internal/context
+github.com/aws/aws-sdk-go/internal/ini
+github.com/aws/aws-sdk-go/internal/sdkio
+github.com/aws/aws-sdk-go/internal/sdkmath
+github.com/aws/aws-sdk-go/internal/sdkrand
+github.com/aws/aws-sdk-go/internal/sdkuri
+github.com/aws/aws-sdk-go/internal/shareddefaults
+github.com/aws/aws-sdk-go/internal/strings
+github.com/aws/aws-sdk-go/internal/sync/singleflight
+github.com/aws/aws-sdk-go/private/protocol
+github.com/aws/aws-sdk-go/private/protocol/json/jsonutil
+github.com/aws/aws-sdk-go/private/protocol/jsonrpc
+github.com/aws/aws-sdk-go/private/protocol/query
+github.com/aws/aws-sdk-go/private/protocol/query/queryutil
+github.com/aws/aws-sdk-go/private/protocol/rest
+github.com/aws/aws-sdk-go/private/protocol/restjson
+github.com/aws/aws-sdk-go/private/protocol/xml/xmlutil
+github.com/aws/aws-sdk-go/service/sso
+github.com/aws/aws-sdk-go/service/sso/ssoiface
+github.com/aws/aws-sdk-go/service/sts
+github.com/aws/aws-sdk-go/service/sts/stsiface
+github.com/aws/aws-sdk-go/service/xray
+# github.com/brianvoe/gofakeit/v6 v6.17.0
+## explicit; go 1.17
+github.com/brianvoe/gofakeit/v6
+github.com/brianvoe/gofakeit/v6/data
+# github.com/cenkalti/backoff/v4 v4.1.3
+## explicit; go 1.13
+github.com/cenkalti/backoff/v4
+# github.com/compose-spec/compose-go v1.20.2
+## explicit; go 1.19
+github.com/compose-spec/compose-go/consts
+github.com/compose-spec/compose-go/dotenv
+github.com/compose-spec/compose-go/errdefs
+github.com/compose-spec/compose-go/interpolation
+github.com/compose-spec/compose-go/loader
+github.com/compose-spec/compose-go/schema
+github.com/compose-spec/compose-go/template
+github.com/compose-spec/compose-go/tree
+github.com/compose-spec/compose-go/types
+github.com/compose-spec/compose-go/utils
+# github.com/containerd/console v1.0.3
+## explicit; go 1.13
+github.com/containerd/console
+# github.com/cpuguy83/go-md2man/v2 v2.0.2
+## explicit; go 1.11
+github.com/cpuguy83/go-md2man/v2/md2man
+# github.com/cucumber/ci-environment/go v0.0.0-20231211183250-e13a6ef47585
+## explicit; go 1.19
+github.com/cucumber/ci-environment/go
+# github.com/davecgh/go-spew v1.1.1
+## explicit
+github.com/davecgh/go-spew/spew
+# github.com/denisbrodbeck/machineid v1.0.1
+## explicit
+github.com/denisbrodbeck/machineid
+# github.com/distribution/reference v0.5.0
+## explicit; go 1.20
+github.com/distribution/reference
+# github.com/docker/distribution v2.8.2+incompatible
+## explicit
+github.com/docker/distribution/digestset
+github.com/docker/distribution/reference
+# github.com/docker/docker v20.10.24+incompatible
+## explicit
+github.com/docker/docker/api
+github.com/docker/docker/api/types
+github.com/docker/docker/api/types/blkiodev
+github.com/docker/docker/api/types/container
+github.com/docker/docker/api/types/events
+github.com/docker/docker/api/types/filters
+github.com/docker/docker/api/types/image
+github.com/docker/docker/api/types/mount
+github.com/docker/docker/api/types/network
+github.com/docker/docker/api/types/registry
+github.com/docker/docker/api/types/strslice
+github.com/docker/docker/api/types/swarm
+github.com/docker/docker/api/types/swarm/runtime
+github.com/docker/docker/api/types/time
+github.com/docker/docker/api/types/versions
+github.com/docker/docker/api/types/volume
+github.com/docker/docker/client
+github.com/docker/docker/errdefs
+github.com/docker/docker/pkg/stdcopy
+# github.com/docker/go-connections v0.4.0
+## explicit
+github.com/docker/go-connections/nat
+github.com/docker/go-connections/sockets
+github.com/docker/go-connections/tlsconfig
+# github.com/docker/go-units v0.5.0
+## explicit
+github.com/docker/go-units
+# github.com/eapache/go-resiliency v1.3.0
+## explicit; go 1.13
+github.com/eapache/go-resiliency/breaker
+# github.com/eapache/go-xerial-snappy v0.0.0-20230111030713-bf00bc1b83b6
+## explicit; go 1.17
+github.com/eapache/go-xerial-snappy
+# github.com/eapache/queue v1.1.0
+## explicit
+github.com/eapache/queue
+# github.com/elastic/elastic-transport-go/v8 v8.0.0-20211216131617-bbee439d559c
+## explicit; go 1.13
+github.com/elastic/elastic-transport-go/v8/elastictransport
+github.com/elastic/elastic-transport-go/v8/elastictransport/version
+# github.com/elastic/go-elasticsearch/v8 v8.4.0-alpha.1.0.20221227164349-c40d762a40ad
+## explicit; go 1.13
+github.com/elastic/go-elasticsearch/v8
+github.com/elastic/go-elasticsearch/v8/esapi
+github.com/elastic/go-elasticsearch/v8/internal/version
+github.com/elastic/go-elasticsearch/v8/typedapi
+github.com/elastic/go-elasticsearch/v8/typedapi/asyncsearch/delete
+github.com/elastic/go-elasticsearch/v8/typedapi/asyncsearch/get
+github.com/elastic/go-elasticsearch/v8/typedapi/asyncsearch/status
+github.com/elastic/go-elasticsearch/v8/typedapi/asyncsearch/submit
+github.com/elastic/go-elasticsearch/v8/typedapi/autoscaling/deleteautoscalingpolicy
+github.com/elastic/go-elasticsearch/v8/typedapi/autoscaling/getautoscalingcapacity
+github.com/elastic/go-elasticsearch/v8/typedapi/autoscaling/getautoscalingpolicy
+github.com/elastic/go-elasticsearch/v8/typedapi/autoscaling/putautoscalingpolicy
+github.com/elastic/go-elasticsearch/v8/typedapi/cat/aliases
+github.com/elastic/go-elasticsearch/v8/typedapi/cat/allocation
+github.com/elastic/go-elasticsearch/v8/typedapi/cat/componenttemplates
+github.com/elastic/go-elasticsearch/v8/typedapi/cat/count
+github.com/elastic/go-elasticsearch/v8/typedapi/cat/fielddata
+github.com/elastic/go-elasticsearch/v8/typedapi/cat/health
+github.com/elastic/go-elasticsearch/v8/typedapi/cat/help
+github.com/elastic/go-elasticsearch/v8/typedapi/cat/indices
+github.com/elastic/go-elasticsearch/v8/typedapi/cat/master
+github.com/elastic/go-elasticsearch/v8/typedapi/cat/mldatafeeds
+github.com/elastic/go-elasticsearch/v8/typedapi/cat/mldataframeanalytics
+github.com/elastic/go-elasticsearch/v8/typedapi/cat/mljobs
+github.com/elastic/go-elasticsearch/v8/typedapi/cat/mltrainedmodels
+github.com/elastic/go-elasticsearch/v8/typedapi/cat/nodeattrs
+github.com/elastic/go-elasticsearch/v8/typedapi/cat/nodes
+github.com/elastic/go-elasticsearch/v8/typedapi/cat/pendingtasks
+github.com/elastic/go-elasticsearch/v8/typedapi/cat/plugins
+github.com/elastic/go-elasticsearch/v8/typedapi/cat/recovery
+github.com/elastic/go-elasticsearch/v8/typedapi/cat/repositories
+github.com/elastic/go-elasticsearch/v8/typedapi/cat/segments
+github.com/elastic/go-elasticsearch/v8/typedapi/cat/shards
+github.com/elastic/go-elasticsearch/v8/typedapi/cat/snapshots
+github.com/elastic/go-elasticsearch/v8/typedapi/cat/tasks
+github.com/elastic/go-elasticsearch/v8/typedapi/cat/templates
+github.com/elastic/go-elasticsearch/v8/typedapi/cat/threadpool
+github.com/elastic/go-elasticsearch/v8/typedapi/cat/transforms
+github.com/elastic/go-elasticsearch/v8/typedapi/ccr/deleteautofollowpattern
+github.com/elastic/go-elasticsearch/v8/typedapi/ccr/follow
+github.com/elastic/go-elasticsearch/v8/typedapi/ccr/followinfo
+github.com/elastic/go-elasticsearch/v8/typedapi/ccr/followstats
+github.com/elastic/go-elasticsearch/v8/typedapi/ccr/forgetfollower
+github.com/elastic/go-elasticsearch/v8/typedapi/ccr/getautofollowpattern
+github.com/elastic/go-elasticsearch/v8/typedapi/ccr/pauseautofollowpattern
+github.com/elastic/go-elasticsearch/v8/typedapi/ccr/pausefollow
+github.com/elastic/go-elasticsearch/v8/typedapi/ccr/putautofollowpattern
+github.com/elastic/go-elasticsearch/v8/typedapi/ccr/resumeautofollowpattern
+github.com/elastic/go-elasticsearch/v8/typedapi/ccr/resumefollow
+github.com/elastic/go-elasticsearch/v8/typedapi/ccr/stats
+github.com/elastic/go-elasticsearch/v8/typedapi/ccr/unfollow
+github.com/elastic/go-elasticsearch/v8/typedapi/cluster/allocationexplain
+github.com/elastic/go-elasticsearch/v8/typedapi/cluster/deletecomponenttemplate
+github.com/elastic/go-elasticsearch/v8/typedapi/cluster/deletevotingconfigexclusions
+github.com/elastic/go-elasticsearch/v8/typedapi/cluster/existscomponenttemplate
+github.com/elastic/go-elasticsearch/v8/typedapi/cluster/getcomponenttemplate
+github.com/elastic/go-elasticsearch/v8/typedapi/cluster/getsettings
+github.com/elastic/go-elasticsearch/v8/typedapi/cluster/health
+github.com/elastic/go-elasticsearch/v8/typedapi/cluster/pendingtasks
+github.com/elastic/go-elasticsearch/v8/typedapi/cluster/postvotingconfigexclusions
+github.com/elastic/go-elasticsearch/v8/typedapi/cluster/putcomponenttemplate
+github.com/elastic/go-elasticsearch/v8/typedapi/cluster/putsettings
+github.com/elastic/go-elasticsearch/v8/typedapi/cluster/remoteinfo
+github.com/elastic/go-elasticsearch/v8/typedapi/cluster/reroute
+github.com/elastic/go-elasticsearch/v8/typedapi/cluster/state
+github.com/elastic/go-elasticsearch/v8/typedapi/cluster/stats
+github.com/elastic/go-elasticsearch/v8/typedapi/core/clearscroll
+github.com/elastic/go-elasticsearch/v8/typedapi/core/closepointintime
+github.com/elastic/go-elasticsearch/v8/typedapi/core/count
+github.com/elastic/go-elasticsearch/v8/typedapi/core/create
+github.com/elastic/go-elasticsearch/v8/typedapi/core/delete
+github.com/elastic/go-elasticsearch/v8/typedapi/core/deletebyquery
+github.com/elastic/go-elasticsearch/v8/typedapi/core/deletebyqueryrethrottle
+github.com/elastic/go-elasticsearch/v8/typedapi/core/deletescript
+github.com/elastic/go-elasticsearch/v8/typedapi/core/exists
+github.com/elastic/go-elasticsearch/v8/typedapi/core/existssource
+github.com/elastic/go-elasticsearch/v8/typedapi/core/explain
+github.com/elastic/go-elasticsearch/v8/typedapi/core/fieldcaps
+github.com/elastic/go-elasticsearch/v8/typedapi/core/get
+github.com/elastic/go-elasticsearch/v8/typedapi/core/getscript
+github.com/elastic/go-elasticsearch/v8/typedapi/core/getscriptcontext
+github.com/elastic/go-elasticsearch/v8/typedapi/core/getscriptlanguages
+github.com/elastic/go-elasticsearch/v8/typedapi/core/getsource
+github.com/elastic/go-elasticsearch/v8/typedapi/core/index
+github.com/elastic/go-elasticsearch/v8/typedapi/core/info
+github.com/elastic/go-elasticsearch/v8/typedapi/core/knnsearch
+github.com/elastic/go-elasticsearch/v8/typedapi/core/mget
+github.com/elastic/go-elasticsearch/v8/typedapi/core/mtermvectors
+github.com/elastic/go-elasticsearch/v8/typedapi/core/openpointintime
+github.com/elastic/go-elasticsearch/v8/typedapi/core/ping
+github.com/elastic/go-elasticsearch/v8/typedapi/core/putscript
+github.com/elastic/go-elasticsearch/v8/typedapi/core/rankeval
+github.com/elastic/go-elasticsearch/v8/typedapi/core/reindex
+github.com/elastic/go-elasticsearch/v8/typedapi/core/reindexrethrottle
+github.com/elastic/go-elasticsearch/v8/typedapi/core/rendersearchtemplate
+github.com/elastic/go-elasticsearch/v8/typedapi/core/scriptspainlessexecute
+github.com/elastic/go-elasticsearch/v8/typedapi/core/scroll
+github.com/elastic/go-elasticsearch/v8/typedapi/core/search
+github.com/elastic/go-elasticsearch/v8/typedapi/core/searchmvt
+github.com/elastic/go-elasticsearch/v8/typedapi/core/searchshards
+github.com/elastic/go-elasticsearch/v8/typedapi/core/searchtemplate
+github.com/elastic/go-elasticsearch/v8/typedapi/core/termsenum
+github.com/elastic/go-elasticsearch/v8/typedapi/core/termvectors
+github.com/elastic/go-elasticsearch/v8/typedapi/core/update
+github.com/elastic/go-elasticsearch/v8/typedapi/core/updatebyquery
+github.com/elastic/go-elasticsearch/v8/typedapi/core/updatebyqueryrethrottle
+github.com/elastic/go-elasticsearch/v8/typedapi/danglingindices/deletedanglingindex
+github.com/elastic/go-elasticsearch/v8/typedapi/danglingindices/importdanglingindex
+github.com/elastic/go-elasticsearch/v8/typedapi/danglingindices/listdanglingindices
+github.com/elastic/go-elasticsearch/v8/typedapi/enrich/deletepolicy
+github.com/elastic/go-elasticsearch/v8/typedapi/enrich/executepolicy
+github.com/elastic/go-elasticsearch/v8/typedapi/enrich/getpolicy
+github.com/elastic/go-elasticsearch/v8/typedapi/enrich/putpolicy
+github.com/elastic/go-elasticsearch/v8/typedapi/enrich/stats
+github.com/elastic/go-elasticsearch/v8/typedapi/eql/delete
+github.com/elastic/go-elasticsearch/v8/typedapi/eql/get
+github.com/elastic/go-elasticsearch/v8/typedapi/eql/getstatus
+github.com/elastic/go-elasticsearch/v8/typedapi/eql/search
+github.com/elastic/go-elasticsearch/v8/typedapi/features/getfeatures
+github.com/elastic/go-elasticsearch/v8/typedapi/features/resetfeatures
+github.com/elastic/go-elasticsearch/v8/typedapi/fleet/globalcheckpoints
+github.com/elastic/go-elasticsearch/v8/typedapi/fleet/search
+github.com/elastic/go-elasticsearch/v8/typedapi/graph/explore
+github.com/elastic/go-elasticsearch/v8/typedapi/ilm/deletelifecycle
+github.com/elastic/go-elasticsearch/v8/typedapi/ilm/explainlifecycle
+github.com/elastic/go-elasticsearch/v8/typedapi/ilm/getlifecycle
+github.com/elastic/go-elasticsearch/v8/typedapi/ilm/getstatus
+github.com/elastic/go-elasticsearch/v8/typedapi/ilm/migratetodatatiers
+github.com/elastic/go-elasticsearch/v8/typedapi/ilm/movetostep
+github.com/elastic/go-elasticsearch/v8/typedapi/ilm/putlifecycle
+github.com/elastic/go-elasticsearch/v8/typedapi/ilm/removepolicy
+github.com/elastic/go-elasticsearch/v8/typedapi/ilm/retry
+github.com/elastic/go-elasticsearch/v8/typedapi/ilm/start
+github.com/elastic/go-elasticsearch/v8/typedapi/ilm/stop
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/addblock
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/analyze
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/clearcache
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/clone
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/close
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/create
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/createdatastream
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/datastreamsstats
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/delete
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/deletealias
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/deletedatastream
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/deleteindextemplate
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/deletetemplate
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/diskusage
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/downsample
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/exists
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/existsalias
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/existsindextemplate
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/existstemplate
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/fieldusagestats
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/flush
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/forcemerge
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/get
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/getalias
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/getdatastream
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/getfieldmapping
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/getindextemplate
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/getmapping
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/getsettings
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/gettemplate
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/migratetodatastream
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/modifydatastream
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/open
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/promotedatastream
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/putalias
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/putindextemplate
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/putmapping
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/putsettings
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/puttemplate
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/recovery
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/refresh
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/reloadsearchanalyzers
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/resolveindex
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/rollover
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/segments
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/shardstores
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/shrink
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/simulateindextemplate
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/simulatetemplate
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/split
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/stats
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/unfreeze
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/updatealiases
+github.com/elastic/go-elasticsearch/v8/typedapi/indices/validatequery
+github.com/elastic/go-elasticsearch/v8/typedapi/ingest/deletepipeline
+github.com/elastic/go-elasticsearch/v8/typedapi/ingest/geoipstats
+github.com/elastic/go-elasticsearch/v8/typedapi/ingest/getpipeline
+github.com/elastic/go-elasticsearch/v8/typedapi/ingest/processorgrok
+github.com/elastic/go-elasticsearch/v8/typedapi/ingest/putpipeline
+github.com/elastic/go-elasticsearch/v8/typedapi/ingest/simulate
+github.com/elastic/go-elasticsearch/v8/typedapi/license/delete
+github.com/elastic/go-elasticsearch/v8/typedapi/license/get
+github.com/elastic/go-elasticsearch/v8/typedapi/license/getbasicstatus
+github.com/elastic/go-elasticsearch/v8/typedapi/license/gettrialstatus
+github.com/elastic/go-elasticsearch/v8/typedapi/license/post
+github.com/elastic/go-elasticsearch/v8/typedapi/license/poststartbasic
+github.com/elastic/go-elasticsearch/v8/typedapi/license/poststarttrial
+github.com/elastic/go-elasticsearch/v8/typedapi/logstash/deletepipeline
+github.com/elastic/go-elasticsearch/v8/typedapi/logstash/getpipeline
+github.com/elastic/go-elasticsearch/v8/typedapi/logstash/putpipeline
+github.com/elastic/go-elasticsearch/v8/typedapi/migration/deprecations
+github.com/elastic/go-elasticsearch/v8/typedapi/migration/getfeatureupgradestatus
+github.com/elastic/go-elasticsearch/v8/typedapi/migration/postfeatureupgrade
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/cleartrainedmodeldeploymentcache
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/closejob
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/deletecalendar
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/deletecalendarevent
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/deletecalendarjob
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/deletedatafeed
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/deletedataframeanalytics
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/deleteexpireddata
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/deletefilter
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/deleteforecast
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/deletejob
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/deletemodelsnapshot
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/deletetrainedmodel
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/deletetrainedmodelalias
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/estimatemodelmemory
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/evaluatedataframe
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/explaindataframeanalytics
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/flushjob
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/forecast
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/getbuckets
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/getcalendarevents
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/getcalendars
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/getcategories
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/getdatafeeds
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/getdatafeedstats
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/getdataframeanalytics
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/getdataframeanalyticsstats
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/getfilters
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/getinfluencers
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/getjobs
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/getjobstats
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/getmemorystats
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/getmodelsnapshots
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/getmodelsnapshotupgradestats
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/getoverallbuckets
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/getrecords
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/gettrainedmodels
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/gettrainedmodelsstats
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/infertrainedmodel
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/info
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/openjob
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/postcalendarevents
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/previewdatafeed
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/previewdataframeanalytics
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/putcalendar
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/putcalendarjob
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/putdatafeed
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/putdataframeanalytics
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/putfilter
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/putjob
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/puttrainedmodel
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/puttrainedmodelalias
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/puttrainedmodeldefinitionpart
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/puttrainedmodelvocabulary
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/resetjob
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/revertmodelsnapshot
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/setupgrademode
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/startdatafeed
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/startdataframeanalytics
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/starttrainedmodeldeployment
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/stopdatafeed
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/stopdataframeanalytics
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/stoptrainedmodeldeployment
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/updatedatafeed
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/updatedataframeanalytics
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/updatefilter
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/updatejob
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/updatemodelsnapshot
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/upgradejobsnapshot
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/validate
+github.com/elastic/go-elasticsearch/v8/typedapi/ml/validatedetector
+github.com/elastic/go-elasticsearch/v8/typedapi/nodes/clearrepositoriesmeteringarchive
+github.com/elastic/go-elasticsearch/v8/typedapi/nodes/getrepositoriesmeteringinfo
+github.com/elastic/go-elasticsearch/v8/typedapi/nodes/hotthreads
+github.com/elastic/go-elasticsearch/v8/typedapi/nodes/info
+github.com/elastic/go-elasticsearch/v8/typedapi/nodes/reloadsecuresettings
+github.com/elastic/go-elasticsearch/v8/typedapi/nodes/stats
+github.com/elastic/go-elasticsearch/v8/typedapi/nodes/usage
+github.com/elastic/go-elasticsearch/v8/typedapi/rollup/deletejob
+github.com/elastic/go-elasticsearch/v8/typedapi/rollup/getjobs
+github.com/elastic/go-elasticsearch/v8/typedapi/rollup/getrollupcaps
+github.com/elastic/go-elasticsearch/v8/typedapi/rollup/getrollupindexcaps
+github.com/elastic/go-elasticsearch/v8/typedapi/rollup/putjob
+github.com/elastic/go-elasticsearch/v8/typedapi/rollup/rollupsearch
+github.com/elastic/go-elasticsearch/v8/typedapi/rollup/startjob
+github.com/elastic/go-elasticsearch/v8/typedapi/rollup/stopjob
+github.com/elastic/go-elasticsearch/v8/typedapi/searchablesnapshots/cachestats
+github.com/elastic/go-elasticsearch/v8/typedapi/searchablesnapshots/clearcache
+github.com/elastic/go-elasticsearch/v8/typedapi/searchablesnapshots/mount
+github.com/elastic/go-elasticsearch/v8/typedapi/searchablesnapshots/stats
+github.com/elastic/go-elasticsearch/v8/typedapi/security/activateuserprofile
+github.com/elastic/go-elasticsearch/v8/typedapi/security/authenticate
+github.com/elastic/go-elasticsearch/v8/typedapi/security/bulkupdateapikeys
+github.com/elastic/go-elasticsearch/v8/typedapi/security/changepassword
+github.com/elastic/go-elasticsearch/v8/typedapi/security/clearapikeycache
+github.com/elastic/go-elasticsearch/v8/typedapi/security/clearcachedprivileges
+github.com/elastic/go-elasticsearch/v8/typedapi/security/clearcachedrealms
+github.com/elastic/go-elasticsearch/v8/typedapi/security/clearcachedroles
+github.com/elastic/go-elasticsearch/v8/typedapi/security/clearcachedservicetokens
+github.com/elastic/go-elasticsearch/v8/typedapi/security/createapikey
+github.com/elastic/go-elasticsearch/v8/typedapi/security/createservicetoken
+github.com/elastic/go-elasticsearch/v8/typedapi/security/deleteprivileges
+github.com/elastic/go-elasticsearch/v8/typedapi/security/deleterole
+github.com/elastic/go-elasticsearch/v8/typedapi/security/deleterolemapping
+github.com/elastic/go-elasticsearch/v8/typedapi/security/deleteservicetoken
+github.com/elastic/go-elasticsearch/v8/typedapi/security/deleteuser
+github.com/elastic/go-elasticsearch/v8/typedapi/security/disableuser
+github.com/elastic/go-elasticsearch/v8/typedapi/security/disableuserprofile
+github.com/elastic/go-elasticsearch/v8/typedapi/security/enableuser
+github.com/elastic/go-elasticsearch/v8/typedapi/security/enableuserprofile
+github.com/elastic/go-elasticsearch/v8/typedapi/security/enrollkibana
+github.com/elastic/go-elasticsearch/v8/typedapi/security/enrollnode
+github.com/elastic/go-elasticsearch/v8/typedapi/security/getapikey
+github.com/elastic/go-elasticsearch/v8/typedapi/security/getbuiltinprivileges
+github.com/elastic/go-elasticsearch/v8/typedapi/security/getprivileges
+github.com/elastic/go-elasticsearch/v8/typedapi/security/getrole
+github.com/elastic/go-elasticsearch/v8/typedapi/security/getrolemapping
+github.com/elastic/go-elasticsearch/v8/typedapi/security/getserviceaccounts
+github.com/elastic/go-elasticsearch/v8/typedapi/security/getservicecredentials
+github.com/elastic/go-elasticsearch/v8/typedapi/security/gettoken
+github.com/elastic/go-elasticsearch/v8/typedapi/security/getuser
+github.com/elastic/go-elasticsearch/v8/typedapi/security/getuserprivileges
+github.com/elastic/go-elasticsearch/v8/typedapi/security/getuserprofile
+github.com/elastic/go-elasticsearch/v8/typedapi/security/grantapikey
+github.com/elastic/go-elasticsearch/v8/typedapi/security/hasprivileges
+github.com/elastic/go-elasticsearch/v8/typedapi/security/hasprivilegesuserprofile
+github.com/elastic/go-elasticsearch/v8/typedapi/security/invalidateapikey
+github.com/elastic/go-elasticsearch/v8/typedapi/security/invalidatetoken
+github.com/elastic/go-elasticsearch/v8/typedapi/security/oidcauthenticate
+github.com/elastic/go-elasticsearch/v8/typedapi/security/oidclogout
+github.com/elastic/go-elasticsearch/v8/typedapi/security/oidcprepareauthentication
+github.com/elastic/go-elasticsearch/v8/typedapi/security/putprivileges
+github.com/elastic/go-elasticsearch/v8/typedapi/security/putrole
+github.com/elastic/go-elasticsearch/v8/typedapi/security/putrolemapping
+github.com/elastic/go-elasticsearch/v8/typedapi/security/putuser
+github.com/elastic/go-elasticsearch/v8/typedapi/security/queryapikeys
+github.com/elastic/go-elasticsearch/v8/typedapi/security/samlauthenticate
+github.com/elastic/go-elasticsearch/v8/typedapi/security/samlcompletelogout
+github.com/elastic/go-elasticsearch/v8/typedapi/security/samlinvalidate
+github.com/elastic/go-elasticsearch/v8/typedapi/security/samllogout
+github.com/elastic/go-elasticsearch/v8/typedapi/security/samlprepareauthentication
+github.com/elastic/go-elasticsearch/v8/typedapi/security/samlserviceprovidermetadata
+github.com/elastic/go-elasticsearch/v8/typedapi/security/suggestuserprofiles
+github.com/elastic/go-elasticsearch/v8/typedapi/security/updateapikey
+github.com/elastic/go-elasticsearch/v8/typedapi/security/updateuserprofiledata
+github.com/elastic/go-elasticsearch/v8/typedapi/shutdown/deletenode
+github.com/elastic/go-elasticsearch/v8/typedapi/shutdown/getnode
+github.com/elastic/go-elasticsearch/v8/typedapi/shutdown/putnode
+github.com/elastic/go-elasticsearch/v8/typedapi/slm/deletelifecycle
+github.com/elastic/go-elasticsearch/v8/typedapi/slm/executelifecycle
+github.com/elastic/go-elasticsearch/v8/typedapi/slm/executeretention
+github.com/elastic/go-elasticsearch/v8/typedapi/slm/getlifecycle
+github.com/elastic/go-elasticsearch/v8/typedapi/slm/getstats
+github.com/elastic/go-elasticsearch/v8/typedapi/slm/getstatus
+github.com/elastic/go-elasticsearch/v8/typedapi/slm/putlifecycle
+github.com/elastic/go-elasticsearch/v8/typedapi/slm/start
+github.com/elastic/go-elasticsearch/v8/typedapi/slm/stop
+github.com/elastic/go-elasticsearch/v8/typedapi/snapshot/cleanuprepository
+github.com/elastic/go-elasticsearch/v8/typedapi/snapshot/clone
+github.com/elastic/go-elasticsearch/v8/typedapi/snapshot/create
+github.com/elastic/go-elasticsearch/v8/typedapi/snapshot/createrepository
+github.com/elastic/go-elasticsearch/v8/typedapi/snapshot/delete
+github.com/elastic/go-elasticsearch/v8/typedapi/snapshot/deleterepository
+github.com/elastic/go-elasticsearch/v8/typedapi/snapshot/get
+github.com/elastic/go-elasticsearch/v8/typedapi/snapshot/getrepository
+github.com/elastic/go-elasticsearch/v8/typedapi/snapshot/restore
+github.com/elastic/go-elasticsearch/v8/typedapi/snapshot/status
+github.com/elastic/go-elasticsearch/v8/typedapi/snapshot/verifyrepository
+github.com/elastic/go-elasticsearch/v8/typedapi/sql/clearcursor
+github.com/elastic/go-elasticsearch/v8/typedapi/sql/deleteasync
+github.com/elastic/go-elasticsearch/v8/typedapi/sql/getasync
+github.com/elastic/go-elasticsearch/v8/typedapi/sql/getasyncstatus
+github.com/elastic/go-elasticsearch/v8/typedapi/sql/query
+github.com/elastic/go-elasticsearch/v8/typedapi/sql/translate
+github.com/elastic/go-elasticsearch/v8/typedapi/ssl/certificates
+github.com/elastic/go-elasticsearch/v8/typedapi/tasks/cancel
+github.com/elastic/go-elasticsearch/v8/typedapi/tasks/get
+github.com/elastic/go-elasticsearch/v8/typedapi/tasks/list
+github.com/elastic/go-elasticsearch/v8/typedapi/transform/deletetransform
+github.com/elastic/go-elasticsearch/v8/typedapi/transform/gettransform
+github.com/elastic/go-elasticsearch/v8/typedapi/transform/gettransformstats
+github.com/elastic/go-elasticsearch/v8/typedapi/transform/previewtransform
+github.com/elastic/go-elasticsearch/v8/typedapi/transform/puttransform
+github.com/elastic/go-elasticsearch/v8/typedapi/transform/resettransform
+github.com/elastic/go-elasticsearch/v8/typedapi/transform/starttransform
+github.com/elastic/go-elasticsearch/v8/typedapi/transform/stoptransform
+github.com/elastic/go-elasticsearch/v8/typedapi/transform/updatetransform
+github.com/elastic/go-elasticsearch/v8/typedapi/transform/upgradetransforms
+github.com/elastic/go-elasticsearch/v8/typedapi/types
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/accesstokengranttype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/acknowledgementoptions
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/actionexecutionmode
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/actionstatusoptions
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/actiontype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/allocationexplaindecision
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/apikeygranttype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/appliesto
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/boundaryscanner
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/bytes
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/calendarinterval
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/cardinalityexecutionmode
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/catanomalydetectorcolumn
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/catdatafeedcolumn
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/catdfacolumn
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/categorizationstatus
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/cattrainedmodelscolumn
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/cattransformcolumn
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/childscoremode
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/chunkingmode
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/clusterprivilege
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/combinedfieldsoperator
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/combinedfieldszeroterms
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/conditionop
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/conditionoperator
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/conditiontype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/conflicts
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/connectionscheme
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/converttype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/dataattachmentformat
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/datafeedstate
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/dataframestate
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/day
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/decision
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/delimitedpayloadencoding
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/deploymentallocationstate
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/deploymentassignmentstate
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/deploymentstate
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/deprecationlevel
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/dfiindependencemeasure
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/dfraftereffect
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/dfrbasicmodel
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/distanceunit
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/dynamicmapping
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/edgengramside
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/emailpriority
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/enrichpolicyphase
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/excludefrequent
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/executionphase
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/executionstatus
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/expandwildcard
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/feature
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/fieldsortnumerictype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/fieldtype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/fieldvaluefactormodifier
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/filtertype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/followerindexstatus
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/functionboostmode
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/functionscoremode
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/gappolicy
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/geodistancetype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/geoexecution
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/geoorientation
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/geoshaperelation
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/geostrategy
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/geovalidationmethod
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/granttype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/gridtype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/groupby
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/healthstatus
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/highlighterencoder
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/highlighterfragmenter
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/highlighterorder
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/highlightertagsschema
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/highlightertype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/holtwinterstype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/httpinputmethod
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/ibdistribution
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/iblambda
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/icucollationalternate
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/icucollationcasefirst
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/icucollationdecomposition
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/icucollationstrength
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/icunormalizationmode
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/icunormalizationtype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/icutransformdirection
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/include
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/indexcheckonstartup
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/indexingjobstate
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/indexmetadatastate
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/indexoptions
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/indexprivilege
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/indexroutingallocationoptions
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/indexroutingrebalanceoptions
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/inputtype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/jobblockedreason
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/jobstate
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/jsonprocessorconflictstrategy
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/keeptypesmode
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/kuromojitokenizationmode
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/language
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/level
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/licensestatus
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/licensetype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/matchtype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/memorystatus
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/metric
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/migrationstatus
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/minimuminterval
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/missingorder
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/month
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/multivaluemode
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/noderole
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/noridecompoundmode
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/normalization
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/normalizemethod
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/numericfielddataformat
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/onscripterror
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/operator
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/optype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/pagerdutycontexttype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/pagerdutyeventtype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/phoneticencoder
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/phoneticlanguage
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/phoneticnametype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/phoneticruletype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/policytype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/quantifier
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/rangerelation
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/ratemode
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/refresh
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/responsecontenttype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/result
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/resultposition
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/routingstate
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/ruleaction
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/runtimefieldtype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/sampleraggregationexecutionhint
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/scoremode
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/scriptlanguage
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/scriptsorttype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/searchtype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/segmentsortmissing
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/segmentsortmode
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/segmentsortorder
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/shapetype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/shardroutingstate
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/shardsstatsstage
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/shardstoreallocation
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/shutdownstatus
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/shutdowntype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/snapshotsort
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/snapshotupgradestate
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/snowballlanguage
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/sortmode
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/sortorder
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/sourcefieldmode
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/statslevel
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/storagetype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/stringdistance
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/suggestmode
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/suggestsort
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/synonymformat
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/templateformat
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/termsaggregationcollectmode
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/termsaggregationexecutionhint
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/termvectoroption
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/textquerytype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/threadtype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/timeseriesmetrictype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/timeunit
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/tokenchar
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/tokenizationtruncate
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/totalhitsrelation
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/trainedmodeltype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/translogdurability
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/ttesttype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/type_
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/unassignedinformationreason
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/useragentproperty
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/valuetype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/versiontype
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/waitforevents
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/watcherstate
+github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/zerotermsquery
+github.com/elastic/go-elasticsearch/v8/typedapi/watcher/ackwatch
+github.com/elastic/go-elasticsearch/v8/typedapi/watcher/activatewatch
+github.com/elastic/go-elasticsearch/v8/typedapi/watcher/deactivatewatch
+github.com/elastic/go-elasticsearch/v8/typedapi/watcher/deletewatch
+github.com/elastic/go-elasticsearch/v8/typedapi/watcher/executewatch
+github.com/elastic/go-elasticsearch/v8/typedapi/watcher/getwatch
+github.com/elastic/go-elasticsearch/v8/typedapi/watcher/putwatch
+github.com/elastic/go-elasticsearch/v8/typedapi/watcher/querywatches
+github.com/elastic/go-elasticsearch/v8/typedapi/watcher/start
+github.com/elastic/go-elasticsearch/v8/typedapi/watcher/stats
+github.com/elastic/go-elasticsearch/v8/typedapi/watcher/stop
+github.com/elastic/go-elasticsearch/v8/typedapi/xpack/info
+github.com/elastic/go-elasticsearch/v8/typedapi/xpack/usage
+# github.com/fatih/color v1.13.0
+## explicit; go 1.13
+github.com/fatih/color
+# github.com/felixge/httpsnoop v1.0.2
+## explicit; go 1.13
+github.com/felixge/httpsnoop
+# github.com/fluidtruck/deepcopy v1.0.0
+## explicit; go 1.16
+github.com/fluidtruck/deepcopy
+# github.com/fsnotify/fsnotify v1.6.0
+## explicit; go 1.16
+github.com/fsnotify/fsnotify
+# github.com/fullstorydev/grpcurl v1.8.6
+## explicit; go 1.15
+github.com/fullstorydev/grpcurl
+# github.com/go-logr/logr v1.2.3
+## explicit; go 1.16
+github.com/go-logr/logr
+github.com/go-logr/logr/funcr
+# github.com/go-logr/stdr v1.2.2
+## explicit; go 1.16
+github.com/go-logr/stdr
+# github.com/go-redis/redis/v7 v7.4.1
+## explicit; go 1.11
+github.com/go-redis/redis/v7
+github.com/go-redis/redis/v7/internal
+github.com/go-redis/redis/v7/internal/consistenthash
+github.com/go-redis/redis/v7/internal/hashtag
+github.com/go-redis/redis/v7/internal/pool
+github.com/go-redis/redis/v7/internal/proto
+github.com/go-redis/redis/v7/internal/util
+# github.com/goccy/go-yaml v1.11.0
+## explicit; go 1.18
+github.com/goccy/go-yaml
+github.com/goccy/go-yaml/ast
+github.com/goccy/go-yaml/internal/errors
+github.com/goccy/go-yaml/lexer
+github.com/goccy/go-yaml/parser
+github.com/goccy/go-yaml/printer
+github.com/goccy/go-yaml/scanner
+github.com/goccy/go-yaml/token
+# github.com/gogo/protobuf v1.3.2
+## explicit; go 1.15
+github.com/gogo/protobuf/gogoproto
+github.com/gogo/protobuf/jsonpb
+github.com/gogo/protobuf/proto
+github.com/gogo/protobuf/protoc-gen-gogo/descriptor
+github.com/gogo/protobuf/sortkeys
+github.com/gogo/protobuf/types
+# github.com/golang-jwt/jwt/v4 v4.5.0
+## explicit; go 1.16
+github.com/golang-jwt/jwt/v4
+# github.com/golang-migrate/migrate/v4 v4.15.2
+## explicit; go 1.16
+github.com/golang-migrate/migrate/v4
+github.com/golang-migrate/migrate/v4/database
+github.com/golang-migrate/migrate/v4/database/multistmt
+github.com/golang-migrate/migrate/v4/database/postgres
+github.com/golang-migrate/migrate/v4/internal/url
+github.com/golang-migrate/migrate/v4/source
+github.com/golang-migrate/migrate/v4/source/iofs
+# github.com/golang/protobuf v1.5.2
+## explicit; go 1.9
+github.com/golang/protobuf/jsonpb
+github.com/golang/protobuf/proto
+github.com/golang/protobuf/protoc-gen-go/descriptor
+github.com/golang/protobuf/protoc-gen-go/plugin
+github.com/golang/protobuf/ptypes
+github.com/golang/protobuf/ptypes/any
+github.com/golang/protobuf/ptypes/duration
+github.com/golang/protobuf/ptypes/empty
+github.com/golang/protobuf/ptypes/struct
+github.com/golang/protobuf/ptypes/timestamp
+github.com/golang/protobuf/ptypes/wrappers
+# github.com/golang/snappy v0.0.4
+## explicit
+github.com/golang/snappy
+# github.com/google/go-cmp v0.5.9
+## explicit; go 1.13
+github.com/google/go-cmp/cmp
+github.com/google/go-cmp/cmp/internal/diff
+github.com/google/go-cmp/cmp/internal/flags
+github.com/google/go-cmp/cmp/internal/function
+github.com/google/go-cmp/cmp/internal/value
+# github.com/google/uuid v1.3.0
+## explicit
+github.com/google/uuid
+# github.com/gookit/color v1.5.4
+## explicit; go 1.18
+github.com/gookit/color
+# github.com/gorilla/handlers v1.5.1
+## explicit; go 1.14
+github.com/gorilla/handlers
+# github.com/gorilla/mux v1.8.0
+## explicit; go 1.12
+github.com/gorilla/mux
+# github.com/gorilla/websocket v1.5.0
+## explicit; go 1.12
+github.com/gorilla/websocket
+# github.com/goware/urlx v0.3.2
+## explicit
+github.com/goware/urlx
+# github.com/grpc-ecosystem/grpc-gateway/v2 v2.7.0
+## explicit; go 1.14
+github.com/grpc-ecosystem/grpc-gateway/v2/internal/httprule
+github.com/grpc-ecosystem/grpc-gateway/v2/runtime
+github.com/grpc-ecosystem/grpc-gateway/v2/utilities
+# github.com/hashicorp/errwrap v1.1.0
+## explicit
+github.com/hashicorp/errwrap
+# github.com/hashicorp/go-multierror v1.1.1
+## explicit; go 1.13
+github.com/hashicorp/go-multierror
+# github.com/hashicorp/go-uuid v1.0.3
+## explicit
+github.com/hashicorp/go-uuid
+# github.com/hashicorp/hcl v1.0.0
+## explicit
+github.com/hashicorp/hcl
+github.com/hashicorp/hcl/hcl/ast
+github.com/hashicorp/hcl/hcl/parser
+github.com/hashicorp/hcl/hcl/printer
+github.com/hashicorp/hcl/hcl/scanner
+github.com/hashicorp/hcl/hcl/strconv
+github.com/hashicorp/hcl/hcl/token
+github.com/hashicorp/hcl/json/parser
+github.com/hashicorp/hcl/json/scanner
+github.com/hashicorp/hcl/json/token
+# github.com/imdario/mergo v0.3.16
+## explicit; go 1.13
+github.com/imdario/mergo
+# github.com/inconshreveable/mousetrap v1.0.1
+## explicit; go 1.18
+github.com/inconshreveable/mousetrap
+# github.com/j2gg0s/otsql v0.14.0
+## explicit; go 1.15
+github.com/j2gg0s/otsql
+github.com/j2gg0s/otsql/hook/trace
+# github.com/jackc/pgpassfile v1.0.0
+## explicit; go 1.12
+github.com/jackc/pgpassfile
+# github.com/jackc/pgservicefile v0.0.0-20221227161230-091c0ba34f0a
+## explicit; go 1.14
+github.com/jackc/pgservicefile
+# github.com/jackc/pgx/v5 v5.4.3
+## explicit; go 1.19
+github.com/jackc/pgx/v5
+github.com/jackc/pgx/v5/internal/anynil
+github.com/jackc/pgx/v5/internal/iobufpool
+github.com/jackc/pgx/v5/internal/pgio
+github.com/jackc/pgx/v5/internal/sanitize
+github.com/jackc/pgx/v5/internal/stmtcache
+github.com/jackc/pgx/v5/pgconn
+github.com/jackc/pgx/v5/pgconn/internal/bgreader
+github.com/jackc/pgx/v5/pgconn/internal/ctxwatch
+github.com/jackc/pgx/v5/pgproto3
+github.com/jackc/pgx/v5/pgtype
+github.com/jackc/pgx/v5/pgxpool
+github.com/jackc/pgx/v5/stdlib
+# github.com/jackc/puddle/v2 v2.2.1
+## explicit; go 1.19
+github.com/jackc/puddle/v2
+github.com/jackc/puddle/v2/internal/genstack
+# github.com/jcmturner/aescts/v2 v2.0.0
+## explicit; go 1.13
+github.com/jcmturner/aescts/v2
+# github.com/jcmturner/dnsutils/v2 v2.0.0
+## explicit; go 1.13
+github.com/jcmturner/dnsutils/v2
+# github.com/jcmturner/gofork v1.7.6
+## explicit; go 1.7
+github.com/jcmturner/gofork/encoding/asn1
+github.com/jcmturner/gofork/x/crypto/pbkdf2
+# github.com/jcmturner/gokrb5/v8 v8.4.3
+## explicit; go 1.16
+github.com/jcmturner/gokrb5/v8/asn1tools
+github.com/jcmturner/gokrb5/v8/client
+github.com/jcmturner/gokrb5/v8/config
+github.com/jcmturner/gokrb5/v8/credentials
+github.com/jcmturner/gokrb5/v8/crypto
+github.com/jcmturner/gokrb5/v8/crypto/common
+github.com/jcmturner/gokrb5/v8/crypto/etype
+github.com/jcmturner/gokrb5/v8/crypto/rfc3961
+github.com/jcmturner/gokrb5/v8/crypto/rfc3962
+github.com/jcmturner/gokrb5/v8/crypto/rfc4757
+github.com/jcmturner/gokrb5/v8/crypto/rfc8009
+github.com/jcmturner/gokrb5/v8/gssapi
+github.com/jcmturner/gokrb5/v8/iana
+github.com/jcmturner/gokrb5/v8/iana/addrtype
+github.com/jcmturner/gokrb5/v8/iana/adtype
+github.com/jcmturner/gokrb5/v8/iana/asnAppTag
+github.com/jcmturner/gokrb5/v8/iana/chksumtype
+github.com/jcmturner/gokrb5/v8/iana/errorcode
+github.com/jcmturner/gokrb5/v8/iana/etypeID
+github.com/jcmturner/gokrb5/v8/iana/flags
+github.com/jcmturner/gokrb5/v8/iana/keyusage
+github.com/jcmturner/gokrb5/v8/iana/msgtype
+github.com/jcmturner/gokrb5/v8/iana/nametype
+github.com/jcmturner/gokrb5/v8/iana/patype
+github.com/jcmturner/gokrb5/v8/kadmin
+github.com/jcmturner/gokrb5/v8/keytab
+github.com/jcmturner/gokrb5/v8/krberror
+github.com/jcmturner/gokrb5/v8/messages
+github.com/jcmturner/gokrb5/v8/pac
+github.com/jcmturner/gokrb5/v8/types
+# github.com/jcmturner/rpc/v2 v2.0.3
+## explicit; go 1.13
+github.com/jcmturner/rpc/v2/mstypes
+github.com/jcmturner/rpc/v2/ndr
+# github.com/jhump/protoreflect v1.12.0
+## explicit; go 1.13
+github.com/jhump/protoreflect/codec
+github.com/jhump/protoreflect/desc
+github.com/jhump/protoreflect/desc/internal
+github.com/jhump/protoreflect/desc/protoparse
+github.com/jhump/protoreflect/desc/protoparse/ast
+github.com/jhump/protoreflect/desc/protoprint
+github.com/jhump/protoreflect/desc/sourceinfo
+github.com/jhump/protoreflect/dynamic
+github.com/jhump/protoreflect/dynamic/grpcdynamic
+github.com/jhump/protoreflect/grpcreflect
+github.com/jhump/protoreflect/internal
+github.com/jhump/protoreflect/internal/codec
+# github.com/jmespath/go-jmespath v0.4.0
+## explicit; go 1.14
+github.com/jmespath/go-jmespath
+# github.com/json-iterator/go v1.1.12
+## explicit; go 1.12
+github.com/json-iterator/go
+# github.com/klauspost/compress v1.16.6
+## explicit; go 1.18
+github.com/klauspost/compress
+github.com/klauspost/compress/fse
+github.com/klauspost/compress/huff0
+github.com/klauspost/compress/internal/cpuinfo
+github.com/klauspost/compress/internal/snapref
+github.com/klauspost/compress/zstd
+github.com/klauspost/compress/zstd/internal/xxhash
+# github.com/knadh/koanf v1.4.0
+## explicit; go 1.12
+github.com/knadh/koanf
+github.com/knadh/koanf/maps
+github.com/knadh/koanf/providers/confmap
+# github.com/kylelemons/godebug v1.1.0
+## explicit; go 1.11
+github.com/kylelemons/godebug/diff
+github.com/kylelemons/godebug/pretty
+# github.com/lib/pq v1.10.5
+## explicit; go 1.13
+github.com/lib/pq
+github.com/lib/pq/oid
+github.com/lib/pq/scram
+# github.com/lithammer/fuzzysearch v1.1.8
+## explicit; go 1.15
+github.com/lithammer/fuzzysearch/fuzzy
+# github.com/magiconair/properties v1.8.7
+## explicit; go 1.19
+github.com/magiconair/properties
+# github.com/mattn/go-colorable v0.1.12
+## explicit; go 1.13
+github.com/mattn/go-colorable
+# github.com/mattn/go-isatty v0.0.14
+## explicit; go 1.12
+github.com/mattn/go-isatty
+# github.com/mattn/go-runewidth v0.0.15
+## explicit; go 1.9
+github.com/mattn/go-runewidth
+# github.com/mattn/go-shellwords v1.0.12
+## explicit; go 1.13
+github.com/mattn/go-shellwords
+# github.com/mitchellh/copystructure v1.2.0
+## explicit; go 1.15
+github.com/mitchellh/copystructure
+# github.com/mitchellh/mapstructure v1.5.0
+## explicit; go 1.14
+github.com/mitchellh/mapstructure
+# github.com/mitchellh/reflectwalk v1.0.2
+## explicit
+github.com/mitchellh/reflectwalk
+# github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd
+## explicit
+github.com/modern-go/concurrent
+# github.com/modern-go/reflect2 v1.0.2
+## explicit; go 1.12
+github.com/modern-go/reflect2
+# github.com/mostynb/go-grpc-compression v1.1.16
+## explicit; go 1.11
+github.com/mostynb/go-grpc-compression/snappy
+github.com/mostynb/go-grpc-compression/zstd
+# github.com/ohler55/ojg v1.14.4
+## explicit; go 1.19
+github.com/ohler55/ojg
+github.com/ohler55/ojg/alt
+github.com/ohler55/ojg/gen
+github.com/ohler55/ojg/jp
+github.com/ohler55/ojg/oj
+# github.com/opencontainers/go-digest v1.0.0
+## explicit; go 1.13
+github.com/opencontainers/go-digest
+# github.com/opencontainers/image-spec v1.0.3-0.20211202183452-c5a74bcca799
+## explicit
+github.com/opencontainers/image-spec/specs-go
+github.com/opencontainers/image-spec/specs-go/v1
+# github.com/opensearch-project/opensearch-go v1.1.0
+## explicit; go 1.11
+github.com/opensearch-project/opensearch-go
+github.com/opensearch-project/opensearch-go/internal/version
+github.com/opensearch-project/opensearch-go/opensearchapi
+github.com/opensearch-project/opensearch-go/opensearchtransport
+github.com/opensearch-project/opensearch-go/signer
+# github.com/orlangure/gnomock v0.20.0 => github.com/mathnogueira/gnomock v0.21.0
+## explicit; go 1.17
+github.com/orlangure/gnomock
+github.com/orlangure/gnomock/internal/cleaner
+github.com/orlangure/gnomock/internal/health
+github.com/orlangure/gnomock/internal/registry
+github.com/orlangure/gnomock/preset/postgres
+github.com/orlangure/gnomock/preset/rabbitmq
+github.com/orlangure/gnomock/preset/redis
+# github.com/pelletier/go-toml v1.9.5
+## explicit; go 1.12
+# github.com/pelletier/go-toml/v2 v2.0.6
+## explicit; go 1.16
+github.com/pelletier/go-toml/v2
+github.com/pelletier/go-toml/v2/internal/characters
+github.com/pelletier/go-toml/v2/internal/danger
+github.com/pelletier/go-toml/v2/internal/tracker
+github.com/pelletier/go-toml/v2/unstable
+# github.com/pierrec/lz4/v4 v4.1.17
+## explicit; go 1.14
+github.com/pierrec/lz4/v4
+github.com/pierrec/lz4/v4/internal/lz4block
+github.com/pierrec/lz4/v4/internal/lz4errors
+github.com/pierrec/lz4/v4/internal/lz4stream
+github.com/pierrec/lz4/v4/internal/xxh32
+# github.com/pkg/browser v0.0.0-20210911075715-681adbf594b8
+## explicit; go 1.14
+github.com/pkg/browser
+# github.com/pkg/errors v0.9.1
+## explicit
+github.com/pkg/errors
+# github.com/pmezard/go-difflib v1.0.0
+## explicit
+github.com/pmezard/go-difflib/difflib
+# github.com/prometheus/prometheus v1.8.2-0.20211217191541-41f1a8125e66
+## explicit; go 1.14
+github.com/prometheus/prometheus/util/pool
+# github.com/pterm/pterm v0.12.71
+## explicit; go 1.21
+github.com/pterm/pterm
+github.com/pterm/pterm/internal
+github.com/pterm/pterm/putils
+# github.com/rcrowley/go-metrics v0.0.0-20201227073835-cf1acfcdf475
+## explicit
+github.com/rcrowley/go-metrics
+# github.com/rivo/uniseg v0.4.4
+## explicit; go 1.18
+github.com/rivo/uniseg
+# github.com/russross/blackfriday/v2 v2.1.0
+## explicit
+github.com/russross/blackfriday/v2
+# github.com/segmentio/analytics-go/v3 v3.2.1
+## explicit; go 1.17
+github.com/segmentio/analytics-go/v3
+# github.com/segmentio/backo-go v1.0.0
+## explicit
+github.com/segmentio/backo-go
+# github.com/sirupsen/logrus v1.9.0
+## explicit; go 1.13
+github.com/sirupsen/logrus
+# github.com/spf13/afero v1.9.3
+## explicit; go 1.16
+github.com/spf13/afero
+github.com/spf13/afero/internal/common
+github.com/spf13/afero/mem
+# github.com/spf13/cast v1.5.0
+## explicit; go 1.18
+github.com/spf13/cast
+# github.com/spf13/cobra v1.6.1
+## explicit; go 1.15
+github.com/spf13/cobra
+github.com/spf13/cobra/doc
+# github.com/spf13/jwalterweatherman v1.1.0
+## explicit
+github.com/spf13/jwalterweatherman
+# github.com/spf13/pflag v1.0.5
+## explicit; go 1.12
+github.com/spf13/pflag
+# github.com/spf13/viper v1.15.0
+## explicit; go 1.17
+github.com/spf13/viper
+github.com/spf13/viper/internal/encoding
+github.com/spf13/viper/internal/encoding/dotenv
+github.com/spf13/viper/internal/encoding/hcl
+github.com/spf13/viper/internal/encoding/ini
+github.com/spf13/viper/internal/encoding/javaproperties
+github.com/spf13/viper/internal/encoding/json
+github.com/spf13/viper/internal/encoding/toml
+github.com/spf13/viper/internal/encoding/yaml
+# github.com/streadway/amqp v1.0.0
+## explicit; go 1.10
+github.com/streadway/amqp
+# github.com/stretchr/objx v0.5.0
+## explicit; go 1.12
+github.com/stretchr/objx
+# github.com/stretchr/testify v1.8.4
+## explicit; go 1.20
+github.com/stretchr/testify/assert
+github.com/stretchr/testify/mock
+github.com/stretchr/testify/require
+# github.com/subosito/gotenv v1.4.2
+## explicit; go 1.18
+github.com/subosito/gotenv
+# github.com/teris-io/shortid v0.0.0-20220617161101-71ec9f2aa569
+## explicit; go 1.18
+github.com/teris-io/shortid
+# github.com/xeipuuv/gojsonpointer v0.0.0-20180127040702-4e3ac2762d5f
+## explicit
+github.com/xeipuuv/gojsonpointer
+# github.com/xeipuuv/gojsonreference v0.0.0-20180127040603-bd5ef7bd5415
+## explicit
+github.com/xeipuuv/gojsonreference
+# github.com/xeipuuv/gojsonschema v1.2.0
+## explicit
+github.com/xeipuuv/gojsonschema
+# github.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e
+## explicit; go 1.19
+github.com/xo/terminfo
+# go.opentelemetry.io/collector v0.44.0
+## explicit; go 1.17
+go.opentelemetry.io/collector/client
+go.opentelemetry.io/collector/component
+go.opentelemetry.io/collector/component/componenterror
+go.opentelemetry.io/collector/component/componenthelper
+go.opentelemetry.io/collector/component/componenttest
+go.opentelemetry.io/collector/config
+go.opentelemetry.io/collector/config/configauth
+go.opentelemetry.io/collector/config/configcompression
+go.opentelemetry.io/collector/config/configgrpc
+go.opentelemetry.io/collector/config/confignet
+go.opentelemetry.io/collector/config/configtelemetry
+go.opentelemetry.io/collector/config/configtls
+go.opentelemetry.io/collector/consumer
+go.opentelemetry.io/collector/consumer/consumertest
+go.opentelemetry.io/collector/internal/internalinterface
+go.opentelemetry.io/collector/internal/middleware
+go.opentelemetry.io/collector/internal/testdata
+# go.opentelemetry.io/collector/model v0.44.0
+## explicit; go 1.17
+go.opentelemetry.io/collector/model/internal
+go.opentelemetry.io/collector/model/internal/data
+go.opentelemetry.io/collector/model/internal/data/protogen/common/v1
+go.opentelemetry.io/collector/model/internal/data/protogen/logs/v1
+go.opentelemetry.io/collector/model/internal/data/protogen/metrics/v1
+go.opentelemetry.io/collector/model/internal/data/protogen/resource/v1
+go.opentelemetry.io/collector/model/internal/data/protogen/trace/v1
+go.opentelemetry.io/collector/model/pdata
+# go.opentelemetry.io/collector/pdata v0.49.0
+## explicit; go 1.17
+go.opentelemetry.io/collector/pdata/internal
+go.opentelemetry.io/collector/pdata/internal/data
+go.opentelemetry.io/collector/pdata/internal/data/protogen/collector/trace/v1
+go.opentelemetry.io/collector/pdata/internal/data/protogen/common/v1
+go.opentelemetry.io/collector/pdata/internal/data/protogen/logs/v1
+go.opentelemetry.io/collector/pdata/internal/data/protogen/metrics/v1
+go.opentelemetry.io/collector/pdata/internal/data/protogen/resource/v1
+go.opentelemetry.io/collector/pdata/internal/data/protogen/trace/v1
+go.opentelemetry.io/collector/pdata/internal/otlp
+go.opentelemetry.io/collector/pdata/ptrace
+go.opentelemetry.io/collector/pdata/ptrace/ptraceotlp
+# go.opentelemetry.io/collector/semconv v0.71.0
+## explicit; go 1.18
+go.opentelemetry.io/collector/semconv/v1.6.1
+# go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.28.0
+## explicit; go 1.16
+go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc
+go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc/internal
+# go.opentelemetry.io/contrib/propagators/aws v1.5.0
+## explicit; go 1.16
+go.opentelemetry.io/contrib/propagators/aws/xray
+# go.opentelemetry.io/contrib/propagators/b3 v1.5.0
+## explicit; go 1.16
+go.opentelemetry.io/contrib/propagators/b3
+# go.opentelemetry.io/contrib/propagators/jaeger v1.5.0
+## explicit; go 1.16
+go.opentelemetry.io/contrib/propagators/jaeger
+# go.opentelemetry.io/contrib/propagators/ot v1.5.0
+## explicit; go 1.16
+go.opentelemetry.io/contrib/propagators/ot
+# go.opentelemetry.io/otel v1.10.0
+## explicit; go 1.17
+go.opentelemetry.io/otel
+go.opentelemetry.io/otel/attribute
+go.opentelemetry.io/otel/baggage
+go.opentelemetry.io/otel/codes
+go.opentelemetry.io/otel/exporters/otlp/internal
+go.opentelemetry.io/otel/exporters/otlp/internal/envconfig
+go.opentelemetry.io/otel/internal
+go.opentelemetry.io/otel/internal/baggage
+go.opentelemetry.io/otel/internal/global
+go.opentelemetry.io/otel/propagation
+go.opentelemetry.io/otel/semconv/internal
+go.opentelemetry.io/otel/semconv/v1.10.0
+go.opentelemetry.io/otel/semconv/v1.12.0
+go.opentelemetry.io/otel/semconv/v1.4.0
+go.opentelemetry.io/otel/semconv/v1.7.0
+# go.opentelemetry.io/otel/exporters/otlp/internal/retry v1.10.0
+## explicit; go 1.17
+go.opentelemetry.io/otel/exporters/otlp/internal/retry
+# go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.10.0
+## explicit; go 1.17
+go.opentelemetry.io/otel/exporters/otlp/otlptrace
+go.opentelemetry.io/otel/exporters/otlp/otlptrace/internal/otlpconfig
+go.opentelemetry.io/otel/exporters/otlp/otlptrace/internal/tracetransform
+# go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc v1.6.0
+## explicit; go 1.16
+go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc
+# go.opentelemetry.io/otel/metric v0.26.0
+## explicit; go 1.16
+go.opentelemetry.io/otel/metric
+go.opentelemetry.io/otel/metric/number
+go.opentelemetry.io/otel/metric/sdkapi
+go.opentelemetry.io/otel/metric/unit
+# go.opentelemetry.io/otel/sdk v1.10.0
+## explicit; go 1.17
+go.opentelemetry.io/otel/sdk/instrumentation
+go.opentelemetry.io/otel/sdk/internal
+go.opentelemetry.io/otel/sdk/internal/env
+go.opentelemetry.io/otel/sdk/resource
+go.opentelemetry.io/otel/sdk/trace
+# go.opentelemetry.io/otel/trace v1.10.0
+## explicit; go 1.17
+go.opentelemetry.io/otel/trace
+# go.opentelemetry.io/proto/otlp v0.19.0
+## explicit; go 1.14
+go.opentelemetry.io/proto/otlp/collector/trace/v1
+go.opentelemetry.io/proto/otlp/common/v1
+go.opentelemetry.io/proto/otlp/resource/v1
+go.opentelemetry.io/proto/otlp/trace/v1
+# go.uber.org/atomic v1.9.0
+## explicit; go 1.13
+go.uber.org/atomic
+# go.uber.org/multierr v1.8.0
+## explicit; go 1.14
+go.uber.org/multierr
+# go.uber.org/zap v1.21.0
+## explicit; go 1.13
+go.uber.org/zap
+go.uber.org/zap/buffer
+go.uber.org/zap/internal/bufferpool
+go.uber.org/zap/internal/color
+go.uber.org/zap/internal/exit
+go.uber.org/zap/zapcore
+# golang.org/x/crypto v0.11.0
+## explicit; go 1.17
+golang.org/x/crypto/md4
+golang.org/x/crypto/pbkdf2
+golang.org/x/crypto/pkcs12
+golang.org/x/crypto/pkcs12/internal/rc2
+# golang.org/x/exp v0.0.0-20230713183714-613f0c0eb8a1
+## explicit; go 1.20
+golang.org/x/exp/constraints
+golang.org/x/exp/slices
+# golang.org/x/net v0.12.0
+## explicit; go 1.17
+golang.org/x/net/http/httpguts
+golang.org/x/net/http2
+golang.org/x/net/http2/hpack
+golang.org/x/net/idna
+golang.org/x/net/internal/socks
+golang.org/x/net/internal/timeseries
+golang.org/x/net/proxy
+golang.org/x/net/trace
+# golang.org/x/sync v0.3.0
+## explicit; go 1.17
+golang.org/x/sync/errgroup
+golang.org/x/sync/semaphore
+# golang.org/x/sys v0.13.0
+## explicit; go 1.17
+golang.org/x/sys/plan9
+golang.org/x/sys/unix
+golang.org/x/sys/windows
+golang.org/x/sys/windows/registry
+# golang.org/x/term v0.13.0
+## explicit; go 1.17
+golang.org/x/term
+# golang.org/x/text v0.13.0
+## explicit; go 1.17
+golang.org/x/text/cases
+golang.org/x/text/internal
+golang.org/x/text/internal/language
+golang.org/x/text/internal/language/compact
+golang.org/x/text/internal/tag
+golang.org/x/text/language
+golang.org/x/text/runes
+golang.org/x/text/secure/bidirule
+golang.org/x/text/secure/precis
+golang.org/x/text/transform
+golang.org/x/text/unicode/bidi
+golang.org/x/text/unicode/norm
+golang.org/x/text/width
+# golang.org/x/xerrors v0.0.0-20220907171357-04be3eba64a2
+## explicit; go 1.17
+golang.org/x/xerrors
+golang.org/x/xerrors/internal
+# google.golang.org/genproto v0.0.0-20230110181048-76db0878b65f
+## explicit; go 1.19
+google.golang.org/genproto/googleapis/api/httpbody
+google.golang.org/genproto/googleapis/rpc/errdetails
+google.golang.org/genproto/googleapis/rpc/status
+google.golang.org/genproto/protobuf/api
+google.golang.org/genproto/protobuf/field_mask
+google.golang.org/genproto/protobuf/ptype
+google.golang.org/genproto/protobuf/source_context
+# google.golang.org/grpc v1.53.0
+## explicit; go 1.17
+google.golang.org/grpc
+google.golang.org/grpc/attributes
+google.golang.org/grpc/backoff
+google.golang.org/grpc/balancer
+google.golang.org/grpc/balancer/base
+google.golang.org/grpc/balancer/grpclb/state
+google.golang.org/grpc/balancer/roundrobin
+google.golang.org/grpc/binarylog/grpc_binarylog_v1
+google.golang.org/grpc/channelz
+google.golang.org/grpc/codes
+google.golang.org/grpc/connectivity
+google.golang.org/grpc/credentials
+google.golang.org/grpc/credentials/insecure
+google.golang.org/grpc/encoding
+google.golang.org/grpc/encoding/gzip
+google.golang.org/grpc/encoding/proto
+google.golang.org/grpc/grpclog
+google.golang.org/grpc/internal
+google.golang.org/grpc/internal/backoff
+google.golang.org/grpc/internal/balancer/gracefulswitch
+google.golang.org/grpc/internal/balancerload
+google.golang.org/grpc/internal/binarylog
+google.golang.org/grpc/internal/buffer
+google.golang.org/grpc/internal/channelz
+google.golang.org/grpc/internal/credentials
+google.golang.org/grpc/internal/envconfig
+google.golang.org/grpc/internal/grpclog
+google.golang.org/grpc/internal/grpcrand
+google.golang.org/grpc/internal/grpcsync
+google.golang.org/grpc/internal/grpcutil
+google.golang.org/grpc/internal/metadata
+google.golang.org/grpc/internal/pretty
+google.golang.org/grpc/internal/resolver
+google.golang.org/grpc/internal/resolver/dns
+google.golang.org/grpc/internal/resolver/passthrough
+google.golang.org/grpc/internal/resolver/unix
+google.golang.org/grpc/internal/serviceconfig
+google.golang.org/grpc/internal/status
+google.golang.org/grpc/internal/syscall
+google.golang.org/grpc/internal/transport
+google.golang.org/grpc/internal/transport/networktype
+google.golang.org/grpc/keepalive
+google.golang.org/grpc/metadata
+google.golang.org/grpc/peer
+google.golang.org/grpc/reflection
+google.golang.org/grpc/reflection/grpc_reflection_v1alpha
+google.golang.org/grpc/resolver
+google.golang.org/grpc/serviceconfig
+google.golang.org/grpc/stats
+google.golang.org/grpc/status
+google.golang.org/grpc/tap
+# google.golang.org/protobuf v1.28.1
+## explicit; go 1.11
+google.golang.org/protobuf/encoding/protojson
+google.golang.org/protobuf/encoding/prototext
+google.golang.org/protobuf/encoding/protowire
+google.golang.org/protobuf/internal/descfmt
+google.golang.org/protobuf/internal/descopts
+google.golang.org/protobuf/internal/detrand
+google.golang.org/protobuf/internal/encoding/defval
+google.golang.org/protobuf/internal/encoding/json
+google.golang.org/protobuf/internal/encoding/messageset
+google.golang.org/protobuf/internal/encoding/tag
+google.golang.org/protobuf/internal/encoding/text
+google.golang.org/protobuf/internal/errors
+google.golang.org/protobuf/internal/filedesc
+google.golang.org/protobuf/internal/filetype
+google.golang.org/protobuf/internal/flags
+google.golang.org/protobuf/internal/genid
+google.golang.org/protobuf/internal/impl
+google.golang.org/protobuf/internal/order
+google.golang.org/protobuf/internal/pragma
+google.golang.org/protobuf/internal/set
+google.golang.org/protobuf/internal/strs
+google.golang.org/protobuf/internal/version
+google.golang.org/protobuf/proto
+google.golang.org/protobuf/reflect/protodesc
+google.golang.org/protobuf/reflect/protoreflect
+google.golang.org/protobuf/reflect/protoregistry
+google.golang.org/protobuf/runtime/protoiface
+google.golang.org/protobuf/runtime/protoimpl
+google.golang.org/protobuf/types/descriptorpb
+google.golang.org/protobuf/types/known/anypb
+google.golang.org/protobuf/types/known/apipb
+google.golang.org/protobuf/types/known/durationpb
+google.golang.org/protobuf/types/known/emptypb
+google.golang.org/protobuf/types/known/fieldmaskpb
+google.golang.org/protobuf/types/known/sourcecontextpb
+google.golang.org/protobuf/types/known/structpb
+google.golang.org/protobuf/types/known/timestamppb
+google.golang.org/protobuf/types/known/typepb
+google.golang.org/protobuf/types/known/wrapperspb
+google.golang.org/protobuf/types/pluginpb
+# gopkg.in/ini.v1 v1.67.0
+## explicit
+gopkg.in/ini.v1
+# gopkg.in/yaml.v2 v2.4.0
+## explicit; go 1.15
+gopkg.in/yaml.v2
+# gopkg.in/yaml.v3 v3.0.1
+## explicit
+gopkg.in/yaml.v3
+# gotest.tools/v3 v3.4.0
+## explicit; go 1.13
+gotest.tools/v3/assert
+gotest.tools/v3/assert/cmp
+gotest.tools/v3/internal/assert
+gotest.tools/v3/internal/difflib
+gotest.tools/v3/internal/format
+gotest.tools/v3/internal/source
+# sigs.k8s.io/yaml v1.2.0
+## explicit; go 1.12
+sigs.k8s.io/yaml
+# k8s.io/client-go => k8s.io/client-go v0.18.0
+# github.com/orlangure/gnomock/preset/postgres v0.20.0 => github.com/mathnogueira/gnomock/preset/postgres v0.21.0
+# github.com/orlangure/gnomock/preset/redis v0.20.0 => github.com/mathnogueira/gnomock/preset/redis v0.21.0
+# github.com/orlangure/gnomock/preset/rabbitmq v0.20.0 => github.com/mathnogueira/gnomock/preset/rabbitmq v0.21.0
