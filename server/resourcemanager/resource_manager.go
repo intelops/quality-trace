@@ -10,6 +10,14 @@ import (
 	"strconv"
 	"strings"
 
+	"log"
+	"os"
+	"path/filepath"
+	"encoding/base64"
+
+	git "gopkg.in/src-d/go-git.v4"
+	"gopkg.in/src-d/go-git.v4/plumbing"
+
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/codes"
@@ -60,6 +68,22 @@ type config struct {
 	tracer            trace.Tracer
 }
 
+// Add Git parameters
+type GitParams struct {
+	RepoURL  string `json:"repoURL"`
+	FileName string `json:"fileName"`
+	Branch   string `json:"branch"`
+	Username string `json:"username"`
+	Token    string `json:"token"`
+	RepoName string `json:"repoName"`
+}
+
+// BasicAuth is a basic authentication structure.
+type BasicAuth struct {
+	Username string
+	Password string
+}
+
 type managerOption func(*config)
 
 func WithIDGen(fn func() id.ID) managerOption {
@@ -101,6 +125,7 @@ func CanBeAugmented() managerOption {
 }
 
 func New[T ResourceSpec](resourceTypeSingular, resourceTypePlural string, handler any, opts ...managerOption) Manager {
+	fmt.Printf("Creating a new resource manager for '%s'\n", resourceTypeSingular) //debug
 	rh := &resourceHandler[T]{}
 
 	cfg := config{
@@ -141,6 +166,8 @@ func (m *manager[T]) Handler() any {
 }
 
 func (m *manager[T]) RegisterRoutes(r *mux.Router) *mux.Router {
+	fmt.Printf("Registering routes for resource manager '%s'\n", m.resourceTypeSingular) //debug
+
 	// prefix is /{resourceType | lowercase}/
 	subrouter := r.PathPrefix("/" + strings.ToLower(m.resourceTypePlural)).Subrouter()
 
@@ -181,6 +208,9 @@ func (m *manager[T]) RegisterRoutes(r *mux.Router) *mux.Router {
 		deleteHandler = m.delete
 	}
 	m.instrumentRoute(subrouter.HandleFunc("/{id}", deleteHandler).Methods(http.MethodDelete).Name(fmt.Sprintf("%s.Delete", m.resourceTypePlural)))
+
+	// Add the Git clone endpoint
+	m.instrumentRoute(subrouter.HandleFunc("/git-clone", m.cloneFromGit).Methods(http.MethodPost).Name(fmt.Sprintf("%s.GitClone", m.resourceTypePlural)))
 
 	return subrouter
 }
@@ -320,6 +350,18 @@ func (m *manager[T]) upsert(w http.ResponseWriter, r *http.Request) {
 	m.doUpdate(ctx, w, r, encoder, targetResource.Spec)
 }
 
+func printJSONBody(targetResource interface{}) {
+	// Marshal the targetResource into JSON
+	bodyJSON, err := json.Marshal(targetResource)
+	if err != nil {
+		fmt.Printf("Error marshaling JSON: %v\n", err)
+		return
+	}
+
+	// Print the raw JSON string
+	fmt.Printf("Request body: %s\n", bodyJSON)
+}
+
 func (m *manager[T]) update(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	encoder := EncoderFromRequest(r)
@@ -346,10 +388,20 @@ func (m *manager[T]) update(w http.ResponseWriter, r *http.Request) {
 	}
 	targetResource.Spec = m.rh.SetID(targetResource.Spec, urlID)
 
+	// Print information about the incoming request
+	fmt.Printf("Received update request for ID %s with method: %s, URL: %s\n", urlID, r.Method, r.URL)
+
+	// Print request parameters, headers, etc.
+	fmt.Printf("Request parameters: %v\n", mux.Vars(r))
+	fmt.Printf("Request headers: %v\n", r.Header)
+	printJSONBody(targetResource) // Print the JSON body
+
 	m.doUpdate(ctx, w, r, encoder, targetResource.Spec)
 }
 
 func (m *manager[T]) doUpdate(ctx context.Context, w http.ResponseWriter, r *http.Request, encoder Encoder, specs T) {
+
+	fmt.Printf("Performing update for resource ID: %s\n", specs.GetID())
 	if err := specs.Validate(); err != nil {
 		err := fmt.Errorf(
 			"an error occurred while validating the resource: %s. error: %s",
@@ -562,4 +614,92 @@ func writeError(ctx context.Context, w http.ResponseWriter, enc Encoder, code in
 		// any errors means there's something very very wrong
 		panic(fmt.Errorf("cannot marshal error: %w", err))
 	}
+}
+
+// NewBasicAuth creates a new BasicAuth instance with the provided username and password.
+func NewBasicAuth(username, password string) *BasicAuth {
+	return &BasicAuth{
+		Username: username,
+		Password: password,
+	}
+}
+
+// SetRequest sets the BasicAuth information in the request.
+//func (a *BasicAuth) SetRequest(req *http.Request) {
+//	authString := a.String()
+//	req.Header.Set("Authorization", authString)
+//}
+
+// Name returns the name of the authentication method.
+ func (a *BasicAuth) Name() string {
+ 	return "Basic"
+}
+
+// String returns the string representation of the authentication method.
+func (a *BasicAuth) String() string {
+ 	return "Basic " + base64.StdEncoding.EncodeToString([]byte(a.Username+":"+a.Password))
+}
+
+// Include the Git clone function in your manager struct
+func (m *manager[T]) cloneFromGit(w http.ResponseWriter, r *http.Request) {
+	encoder := EncoderFromRequest(r)
+
+	gitParams := GitParams{}
+	err := encoder.DecodeRequestBody(&gitParams)
+
+	if err != nil {
+		writeError(r.Context(), w, encoder, http.StatusBadRequest, err)
+		return
+	}
+
+	// Pass authentication information to CloneAndParse
+	fileContent, err := CloneAndParse(gitParams.RepoURL, gitParams.FileName, gitParams.RepoName, gitParams.Branch, gitParams.Username, gitParams.Token)
+	if err != nil {
+		writeError(r.Context(), w, encoder, http.StatusInternalServerError, err)
+		return
+	}
+
+	// For demonstration purposes, log the file content
+	log.Printf("Cloned file content: %s", fileContent)
+
+	// Respond with success status
+	encoder.WriteEncodedResponse(w, http.StatusOK, map[string]string{"status": "success"})
+}
+
+// CloneAndParse clones a file from a Git repository and returns its content.
+func CloneAndParse(repoURL, fileName, branch, username, repoName, token string) ([]byte, error) {
+
+	// Set up Basic Authentication using custom BasicAuth struct
+	auth := NewBasicAuth(username, token)
+
+	// Clone the Git repository
+	repo, err := git.PlainClone("/tmp/myRepo", false, &git.CloneOptions{
+		URL:  repoURL,
+		Auth: auth,
+	})
+
+	if err != nil {
+		return nil, err
+	}
+
+	// Check out the specified branch
+	wt, err := repo.Worktree()
+	if err != nil {
+		return nil, err
+	}
+	err = wt.Checkout(&git.CheckoutOptions{
+		Branch: plumbing.ReferenceName("refs/heads/" + branch),
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	// Read the contents of the specified file
+	filePath := filepath.Join("/tmp/myRepo", fileName)
+	file, err := os.ReadFile(filePath)
+	if err != nil {
+		return nil, err
+	}
+
+	return file, nil
 }
