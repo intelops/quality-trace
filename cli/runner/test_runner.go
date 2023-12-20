@@ -27,7 +27,7 @@ func TestRunner(
 	formatter testFormatter,
 ) Runner {
 	fmt.Println("Creating a new TestRunner") //debug
-	
+
 	return testRunner{
 		client:        client,
 		openapiClient: openapiClient,
@@ -67,6 +67,22 @@ func (r testRunner) Apply(ctx context.Context, df fileutil.File) (resource any, 
 	}
 
 	return parsed, nil
+}
+
+func (r testRunner) ApplyWithGitParameters(ctx context.Context, df fileutil.File) (resource any, _ error) {
+    // Assuming yamlFormat is defined and imported correctly in your code
+    updated, err := r.client.ApplyWithGitParameters(ctx, yamlFormat)
+    if err != nil {
+        return nil, fmt.Errorf("could not apply test file with Git parameters: %w", err)
+    }
+
+    var parsed openapi.TestResource
+    err = yamlFormat.Unmarshal([]byte(updated), &parsed)
+    if err != nil {
+        return nil, fmt.Errorf("cannot unmarshal test definition file: %w", err)
+    }
+
+    return parsed, nil
 }
 
 func (r testRunner) StartRun(ctx context.Context, resource any, runInfo openapi.RunInformation) (RunResult, error) {

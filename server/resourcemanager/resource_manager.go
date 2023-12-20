@@ -13,6 +13,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"encoding/base64"
 
 	git "gopkg.in/src-d/go-git.v4"
 	"gopkg.in/src-d/go-git.v4/plumbing"
@@ -75,6 +76,12 @@ type GitParams struct {
 	Username string `json:"username"`
 	Token    string `json:"token"`
 	RepoName string `json:"repoName"`
+}
+
+// BasicAuth is a basic authentication structure.
+type BasicAuth struct {
+	Username string
+	Token string
 }
 
 type managerOption func(*config)
@@ -609,6 +616,30 @@ func writeError(ctx context.Context, w http.ResponseWriter, enc Encoder, code in
 	}
 }
 
+// NewBasicAuth creates a new BasicAuth instance with the provided username and password.
+func NewBasicAuth(username, token string) *BasicAuth {
+	return &BasicAuth{
+		Username: username,
+		Token: token,
+	}
+}
+
+// SetRequest sets the BasicAuth information in the request.
+func (a *BasicAuth) SetRequest(req *http.Request) {
+	authString := a.String()
+	req.Header.Set("Authorization", authString)
+}
+
+// Name returns the name of the authentication method.
+ func (a *BasicAuth) Name() string {
+ 	return "Basic"
+}
+
+// String returns the string representation of the authentication method.
+func (a *BasicAuth) String() string {
+	return "Basic " + base64.StdEncoding.EncodeToString([]byte(a.Username+":"+a.Token))
+}
+
 // Include the Git clone function in your manager struct
 func (m *manager[T]) cloneFromGit(w http.ResponseWriter, r *http.Request) {
 	encoder := EncoderFromRequest(r)
@@ -628,7 +659,7 @@ func (m *manager[T]) cloneFromGit(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// For demonstration purposes, log the file content
+	// Log the file content
 	log.Printf("Cloned file content: %s", fileContent)
 
 	// Respond with success status
@@ -636,19 +667,17 @@ func (m *manager[T]) cloneFromGit(w http.ResponseWriter, r *http.Request) {
 }
 
 // CloneAndParse clones a file from a Git repository and returns its content.
-func CloneAndParse(repoURL, fileName, branch, username, repoName, password string) ([]byte, error) {
+func CloneAndParse(repoURL, fileName, branch, username, repoName, token string) ([]byte, error) {
 
-	// Set up Basic Authentication
-	auth := &http.BasicAuth{
-		Username: username,
-		Password: password,
-	}
+	// Set up Basic Authentication using custom BasicAuth struct
+	auth := NewBasicAuth(username, token)
 
 	// Clone the Git repository
 	repo, err := git.PlainClone("/tmp/myRepo", false, &git.CloneOptions{
 		URL:  repoURL,
 		Auth: auth,
 	})
+
 	if err != nil {
 		return nil, err
 	}

@@ -55,15 +55,10 @@ func init() {
 				return result, nil
 			} else {
 				// If no file name is provided, use Git parameters as JSON body
-				// Construct the JSON body using Git parameters
-				gitParams := map[string]string{
-					"gitRepo":     applyParams.GitRepo,
-					"gitUsername": applyParams.GitUsername,
-					"gitToken":    applyParams.GitToken,
-					"repoName":    applyParams.RepoName,
-					"branch":      applyParams.Branch,
-					"gitFile":     applyParams.GitFile,
-				}
+				gitParams, err := resourceClient.ApplyWithGitParameters(ctx, resultFormat)
+                if err != nil {
+                    return "", err
+                }
 				// Convert the map to JSON
 				jsonBody, err := json.Marshal(gitParams)
 				if err != nil {
@@ -151,6 +146,6 @@ func (p applyParameters) validateGitParameters() []error {
             Parameter: "gitfile",
             Message:   "Git file name is required",
         })
-    }
+   }
 	return gitErrors
 }
