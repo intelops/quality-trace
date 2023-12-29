@@ -32,8 +32,10 @@ jobs:
           go-version: '1.21.1'
 
       - 
-        name: Build server
-        run: make dist/quality-trace-server
+        name: Build
+        run: | 
+          make dist/quality-trace-server
+          make dist/quality-trace
         env:
           GO111MODULE: on
 
