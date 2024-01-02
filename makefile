@@ -16,7 +16,7 @@ PROJECT_ROOT=${PWD}
 
 CLI_SRC_FILES := $(shell find cli -type f)
 dist/quality-trace: generate-cli $(CLI_SRC_FILES)
-	env GOOS=linux CGO_ENABLED=0 GO111MODULE=on /usr/local/go/bin/go build -o builds/quality-trace-server server/main.go
+	env GOOS=linux CGO_ENABLED=0 GO111MODULE=on go build -o quality-trace cli/main.go
 #	goreleaser build --single-target --clean --snapshot --id cli
 #	find ./dist -name 'tracetest' -exec cp {} ./dist \;
 

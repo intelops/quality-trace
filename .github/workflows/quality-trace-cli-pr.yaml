@@ -1,4 +1,4 @@
-name: Quality-Trace Docker Image CI - PR
+name: Quality-Trace-Cli Docker Image CI - PR
 
 on:
   pull_request:
@@ -32,8 +32,8 @@ jobs:
           go-version: '1.21.1'
 
       - 
-        name: Build server
-        run: make dist/quality-trace-server
+        name: Build cli
+        run: make dist/quality-trace
         env:
           GO111MODULE: on
 
@@ -52,9 +52,9 @@ jobs:
         if: github.event_name == 'pull_request'
         with:
           context: .
-          file: ./dockerfiles/server/Dockerfile
+          file: ./dockerfiles/cli/Dockerfile
           push: true
-          tags: ${{ env.REGISTRY }}/${{ github.repository }}:pr-${{ github.event.pull_request.number }}
+          tags: ${{ env.REGISTRY }}/${{ github.repository }}/cli:pr-${{ github.event.pull_request.number }}
           build-args: |
             "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}"
  
