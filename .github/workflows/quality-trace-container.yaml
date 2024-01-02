@@ -64,7 +64,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file:  ./Dockerfile
+          file:  ./dockerfiles/server/Dockerfile
           tags: |
             ${{ env.REGISTRY }}/${{ github.repository }}:${{ github.run_id }},
             ${{ env.REGISTRY }}/${{ github.repository }}:latest

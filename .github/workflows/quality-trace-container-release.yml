@@ -39,7 +39,7 @@ jobs:
         with:
           push: true
           context: ./
-          file: ./Dockerfile
+          file: ./dockerfiles/server/Dockerfile
           tags: ${{ env.REGISTRY }}/${{ github.repository }}:${{ env.RELEASE_VERSION }}
       - name: Install cosign
         uses: sigstore/cosign-installer@main
