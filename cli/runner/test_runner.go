@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"strconv"
+	logger "github.com/sirupsen/logrus"
 
 	"github.com/kubeshop/tracetest/cli/formatters"
 	"github.com/kubeshop/tracetest/cli/openapi"
@@ -26,6 +27,8 @@ func TestRunner(
 	openapiClient *openapi.APIClient,
 	formatter testFormatter,
 ) Runner {
+
+	logger.Info("Creating a new TestRunner") //debug
 	return testRunner{
 		client:        client,
 		openapiClient: openapiClient,
@@ -68,16 +71,20 @@ func (r testRunner) Apply(ctx context.Context, df fileutil.File) (resource any, 
 }
 
 func (r testRunner) StartRun(ctx context.Context, resource any, runInfo openapi.RunInformation) (RunResult, error) {
+	
+	logger.Info("Entering testrunner StartRun()")
 	test := resource.(openapi.TestResource)
 	run, resp, err := r.openapiClient.ApiApi.
 		RunTest(ctx, test.Spec.GetId()).
 		RunInformation(runInfo).
 		Execute()
 
+	logger.Info("starting run")
 	err = HandleRunError(resp, err)
 	if err != nil {
 		return RunResult{}, err
 	}
+	logger.Info("performing run")
 
 	full, err := r.client.Get(ctx, test.Spec.GetId(), jsonFormat)
 	if err != nil {

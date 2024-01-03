@@ -2,8 +2,9 @@ package cmd
 
 import (
 	"context"
-	"fmt"
 	"strings"
+	"fmt"
+	logger "github.com/sirupsen/logrus"
 
 	"github.com/kubeshop/tracetest/cli/openapi"
 	"github.com/kubeshop/tracetest/cli/runner"
@@ -17,6 +18,8 @@ var (
 )
 
 func init() {
+
+	logger.Info("Entering resource_run_init()")
 	runCmd = &cobra.Command{
 		GroupID: cmdGroupResources.ID,
 		Use:     "run " + runnableResourceList(),
@@ -49,6 +52,12 @@ func init() {
 				SkipResultWait:  runParams.SkipResultWait,
 				JUnitOuptutFile: runParams.JUnitOuptutFile,
 				RequiredGates:   runParams.RequriedGates,
+				GitRepo:         runParams.GitRepo,
+   				GitUsername:     runParams.GitUsername,
+   				GitToken:        runParams.GitToken,
+   				RepoName:        runParams.RepoName,
+   				Branch:          runParams.Branch,
+				GitFile:         runParams.GitFile,
 			}
 
 			exitCode, err := orchestrator.Run(ctx, r, runParams, output)
@@ -72,12 +81,20 @@ func init() {
 	runCmd.Flags().StringVarP(&runParams.JUnitOuptutFile, "junit", "j", "", "file path to save test results in junit format")
 	runCmd.Flags().StringSliceVar(&runParams.RequriedGates, "required-gates", []string{}, "override default required gate. "+validRequiredGatesMsg())
 
+	runCmd.Flags().StringVarP(&runParams.GitRepo, "gitrepo", "", "", "Git repository name")
+	runCmd.Flags().StringVarP(&runParams.GitUsername, "gitusername", "", "", "Git username")
+	runCmd.Flags().StringVarP(&runParams.GitToken, "gittoken", "", "", "Git token")
+	runCmd.Flags().StringVarP(&runParams.RepoName, "reponame", "", "", "Repository name")
+	runCmd.Flags().StringVarP(&runParams.Branch, "branch", "", "", "Branch name")
+	runCmd.Flags().StringVarP(&runParams.GitFile, "gitfile", "", "", "Git file name")
+
 	//deprecated
 	runCmd.Flags().StringVarP(&runParams.EnvID, "environment", "e", "", "environment file or ID to be used")
 	runCmd.Flags().MarkDeprecated("environment", "use --vars instead")
 	runCmd.Flags().MarkShorthandDeprecated("e", "use --vars instead")
 
 	rootCmd.AddCommand(runCmd)
+	logger.Info("Exiting resource_run_init()")
 }
 
 func validRequiredGatesMsg() string {
@@ -97,40 +114,113 @@ type runParameters struct {
 	SkipResultWait  bool
 	JUnitOuptutFile string
 	RequriedGates   []string
+	GitRepo         string
+   	GitUsername     string
+   	GitToken        string
+   	RepoName        string
+   	Branch          string
+	GitFile         string
 }
 
 func (p runParameters) Validate(cmd *cobra.Command, args []string) []error {
+
+	logger.Info("Entering resource_run_validate()")
 	errs := []error{}
-	if p.DefinitionFile == "" && p.ID == "" {
-		errs = append(errs, paramError{
-			Parameter: "resource",
-			Message:   "you must specify a definition file or resource ID",
-		})
-	}
+	// Check for incompatibility between JUnit and SkipResultWait options
+    if p.JUnitOuptutFile != "" && p.SkipResultWait {
+        errs = append(errs, paramError{
+            Parameter: "junit",
+            Message:   "--junit option is incompatible with --skip-result-wait option",
+        })
+    }
 
-	if p.DefinitionFile != "" && p.ID != "" {
-		errs = append(errs, paramError{
-			Parameter: "resource",
-			Message:   "you cannot specify both a definition file and resource ID",
-		})
-	}
+	if p.GitRepo != "" || p.GitUsername != "" || p.GitToken != "" || p.RepoName != "" || p.Branch != "" || p.GitFile != "" {
+		
+		// Log Git parameters for debugging
+		logger.Info("Git Repo:", p.GitRepo)
+		logger.Info("Git Username:", p.GitUsername)
+		logger.Info("Repo Name:", p.RepoName)
+		logger.Info("Branch:", p.Branch)
+		logger.Info("Git File:", p.GitFile)
+		
+		// Call the validateGitParameters function
+		gitErrors := p.validateGitParameters()
+		errs = append(errs, gitErrors...)
 
-	if p.JUnitOuptutFile != "" && p.SkipResultWait {
-		errs = append(errs, paramError{
-			Parameter: "junit",
-			Message:   "--junit option is incompatible with --skip-result-wait option",
-		})
-	}
+	} else if p.DefinitionFile == "" && p.ID == "" {
+		// Check for either DefinitionFile or ID
+        errs = append(errs, paramError{
+            Parameter: "resource",
+            Message:   "you must specify a definition file or resource ID",
+        })
 
-	for _, rg := range p.RequriedGates {
-		_, err := openapi.NewSupportedGatesFromValue(rg)
-		if err != nil {
-			errs = append(errs, paramError{
-				Parameter: "required-gates",
-				Message:   fmt.Sprintf("invalid option '%s'. "+validRequiredGatesMsg(), rg),
-			})
-		}
-	}
+    } else if p.DefinitionFile != "" && p.ID != "" {
+        errs = append(errs, paramError{
+            Parameter: "resource",
+            Message:   "you cannot specify both a definition file and resource ID",
+        })
+    }
+	
 
-	return errs
+    // Validate required gates
+    for _, rg := range p.RequriedGates {
+        _, err := openapi.NewSupportedGatesFromValue(rg)
+        if err != nil {
+            errs = append(errs, paramError{
+                Parameter: "required-gates",
+                Message:   fmt.Sprintf("invalid option '%s'. "+validRequiredGatesMsg(), rg),
+            })
+        }
+    }
+	logger.Info("Exiting resource_run_validate()")
+    return errs
+}
+
+func (p runParameters) validateGitParameters() []error {
+    gitErrors := make([]error, 0)
+	logger.Info("Entering resource_run_validate_git()")
+
+    // Add specific validation checks for Git parameters
+    if p.GitRepo == "" {
+        gitErrors = append(gitErrors, paramError{
+            Parameter: "git-repo",
+            Message:   "Git repository is required",
+        })
+    }
+	if p.GitUsername == "" {
+        gitErrors = append(gitErrors, paramError{
+            Parameter: "gitusername",
+            Message:   "Git username is required",
+        })
+    }
+
+    if p.GitToken == "" {
+        gitErrors = append(gitErrors, paramError{
+            Parameter: "gittoken",
+            Message:   "Git token is required",
+        })
+    }
+
+    if p.RepoName == "" {
+        gitErrors = append(gitErrors, paramError{
+            Parameter: "reponame",
+            Message:   "Repository name is required",
+        })
+    }
+
+    if p.Branch == "" {
+        gitErrors = append(gitErrors, paramError{
+            Parameter: "branch",
+            Message:   "Branch name is required",
+        })
+    }
+
+    if p.GitFile == "" {
+        gitErrors = append(gitErrors, paramError{
+            Parameter: "gitfile",
+            Message:   "Git file name is required",
+        })
+    }
+	logger.Info("Exiting resource_run_validate_git")
+	return gitErrors
 }

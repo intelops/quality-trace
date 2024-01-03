@@ -51,6 +51,7 @@ func (c Client) validType(inputFile fileutil.File) error {
 
 func (c Client) Apply(ctx context.Context, inputFile fileutil.File, requestedFormat Format) (string, error) {
 	originalInputFile := inputFile
+	fmt.Println("entering apply code")
 
 	if err := c.validType(inputFile); err != nil {
 		return "", err
@@ -159,6 +160,5 @@ func (c Client) Apply(ctx context.Context, inputFile fileutil.File, requestedFor
 			return "", fmt.Errorf("cannot write updated input file: %w", err)
 		}
 	}
-
 	return requestedFormat.Format(string(body), c.options.tableConfig)
 }
