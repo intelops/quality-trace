@@ -17,7 +17,6 @@ type RunParameters struct {
 	GitRepo     string
 	GitUsername string
 	GitToken    string
-	RepoName    string
 	Branch      string
 	GitFile     string
 }
