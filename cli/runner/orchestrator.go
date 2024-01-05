@@ -10,6 +10,7 @@ import (
 	"sync"
 	"time"
 	gitutil "github.com/kubeshop/tracetest/cli/gitutil"
+	logger "github.com/sirupsen/logrus"
 
 	cienvironment "github.com/cucumber/ci-environment/go"
 	"github.com/davecgh/go-spew/spew"
@@ -49,7 +50,6 @@ type RunOptions struct {
 	GitRepo   string
 	GitUsername string
 	GitToken    string
-	RepoName    string
 	Branch      string
 	GitFile     string
 }
@@ -148,7 +148,6 @@ func (o orchestrator) Run(ctx context.Context, r Runner, opts RunOptions, output
             GitRepo:     opts.GitRepo,
             GitUsername: opts.GitUsername,
             GitToken:    opts.GitToken,
-            RepoName:    opts.RepoName,
             Branch:      opts.Branch,
             GitFile:     opts.GitFile,
         }
@@ -158,13 +157,12 @@ func (o orchestrator) Run(ctx context.Context, r Runner, opts RunOptions, output
     if err != nil {
         return ExitCodeGeneralError, fmt.Errorf("failed to clone Git file: %w", err)
     }
-    fmt.Println("Git File Path:", gitFilePath)
 
 	// Ensure cleanup of cloned file path and its directory after Apply and other operations
 	defer func(filePath string) {
     	// Ensure cleanup even if Apply or subsequent operations fail
     	if cleanupErr := gitutil.CleanupClonedRepo(filePath); cleanupErr != nil {
-        	fmt.Println("Cleanup error:", cleanupErr)
+        	logger.Errorf("Error: %v while cleaning cloned git file in path :%s",filePath, cleanupErr)
     	}
 	}(string(gitFilePath))
 
@@ -174,7 +172,7 @@ func (o orchestrator) Run(ctx context.Context, r Runner, opts RunOptions, output
     }
 
 	var resource any
-	fmt.Println("DefinitionFile path:", opts.DefinitionFile)
+	logger.Info("DefinitionFile path: ", opts.DefinitionFile)
 	if opts.DefinitionFile != "" {
 
 		 // Read the content of the file directly

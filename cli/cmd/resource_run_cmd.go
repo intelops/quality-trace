@@ -19,7 +19,7 @@ var (
 
 func init() {
 
-	logger.Info("Entering resource_run_init()")
+	logger.Debug("Entering resource_run")
 	runCmd = &cobra.Command{
 		GroupID: cmdGroupResources.ID,
 		Use:     "run " + runnableResourceList(),
@@ -55,7 +55,6 @@ func init() {
 				GitRepo:         runParams.GitRepo,
    				GitUsername:     runParams.GitUsername,
    				GitToken:        runParams.GitToken,
-   				RepoName:        runParams.RepoName,
    				Branch:          runParams.Branch,
 				GitFile:         runParams.GitFile,
 			}
@@ -84,7 +83,6 @@ func init() {
 	runCmd.Flags().StringVarP(&runParams.GitRepo, "gitrepo", "", "", "Git repository name")
 	runCmd.Flags().StringVarP(&runParams.GitUsername, "gitusername", "", "", "Git username")
 	runCmd.Flags().StringVarP(&runParams.GitToken, "gittoken", "", "", "Git token")
-	runCmd.Flags().StringVarP(&runParams.RepoName, "reponame", "", "", "Repository name")
 	runCmd.Flags().StringVarP(&runParams.Branch, "branch", "", "", "Branch name")
 	runCmd.Flags().StringVarP(&runParams.GitFile, "gitfile", "", "", "Git file name")
 
@@ -94,7 +92,7 @@ func init() {
 	runCmd.Flags().MarkShorthandDeprecated("e", "use --vars instead")
 
 	rootCmd.AddCommand(runCmd)
-	logger.Info("Exiting resource_run_init()")
+	logger.Debug("Exiting resource_run")
 }
 
 func validRequiredGatesMsg() string {
@@ -117,15 +115,40 @@ type runParameters struct {
 	GitRepo         string
    	GitUsername     string
    	GitToken        string
-   	RepoName        string
    	Branch          string
 	GitFile         string
 }
 
 func (p runParameters) Validate(cmd *cobra.Command, args []string) []error {
 
-	logger.Info("Entering resource_run_validate()")
+	logger.Debug("Entering resource_run_validate")
 	errs := []error{}
+
+	if p.GitRepo != "" || p.GitUsername != "" || p.GitToken != "" || p.Branch != "" || p.GitFile != "" {
+		
+		// Log Git parameters for debugging
+		logger.Infof("Git Repo: %s, Git Username: %s, Branch: %s, Git File: %s", p.GitRepo,p.GitUsername,p.Branch,p.GitFile)
+		
+		// Call the validateGitParameters function
+		gitErrors := p.validateGitParameters()
+		errs = append(errs, gitErrors...)
+
+	} else {
+		if p.DefinitionFile == "" && p.ID == "" {
+		// Check for either DefinitionFile or ID
+        	errs = append(errs, paramError{
+            	Parameter: "resource",
+            	Message:   "you must specify a definition file or resource ID",
+        	})
+		}
+		if p.DefinitionFile != "" && p.ID != "" {
+        	errs = append(errs, paramError{
+            	Parameter: "resource",
+            	Message:   "you cannot specify both a definition file and resource ID",
+        	})
+    	}
+	}
+	
 	// Check for incompatibility between JUnit and SkipResultWait options
     if p.JUnitOuptutFile != "" && p.SkipResultWait {
         errs = append(errs, paramError{
@@ -133,34 +156,6 @@ func (p runParameters) Validate(cmd *cobra.Command, args []string) []error {
             Message:   "--junit option is incompatible with --skip-result-wait option",
         })
     }
-
-	if p.GitRepo != "" || p.GitUsername != "" || p.GitToken != "" || p.RepoName != "" || p.Branch != "" || p.GitFile != "" {
-		
-		// Log Git parameters for debugging
-		logger.Info("Git Repo:", p.GitRepo)
-		logger.Info("Git Username:", p.GitUsername)
-		logger.Info("Repo Name:", p.RepoName)
-		logger.Info("Branch:", p.Branch)
-		logger.Info("Git File:", p.GitFile)
-		
-		// Call the validateGitParameters function
-		gitErrors := p.validateGitParameters()
-		errs = append(errs, gitErrors...)
-
-	} else if p.DefinitionFile == "" && p.ID == "" {
-		// Check for either DefinitionFile or ID
-        errs = append(errs, paramError{
-            Parameter: "resource",
-            Message:   "you must specify a definition file or resource ID",
-        })
-
-    } else if p.DefinitionFile != "" && p.ID != "" {
-        errs = append(errs, paramError{
-            Parameter: "resource",
-            Message:   "you cannot specify both a definition file and resource ID",
-        })
-    }
-	
 
     // Validate required gates
     for _, rg := range p.RequriedGates {
@@ -172,13 +167,13 @@ func (p runParameters) Validate(cmd *cobra.Command, args []string) []error {
             })
         }
     }
-	logger.Info("Exiting resource_run_validate()")
+	logger.Debug("Exiting resource_run_validate()")
     return errs
 }
 
 func (p runParameters) validateGitParameters() []error {
     gitErrors := make([]error, 0)
-	logger.Info("Entering resource_run_validate_git()")
+	logger.Debug("Entering resource_run_git_validate")
 
     // Add specific validation checks for Git parameters
     if p.GitRepo == "" {
@@ -201,13 +196,6 @@ func (p runParameters) validateGitParameters() []error {
         })
     }
 
-    if p.RepoName == "" {
-        gitErrors = append(gitErrors, paramError{
-            Parameter: "reponame",
-            Message:   "Repository name is required",
-        })
-    }
-
     if p.Branch == "" {
         gitErrors = append(gitErrors, paramError{
             Parameter: "branch",
@@ -221,6 +209,6 @@ func (p runParameters) validateGitParameters() []error {
             Message:   "Git file name is required",
         })
     }
-	logger.Info("Exiting resource_run_validate_git")
+	logger.Debug("Exiting resource_run_git_validate")
 	return gitErrors
 }

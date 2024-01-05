@@ -17,7 +17,7 @@ var (
 
 func init() {
 
-	logger.Info("Entering resource_apply_init()")
+	logger.Debug("Entering resource_apply")
 	applyCmd = &cobra.Command{
 		GroupID: cmdGroupResources.ID,
 		Use:     "apply " + resourceList(),
@@ -57,13 +57,10 @@ func init() {
 	applyCmd.Flags().StringVarP(&applyParams.GitRepo, "gitrepo", "", "", "Git repository name")
 	applyCmd.Flags().StringVarP(&applyParams.GitUsername, "gitusername", "", "", "Git username")
 	applyCmd.Flags().StringVarP(&applyParams.GitToken, "gittoken", "", "", "Git token")
-	applyCmd.Flags().StringVarP(&applyParams.RepoName, "reponame", "", "", "Repository name")
 	applyCmd.Flags().StringVarP(&applyParams.Branch, "branch", "", "", "Branch name")
 	applyCmd.Flags().StringVarP(&applyParams.GitFile, "gitfile", "", "", "Git file name")
 
 	rootCmd.AddCommand(applyCmd)
-	logger.Info("Exiting resource_apply_init()")
-
 }
 
 type applyParameters struct {
@@ -71,7 +68,6 @@ type applyParameters struct {
 	GitRepo        string
 	GitUsername    string
 	GitToken       string
-	RepoName       string
 	Branch         string
 	GitFile        string
 }
@@ -92,7 +88,6 @@ func (p applyParameters) Validate(cmd *cobra.Command, args []string) []error {
 
 func (p applyParameters) validateGitParameters() []error {
     gitErrors := make([]error, 0)
-	fmt.Println("Entering valiadateGitParameters")
 
     // Add specific validation checks for Git parameters
     if p.GitRepo == "" {
@@ -115,13 +110,6 @@ func (p applyParameters) validateGitParameters() []error {
         })
     }
 
-    if p.RepoName == "" {
-        gitErrors = append(gitErrors, paramError{
-            Parameter: "reponame",
-            Message:   "Repository name is required",
-        })
-    }
-
     if p.Branch == "" {
         gitErrors = append(gitErrors, paramError{
             Parameter: "branch",
@@ -135,6 +123,5 @@ func (p applyParameters) validateGitParameters() []error {
             Message:   "Git file name is required",
         })
     }
-    fmt.Println("Exiting valiadateGitParameters")
 	return gitErrors
 }
