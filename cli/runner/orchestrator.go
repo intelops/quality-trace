@@ -9,6 +9,8 @@ import (
 	"os"
 	"sync"
 	"time"
+	gitutil "github.com/kubeshop/tracetest/cli/gitutil"
+	logger "github.com/sirupsen/logrus"
 
 	cienvironment "github.com/cucumber/ci-environment/go"
 	"github.com/davecgh/go-spew/spew"
@@ -43,6 +45,13 @@ type RunOptions struct {
 
 	// Overrides the default required gates for the resource
 	RequiredGates []string
+
+	// New parameters
+	GitRepo   string
+	GitUsername string
+	GitToken    string
+	Branch      string
+	GitFile     string
 }
 
 // RunResult holds the result of the run
@@ -133,14 +142,46 @@ func (o orchestrator) Run(ctx context.Context, r Runner, opts RunOptions, output
 	}
 	o.logger.Debug("env resolved", zap.String("ID", varsID))
 
+	if opts.GitRepo != "" {
+		// Create a RunParameters instance for gitutil.CloneGitFile
+        gitParams := gitutil.RunParameters{
+            GitRepo:     opts.GitRepo,
+            GitUsername: opts.GitUsername,
+            GitToken:    opts.GitToken,
+            Branch:      opts.Branch,
+            GitFile:     opts.GitFile,
+        }
+
+    // Clone the Git file and get the file path
+    gitFilePath, err := gitutil.CloneGitFile(ctx, gitParams)
+    if err != nil {
+        return ExitCodeGeneralError, fmt.Errorf("failed to clone Git file: %w", err)
+    }
+
+	// Ensure cleanup of cloned file path and its directory after Apply and other operations
+	defer func(filePath string) {
+    	// Ensure cleanup even if Apply or subsequent operations fail
+    	if cleanupErr := gitutil.CleanupClonedRepo(filePath); cleanupErr != nil {
+        	logger.Errorf("Error: %v while cleaning cloned git file in path :%s",filePath, cleanupErr)
+    	}
+	}(string(gitFilePath))
+
+
+    // Set the cloned file path as the new DefinitionFile
+    opts.DefinitionFile = string(gitFilePath)
+    }
+
 	var resource any
+	logger.Info("DefinitionFile path: ", opts.DefinitionFile)
 	if opts.DefinitionFile != "" {
+
+		 // Read the content of the file directly
 		f, err := fileutil.Read(opts.DefinitionFile)
 		if err != nil {
 			return ExitCodeGeneralError, fmt.Errorf("cannot read definition file %s: %w", opts.DefinitionFile, err)
 		}
 		df := f
-		o.logger.Debug("Definition file read", zap.String("absolutePath", df.AbsPath()))
+		o.logger.Debug("Definition file read", zap.String("filePath", opts.DefinitionFile))
 
 		df, err = o.injectLocalEnvVars(ctx, df)
 		if err != nil {
