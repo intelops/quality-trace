@@ -162,7 +162,7 @@ func (o orchestrator) Run(ctx context.Context, r Runner, opts RunOptions, output
 	defer func(filePath string) {
     	// Ensure cleanup even if Apply or subsequent operations fail
     	if cleanupErr := gitutil.CleanupClonedRepo(filePath); cleanupErr != nil {
-        	logger.Errorf("Error: %v while cleaning cloned git file in path :%s",filePath, cleanupErr)
+        	logger.Errorf("Error: %v while cleaning cloned git file in path :%s", cleanupErr, filePath)
     	}
 	}(string(gitFilePath))
 
