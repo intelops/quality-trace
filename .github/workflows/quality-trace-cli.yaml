@@ -1,4 +1,4 @@
-name: Quality-Trace Docker Image CI
+name: Quality-Trace Cli Docker Image
 
 on:
   push:
@@ -35,8 +35,8 @@ jobs:
         with:
           go-version: '1.21.1'
 
-      - name: Build server
-        run: make dist/quality-trace-server
+      - name: Build cli
+        run: make dist/quality-trace
         env:
           GO111MODULE: on
 
@@ -44,7 +44,7 @@ jobs:
         id: metadata
         uses: docker/metadata-action@v4
         with:
-          images: ${{ env.REGISTRY }}/${{ github.repository }}
+          images: ${{ env.REGISTRY }}/${{ github.repository }}/cli
           tags: |
             type=raw,value=latest
             type=semver,pattern={{version}}
@@ -64,10 +64,10 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file:  ./dockerfiles/server/Dockerfile
+          file:  ./dockerfiles/cli/Dockerfile
           tags: |
-            ${{ env.REGISTRY }}/${{ github.repository }}:${{ github.run_id }},
-            ${{ env.REGISTRY }}/${{ github.repository }}:latest
+            ${{ env.REGISTRY }}/${{ github.repository }}/cli:${{ github.run_id }},
+            ${{ env.REGISTRY }}/${{ github.repository }}/cli:latest
           labels: ${{ steps.metadata.outputs.labels }}
         
           push: true
@@ -77,12 +77,12 @@ jobs:
 
       - name: Sign the images
         run: |
-          cosign sign -y ${{ env.REGISTRY }}/${{ github.repository }}:${{ github.run_id }}
+          cosign sign -y ${{ env.REGISTRY }}/${{ github.repository }}/cli:${{ github.run_id }}
         env:
           COSIGN_EXPERIMENTAL: 1
       
       - name: Verify the pushed tags
-        run: cosign verify ${{ env.REGISTRY }}/${{ github.repository }}:${{ github.run_id }} --certificate-identity ${{ env.GH_URL }}/${{ github.repository }}/.github/workflows/quality-trace-container.yaml@refs/heads/main  --certificate-oidc-issuer https://token.actions.githubusercontent.com
+        run: cosign verify ${{ env.REGISTRY }}/${{ github.repository }}/cli:${{ github.run_id }} --certificate-identity ${{ env.GH_URL }}/${{ github.repository }}/.github/workflows/quality-trace-cli.yaml@refs/heads/main  --certificate-oidc-issuer https://token.actions.githubusercontent.com
         env:
           COSIGN_EXPERIMENTAL: 1
       
