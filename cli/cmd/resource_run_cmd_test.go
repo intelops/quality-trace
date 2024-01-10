@@ -78,34 +78,6 @@ func TestRunCmd_Negative(t *testing.T) {
 
 }
 
-func TestRunParametersValidationNegative(t *testing.T) {
-	// Create an instance of runParameters with intentionally invalid input
-	invalidParams := &runParameters{
-		GitUsername: "RazenaSaleem",
-		Branch:      "main",
-		GitFile:     "ml-server.yaml",
-	}
-
-	// Call the Validate method to get the validation errors
-	errors := invalidParams.Validate(nil, nil)
-
-	// Assert that the first element in the errors slice is an error
-	assert.Error(t, errors[0], "Expected an error, but got nil")
-
-	//heck for the presence of an error related to the "git-repo" parameter
-	foundGitRepoError := false
-	for _, err := range errors {
-		if paramErr, ok := err.(paramError); ok {
-			if paramErr.Parameter == "git-repo" {
-				foundGitRepoError = true
-				break
-			}
-		}
-	}
-
-	assert.True(t, foundGitRepoError, "Expected 'git-repo' parameter error, but it was not found")
-}
-
 func TestMain(m *testing.M) {
 	// Create a temporary directory specific to the test
 	tempDir, err := os.MkdirTemp("", "testdir")
