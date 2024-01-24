@@ -35,6 +35,7 @@ jobs:
         name: Build server
         run: |
           make dist/quality-trace-server
+          make web/node_modules
           make web/build
         env:
           GO111MODULE: on
