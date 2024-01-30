@@ -1,0 +1,12 @@
+type: TestSuite
+spec:
+  id: TestbyFileID
+  name: mlserver_test
+  description: running multiple methods in a single test
+  steps:
+  - GetAgentbyEmailTest
+  - GetAllExperimentsTest
+  - TestNonEmptyExperimentsList
+  - TestServerError
+  - RegisterAgentTest
+  - StopExperimentTest

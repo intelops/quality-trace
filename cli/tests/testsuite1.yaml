@@ -1,0 +1,13 @@
+type: TestSuite
+spec:
+  id: TestbyFilePath
+  name: mlserver_test_suite
+  description: running multiple test using file path
+  steps:
+  - ./test1.yaml
+  - ./test2.yaml
+  - ./test3.yaml
+  - ./test4.yaml
+  - ./test5.yaml
+  - ./test6.yaml
+  

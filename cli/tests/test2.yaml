@@ -1,0 +1,273 @@
+type: Test
+spec:
+  id: GetAllExperimentsTest
+  name: TestGetAllExperiments
+  description: "Verify that the response is empty when there are no experiments for the given email"
+  trigger:
+    type: grpc
+    grpc:
+      protobufFile: |
+        syntax = "proto3";
+        package experiment.ml_server;
+        option go_package = "gitlab.com/tariandev_intelops/grpc/ml_server";
+        
+        message ClientDetails{
+        string        name     = 1;
+        string        email    = 2;
+        }
+        
+        message ClientCredentials{
+        string        agentID      = 1;
+        string        clientID     = 2;
+        string        clientSecret = 3;
+        string        token        = 4;
+        string        name         = 5;
+        string        email        = 6;
+        }
+        
+        message Agents {
+        repeated ClientCredentials agent   = 6;
+        }
+        
+        message Email{
+        string email = 1;
+        }  
+        
+        message SetupName{
+        string setupName = 1;
+        }
+        
+        message Limit {
+        string min = 1;
+        string max = 2;
+        }
+        
+        message Null {};
+        
+        message Cpu {
+        string    limit     = 1;
+        string    request   = 2;
+        }
+        
+        message Memory {
+        string    limit     = 1;
+        string    request   = 2;
+        }
+        
+        
+        message ResourceLimits{
+        Cpu cpu    = 1;
+        Memory memory = 2;
+        }
+        
+        message GitParams {
+        string url                            = 1;
+        string user                           = 2;
+        string token                          = 3;
+        string branch                         = 4;
+        string path                           = 5;
+        }
+        
+        
+        message ExperimentSetupRequest{
+        map<string, string> agentDetails                = 1;
+        map<string, string> applicationDetails          = 2;
+        int32               noOfIterations              = 3;
+        Limit               cpu                         = 4;
+        Limit               memory                      = 5;
+        ResourceLimits      initialLimits               = 6;
+        string              AgentAddress                = 7;
+        string              MLDataCollectorAddress      = 8;
+        GitParams           kustomizationParams         = 9;
+        GitParams           testParams                  = 10;
+        string              email                       = 11;
+        string              setupName                   = 12;
+        int32               noOfHits                    = 13;
+        bool                isTrain                     = 14;
+        }
+        
+        message ResourceUsage {
+        string      cpu       =  1;
+        string      memory    =  2;
+        }
+        
+        message IterationsDetails {
+        IterationReq request    =1;
+        IterationResp response  =2;
+        int32 IterationNumber   =3;
+        int32 EpisodeNumber     =4;
+        bool IsSuggested        =5;
+        }
+        
+        message Iterations {
+        repeated  ExperimentSetupResponse iterations   =1;
+        }
+        
+        message IterationReq{
+        string                        iterationID       = 1;
+        string                        experimentID      = 2;
+        ResourceLimits                limits            = 3;
+        ExperimentSetupRequest        setupReq          = 4;
+        }
+        
+        message IterationResp{
+        string                status            = 1;
+        string                iterationID       = 2;
+        string                experimentID      = 3;
+        IterationReq          request           = 4;
+        ResourceUsage         maxLimit          = 5;
+        repeated ResourceUsage resourceLimits   = 6;
+        float                 Cpu               = 7;
+        float                 Memory            = 8;
+        int32                 EnvStatus         = 9;
+        float                 Latency           = 10;
+        int32                 NoOfErrors        = 11;
+        int32                 NoOfFailures      = 12;
+        float                 NoUserPerSec      = 13;
+        float                 ResponseTime      = 14;
+        float                 SuccessRate       = 15;
+        int32                 TotReq            = 16;
+        map<string, float>    expSupportMetric  = 17;
+        }
+        
+        message ExperimentSetupResponse{
+        string                      exp_id    = 1;
+        string                      status    = 2;
+        repeated IterationsDetails  results   = 3;
+        }
+        
+        message SetupTemplate{
+        repeated SetupDetails setupDetails = 1;
+        }
+        
+        message SetupDetails{
+        string      ApplicationName = 1;
+        string      SetupName       = 2;
+        }
+        
+        
+        
+        message Experiments{
+        repeated ExperimentDetails experiments = 1;
+        }
+        
+        message ExperimentDetails{
+        string      expId           = 1;
+        string      AgentDetails    = 2;
+        string      AgentID         = 3;
+        string      ApplicationName = 4;
+        string      Status          = 5;
+        int64       create_time     = 6;
+        int64       update_time     = 7;
+        int64       TrailCount      = 8;
+        string      setupName       = 9;
+        string      AgentName       =10;
+        
+        }
+        
+        message Experiment{
+        string  exp_id            = 1;
+        }
+        
+        message Iteration{
+        string  itr_id            = 1;
+        }
+        
+        message TerminationResp{
+        string message = 1;
+        }
+        
+        message Response{
+        int64 code      = 1;
+        string message  = 2;
+        }
+        message UploadCertRequest {
+        string agent_id = 1;
+        string exp_id = 2;
+        string client_key_data = 3;
+        string client_cert_data = 4;
+        string client_ca_chain_data = 5;
+        }
+        
+        message UploadCertResponse{
+        string  status            = 1;
+        string exp_id = 2;
+        string agent_id = 3;
+        
+        }
+        message DownloadCertResponse {
+        string agent_id = 1;
+        string exp_id = 2;
+        string client_key_data = 3;
+        string client_cert_data = 4;
+        string client_ca_chain_data = 5;
+        }
+        
+        message DownloadCertRequest{
+        string agent_id = 1;
+        string exp_id = 2;
+        }
+        
+        message AgentNotification{
+        string                  experimentID      = 1;
+        string                  status            = 2;
+        }
+        
+        message DataCollectorNotification{
+        string                  experimentID      = 1;
+        string                  status            = 2;
+        }
+        
+        message DataCollectorNotificationResponse{
+        string                  status            = 1;
+        ExperimentSetupRequest  setup             = 2;
+        }
+        
+        service AgentHandler {
+        rpc RegisterAgent(ClientDetails) returns(ClientCredentials){}
+        rpc GetAgents(Null) returns(Agents){}
+        rpc GetAgentByEmail(Email) returns(Agents){}
+        rpc UploadCertificate(UploadCertRequest) returns(UploadCertResponse){}
+        rpc DownloadCertificate(DownloadCertRequest) returns(DownloadCertResponse){}
+        }
+        
+        service ExperimentHandler {
+        rpc Setup(ExperimentSetupRequest) returns(ExperimentSetupResponse){}
+        rpc StartExperiment(Experiment) returns(Null){}
+        rpc StatusExperiment(Experiment) returns(ExperimentSetupResponse){}
+        rpc StopExperiment(Experiment) returns(TerminationResp){}
+        rpc GetAllExperimentByEmail(Email) returns(Experiments){}
+        rpc GetAllIterationsByEmail(Email) returns(Iterations){}
+        rpc GetIterationsByID(Iteration) returns(IterationsDetails){}
+        rpc GetIterationsByExpID(Experiment) returns(ExperimentSetupResponse){}
+        rpc GetAllSetupNameByEmail(Email) returns(SetupTemplate){}
+        rpc GetAllExperimentBySetupName(SetupName) returns(Experiments){}
+        rpc ReStartExperiment(Experiment) returns(Response){}
+        }
+        
+        
+        service ServerCallBacksHandler {
+        rpc MLAgentSetupCallback(AgentNotification) returns(Null){}
+        rpc DataCollectorSetupCallback(DataCollectorNotification) returns(DataCollectorNotificationResponse){}
+        rpc DataCollectorIterationStatusCallback(IterationsDetails) returns(Null){}
+        rpc DataCollectorExperimentStatusCallback(DataCollectorNotification) returns(Null){}
+        }
+        
+      address: ml-server.alpha.intelops.app:80
+      method: experiment.ml_server.ExperimentHandler.GetAllExperimentByEmail
+      request: '{"email" : "connect2arjuna@gmail.com"}'
+      auth: {}
+      expectedResponse: '{"experiments": []}'
+  specs:
+  - selector: span[tracetest.span.type="rpc" name="experiment.ml_server.ExperimentHandler/GetAllExperimentByEmail" rpc.system="grpc" rpc.method="GetAllExperimentByEmail" rpc.service="experiment.ml_server.ExperimentHandler"]
+    name: Empty Experiments Test Assertions
+    assertions:
+    - attr:rpc.method  =  "GetAllExperimentByEmail"
+    - attr:tracetest.span.name  =  "experiment.ml_server.ExperimentHandler/GetAllExperimentByEmail"
+    - attr:rpc.system  =  "grpc"
+    - attr:rpc.grpc.status_code = 0
+    - attr:rpc.service = "experiment.ml_server.ExperimentHandler"
+  - selector: span[tracetest.span.type="general" name="GetAllExperimentByEmail"]
+    assertions:
+    - attr:tracetest.span.type  =  "general"
+    - attr:span.events = '[]'
