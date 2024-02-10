@@ -12,11 +12,11 @@ spec:
       - key: Content-Type
         value: application/json
   specs:
-  - selector: span[tracetest.span.type="messaging" name="messaging publish" messaging.system="kafka" messaging.operation="publish"]
+  - selector: span[quality-trace.span.type="messaging" name="messaging publish" messaging.system="kafka" messaging.operation="publish"]
     name: It published a message to Kafka
     assertions:
-    - attr:tracetest.selected_spans.count = 1
-  - selector: span[tracetest.span.type="messaging" name="messaging receive" messaging.system="kafka" messaging.operation="receive"]
+    - attr:quality-trace.selected_spans.count = 1
+  - selector: span[quality-trace.span.type="messaging" name="messaging receive" messaging.system="kafka" messaging.operation="receive"]
     name: It processed a message from Kafka
     assertions:
-    - attr:tracetest.selected_spans.count = 1
+    - attr:quality-trace.selected_spans.count = 1

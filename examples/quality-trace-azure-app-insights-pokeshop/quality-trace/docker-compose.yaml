@@ -1,0 +1,57 @@
+services:
+  postgres:
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U "$$POSTGRES_USER" -d "$$POSTGRES_DB"
+      timeout: 5s
+      interval: 1s
+      retries: 60
+    image: postgres:14
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 5432
+        published: 5432
+        protocol: tcp
+  quality-trace:
+    command: --provisioning-file /app/provision.yaml
+    platform: linux/amd64
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      QUALITYTRACE_DEV: ${QUALITYTRACE_DEV}
+    extra_hosts:
+      host.docker.internal: host-gateway
+    healthcheck:
+      test:
+        - CMD
+        - wget
+        - --spider
+        - localhost:11633
+      timeout: 3s
+      interval: 1s
+      retries: 60
+    image: intelops/quality-trace:${TAG:-latest}
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 11633
+        published: 11633
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: quality-trace/quality-trace.yaml
+        target: /app/quality-trace.yaml
+      - type: bind
+        source: quality-trace/quality-trace-provision.yaml
+        target: /app/provision.yaml
+networks:
+  default:
+    name: _default

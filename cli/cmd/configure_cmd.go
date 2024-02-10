@@ -13,8 +13,8 @@ var configParams = &configureParameters{}
 var configureCmd = &cobra.Command{
 	GroupID: cmdGroupConfig.ID,
 	Use:     "configure",
-	Short:   "Configure your qt CLI",
-	Long:    "Configure your qt CLI",
+	Short:   "Configure your quality-trace CLI",
+	Long:    "Configure your quality-trace CLI",
 	PreRun:  setupLogger,
 	Run: WithResultHandler(WithParamsHandler(configParams)(func(cmd *cobra.Command, _ []string) (string, error) {
 		ctx := context.Background()

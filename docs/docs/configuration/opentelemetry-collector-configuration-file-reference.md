@@ -1,16 +1,16 @@
 # OpenTelemetry Collector Configuration File Reference
 
-This page contains a reference for using the OpenTelemetry Collector to send trace data from your application to any of Tracetest's supported trace data stores.
+This page contains a reference for using the OpenTelemetry Collector to send trace data from your application to any of Qualitytrace's supported trace data stores.
 
 :::tip
-Examples of configuring Tracetest can be found in the [`examples` folder of the Tracetest GitHub repo](https://github.com/kubeshop/tracetest/tree/main/examples).
+Examples of configuring Qualitytrace can be found in the [`examples` folder of the Qualitytrace GitHub repo](https://github.com/intelops/quality-trace/tree/main/examples).
 :::
 
 ## Supported Trace Data Stores
 
-Tracetest is designed to work with different trace data stores. To enable Tracetest to run end-to-end tests against trace data, you need to configure Tracetest to access trace data.
+Qualitytrace is designed to work with different trace data stores. To enable Qualitytrace to run end-to-end tests against trace data, you need to configure Qualitytrace to access trace data.
 
-Currently, Tracetest supports the following data stores. Click on the respective data store to view configuration examples:
+Currently, Qualitytrace supports the following data stores. Click on the respective data store to view configuration examples:
 
 - [Jaeger](./connecting-to-data-stores/jaeger)
 - [OpenSearch](./connecting-to-data-stores/opensearch)
@@ -29,7 +29,7 @@ Continue reading below to learn how to configure the OpenTelemetry Collector to 
 
 ## Configure OpenTelemetry Collector to Send Traces to Jaeger
 
-In your OpenTelemetry Collector config file, make sure to set the `exporter` to `jaeger`, with the `endpoint` pointing to your Jaeger instance on port `14250`. If you are running Tracetest with Docker, the endpoint might look like this `http://jaeger:14250`.
+In your OpenTelemetry Collector config file, make sure to set the `exporter` to `jaeger`, with the `endpoint` pointing to your Jaeger instance on port `14250`. If you are running Qualitytrace with Docker, the endpoint might look like this `http://jaeger:14250`.
 
 ```yaml
 # collector.config.yaml
@@ -67,7 +67,7 @@ service:
 
 You'll configure the OpenTelemetry Collector to receive traces from your system and then send them to OpenSearch via Data Prepper. And, you don't have to change your existing pipelines to do so.
 
-In your OpenTelemetry Collector config file, make sure to set the `exporter` to `otlp`, with the `endpoint` pointing to the Data Prepper on port `21890`. If you are running Tracetest with Docker, the endpoint might look like this `data-prepper:21890`.
+In your OpenTelemetry Collector config file, make sure to set the `exporter` to `otlp`, with the `endpoint` pointing to the Data Prepper on port `21890`. If you are running Qualitytrace with Docker, the endpoint might look like this `data-prepper:21890`.
 
 ```yaml
 # collector.config.yaml
@@ -108,7 +108,7 @@ service:
 
 You'll configure the OpenTelemetry Collector to receive traces from your system and then send them to Elasticsearch via Elastic APM. And, you don't have to change your existing pipelines to do so.
 
-In your OpenTelemetry Collector config file, make sure to set the `exporter` to `otlp`, with the `endpoint` pointing to the Elastic APM server on port `8200`. If you are running Tracetest with Docker, the endpoint might look like this `apm-server:8200`.
+In your OpenTelemetry Collector config file, make sure to set the `exporter` to `otlp`, with the `endpoint` pointing to the Elastic APM server on port `8200`. If you are running Qualitytrace with Docker, the endpoint might look like this `apm-server:8200`.
 
 ```yaml
 # collector.config.yaml
@@ -187,7 +187,7 @@ service:
 
 You'll configure the OpenTelemetry Collector to receive traces from your system and then send them to Tempo. And, you don't have to change your existing pipelines to do so.
 
-In your OpenTelemetry Collector config file, make sure to set the `exporter` to `tempo`, with the `endpoint` pointing to your Tempo's instance on port `4317`. If you are running Tracetest with Docker, the endpoint might look like this `http://tempo:4317`.
+In your OpenTelemetry Collector config file, make sure to set the `exporter` to `tempo`, with the `endpoint` pointing to your Tempo's instance on port `4317`. If you are running Qualitytrace with Docker, the endpoint might look like this `http://tempo:4317`.
 
 ```yaml
 # collector.config.yaml

@@ -134,7 +134,7 @@ func TestInjectingNewRootWhenMultipleRoots(t *testing.T) {
 	}
 }
 
-func TestNoTemporaryRootIfTracetestRootExists(t *testing.T) {
+func TestNoTemporaryRootIfQualitytraceRootExists(t *testing.T) {
 	root1 := newSpan("Root 1")
 	root1Child := newSpan("Child from root 1", withParent(&root1))
 	root2 := newSpan(traces.TriggerSpanName)
@@ -231,7 +231,7 @@ func newSpan(name string, options ...option) traces.Span {
 	}
 
 	if span.Parent != nil {
-		span.Attributes[traces.TracetestMetadataFieldParentID] = span.Parent.ID.String()
+		span.Attributes[traces.QualitytraceMetadataFieldParentID] = span.Parent.ID.String()
 	}
 
 	return span

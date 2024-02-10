@@ -6,7 +6,7 @@ import {TDraftTestSuite} from 'types/TestSuite.types';
 import {PaginationResponse} from 'hooks/usePagination';
 import {TTestApiEndpointBuilder} from '../Tracetest.api';
 
-const defaultHeaders = {'content-type': 'application/json', 'X-Tracetest-Augmented': 'true'};
+const defaultHeaders = {'content-type': 'application/json', 'X-Qualitytrace-Augmented': 'true'};
 
 export const testSuiteEndpoints = (builder: TTestApiEndpointBuilder) => ({
   createTestSuite: builder.mutation<TestSuite, TDraftTestSuite>({

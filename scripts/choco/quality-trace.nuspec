@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>quality-trace</id>
+    <version>%version%</version>
+    <title>quality-trace</title>
+    <authors>Intelops</authors>
+    <projectUrl>https://quality-trace.io</projectUrl>
+    <tags>quality-trace opentelemetry trace-based-testing testing</tags>
+    <summary>Qualitytrace - the best way to develop and test your distributed system with OpenTelemetry</summary>
+    <description>Qualitytrace - the best way to develop and test your distributed system with OpenTelemetry</description>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>

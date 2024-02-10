@@ -8,9 +8,9 @@ These recipes show integrations with trace data stores and tracing vendors/provi
 
 ### OpenTelemetry Collector
 
-This integration point uses the OpenTelemetry Collector as a router to send trace data to both Tracetest and tracing vendors/providers.
+This integration point uses the OpenTelemetry Collector as a router to send trace data to both Qualitytrace and tracing vendors/providers.
 
-- [Sending traces directly to Tracetest from a Node.js app using OpenTelemetry Collector](./recipes/running-tracetest-without-a-trace-data-store.md)
+<!--- [Sending traces directly to Tracetest from a Node.js app using OpenTelemetry Collector](./recipes/running-tracetest-without-a-trace-data-store.md)
 - [Sending traces with manual instrumentation directly to Tracetest from a Node.js app using OpenTelemetry Collector](./recipes/running-tracetest-without-a-trace-data-store-with-manual-instrumentation.md)
 - [Sending traces with manual instrumentation directly to Tracetest from a Python app using OpenTelemetry Collector](./recipes/running-python-app-with-opentelemetry-collector-and-tracetest.md)
 - [Sending traces to Lightstep and Tracetest from the OpenTelemetry Demo with OpenTelemetry Collector](./recipes/running-tracetest-with-lightstep.md)
@@ -47,7 +47,7 @@ This integration point uses the OpenTelemetry Collector as a router to send trac
 
 - [Running Tracetest with Azure App Insights (AppInsights Otel Node.js SDK)](./recipes/running-tracetest-with-azure-app-insights.md)
 - [Running Tracetest with Azure App Insights (Otel Node.js SDK & OpenTelemetry Collector)](./recipes/running-tracetest-with-azure-app-insights-collector.md)
-- [Running Tracetest with Azure App Insights (OpenTelemetry Collector & Pokeshop API)](./recipes/running-tracetest-with-azure-app-insights-pokeshop.md)
+- [Running Tracetest with Azure App Insights (OpenTelemetry Collector & Pokeshop API)](./recipes/running-tracetest-with-azure-app-insights-pokeshop.md)-->
 
 ## CI/CD Automation
 
@@ -57,12 +57,12 @@ These guides show integrations with CI/CD tools.
 - [Testkube](../ci-cd-automation/testkube-pipeline.md)
 - [Tekton](../ci-cd-automation/tekton-pipeline.md)
 
-## Tools
+<!--## Tools
 
 These guides show integrations with other tools and vendors.
 
 - [Running Tracetest with Testkube](../tools-and-integrations/testkube.md)
 - [Running Tracetest with k6](../tools-and-integrations/k6.md)
-- [Running Tracetest with Keptn](../tools-and-integrations/keptn.md)
+- [Running Tracetest with Keptn](../tools-and-integrations/keptn.md)-->
 
 Stay tuned! More recipes are coming soon. 🚀

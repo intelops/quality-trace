@@ -1,7 +1,7 @@
 /*
-TraceTest
+Qualitytrace
 
-OpenAPI definition for TraceTest endpoint and resources
+OpenAPI definition for Qualitytrace endpoint and resources
 
 API version: 0.2.1
 */
@@ -41,7 +41,7 @@ var (
 	queryDescape    = strings.NewReplacer("%5B", "[", "%5D", "]")
 )
 
-// APIClient manages communication with the TraceTest API v0.2.1
+// APIClient manages communication with the Qualitytrace API v0.2.1
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration

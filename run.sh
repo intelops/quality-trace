@@ -7,12 +7,12 @@ export TAG=${TAG:-dev}
 opts="-f docker-compose.yaml -f examples/docker-compose.demo.yaml"
 
 help_message() {
-  echo "usage: ./run.sh [cypress|tracetests|up|stop|build|down|tracetest-logs|logs|ps|restart]"
+  echo "usage: ./run.sh [cypress|qualitytraces|up|stop|build|down|quality-trace-logs|logs|ps|restart]"
 }
 
 restart() {
-  docker compose $opts kill tracetest
-  docker compose $opts up -d tracetest
+  docker compose $opts kill quality-trace
+  docker compose $opts up -d quality-trace
   docker compose $opts restart otel-collector
 }
 
@@ -20,8 +20,8 @@ logs() {
   docker compose $opts logs -f
 }
 
-tracetest-logs() {
-  docker compose $opts logs -f tracetest
+quality-trace-logs() {
+  docker compose $opts logs -f quality-trace
 }
 
 ps() {
@@ -36,7 +36,7 @@ build() {
   make build-docker
   # the previous commands builds the cli binary for linux (because its the os in docker)
   # if the script is run on another os, like macos, we need to rebuild for the binary to match the os
-  make dist/tracetest
+  make dist/quality-trace
 }
 
 up() {
@@ -71,19 +71,19 @@ cypress() {
   npm run cy:run
 }
 
-tracetests() {
+qualitytraces() {
 
-  echo "Running tracetests"
+  echo "Running qualitytraces"
 
   SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-  export TRACETEST_CLI=${SCRIPT_DIR}/dist/tracetest
+  export QUALITYTRACE_CLI=${SCRIPT_DIR}/dist/quality-trace
   export TARGET_URL=http://localhost:11633
-  export TRACETEST_ENDPOINT=localhost:11633
+  export QUALITYTRACE_ENDPOINT=localhost:11633
   export DEMO_APP_URL=http://demo-api:8081
   export DEMO_APP_GRPC_URL=demo-rpc:8082
 
-  cd testing/server-tracetesting
+  cd testing/server-qualitytracing
   ./run.bash
 }
 
@@ -99,8 +99,8 @@ while [[ $# -gt 0 ]]; do
       CMD+=("cypress-ci")
       shift
       ;;
-    tracetests)
-      CMD+=("tracetests")
+    qualitytraces)
+      CMD+=("qualitytraces")
       shift
       ;;
     up)
@@ -119,8 +119,8 @@ while [[ $# -gt 0 ]]; do
       CMD+=("down")
       shift
       ;;
-    tracetest-logs)
-      CMD+=("tracetest-logs")
+    quality-trace-logs)
+      CMD+=("quality-trace-logs")
       shift
       ;;
     logs)

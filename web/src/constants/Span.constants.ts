@@ -35,8 +35,8 @@ export const SpanAttributeSections: Record<SemanticGroupNames, Record<string, TV
     ],
     [SectionNames.response]: [
       Attributes.HTTP_STATUS_CODE,
-      Attributes.TRACETEST_RESPONSE_BODY,
-      Attributes.TRACETEST_RESPONSE_HEADERS,
+      Attributes.QUALITYTRACE_RESPONSE_BODY,
+      Attributes.QUALITYTRACE_RESPONSE_HEADERS,
       Attributes.HTTP_RESPONSE_CONTENT_LENGTH,
       Attributes.HTTP_RESPONSE_CONTENT_LENGTH_UNCOMPRESSED,
       Attributes.HTTP_RESPONSE_HEADER,

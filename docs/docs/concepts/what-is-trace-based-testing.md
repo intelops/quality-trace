@@ -8,7 +8,7 @@ Trace-Based Testing is a means of conducting deep integration or system tests by
 
 A Distributed Trace, more commonly known as a Trace, records the paths taken by requests (made by an application or end-user) take as they propagate through multi-service architectures, like microservice and serverless applications. [Source - OpenTelemetry.io](https://opentelemetry.io/docs/concepts/observability-primer/)
 
-In Tracetest, after selecting a test from the first screen and clicking on the **Trace** tab, you will see the distributed trace for the selected test:
+In Qualitytrace, after selecting a test from the first screen and clicking on the **Trace** tab, you will see the distributed trace for the selected test:
 
 ![Trace Example](../img/trace-example.png)
 
@@ -41,7 +41,7 @@ Attributes are a key-value pair, and they contain information about the operatio
 ## **What is a Test Spec?**
 
 
-In Tracetest, a Test Spec is comprised of two parts:
+In Qualitytrace, a Test Spec is comprised of two parts:
 
 
 - Selectors

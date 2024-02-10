@@ -1,0 +1,84 @@
+services:
+    jaeger:
+        healthcheck:
+            test:
+                - CMD
+                - wget
+                - --spider
+                - localhost:16686
+            timeout: 3s
+            interval: 1s
+            retries: 60
+        image: jaegertracing/all-in-one:latest
+        ports:
+            - 16686:16686
+        networks:
+            default: null
+        restart: unless-stopped
+    otel-collector:
+        command:
+            - --config
+            - /otel-local-config.yaml
+        depends_on:
+            jaeger:
+                condition: service_started
+        image: otel/opentelemetry-collector:0.54.0
+        networks:
+            default: null
+        volumes:
+            - type: bind
+              source: quality-trace/otel-collector.yaml
+              target: /otel-local-config.yaml
+              bind:
+                create_host_path: true
+    postgres:
+        environment:
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_USER: postgres
+        healthcheck:
+            test:
+                - CMD-SHELL
+                - pg_isready -U "$$POSTGRES_USER" -d "$$POSTGRES_DB"
+            timeout: 5s
+            interval: 1s
+            retries: 60
+        image: postgres:14
+        networks:
+            default: null
+    quality-trace:
+        depends_on:
+            otel-collector:
+                condition: service_started
+            postgres:
+                condition: service_healthy
+        extra_hosts:
+            host.docker.internal: host-gateway
+        healthcheck:
+            test:
+                - CMD
+                - wget
+                - --spider
+                - localhost:11633
+            timeout: 3s
+            interval: 1s
+            retries: 60
+        image: intelops/quality-trace:latest
+        platform: linux/amd64
+        networks:
+            default: null
+        ports:
+            - mode: ingress
+              target: 11633
+              published: 11633
+              protocol: tcp
+        volumes:
+            - type: bind
+              source: quality-trace/quality-trace.yaml
+              target: /app/quality-trace.yaml
+            - type: bind
+              source: quality-trace/quality-trace-provision.yaml
+              target: /app/provision.yaml
+        command: --provisioning-file /app/provision.yaml
+networks:
+    default:
+        name: _default

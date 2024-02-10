@@ -1,6 +1,6 @@
 # Editing Tests
 
-Tracetest enables the update of test details at anytime, if you have to update any of the details regarding the triggering method or the basic details such as **name** and/or **description**.
+Qualitytrace enables the update of test details at anytime, if you have to update any of the details regarding the triggering method or the basic details such as **name** and/or **description**.
 
 This process is really simple and can be achieved from three different places within the app:
 1. The home page.

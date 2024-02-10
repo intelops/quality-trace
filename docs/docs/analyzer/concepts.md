@@ -1,6 +1,6 @@
 # Trace Analyzer Concepts
 
-The Tracetest Analyzer is a plugin-based framework used to analyze OpenTelemetry traces to help teams improve their instrumentation data, find potential problems and provide tips to fix the problems.
+The Qualitytrace Analyzer is a plugin-based framework used to analyze OpenTelemetry traces to help teams improve their instrumentation data, find potential problems and provide tips to fix the problems.
 
 ## Plugins
 
@@ -18,7 +18,7 @@ Another problem is that adding instrumentation is the very first step to achievi
 
 ## Solution
 
-Having a linting rule that is fully plugin-based to evaluate Tracetest to find problems. Allowing simple ways for users to understand the quality of their instrumentation data across the whole framework, catching possible security breaches, and providing tips and guidance on how to fix them.
+Having a linting rule that is fully plugin-based to evaluate Qualitytrace to find problems. Allowing simple ways for users to understand the quality of their instrumentation data across the whole framework, catching possible security breaches, and providing tips and guidance on how to fix them.
 
 ## Concepts
 
@@ -39,8 +39,8 @@ There are two main rule types:
 - Multi Trace. Requires a historic number of traces to identify and evaluate the rule.
 - Single Trace. Encapsulated to the current trace, no external data is required.
 
-:::note
-[This documentation will be focused on single trace rules for timing purposes.](../configuration/tracetest-analyzer.md)
+<!--:::note
+[This documentation will be focused on single trace rules for timing purposes.](../configuration/tracetest-analyzer.md)-->
 :::
 
 ### Analyzer Resource

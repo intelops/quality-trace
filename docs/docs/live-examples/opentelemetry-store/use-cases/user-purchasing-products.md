@@ -18,7 +18,7 @@ So in this case, we need to trigger four tests in sequence to achieve test the e
 
 ## Building a Test Suite for This Scenario
 
-Using Tracetest, we can do that by [creating a test](../../../web-ui/creating-tests.md) for each step and later grouping these tests as [Test Suites](../../../web-ui/creating-test-suites.md) that have an [variable set](../../../concepts/variable-sets.md)].
+Using Qualitytrace, we can do that by [creating a test](../../../web-ui/creating-tests.md) for each step and later grouping these tests as [Test Suites](../../../web-ui/creating-test-suites.md) that have an [variable set](../../../concepts/variable-sets.md)].
  
 We can do that by creating the tests and Test Suites through the Web UI or using the CLI. In this example, we will use the CLI to create a Variable Set and then create the Test Suite with all tests needed. The [assertions](../../../concepts/assertions.md) that we will check are the same for every single test.
 
@@ -49,16 +49,16 @@ spec:
       - key: Content-Type
         value: application/json
   specs:
-  - selector: span[tracetest.span.type="rpc" name="grpc.hipstershop.ProductCatalogService/GetProduct" rpc.system="grpc" rpc.method="GetProduct" rpc.service="hipstershop.ProductCatalogService"]
+  - selector: span[quality-trace.span.type="rpc" name="grpc.hipstershop.ProductCatalogService/GetProduct" rpc.system="grpc" rpc.method="GetProduct" rpc.service="hipstershop.ProductCatalogService"]
     assertions: # It should have 4 products on this list.
-    - attr:tracetest.selected_spans.count = 4
-  - selector: span[tracetest.span.type="rpc" name="/hipstershop.FeatureFlagService/GetFlag" rpc.system="grpc" rpc.method="GetFlag" rpc.service="hipstershop.FeatureFlagService"]
+    - attr:quality-trace.selected_spans.count = 4
+  - selector: span[quality-trace.span.type="rpc" name="/hipstershop.FeatureFlagService/GetFlag" rpc.system="grpc" rpc.method="GetFlag" rpc.service="hipstershop.FeatureFlagService"]
     assertions: # The feature flagger should be called for one product.
-    - attr:tracetest.selected_spans.count = 1
+    - attr:quality-trace.selected_spans.count = 1
   outputs:
   - name: PRODUCT_ID
-    selector: span[tracetest.span.type="general" name="Tracetest trigger"]
-    value: attr:tracetest.response.body | json_path '$[0].id'
+    selector: span[quality-trace.span.type="general" name="Qualitytrace trigger"]
+    value: attr:quality-trace.response.body | json_path '$[0].id'
 ```
 
 Note that we have one important changes here: we are now using environment variables on the definition, like `${var:OTEL_API_URL}` and `${var:USER_ID}` on the trigger section and an output to fetch the first `${var:PRODUCT_ID}` that the user chose. This new environment variable will be used in the next tests.
@@ -80,14 +80,14 @@ spec:
         value: application/json
       body: '{"item":{"productId":"${var:PRODUCT_ID}","quantity":1},"userId":"${var:USER_ID}"}'
   specs:
-  - selector: span[tracetest.span.type="http" name="hipstershop.CartService/AddItem"]
+  - selector: span[quality-trace.span.type="http" name="hipstershop.CartService/AddItem"]
     # The correct ProductID was sent to the Product Catalog API.
     assertions:
     - attr:app.product.id = "${var:PRODUCT_ID}"
-  - selector: span[tracetest.span.type="database" name="HMSET" db.system="redis" db.redis.database_index="0"]
+  - selector: span[quality-trace.span.type="database" name="HMSET" db.system="redis" db.redis.database_index="0"]
     # The product persisted correctly on the shopping cart.
     assertions:
-    - attr:tracetest.selected_spans.count >= 1
+    - attr:quality-trace.selected_spans.count >= 1
 ```
 
 After that, we will [Check Shopping Cart Contents](./check-shopping-cart-contents.md) (on `check-shopping-cart-contents.yaml`), simulating a user validating the products selected before finishing the purchase:
@@ -105,14 +105,14 @@ spec:
       - key: Content-Type
         value: application/json
   specs:
-  - selector: span[tracetest.span.type="rpc" name="hipstershop.ProductCatalogService/GetProduct" rpc.system="grpc" rpc.method="GetProduct" rpc.service="hipstershop.ProductCatalogService"]
+  - selector: span[quality-trace.span.type="rpc" name="hipstershop.ProductCatalogService/GetProduct" rpc.system="grpc" rpc.method="GetProduct" rpc.service="hipstershop.ProductCatalogService"]
     # The product previously added exists in the cart.
     assertions:
     - attr:app.product.id = "${var:PRODUCT_ID}"
-  - selector: span[tracetest.span.type="general" name="Tracetest trigger"]
+  - selector: span[quality-trace.span.type="general" name="Qualitytrace trigger"]
     # The size of the shopping cart should be at least 1.
     assertions:
-    - attr:tracetest.response.body | json_path '$.items.length' >= 1
+    - attr:quality-trace.response.body | json_path '$.items.length' >= 1
 ```
 
 And finally, we have the [Checkout](./checkout.md) action (`checkout.yaml`), where the user inputs the billing and shipping info and finishes buying the item in the shopping cart:
@@ -132,28 +132,28 @@ spec:
         value: application/json
       body: '{"userId":"${var:USER_ID}","email":"someone@example.com","address":{"streetAddress":"1600 Amphitheatre Parkway","state":"CA","country":"United States","city":"Mountain View","zipCode":"94043"},"userCurrency":"USD","creditCard":{"creditCardCvv":672,"creditCardExpirationMonth":1,"creditCardExpirationYear":2030,"creditCardNumber":"4432-8015-6152-0454"}}'
   specs:
-  - selector: span[tracetest.span.type="rpc" name="hipstershop.CheckoutService/PlaceOrder"
+  - selector: span[quality-trace.span.type="rpc" name="hipstershop.CheckoutService/PlaceOrder"
       rpc.system="grpc" rpc.method="PlaceOrder" rpc.service="hipstershop.CheckoutService"]
     assertions: 
     # An order was placed.
     - attr:app.user.id = "${var:USER_ID}"
     - attr:app.order.items.count = 1
-  - selector: span[tracetest.span.type="rpc" name="hipstershop.PaymentService/Charge" rpc.system="grpc" rpc.method="Charge" rpc.service="hipstershop.PaymentService"]
+  - selector: span[quality-trace.span.type="rpc" name="hipstershop.PaymentService/Charge" rpc.system="grpc" rpc.method="Charge" rpc.service="hipstershop.PaymentService"]
     assertions: 
     # The user was charged.
     - attr:rpc.grpc.status_code  =  0
-    - attr:tracetest.selected_spans.count >= 1
-  - selector: span[tracetest.span.type="rpc" name="hipstershop.ShippingService/ShipOrder" rpc.system="grpc" rpc.method="ShipOrder" rpc.service="hipstershop.ShippingService"]
+    - attr:quality-trace.selected_spans.count >= 1
+  - selector: span[quality-trace.span.type="rpc" name="hipstershop.ShippingService/ShipOrder" rpc.system="grpc" rpc.method="ShipOrder" rpc.service="hipstershop.ShippingService"]
     assertions: 
     # The product was shipped.
     - attr:rpc.grpc.status_code = 0
-    - attr:tracetest.selected_spans.count >= 1
-  - selector: span[tracetest.span.type="rpc" name="hipstershop.CartService/EmptyCart"
+    - attr:quality-trace.selected_spans.count >= 1
+  - selector: span[quality-trace.span.type="rpc" name="hipstershop.CartService/EmptyCart"
       rpc.system="grpc" rpc.method="EmptyCart" rpc.service="hipstershop.CartService"]
     assertions: 
     # The shopping cart was emptied.
     - attr:rpc.grpc.status_code = 0
-    - attr:tracetest.selected_spans.count >= 1
+    - attr:quality-trace.selected_spans.count >= 1
 ```
 
 ### Creating the Test Suite
@@ -175,7 +175,7 @@ spec:
 By having the test, Test Suite and environment files in the same directory, we can call the CLI and execute this Test Suite:
 
 ```sh
-tracetest run testsuite -f testsuite.yaml -e user-buying-products.env
+quality-trace run testsuite -f testsuite.yaml -e user-buying-products.env
 ```
 
 The result should be an output like this:

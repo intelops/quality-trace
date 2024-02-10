@@ -1,16 +1,16 @@
 # Examples & Tutorials
 
-Below you can find tutorials to help you get started with Tracetest.
+Below you can find tutorials to help you get started with Qualitytrace.
 
 ## Recipes
 
-If you're already building something with Tracetest, please explore [Recipes](./recipes.md) — short, self-contained, and runnable solutions to popular use cases.
+If you're already building something with Qualitytrace, please explore [Recipes](./recipes.md) — short, self-contained, and runnable solutions to popular use cases.
 
 ## Tutorials
 
-Check out the following blog posts with Tracetest-related content.
+Check out the following blog posts with Qualitytrace-related content.
 
-### Integrations
+<!--### Integrations
 
 - [Honeycomb + Tracetest: Observability-driven Development](https://tracetest.io/blog/honeycomb-tracetest-observability-driven-development)
 - [Trace-based testing cloud-native apps with AWS X-Ray and Tracetest](https://tracetest.io/blog/trace-based-testing-cloud-native-apps-with-aws-x-ray-and-tracetest)
@@ -21,9 +21,9 @@ Check out the following blog posts with Tracetest-related content.
 - [Announcing the Tracetest integration with Lightstep](https://tracetest.io/blog/tracetest-integration-with-lightstep)
 - [Observability and Trace-based Testing in AWS](https://tracetest.io/blog/observability-trace-based-testing-aws-serverless-opensearch-tracetest)
 - [Enabling Tracetest to Work Directly with OpenSearch](https://tracetest.io/blog/tracetest-opensearch-integration)
-- [Integrating Tracetest with GitHub Actions in a CI pipeline](https://tracetest.io/blog/integrating-tracetest-with-github-actions-in-a-ci-pipeline)
+- [Integrating Tracetest with GitHub Actions in a CI pipeline](https://tracetest.io/blog/integrating-tracetest-with-github-actions-in-a-ci-pipeline)-->
 
-### Best Practices
+<!--### Best Practices
 
 - [Running Trace-Based Tests on the OpenTelemetry Demo App with Nomad](https://tracetest.io/blog/tracetest-in-action-running-trace-based-tests-on-the-opentelemetry-demo-app-with-nomad)
 - [Ad Hoc Testing of Distributed Systems](https://tracetest.io/blog/ad-hoc-testing-of-distributed-systems)
@@ -31,7 +31,7 @@ Check out the following blog posts with Tracetest-related content.
 - [Observability-driven development with Go and Tracetest](https://tracetest.io/blog/observability-driven-development-with-go-and-tracetest)
 - [The difference between test-driven & observability-driven development](https://tracetest.io/blog/the-difference-between-tdd-and-odd)
 - [Integration Tests: Pros and Cons of Doubles vs. Trace-Based Testing](https://tracetest.io/blog/integration-tests-pros-and-cons-of-doubles-vs-trace-based-testing)
-- [Detect & Fix Performance Issues Using Tracetest](https://tracetest.io/blog/detect-fix-performance-issues-using-tracetest)
+- [Detect & Fix Performance Issues Using Tracetest](https://tracetest.io/blog/detect-fix-performance-issues-using-tracetest)-->
 
 ### OpenTelemetry Community
 
@@ -39,7 +39,7 @@ Check out the following blog posts with Tracetest-related content.
 - [Is it Observable? with Henrik Rexed](https://tracetest.io/blog/is-it-observable-with-henrik-rexed)
 - [Tracing the History of Distributed Tracing & OpenTelemetry](https://tracetest.io/blog/tracing-the-history-of-distributed-tracing-opentelemetry)
 
-### Webinars
+<!--### Webinars
 
 - [Tracetest Community Call in April 2023 - Tracetest turns 1 year old!](https://www.youtube.com/watch?v=OrstjSvMFio)
 - [Tracetest Community Call in March 2023](https://www.youtube.com/watch?v=U_94bEptrrE)
@@ -52,7 +52,7 @@ Check out the following blog posts with Tracetest-related content.
 - [Tracetest v0.7 Release - Installation & Workflow Updates](https://www.youtube.com/watch?v=iqGYysqNQNk)
 - [Is it Observable | Introduction to Tracetest - with Ken Hamric](https://www.youtube.com/watch?v=xj7tS2owRvk)
 - [Tracetest v0.6 Release - gRPC, Postman and More](https://www.youtube.com/watch?v=xpEKHK5VXB0)
-- [Introduction to Tracetest - E2E Tests Powered by OpenTelemetry](https://youtu.be/mqwJRxqBNCg)
+- [Introduction to Tracetest - E2E Tests Powered by OpenTelemetry](https://youtu.be/mqwJRxqBNCg)-->
 
 ### Conference Talks
 

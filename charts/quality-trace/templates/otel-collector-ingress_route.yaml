@@ -2,7 +2,7 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: {{ include "tracetest.fullname" . }}-otel-collector
+  name: {{ include "quality-trace.fullname" . }}-otel-collector
   {{- with .Values.otelCollector.ingressRoute.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
@@ -14,7 +14,7 @@ spec:
   - kind: Rule
     match: Host(`{{ .Values.otelCollector.ingressRoute.host }}`)
     services:
-    - name: {{ include "tracetest.fullname" . }}-otel-collector
+    - name: {{ include "quality-trace.fullname" . }}-otel-collector
       port: {{ .Values.otelCollector.ingressRoute.service.port }}
       scheme: h2c
   {{- if .Values.otelCollector.ingressRoute.tls }}

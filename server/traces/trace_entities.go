@@ -30,7 +30,7 @@ func NewTrace(traceID string, spans []Span) Trace {
 	for _, span := range spanMap {
 		span.injectEventsIntoAttributes()
 
-		parentID := span.Attributes[TracetestMetadataFieldParentID]
+		parentID := span.Attributes[QualitytraceMetadataFieldParentID]
 		parentSpan, found := spanMap[parentID]
 		if !found {
 			rootSpans = append(rootSpans, span)
@@ -128,8 +128,8 @@ func (t *Trace) Sort() Trace {
 	return trace
 }
 
-const TriggerSpanName = "Tracetest trigger"
-const TemporaryRootSpanName = "Temporary Tracetest root span"
+const TriggerSpanName = "Qualitytrace trigger"
+const TemporaryRootSpanName = "Temporary Qualitytrace root span"
 
 func (t *Trace) HasRootSpan() bool {
 	return t.RootSpan.Name == TriggerSpanName
@@ -164,7 +164,7 @@ func replaceRoot(oldRoot, newRoot Span) Span {
 		oldRoot.Attributes = make(Attributes)
 	}
 	oldRoot.Parent = &newRoot
-	oldRoot.Attributes[TracetestMetadataFieldParentID] = newRoot.ID.String()
+	oldRoot.Attributes[QualitytraceMetadataFieldParentID] = newRoot.ID.String()
 
 	newRoot.Children = append(newRoot.Children, &oldRoot)
 

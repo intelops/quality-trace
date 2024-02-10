@@ -7,7 +7,7 @@ const Empty = () => {
     <S.EmptyContainer data-cy="empty-analyzer-results">
       <S.EmptyIcon />
       <S.EmptyTitle>There are no Analyzer results yet</S.EmptyTitle>
-      <S.EmptyText>Please configure the Tracetest Analyzer settings to see result</S.EmptyText>
+      <S.EmptyText>Please configure the Qualitytrace Analyzer settings to see result</S.EmptyText>
       <S.ConfigureButtonContainer>
         <Link to="/settings?tab=analyzer">
           <Button ghost type="primary">

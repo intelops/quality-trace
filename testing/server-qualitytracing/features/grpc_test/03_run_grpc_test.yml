@@ -1,0 +1,40 @@
+type: Test
+spec:
+  id: oCzH6DQVRp
+  name: Run gRPC Test
+  description: Test step of 'gRPC Test Feature - Test Suite'
+  trigger:
+    type: http
+    httpRequest:
+      url: ${var:TARGET_URL}/api/tests/${var:GRPC_TEST_ID}/run
+      method: POST
+      headers:
+      - key: Content-Type
+        value: application/json
+      body: '{}'
+  specs:
+  - selector: span[name = "Qualitytrace trigger"]
+    assertions:
+    - attr:quality-trace.selected_spans.count = 1
+    - attr:quality-trace.response.status = 200
+  - selector: span[name = "POST /api/tests/{testId}/run" quality-trace.span.type = "http"]
+    assertions:
+    - attr:quality-trace.selected_spans.count = 1
+  - selector: span[name = "Trigger test"]
+    assertions:
+    - attr:quality-trace.selected_spans.count = 1
+    - attr:quality-trace.run.trigger.test_id = "${var:GRPC_TEST_ID}"
+    - attr:quality-trace.run.trigger.type = "grpc"
+    - attr:quality-trace.run.trigger.grpc.response_status_code = 0
+    - attr:quality-trace.run.trigger.grpc.response_status = "OK"
+  - selector: span[name = "Fetch trace"]
+    assertions:
+    - attr:quality-trace.selected_spans.count > 0
+    - attr:quality-trace.run.trace_poller.test_id = "${var:GRPC_TEST_ID}"
+  - selector: span[name = "Fetch trace"]:last
+    assertions:
+    - attr:quality-trace.run.trace_poller.succesful = "true"
+  - selector: span[name = "Execute assertions"]
+    assertions:
+    - attr:quality-trace.selected_spans.count = 1
+    - attr:quality-trace.run.assertion_runner.all_assertions_passed = "true"

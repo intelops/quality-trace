@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TRACETEST="tracetest"
+  QUALITYTRACE="quality-trace"
 
 TEST_DEFINITION=$1
 INPUT_FILE=$2
@@ -43,8 +43,8 @@ EOF
   # run test
   echo "Running test"
 
-  $TRACETEST apply variableset --file "${envFile}" > /dev/null
-  $TRACETEST run test --file "${TEST_DEFINITION}" --vars "${envFile}"
+  $QUALITYTRACE apply variableset --file "${envFile}" > /dev/null
+  $QUALITYTRACE run test --file "${TEST_DEFINITION}" --vars "${envFile}"
 
 
   ((line=line+1))

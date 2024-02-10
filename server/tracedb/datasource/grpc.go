@@ -101,13 +101,13 @@ func (client *GrpcClient) Connect(ctx context.Context) error {
 
 func (client *GrpcClient) TestConnection(ctx context.Context) model.ConnectionTestStep {
 	connectionTestResult := model.ConnectionTestStep{
-		Message: fmt.Sprintf(`Tracetest connected to "%s"`, client.config.Endpoint),
+		Message: fmt.Sprintf(`Qualitytrace connected to "%s"`, client.config.Endpoint),
 	}
 
 	err := connection.CheckReachability(client.config.Endpoint, model.ProtocolGRPC)
 	if err != nil {
 		return model.ConnectionTestStep{
-			Message: fmt.Sprintf(`Tracetest tried to connect to "%s" and failed`, client.config.Endpoint),
+			Message: fmt.Sprintf(`Qualitytrace tried to connect to "%s" and failed`, client.config.Endpoint),
 			Error:   err,
 		}
 	}
@@ -116,7 +116,7 @@ func (client *GrpcClient) TestConnection(ctx context.Context) model.ConnectionTe
 	wrappedErr := errors.Unwrap(err)
 	if errors.Is(wrappedErr, connection.ErrConnectionFailed) {
 		return model.ConnectionTestStep{
-			Message: fmt.Sprintf(`Tracetest tried to open a gRPC connection against "%s" and failed`, client.config.Endpoint),
+			Message: fmt.Sprintf(`Qualitytrace tried to open a gRPC connection against "%s" and failed`, client.config.Endpoint),
 			Error:   err,
 		}
 	}

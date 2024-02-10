@@ -11,15 +11,15 @@ import (
 )
 
 const (
-	TracetestMetadataFieldStartTime         string = "tracetest.span.start_time"
-	TracetestMetadataFieldEndTime           string = "tracetest.span.end_time"
-	TracetestMetadataFieldDuration          string = "tracetest.span.duration"
-	TracetestMetadataFieldType              string = "tracetest.span.type"
-	TracetestMetadataFieldName              string = "tracetest.span.name"
-	TracetestMetadataFieldParentID          string = "tracetest.span.parent_id"
-	TracetestMetadataFieldKind              string = "tracetest.span.kind"
-	TracetestMetadataFieldStatusCode        string = "tracetest.span.status_code"
-	TracetestMetadataFieldStatusDescription string = "tracetest.span.status_description"
+	QualitytraceMetadataFieldStartTime         string = "quality-trace.span.start_time"
+	QualitytraceMetadataFieldEndTime           string = "quality-trace.span.end_time"
+	QualitytraceMetadataFieldDuration          string = "quality-trace.span.duration"
+	QualitytraceMetadataFieldType              string = "quality-trace.span.type"
+	QualitytraceMetadataFieldName              string = "quality-trace.span.name"
+	QualitytraceMetadataFieldParentID          string = "quality-trace.span.parent_id"
+	QualitytraceMetadataFieldKind              string = "quality-trace.span.kind"
+	QualitytraceMetadataFieldStatusCode        string = "quality-trace.span.status_code"
+	QualitytraceMetadataFieldStatusDescription string = "quality-trace.span.status_description"
 )
 
 type Attributes map[string]string
@@ -219,15 +219,15 @@ func decodeChildren(parent *Span, children []encodedSpan) ([]*Span, error) {
 }
 
 func (span Span) setMetadataAttributes() Span {
-	span.Attributes[TracetestMetadataFieldName] = span.Name
-	span.Attributes[TracetestMetadataFieldType] = spanType(span.Attributes)
-	span.Attributes[TracetestMetadataFieldDuration] = spanDuration(span)
-	span.Attributes[TracetestMetadataFieldStartTime] = fmt.Sprintf("%d", span.StartTime.UnixNano())
-	span.Attributes[TracetestMetadataFieldEndTime] = fmt.Sprintf("%d", span.EndTime.UnixNano())
+	span.Attributes[QualitytraceMetadataFieldName] = span.Name
+	span.Attributes[QualitytraceMetadataFieldType] = spanType(span.Attributes)
+	span.Attributes[QualitytraceMetadataFieldDuration] = spanDuration(span)
+	span.Attributes[QualitytraceMetadataFieldStartTime] = fmt.Sprintf("%d", span.StartTime.UnixNano())
+	span.Attributes[QualitytraceMetadataFieldEndTime] = fmt.Sprintf("%d", span.EndTime.UnixNano())
 
 	if span.Status != nil {
-		span.Attributes[TracetestMetadataFieldStatusCode] = span.Status.Code
-		span.Attributes[TracetestMetadataFieldStatusDescription] = span.Status.Description
+		span.Attributes[QualitytraceMetadataFieldStatusCode] = span.Status.Code
+		span.Attributes[QualitytraceMetadataFieldStatusDescription] = span.Status.Description
 	}
 
 	return span
@@ -238,15 +238,15 @@ func (span Span) setTriggerResultAttributes(result trigger.TriggerResult) Span {
 	case trigger.TriggerTypeHTTP:
 		resp := result.HTTP
 		jsonheaders, _ := json.Marshal(resp.Headers)
-		span.Attributes["tracetest.response.status"] = fmt.Sprintf("%d", resp.StatusCode)
-		span.Attributes["tracetest.response.body"] = resp.Body
-		span.Attributes["tracetest.response.headers"] = string(jsonheaders)
+		span.Attributes["quality-trace.response.status"] = fmt.Sprintf("%d", resp.StatusCode)
+		span.Attributes["quality-trace.response.body"] = resp.Body
+		span.Attributes["quality-trace.response.headers"] = string(jsonheaders)
 	case trigger.TriggerTypeGRPC:
 		resp := result.GRPC
 		jsonheaders, _ := json.Marshal(resp.Metadata)
-		span.Attributes["tracetest.response.status"] = fmt.Sprintf("%d", resp.StatusCode)
-		span.Attributes["tracetest.response.body"] = resp.Body
-		span.Attributes["tracetest.response.headers"] = string(jsonheaders)
+		span.Attributes["quality-trace.response.status"] = fmt.Sprintf("%d", resp.StatusCode)
+		span.Attributes["quality-trace.response.body"] = resp.Body
+		span.Attributes["quality-trace.response.headers"] = string(jsonheaders)
 	}
 
 	return span

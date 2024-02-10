@@ -1,5 +1,5 @@
 # yaml-language-server: $schema=https://goreleaser.com/static/schema-pro.json
-project_name: tracetest
+project_name: quality-trace
 changelog:
   sort: asc
   filters:
@@ -18,19 +18,19 @@ env:
   - VERSION={{ if index .Env "VERSION"  }}{{ .Env.VERSION }}{{ else }}dev{{ end }}
   # if TAG is defined, use it. Fallback to VERSION
   - TAG={{ if index .Env "TAG"  }}{{ .Env.TAG }}{{ else }}{{ if index .Env "VERSION"  }}{{ .Env.VERSION }}{{ else }}dev{{ end }}{{ end }}
-  - TRACETEST_ENV={{ if index .Env "TRACETEST_ENV"  }}{{ .Env.TRACETEST_ENV }}{{ else }}dev{{ end }}
+  - QUALITYTRACE_ENV={{ if index .Env "QUALITYTRACE_ENV"  }}{{ .Env.QUALITYTRACE_ENV }}{{ else }}dev{{ end }}
   - ANALYTICS_BE_KEY={{ if index .Env "ANALYTICS_BE_KEY"  }}{{ .Env.ANALYTICS_BE_KEY }}{{ else }}{{ end }}
   - ANALYTICS_FE_KEY={{ if index .Env "ANALYTICS_FE_KEY"  }}{{ .Env.ANALYTICS_FE_KEY }}{{ else }}{{ end }}
 
 builds:
   - id: server
-    binary: tracetest-server
+    binary: quality-trace-server
     main: ./server/main.go
     ldflags:
-    - -X github.com/kubeshop/tracetest/server/app.Version={{ .Env.VERSION }}
-    - -X github.com/kubeshop/tracetest/server/app.Env={{ .Env.TRACETEST_ENV }}
-    - -X github.com/kubeshop/tracetest/server/analytics.SecretKey={{ .Env.ANALYTICS_BE_KEY }}
-    - -X github.com/kubeshop/tracetest/server/analytics.FrontendKey={{ .Env.ANALYTICS_FE_KEY }}
+    - -X github.com/intelops/quality-trace/server/app.Version={{ .Env.VERSION }}
+    - -X github.com/intelops/quality-trace/server/app.Env={{ .Env.QUALITYTRACE_ENV }}
+    - -X github.com/intelops/quality-trace/server/analytics.SecretKey={{ .Env.ANALYTICS_BE_KEY }}
+    - -X github.com/intelops/quality-trace/server/analytics.FrontendKey={{ .Env.ANALYTICS_FE_KEY }}
     env:
       - CGO_ENABLED=0
     goos:
@@ -38,12 +38,12 @@ builds:
     goarch:
     - amd64
   - id: cli
-    binary: tracetest
+    binary: quality-trace
     main: ./cli/main.go
     ldflags:
-    - -X github.com/kubeshop/tracetest/cli/config.Version={{ .Env.VERSION }}
-    - -X github.com/kubeshop/tracetest/cli/config.Env={{ .Env.TRACETEST_ENV }}
-    - -X github.com/kubeshop/tracetest/cli/analytics.SecretKey={{ .Env.ANALYTICS_BE_KEY }}
+    - -X github.com/intelops/quality-trace/cli/config.Version={{ .Env.VERSION }}
+    - -X github.com/intelops/quality-trace/cli/config.Env={{ .Env.QUALITYTRACE_ENV }}
+    - -X github.com/intelops/quality-trace/cli/analytics.SecretKey={{ .Env.ANALYTICS_BE_KEY }}
     env:
       - CGO_ENABLED=0
     goos:
@@ -54,7 +54,7 @@ builds:
 dockers:
 - skip_push: true
   image_templates:
-  - 'kubeshop/tracetest:{{ .Env.TAG }}'
+  - 'intelops/quality-trace:{{ .Env.TAG }}'
   extra_files:
     - web/build
   build_flag_templates:

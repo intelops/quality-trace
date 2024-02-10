@@ -43,7 +43,7 @@ It should return the following payload:
 
 ## Building a Test for This Scenario
 
-Using Tracetest, we can [create a test](../../../web-ui/creating-tests.md) that will execute an API call on `POST /pokemon` and validate two properties:
+Using Qualitytrace, we can [create a test](../../../web-ui/creating-tests.md) that will execute an API call on `POST /pokemon` and validate two properties:
 - The API should return a proper result with **HTTP 201 Created**.
 - The database should return with **low latency (< 200ms)**.
 
@@ -54,7 +54,7 @@ Running these tests for the first time will create an Observability trace like t
 
 ### Assertions
 
-With this trace, now we can build [assertions](../../../concepts/assertions.md) on Tracetest and validate the API response and the database latency:
+With this trace, now we can build [assertions](../../../concepts/assertions.md) on Qualitytrace and validate the API response and the database latency:
 
 - **The API should return a proper result with HTTP 201 Created:**
 ![](../images/add-pokemon-api-test-spec.png)
@@ -66,10 +66,10 @@ Now you can validate this entire use case.
 
 ### Test Definition
 
-If you want to replicate this entire test on Tracetest, you can replicate these steps on our Web UI or using our CLI, saving the following test definition as the file `test-definition.yml` and later running:
+If you want to replicate this entire test on Qualitytrace, you can replicate these steps on our Web UI or using our CLI, saving the following test definition as the file `test-definition.yml` and later running:
 
 ```sh
-tracetest run test -f test-definition.yml
+quality-trace run test -f test-definition.yml
 ```
 
 ```yaml
@@ -87,11 +87,11 @@ spec:
         value: application/json
       body: '{"name":"meowth","type":"normal","imageUrl":"https://assets.pokemon.com/assets/cms2/img/pokedex/full/052.png","isFeatured":true}'
   specs:
-  - selector: span[tracetest.span.type="http" name="POST /pokemon" http.method="POST"]
+  - selector: span[quality-trace.span.type="http" name="POST /pokemon" http.method="POST"]
     assertions:
     - attr:http.response.body  =  '{"id":6152,"imageUrl":"https://assets.pokemon.com/assets/cms2/img/pokedex/full/052.png","isFeatured":true,"type":"normal","name":"meowth"}'
     - attr:http.status_code  =  201
-  - selector: span[tracetest.span.type="database"]
+  - selector: span[quality-trace.span.type="database"]
     assertions:
-    - attr:tracetest.span.duration <= 200ms
+    - attr:quality-trace.span.duration <= 200ms
 ```

@@ -1,6 +1,6 @@
 # Expressions
 
-Tracetest allows you to add expressions when writing your tests. They are a nice and clean way of adding values that are only known during execution time. For example, when referencing a variable, a span attribute or even arithmetic operations.
+Qualitytrace allows you to add expressions when writing your tests. They are a nice and clean way of adding values that are only known during execution time. For example, when referencing a variable, a span attribute or even arithmetic operations.
 
 ## **Features**
 
@@ -12,7 +12,7 @@ Tracetest allows you to add expressions when writing your tests. They are a nice
 
 ### **Reference Span Attributes**
 
-When building assertions, you might need to assert if a certain span contains an attribute and that this attribute has a specific value. To accomplish this with Tracetest, you can use expressions to get the value of the span. When referencing an attribute, add the prefix `attr:` and its name. For example, imagine you have to check if the attribute `service.name` is equal to `cart-api`. Use the following statement:
+When building assertions, you might need to assert if a certain span contains an attribute and that this attribute has a specific value. To accomplish this with Qualitytrace, you can use expressions to get the value of the span. When referencing an attribute, add the prefix `attr:` and its name. For example, imagine you have to check if the attribute `service.name` is equal to `cart-api`. Use the following statement:
 
 ```css
 attr:service.name = "cart-api"
@@ -20,7 +20,7 @@ attr:service.name = "cart-api"
 
 ### **Reference Variables**
 
-Create variables in Tracetest based on the trace obtained by the test to enable assertions that require values from other spans. Variables use the prefix `var:` and its name. For example, a variable called `user_id` would be referenced as `var:user_id` in an expression.
+Create variables in Qualitytrace based on the trace obtained by the test to enable assertions that require values from other spans. Variables use the prefix `var:` and its name. For example, a variable called `user_id` would be referenced as `var:user_id` in an expression.
 
 ### **Arithmetic Operations**
 

@@ -1,21 +1,21 @@
 ---
 id: index
-title: Welcome to Tracetest Docs! 👋
-description: Tracetest allows you to quickly build integration and end-to-end tests, powered by your OpenTelemetry traces.
+title: Welcome to Qualitytrace Docs! 👋
+description: Qualitytrace allows you to quickly build integration and end-to-end tests, powered by your OpenTelemetry traces.
 hide_table_of_contents: false
 keywords:
-  - tracetest
+  - quality-trace
   - trace-based testing
   - observability
   - distributed tracing
   - testing
-image: https://res.cloudinary.com/djwdcmwdz/image/upload/v1689693872/docs/Blog_Thumbnail_28_ugy2yy.png
+<!--image: https://res.cloudinary.com/djwdcmwdz/image/upload/v1689693872/docs/Blog_Thumbnail_28_ugy2yy.png -->
 breadcrumb_label: Nothing
 ---
 
 import CodeBlock from '@theme/CodeBlock';
 
-Tracetest is a trace-based testing tool for building integration and end-to-end tests in minutes using your [OpenTelemetry](https://opentelemetry.io/docs/getting-started/) traces. Assert against your trace data at every point of a request transaction.
+Qualitytrace is a trace-based testing tool for building integration and end-to-end tests in minutes using your [OpenTelemetry](https://opentelemetry.io/docs/getting-started/) traces. Assert against your trace data at every point of a request transaction.
 
 ```mdx-code-block
 import {WelcomeGuideCardsRow} from '@site/src/components/WelcomeGuide';
@@ -23,7 +23,7 @@ import {WelcomeGuideCardsRow} from '@site/src/components/WelcomeGuide';
 <WelcomeGuideCardsRow />
 ```
 
-## Why Tracetest?
+## Why Qualitytrace?
 
 You can:
 
@@ -84,9 +84,9 @@ You can:
           body: '{"id":52}'
       specs:
       - name: 'All Database Spans: Processing time is less than 100ms'
-        selector: span[tracetest.span.type="database"]
+        selector: span[quality-trace.span.type="database"]
         assertions:
-        - attr:tracetest.span.duration < 100ms
+        - attr:quality-trace.span.duration < 100ms
         `}
         </CodeBlock> 
       </div>
@@ -96,7 +96,7 @@ You can:
 
 ## Architecture
 
-Understand how Tracetest works.
+Understand how Qualitytrace works.
 
 1. Trigger a test and generate a trace response.
 2. Fetch traces to render and analyze them.
@@ -104,14 +104,14 @@ Understand how Tracetest works.
 4. See test results.
 5. Run tests as part of CI/CD pipelines.
 
-![Marketechture](https://res.cloudinary.com/djwdcmwdz/image/upload/v1686654113/docs/tracetest-marketechture-jun12-v3_ffj2e2.png)
+<!--![Marketechture](https://res.cloudinary.com/djwdcmwdz/image/upload/v1686654113/docs/tracetest-marketechture-jun12-v3_ffj2e2.png)-->
 
-## Who uses Tracetest?
+## Who uses Qualitytrace?
 
 Our users are typically developers or QA engineers building distributed systems with microservices using back-end languages like Go, Rust, Node.js and Python.
 
-## What makes Tracetest special?
+## What makes Qualitytrace special?
 
-Tracetest can be compared with Cypress or Selenium; however Tracetest is fundamentally different.
+Qualitytrace can be compared with Cypress or Selenium; however Qualitytrace is fundamentally different.
 
-Cypress and Selenium are constrained by using the browser for testing. Tracetest bypasses this entirely by using your existing OpenTelemetry instrumentation and trace data to run tests and assertions against traces in every step of a request transaction.
+Cypress and Selenium are constrained by using the browser for testing. Qualitytrace bypasses this entirely by using your existing OpenTelemetry instrumentation and trace data to run tests and assertions against traces in every step of a request transaction.

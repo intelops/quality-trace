@@ -1,6 +1,6 @@
 # Server configuration
 
-Tracetest can be configured using a config.yaml file placed on the same directory as its executable. It is useful to configure some aspects of how tracetest should behave. This section is dedicated to explain the options we currently have available.
+Qualitytrace can be configured using a config.yaml file placed on the same directory as its executable. It is useful to configure some aspects of how quality-trace should behave. This section is dedicated to explain the options we currently have available.
 
 ## Configuration file example
 ```yaml
@@ -21,17 +21,17 @@ tracingBackend:
 
 # Configure how traces should be pooled from the tracing storage.
 poolingConfig:
-    # How long tracetest can wait for a trace to be complete? After this period, the pooling process will timeout
+    # How long quality-trace can wait for a trace to be complete? After this period, the pooling process will timeout
     # and the test will be marked as failed.
     maxWaitTimeForTrace: 90s
 
-    # How much time tracetest should wait before trying to fetch the trace since the last execution?
+    # How much time quality-trace should wait before trying to fetch the trace since the last execution?
     retryDelay: 5s
 
 # Server configuration
 server:
-  # Enables you to add a prefix to the server path. So, instead of running tracetest on http://localhost:11633, it would run on http://localhost:11633/tracetest instead.
-  pathPrefix: /tracetest
+  # Enables you to add a prefix to the server path. So, instead of running quality-trace on http://localhost:11633, it would run on http://localhost:11633/quality-trace instead.
+  pathPrefix: /quality-trace
   httpPort: 11633
 
 # Google analytics configuration
@@ -40,14 +40,14 @@ googleAnalytics:
   measurementId: ""
   secretKey: ""
 
-# How tracetest should generate telemetry data.
+# How quality-trace should generate telemetry data.
 telemetry:
-  serviceName: tracetest
+  serviceName: quality-trace
   sampling: 100
   otelCollectorEndpoint: localhost:4317
 ```
 
 ## Providing a configuration when running a container
 ```cmd
-docker run --volume "`pwd`/my-config-file.yaml:/app/config.yaml" kubeshop/tracetest
+docker run --volume "`pwd`/my-config-file.yaml:/app/config.yaml" intelops/quality-trace
 ```

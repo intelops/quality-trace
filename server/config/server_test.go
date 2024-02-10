@@ -11,7 +11,7 @@ func TestServerConfig(t *testing.T) {
 	t.Run("DefaultValues", func(t *testing.T) {
 		cfg, _ := config.New()
 
-		assert.Equal(t, "postgres://postgres:postgres@postgres:5432/tracetest?sslmode=disable", cfg.PostgresConnString())
+		assert.Equal(t, "postgres://postgres:postgres@postgres:5432/quality-trace?sslmode=disable", cfg.PostgresConnString())
 
 		assert.Equal(t, 11633, cfg.ServerPort())
 		assert.Equal(t, "", cfg.ServerPathPrefix())
@@ -35,7 +35,7 @@ func TestServerConfig(t *testing.T) {
 			"--experimentalFeatures", "a",
 			"--experimentalFeatures", "b",
 			"--internalTelemetry.enabled", "true",
-			"--internalTelemetry.otelCollectorEndpoint", "otel-collector.tracetest",
+			"--internalTelemetry.otelCollectorEndpoint", "otel-collector.quality-trace",
 		}
 
 		cfg := configWithFlags(t, flags)
@@ -48,22 +48,22 @@ func TestServerConfig(t *testing.T) {
 		assert.DeepEqual(t, []string{"a", "b"}, cfg.ExperimentalFeatures())
 
 		assert.Equal(t, true, cfg.InternalTelemetryEnabled())
-		assert.Equal(t, "otel-collector.tracetest", cfg.InternalTelemetryOtelCollectorAddress())
+		assert.Equal(t, "otel-collector.quality-trace", cfg.InternalTelemetryOtelCollectorAddress())
 	})
 
 	t.Run("EnvVars", func(t *testing.T) {
 		env := map[string]string{
-			"TRACETEST_POSTGRES_DBNAME":                         "other_dbname",
-			"TRACETEST_POSTGRES_HOST":                           "localhost",
-			"TRACETEST_POSTGRES_USER":                           "user",
-			"TRACETEST_POSTGRES_PASSWORD":                       "passwd",
-			"TRACETEST_POSTGRES_PORT":                           "1234",
-			"TRACETEST_POSTGRES_PARAMS":                         "custom=params",
-			"TRACETEST_SERVER_HTTPPORT":                         "4321",
-			"TRACETEST_SERVER_PATHPREFIX":                       "/prefix",
-			"TRACETEST_EXPERIMENTALFEATURES":                    "a b",
-			"TRACETEST_INTERNALTELEMETRY_ENABLED":               "true",
-			"TRACETEST_INTERNALTELEMETRY_OTELCOLLECTORENDPOINT": "otel-collector.tracetest",
+			"QUALITYTRACE_POSTGRES_DBNAME":                         "other_dbname",
+			"QUALITYTRACE_POSTGRES_HOST":                           "localhost",
+			"QUALITYTRACE_POSTGRES_USER":                           "user",
+			"QUALITYTRACE_POSTGRES_PASSWORD":                       "passwd",
+			"QUALITYTRACE_POSTGRES_PORT":                           "1234",
+			"QUALITYTRACE_POSTGRES_PARAMS":                         "custom=params",
+			"QUALITYTRACE_SERVER_HTTPPORT":                         "4321",
+			"QUALITYTRACE_SERVER_PATHPREFIX":                       "/prefix",
+			"QUALITYTRACE_EXPERIMENTALFEATURES":                    "a b",
+			"QUALITYTRACE_INTERNALTELEMETRY_ENABLED":               "true",
+			"QUALITYTRACE_INTERNALTELEMETRY_OTELCOLLECTORENDPOINT": "otel-collector.quality-trace",
 		}
 
 		cfg := configWithEnv(t, env)
@@ -76,6 +76,6 @@ func TestServerConfig(t *testing.T) {
 		assert.DeepEqual(t, []string{"a", "b"}, cfg.ExperimentalFeatures())
 
 		assert.Equal(t, true, cfg.InternalTelemetryEnabled())
-		assert.Equal(t, "otel-collector.tracetest", cfg.InternalTelemetryOtelCollectorAddress())
+		assert.Equal(t, "otel-collector.quality-trace", cfg.InternalTelemetryOtelCollectorAddress())
 	})
 }

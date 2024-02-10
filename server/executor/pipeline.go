@@ -84,14 +84,14 @@ func (p *Pipeline) Begin(ctx context.Context, job Job) {
 
 func (p *Pipeline) Start() {
 	for _, step := range p.steps {
-		log.Println("Step for Pipeline Start",step)
+		log.Println("Step for Pipeline Start", step)
 		step.Driver.Start()
 	}
 }
 
 func (p *Pipeline) Stop() {
 	for _, step := range p.steps {
-		log.Println("Step for Pipeline Stop",step)
+		log.Println("Step for Pipeline Stop", step)
 		step.Driver.Stop()
 	}
 }

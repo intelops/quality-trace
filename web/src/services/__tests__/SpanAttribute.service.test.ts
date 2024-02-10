@@ -19,7 +19,7 @@ describe('SpanAttributeService', () => {
           value: 'SELECT * FROM users',
         },
         {
-          key: Attributes.TRACETEST_RESPONSE_BODY,
+          key: Attributes.QUALITYTRACE_RESPONSE_BODY,
           value: '{"id": 1}',
         },
       ];

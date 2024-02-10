@@ -6,10 +6,10 @@
 
 ## Running Scheduled Trace-based Tests
 
-[Testkube Tracetest Executor](https://github.com/kubeshop/testkube-executor-tracetest) is a test executor to run Tracetest tests with Testkube.
+<!--[Testkube Tracetest Executor](https://github.com/kubeshop/testkube-executor-tracetest) is a test executor to run Tracetest tests with Testkube.-->
 
 :::info
-If you are using the latest version of Testkube, the Tracetest Executor will be bundled in Testkube by default. Read more in the Testkube docs, [here](https://docs.testkube.io/test-types/executor-tracetest/).
+If you are using the latest version of Testkube, the Qualitytrace Executor will be bundled in Testkube by default. Read more in the Testkube docs, [here](https://docs.testkube.io/test-types/executor-tracetest/).
 
 Or, check out the hands-on workshop on YouTube!
 
@@ -17,32 +17,32 @@ Or, check out the hands-on workshop on YouTube!
 
 :::
 
-## Why do we want to run Tracetest with Testkube?
+## Why do we want to run Qualitytrace with Testkube?
 
-Tracetest leverages existing OpenTelemetry instrumentation to run assertions against every part of an HTTP transaction.
+Qualitytrace leverages existing OpenTelemetry instrumentation to run assertions against every part of an HTTP transaction.
 
-By integrating with Testkube you can now add Tracetest to the native CI/CD pipeline in your Kubernetes cluster. It allows you to run scheduled test runs and synthetic tests. All while following the trace-based testing principle and enabling full in-depth assertions against trace data, not just the response.
+By integrating with Testkube you can now add Qualitytrace to the native CI/CD pipeline in your Kubernetes cluster. It allows you to run scheduled test runs and synthetic tests. All while following the trace-based testing principle and enabling full in-depth assertions against trace data, not just the response.
 
 ## Infrastructure Overview
 
-The following is high level sequence diagram on how Testkube and Tracetest interact with the different pieces of the system:
+The following is high level sequence diagram on how Testkube and Qualitytrace interact with the different pieces of the system:
 
 ```mermaid
 sequenceDiagram
     testkube client->>+testkube: Trigger Testkube test run
     testkube->>+executor CRDs: Get executor details
     executor CRDs-->>-testkube: Send details
-    testkube->>+tracetest executor job: Schedules execution
-    tracetest executor job->>+tracetest executor job: Configure Tracetest CLI
-    tracetest executor job->>+tracetest server: Executes the Tracetest test run
-    tracetest server->>+instrumented service: Trigger request
-    instrumented service-->>-tracetest server: Get response
+    testkube->>+quality-trace executor job: Schedules execution
+    quality-trace executor job->>+quality-trace executor job: Configure Qualitytrace CLI
+    quality-trace executor job->>+quality-trace server: Executes the Qualitytrace test run
+    quality-trace server->>+instrumented service: Trigger request
+    instrumented service-->>-quality-trace server: Get response
     instrumented service->>+data store: Send telemetry data
-    tracetest server->>+data store: Fetch trace
-    data store-->>-tracetest server: Get trace
-    tracetest server->>+tracetest server: Run assertions
-    tracetest server-->>-tracetest executor job: Return test run results
-    tracetest executor job-->>-testkube: Return test run results
+    quality-trace server->>+data store: Fetch trace
+    data store-->>-quality-trace server: Get trace
+    quality-trace server->>+quality-trace server: Run assertions
+    quality-trace server-->>-quality-trace executor job: Return test run results
+    quality-trace executor job-->>-testkube: Return test run results
     testkube-->>-testkube client: Send details
 ```
 
@@ -60,7 +60,7 @@ Follow these steps to get started.
 
 ## 1. Install Testkube CLI
 
-Install Testkube CLI by following [these instructions](https://docs.testkube.io/getting-started/step1-installing-cli) for your OS.
+Install Testkube CLI <!--by following [these instructions](https://docs.testkube.io/getting-started/step1-installing-cli) -->for your OS.
 
 ```bash
 # MacOS example
@@ -128,23 +128,23 @@ testkube dashboard
 
 ![Testkube Dashboard](https://res.cloudinary.com/djwdcmwdz/image/upload/v1679064043/Blogposts/Docs/screely-1679064032115_bnl4pc.png)
 
-## 3. Install Tracetest CLI
+## 3. Install Qualitytrace CLI
 
-Install Tracetest CLI by following [these instructions](https://docs.tracetest.io/getting-started/installation) for your OS.
+Install Qualitytrace CLI <!--by following [these instructions](https://docs.tracetest.io/getting-started/installation) -->for your OS.
 
 ```bash
 # MacOS example
-brew install kubeshop/tracetest/tracetest
+brew install intelops/quality-trace/quality-trace
 ```
 
-## 4. Install Tracetest in Your Kubernetes Cluster
+## 4. Install Qualitytrace in Your Kubernetes Cluster
 
 ```bash
-tracetest server install
+quality-trace server install
 ```
 
 ```text title="Expected output"
-How do you want to run TraceTest? [type to search]:
+How do you want to run Qualitytrace? [type to search]:
   Using Docker Compose
 > Using Kubernetes
 ```
@@ -153,109 +153,109 @@ Select `Using Kubernetes`.
 
 ```text title="Expected output"
 Do you have OpenTelemetry based tracing already set up, or would you like us to install a demo tracing environment and app? [type to search]:
-  I have a tracing environment already. Just install Tracetest
-> Just learning tracing! Install Tracetest, OpenTelemetry Collector and the sample app.
+  I have a tracing environment already. Just install Qualitytrace
+> Just learning tracing! Install Qualitytrace, OpenTelemetry Collector and the sample app.
 ```
 
-Select `Just learning tracing! Install Tracetest, OpenTelemetry Collector and the sample app.`.
+Select `Just learning tracing! Install Qualitytrace, OpenTelemetry Collector and the sample app.`.
 
-Confirm that Tracetest is running:
+Confirm that Qualitytrace is running:
 
 ```bash
-kubectl get all -n tracetest
+kubectl get all -n quality-trace
 ```
 
 ```text title="Expected output"
 NAME                                  READY   STATUS    RESTARTS        AGE
 pod/otel-collector-7f4d87489f-vp6zn   1/1     Running   0               5m41s
-pod/tracetest-78b9c84c57-t4prx        1/1     Running   3 (4m15s ago)   5m29s
-pod/tracetest-postgresql-0            1/1     Running   0               5m42s
+pod/quality-trace-78b9c84c57-t4prx        1/1     Running   3 (4m15s ago)   5m29s
+pod/quality-trace-postgresql-0            1/1     Running   0               5m42s
 
 NAME                              TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)               AGE
 service/otel-collector            ClusterIP   10.96.173.226   <none>        4317/TCP              5m46s
-service/tracetest                 ClusterIP   10.96.248.146   <none>        11633/TCP,4317/TCP   5m42s
-service/tracetest-postgresql      ClusterIP   10.96.155.147   <none>        5432/TCP              5m42s
-service/tracetest-postgresql-hl   ClusterIP   None            <none>        5432/TCP              5m42s
+service/quality-trace                 ClusterIP   10.96.248.146   <none>        11633/TCP,4317/TCP   5m42s
+service/quality-trace-postgresql      ClusterIP   10.96.155.147   <none>        5432/TCP              5m42s
+service/quality-trace-postgresql-hl   ClusterIP   None            <none>        5432/TCP              5m42s
 
 NAME                             READY   UP-TO-DATE   AVAILABLE   AGE
 deployment.apps/otel-collector   1/1     1            1           5m46s
-deployment.apps/tracetest        1/1     1            1           5m42s
+deployment.apps/quality-trace        1/1     1            1           5m42s
 
 NAME                                        DESIRED   CURRENT   READY   AGE
 replicaset.apps/otel-collector-7f4d87489f   1         1         1       5m46s
-replicaset.apps/tracetest-78b9c84c57        1         1         1       5m42s
+replicaset.apps/quality-trace-78b9c84c57        1         1         1       5m42s
 
 NAME                                    READY   AGE
-statefulset.apps/tracetest-postgresql   1/1     5m42s
+statefulset.apps/quality-trace-postgresql   1/1     5m42s
 ```
 
-By default, Tracetest is installed in the `tracetest` namespace.
+By default, Qualitytrace is installed in the `quality-trace` namespace.
 
-To explore the Tracetest Web UI, run the command:
+To explore the Qualitytrace Web UI, run the command:
 
 ```bash
-kubectl --kubeconfig <path-to-your-home>/.kube/config --context <your-cluster-context> --namespace tracetest port-forward svc/tracetest 11633
+kubectl --kubeconfig <path-to-your-home>/.kube/config --context <your-cluster-context> --namespace quality-trace port-forward svc/quality-trace 11633
 ```
 
-![Tracetest Web UI](https://res.cloudinary.com/djwdcmwdz/image/upload/v1679064296/Blogposts/Docs/screely-1679064291876_jxlhmn.png)
+<!--![Tracetest Web UI](https://res.cloudinary.com/djwdcmwdz/image/upload/v1679064296/Blogposts/Docs/screely-1679064291876_jxlhmn.png)-->
 
-## 5. Create a Test in Tracetest
+## 5. Create a Test in Qualitytrace
 
-Start by clicking `Create` > `Create New Test` > `HTTP Request` > `Next` > `Choose Example` (dropdown) > `Pokeshop - List` (generates a sample test from the Tracetest demo) > `Next` > `URL` is prefilled with `http://demo-pokemon-api.demo/pokemon?take=20&skip=0` > `Create & Run`.
+Start by clicking `Create` > `Create New Test` > `HTTP Request` > `Next` > `Choose Example` (dropdown) > `Pokeshop - List` (generates a sample test from the Qualitytrace demo) > `Next` > `URL` is prefilled with `http://demo-pokemon-api.demo/pokemon?take=20&skip=0` > `Create & Run`.
 
 This will trigger the test and display a distributed trace in the `Trace` tab to run assertions against.
 
-![Tracetest distributed trace test run view](https://res.cloudinary.com/djwdcmwdz/image/upload/v1679064990/Blogposts/Docs/screely-1679064984975_s0psbr.png)
+<!--![Tracetest distributed trace test run view](https://res.cloudinary.com/djwdcmwdz/image/upload/v1679064990/Blogposts/Docs/screely-1679064984975_s0psbr.png)-->
 
 Proceed to add a test spec to assert all database queries return within 500 ms. Click the `Test` tab and proceed to click the `Add Test Spec` button.
 
 In the span selector make sure to add this selector:
 
 ```css
-span[tracetest.span.type="database"]
+span[quality-trace.span.type="database"]
 ```
 
 In the assertion field add:
 
 ```css
-attr:tracetest.span.duration < 500ms
+attr:quality-trace.span.duration < 500ms
 ```
 
 Save the test spec and publish the test.
 
-![Assertion for database queries](https://res.cloudinary.com/djwdcmwdz/image/upload/v1679071121/Blogposts/Docs/screely-1679071115690_hqhzh2.png)
+<!--![Assertion for database queries](https://res.cloudinary.com/djwdcmwdz/image/upload/v1679071121/Blogposts/Docs/screely-1679071115690_hqhzh2.png)
 
 The database spans that are returning in more than 500ms are labeled in red.
 
-![Assertions failing](https://res.cloudinary.com/djwdcmwdz/image/upload/v1679071183/Blogposts/Docs/screely-1679071177655_cjqwlk.png)
+![Assertions failing](https://res.cloudinary.com/djwdcmwdz/image/upload/v1679071183/Blogposts/Docs/screely-1679071177655_cjqwlk.png)-->
 
 This is an example of a trace-based test that asserts against every single part of an HTTP transaction, including all interactions with the database.
 
-However, Tracetest cannot run this test as part of your CI/CD without integrating with another tool.
+However, Qualitytrace cannot run this test as part of your CI/CD without integrating with another tool.
 
 Let's introduce how Testkube makes it possible.
 
-## 6. Deploy the Tracetest Executor
+## 6. Deploy the Qualitytrace Executor
 
-Testkube works with the concept of Executors. An Executor is a wrapper around a testing framework, Tracetest in this case, in the form of a Docker container and runs as a Kubernetes job. To start you need to register and deploy the Tracetest executor in your cluster using the Testkube CLI.
+Testkube works with the concept of Executors. An Executor is a wrapper around a testing framework, Qualitytrace in this case, in the form of a Docker container and runs as a Kubernetes job. To start you need to register and deploy the Qualitytrace executor in your cluster using the Testkube CLI.
 
 ```bash
-kubectl testkube create executor --image kubeshop/testkube-executor-tracetest:latest --types "tracetest/test" --name tracetest-executor --icon-uri icon --content-type string --content-type file-uri
+kubectl testkube create executor --image intelops/testkube-executor-quality-trace:latest --types "quality-trace/test" --name quality-trace-executor --icon-uri icon --content-type string --content-type file-uri
 ```
 
 ```text title="Expected output"
-Executor created tracetest-executor 🥇
+Executor created quality-trace-executor 🥇
 ```
 
-## 7. Create a Trace-based Test with Tracetest in Testkube
+## 7. Create a Trace-based Test with Qualitytrace in Testkube
 
 Click the ⚙️ button in the top right. Then click `Test Definition`.
 
-![test settings](https://res.cloudinary.com/djwdcmwdz/image/upload/v1679065450/Blogposts/Docs/screely-1679065444972_zzsila.png)
+<!--![test settings](https://res.cloudinary.com/djwdcmwdz/image/upload/v1679065450/Blogposts/Docs/screely-1679065444972_zzsila.png)-->
 
 This will open a YAML definition for the test run.
 
-![tracetest test yaml file](https://res.cloudinary.com/djwdcmwdz/image/upload/v1679071430/Blogposts/Docs/screely-1679071422136_ygbo8q.png)
+<!--![tracetest test yaml file](https://res.cloudinary.com/djwdcmwdz/image/upload/v1679071430/Blogposts/Docs/screely-1679071422136_ygbo8q.png)-->
 
 Save this into a file called `test.yaml`:
 
@@ -275,42 +275,42 @@ spec:
         value: application/json
   specs:
   - name: Database queries less than 500 ms
-    selector: span[tracetest.span.type="database"]
+    selector: span[quality-trace.span.type="database"]
     assertions:
-    - attr:tracetest.span.duration  <  500ms
+    - attr:quality-trace.span.duration  <  500ms
 ```
 
-Execute the following command to create the test executor object in Testkube. Do not forget to provide the path to your Tracetest definition file using the `--file` argument and also the Tracetest Server endpoint using the `TRACETEST_ENDPOINT` `--variable`.
+Execute the following command to create the test executor object in Testkube. Do not forget to provide the path to your Qualitytrace definition file using the `--file` argument and also the Qualitytrace Server endpoint using the `QUALITYTRACE_ENDPOINT` `--variable`.
 
-Remember that your `TRACETEST_ENDPOINT` should be reachable from Testkube in your cluster. Use your Tracetest service's `CLUSTER-IP:PORT`. E.g: `10.96.93.106:11633`.
+Remember that your `TQUALITYTRACE_ENDPOINT` should be reachable from Testkube in your cluster. Use your Qualitytrace service's `CLUSTER-IP:PORT`. E.g: `10.96.93.106:11633`.
 
 ```bash
-kubectl testkube create test --file ./test.yaml --type "tracetest/test" --name pokeshop-tracetest-test --variable TRACETEST_ENDPOINT=http://CLUSTER-IP:PORT
+kubectl testkube create test --file ./test.yaml --type "quality-trace/test" --name pokeshop-quality-trace-test --variable QUALITYTRACE_ENDPOINT=http://CLUSTER-IP:PORT
 ```
 
 ```text title="Expected output"
-Test created testkube / pokeshop-tracetest-test 🥇
+Test created testkube / pokeshop-quality-trace-test 🥇
 ```
 
 Opening the Testkube Dashboard will show the test is created successfully.
 
-![Tracetest test created in Testkube](https://res.cloudinary.com/djwdcmwdz/image/upload/v1679071918/Blogposts/Docs/screely-1679071913649_yrgucd.png)
+<!--![Tracetest test created in Testkube](https://res.cloudinary.com/djwdcmwdz/image/upload/v1679071918/Blogposts/Docs/screely-1679071913649_yrgucd.png)-->
 
-## 8. Run the Tracetest Trace-based Test in Testkube
+## 8. Run the Qualitytrace Trace-based Test in Testkube
 
 Finally, to run the test, execute the following command, or run the test from the Testkube Dashboard.
 
 ```bash
-kubectl testkube run test --watch pokeshop-tracetest-test
+kubectl testkube run test --watch pokeshop-quality-trace-test
 ```
 
 Here's what the Testkube CLI will look like if the test fails.
 
 ```text title="Expected output"
-Type:              tracetest/test
-Name:              pokeshop-tracetest-test
+Type:              quality-trace/test
+Name:              pokeshop-quality-trace-test
 Execution ID:      641885f39922b3e1003dd5b6
-Execution name:    pokeshop-tracetest-test-3
+Execution name:    pokeshop-quality-trace-test-3
 Execution number:  3
 Status:            running
 Start time:        2023-03-20 16:12:35.268197087 +0000 UTC
@@ -318,43 +318,43 @@ End time:          0001-01-01 00:00:00 +0000 UTC
 Duration:
 
   Variables:    1
-  - TRACETEST_ENDPOINT = http://10.96.93.106:11633
+  - QUALITYTRACE_ENDPOINT = http://10.96.93.106:11633
 
 Getting logs from test job 641885f39922b3e1003dd5b6
 Execution completed
 🔬 Executing in directory :
- $ tracetest run test --server-url http://10.96.93.106:11633 --file /tmp/test-content737616681 --output pretty
+ $ quality-trace run test --server-url http://10.96.93.106:11633 --file /tmp/test-content737616681 --output pretty
 ✘ Pokeshop - List (http://10.96.93.106:11633/test/RUkKQ_aVR/run/2/test)
 	✘ Database queries less than 500 ms
 		✘ #2b213392d0e3ff21
-			✘ attr:tracetest.span.duration  <  500ms (502ms) (http://10.96.93.106:11633/test/RUkKQ_aVR/run/2/test?selectedAssertion=0&selectedSpan=2b213392d0e3ff21)
+			✘ attr:quality-trace.span.duration  <  500ms (502ms) (http://10.96.93.106:11633/test/RUkKQ_aVR/run/2/test?selectedAssertion=0&selectedSpan=2b213392d0e3ff21)
 		✔ #7e6657f6a43fceeb
-			✔ attr:tracetest.span.duration  <  500ms (72ms)
+			✔ attr:quality-trace.span.duration  <  500ms (72ms)
 		✔ #6ee2fb69690eed47
-			✔ attr:tracetest.span.duration  <  500ms (13ms)
+			✔ attr:quality-trace.span.duration  <  500ms (13ms)
 		✘ #a82c304a3558763b
-			✘ attr:tracetest.span.duration  <  500ms (679ms) (http://10.96.93.106:11633/test/RUkKQ_aVR/run/2/test?selectedAssertion=0&selectedSpan=a82c304a3558763b)
+			✘ attr:quality-trace.span.duration  <  500ms (679ms) (http://10.96.93.106:11633/test/RUkKQ_aVR/run/2/test?selectedAssertion=0&selectedSpan=a82c304a3558763b)
 		✔ #6ae21f2251101fd6
-			✔ attr:tracetest.span.duration  <  500ms (393ms)
+			✔ attr:quality-trace.span.duration  <  500ms (393ms)
 		✔ #2a9b9422af8ba1a8
-			✔ attr:tracetest.span.duration  <  500ms (61ms)
+			✔ attr:quality-trace.span.duration  <  500ms (61ms)
 		✔ #010a8a0d53687276
-			✔ attr:tracetest.span.duration  <  500ms (36ms)
+			✔ attr:quality-trace.span.duration  <  500ms (36ms)
 		✘ #895d66286b6325ae
-			✘ attr:tracetest.span.duration  <  500ms (686ms) (http://10.96.93.106:11633/test/RUkKQ_aVR/run/2/test?selectedAssertion=0&selectedSpan=895d66286b6325ae)
+			✘ attr:quality-trace.span.duration  <  500ms (686ms) (http://10.96.93.106:11633/test/RUkKQ_aVR/run/2/test?selectedAssertion=0&selectedSpan=895d66286b6325ae)
 
 ```
 
 And, here's the Testkube Dashboard.
-![testkube failing tests](https://res.cloudinary.com/djwdcmwdz/image/upload/v1679328982/Blogposts/Docs/screely-1679328961663_nt3f2m.png)
+<!--![testkube failing tests](https://res.cloudinary.com/djwdcmwdz/image/upload/v1679328982/Blogposts/Docs/screely-1679328961663_nt3f2m.png)-->
 
 If the test passes, it'll look like this.
 
 ```text title="Expected output"
-Type:              tracetest/test
-Name:              pokeshop-tracetest-test
+Type:              quality-trace/test
+Name:              pokeshop-quality-trace-test
 Execution ID:      6418873d9922b3e1003dd5b8
-Execution name:    pokeshop-tracetest-test-4
+Execution name:    pokeshop-quality-trace-test-4
 Execution number:  4
 Status:            running
 Start time:        2023-03-20 16:18:05.60245717 +0000 UTC
@@ -362,13 +362,13 @@ End time:          0001-01-01 00:00:00 +0000 UTC
 Duration:
 
   Variables:    1
-  - TRACETEST_ENDPOINT = http://10.96.93.106:11633
+  - QUALITYTRACE_ENDPOINT = http://10.96.93.106:11633
 
 
 Getting logs from test job 6418873d9922b3e1003dd5b8
 Execution completed
 🔬 Executing in directory :
- $ tracetest run test --server-url http://10.96.93.106:11633 --file /tmp/test-content1901459587 --output pretty
+ $ quality-trace run test --server-url http://10.96.93.106:11633 --file /tmp/test-content1901459587 --output pretty
 ✔ Pokeshop - List (http://10.96.93.106:11633/test/RUkKQ_aVR/run/3/test)
 	✔ Database queries less than 500 ms
 
@@ -377,23 +377,23 @@ Execution completed ✔ Pokeshop - List (http://10.96.93.106:11633/test/RUkKQ_aV
 	✔ Database queries less than 500 ms
 ```
 
-![testkube passing tests](https://res.cloudinary.com/djwdcmwdz/image/upload/v1679329231/Blogposts/Docs/screely-1679329224534_qnqcl1.png)
+<!--![testkube passing tests](https://res.cloudinary.com/djwdcmwdz/image/upload/v1679329231/Blogposts/Docs/screely-1679329224534_qnqcl1.png)-->
 
 ## 9. Create a Trace-based Test That Runs Every Minute
 
 By using Testkube's [scheduling](https://docs.testkube.io/concepts/scheduling), you can trigger this test every minute.
 
 ```bash
-kubectl testkube create test --file ./test.yaml --type "tracetest/test" --name pokeshop-tracetest-scheduled-test --schedule="*/1 * * * *" --variable TRACETEST_ENDPOINT=http://CLUSTER-IP:PORT
+kubectl testkube create test --file ./test.yaml --type "quality-trace/test" --name pokeshop-quality-trace-scheduled-test --schedule="*/1 * * * *" --variable QUALITYTRACE_ENDPOINT=http://CLUSTER-IP:PORT
 ```
 
 ```text title="Expected output"
-Test created testkube / pokeshop-tracetest-scheduled-test 🥇
+Test created testkube / pokeshop-quality-trace-scheduled-test 🥇
 ```
 
 In your Testkube Dashboard you'll see this test run continuously and get triggered every minute.
 
-![scheduled test](https://res.cloudinary.com/djwdcmwdz/image/upload/v1679330588/Blogposts/Docs/screely-1679330581788_izl5vs.png)
+<!--![scheduled test](https://res.cloudinary.com/djwdcmwdz/image/upload/v1679330588/Blogposts/Docs/screely-1679330581788_izl5vs.png)-->
 
 ## Next Steps
 

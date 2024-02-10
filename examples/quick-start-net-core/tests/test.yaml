@@ -11,11 +11,11 @@ spec:
         - key: Content-Type
           value: application/json
   specs:
-    - selector: span[tracetest.span.type="http"]
+    - selector: span[quality-trace.span.type="http"]
       assertions:
         - attr:http.status_code = 200
     - selector:
-        span[tracetest.span.type="http" name="WeatherForecast" http.target="/weatherforecast"
+        span[quality-trace.span.type="http" name="WeatherForecast" http.target="/weatherforecast"
         http.method="GET"]
       assertions:
-        - attr:tracetest.selected_spans.count = 1
+        - attr:quality-trace.selected_spans.count = 1

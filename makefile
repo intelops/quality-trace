@@ -8,7 +8,7 @@ PROJECT_ROOT=${PWD}
 #goreleaser-version:
 #ifneq "$(CURRENT_GORELEASER_VERSION)" "$(GORELEASER_VERSION)"
 #	@printf "\033[0;31m Bad goreleaser version $(CURRENT_GORELEASER_VERSION), please install $(GORELEASER_VERSION)\033[0m\n\n"
-#	@printf "\033[0;31m Tracetest requires goreleaser pro installed (licence not necessary for local builds)\033[0m\n\n"
+#	@printf "\033[0;31m Qualitytrace requires goreleaser pro installed (licence not necessary for local builds)\033[0m\n\n"
 #	@printf "\033[0;33m See https://goreleaser.com/install/ \033[0m\n\n"
 #	@exit 1
 #endif
@@ -18,7 +18,7 @@ CLI_SRC_FILES := $(shell find cli -type f)
 dist/quality-trace: generate-cli $(CLI_SRC_FILES)
 	env GOOS=linux CGO_ENABLED=0 GO111MODULE=on go build -o quality-trace cli/main.go
 #	goreleaser build --single-target --clean --snapshot --id cli
-#	find ./dist -name 'tracetest' -exec cp {} ./dist \;
+#	find ./dist -name 'quality-trace' -exec cp {} ./dist \;
 
 SERVER_SRC_FILES := $(shell find server -type f)
 dist/quality-trace-server: generate-server $(SERVER_SRC_FILES)
@@ -26,7 +26,7 @@ dist/quality-trace-server: generate-server $(SERVER_SRC_FILES)
 	env GOOS=linux CGO_ENABLED=0 GO111MODULE=on go build -o quality-trace-server server/main.go
 
 #goreleaser build --single-target --clean --snapshot --id server
-#	find ./dist -name 'tracetest-server' -exec cp {} ./dist \;
+#	find ./dist -name 'quality-trace-server' -exec cp {} ./dist \;
 
 web/node_modules: web/package.json web/package-lock.json
 	cd web; npm install
@@ -37,7 +37,7 @@ web/build: web/node_modules $(WEB_SRC_FILES)
 
 dist/docker-image-$(TAG).tar: $(CLI_SRC_FILES) $(SERVER_SRC_FILES) $(WEB_SRC_FILES)
 	goreleaser release --clean --skip-announce --snapshot -f .goreleaser.dev.yaml
-	docker save --output dist/docker-image-$(TAG).tar "kubeshop/tracetest:$(TAG)"
+	docker save --output dist/docker-image-$(TAG).tar "intelops/quality-trace:$(TAG)"
 
 help: Makefile ## show list of commands
 	@echo "Choose a command run:"
@@ -51,9 +51,9 @@ view-open-api: ## Run SwaggerUI locally to see OpenAPI documentation
 	@docker run --rm -p 9002:8080 -v $(shell pwd)/api:/api -e SWAGGER_JSON=/api/openapi.yaml swaggerapi/swagger-ui
 
 .PHONY: run build build-go build-web build-docker
-run: build-docker ## build and run tracetest using docker compose
+run: build-docker ## build and run quality-trace using docker compose
 	docker compose up
-build-go: dist/tracetest dist/quality-trace-server ## build all go code
+build-go: dist/quality-trace dist/quality-trace-server ## build all go code
 build-web: web/build ## build web
 build-docker: goreleaser-version web/build .goreleaser.dev.yaml dist/docker-image-$(TAG).tar ## build and tag docker image as defined in .goreleaser.dev.yaml
 
@@ -112,7 +112,7 @@ clean: ## cleans the build artifacts
 	rm -rf dist
 	rm -rf web/build
 	rm -rf web/node_modules
-	docker image rm "kubeshop/tracetest:$(TAG)"
+	docker image rm "intelops/quality-trace:$(TAG)"
 
 vendor: go.mod go.sum
 	@echo Downloading modules

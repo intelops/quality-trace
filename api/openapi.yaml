@@ -1,8 +1,8 @@
 openapi: 3.0.0
 info:
   version: 0.2.1
-  title: TraceTest
-  description: OpenAPI definition for TraceTest endpoint and resources
+  title: Qualitytrace
+  description: OpenAPI definition for Qualitytrace endpoint and resources
 servers:
   - url: /api
 paths:
@@ -671,8 +671,8 @@ paths:
         - $ref: "./parameters.yaml#/components/parameters/skip"
         - $ref: "./parameters.yaml#/components/parameters/switchableResourceSortBy"
         - $ref: "./parameters.yaml#/components/parameters/sortDirection"
-      summary: "List Tracetest configuration"
-      description: "List Tracetest configuration"
+      summary: "List Qualitytrace configuration"
+      description: "List Qualitytrace configuration"
       operationId: listConfiguration
       responses:
         200:
@@ -692,8 +692,8 @@ paths:
         - resource-api
       parameters:
         - $ref: "./parameters.yaml#/components/parameters/configId"
-      summary: "Get Tracetest configuration"
-      description: "Get Tracetest configuration"
+      summary: "Get Qualitytrace configuration"
+      description: "Get Qualitytrace configuration"
       operationId: getConfiguration
       responses:
         200:
@@ -712,8 +712,8 @@ paths:
         - resource-api
       parameters:
         - $ref: "./parameters.yaml#/components/parameters/configId"
-      summary: "Update Tracetest configuration"
-      description: "Update Tracetest configuration"
+      summary: "Update Qualitytrace configuration"
+      description: "Update Qualitytrace configuration"
       operationId: updateConfiguration
       requestBody:
         content:
@@ -768,7 +768,7 @@ paths:
       parameters:
         - $ref: "./parameters.yaml#/components/parameters/pollingProfileId"
       summary: "Get Polling Profile"
-      description: "Get a polling profile used on Tracetest to configure how to fetch traces in a test."
+      description: "Get a polling profile used on Qualitytrace to configure how to fetch traces in a test."
       operationId: getPollingProfile
       responses:
         200:
@@ -790,7 +790,7 @@ paths:
       parameters:
         - $ref: "./parameters.yaml#/components/parameters/pollingProfileId"
       summary: "Update a Polling Profile"
-      description: "Update a polling profile used on Tracetest to configure how to fetch traces in a test."
+      description: "Update a polling profile used on Qualitytrace to configure how to fetch traces in a test."
       operationId: updatePollingProfile
       requestBody:
         content:
@@ -823,7 +823,7 @@ paths:
       tags:
         - resource-api
       summary: "List Demonstrations"
-      description: "List demonstrations used on Tracetest as quick start examples."
+      description: "List demonstrations used on Qualitytrace as quick start examples."
       operationId: listDemos
       parameters:
         - $ref: "./parameters.yaml#/components/parameters/take"
@@ -855,7 +855,7 @@ paths:
       tags:
         - resource-api
       summary: "Create a Demonstration setting"
-      description: "Create a demonstration used on Tracetest as quick start examples."
+      description: "Create a demonstration used on Qualitytrace as quick start examples."
       operationId: createDemo
       requestBody:
         content:
@@ -884,7 +884,7 @@ paths:
       parameters:
         - $ref: "./parameters.yaml#/components/parameters/demoId"
       summary: "Get Demonstration setting"
-      description: "Get a demonstration used on Tracetest as quick start examples."
+      description: "Get a demonstration used on Qualitytrace as quick start examples."
       operationId: getDemo
       responses:
         200:
@@ -906,7 +906,7 @@ paths:
       parameters:
         - $ref: "./parameters.yaml#/components/parameters/demoId"
       summary: "Update a Demonstration setting"
-      description: "Update a demonstration used on Tracetest as quick start examples."
+      description: "Update a demonstration used on Qualitytrace as quick start examples."
       operationId: updateDemo
       requestBody:
         content:
@@ -938,7 +938,7 @@ paths:
       parameters:
         - $ref: "./parameters.yaml#/components/parameters/demoId"
       summary: "Delete a Demonstration setting"
-      description: "Delete a demonstration used on Tracetest as quick start examples."
+      description: "Delete a demonstration used on Qualitytrace as quick start examples."
       operationId: deleteDemo
       responses:
         204:
@@ -1034,7 +1034,7 @@ paths:
       tags:
         - resource-api
       summary: "List VariableSets"
-      description: "List VariableSets available in Tracetest."
+      description: "List VariableSets available in Qualitytrace."
       operationId: listVariableSets
       parameters:
         - $ref: "./parameters.yaml#/components/parameters/take"
@@ -1118,7 +1118,7 @@ paths:
       parameters:
         - $ref: "./parameters.yaml#/components/parameters/variableSetId"
       summary: "Update a VariableSet"
-      description: "Update a VariableSet used on Tracetest"
+      description: "Update a VariableSet used on Qualitytrace"
       operationId: updateVariableSet
       requestBody:
         content:
@@ -1150,7 +1150,7 @@ paths:
       parameters:
         - $ref: "./parameters.yaml#/components/parameters/variableSetId"
       summary: "Delete a variable set"
-      description: "Delete a variable set from Tracetest"
+      description: "Delete a variable set from Qualitytrace"
       operationId: deleteVariableSet
       responses:
         204:
@@ -1185,7 +1185,7 @@ paths:
       tags:
         - resource-api
       summary: "List Linters"
-      description: "List Linters available in Tracetest."
+      description: "List Linters available in Qualitytrace."
       operationId: listLinters
       parameters:
         - $ref: "./parameters.yaml#/components/parameters/take"
@@ -1262,7 +1262,7 @@ paths:
       parameters:
         - $ref: "./parameters.yaml#/components/parameters/LinterId"
       summary: "Update a Linter"
-      description: "Update a Linter used on Tracetest"
+      description: "Update a Linter used on Qualitytrace"
       operationId: updateLinter
       requestBody:
         content:
@@ -1294,7 +1294,7 @@ paths:
       parameters:
         - $ref: "./parameters.yaml#/components/parameters/LinterId"
       summary: "Delete an Linter"
-      description: "Delete an Linter from Tracetest"
+      description: "Delete an Linter from Qualitytrace"
       operationId: deleteLinter
       responses:
         204:

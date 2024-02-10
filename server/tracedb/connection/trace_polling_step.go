@@ -22,7 +22,7 @@ func (s *tracePollingTestStep) TestConnection(ctx context.Context) model.Connect
 	_, err := s.dataStore.GetTraceByID(ctx, s.dataStore.GetTraceID().String())
 	if !errors.Is(err, ErrTraceNotFound) {
 		return model.ConnectionTestStep{
-			Message: "Tracetest could not get traces back from the data store",
+			Message: "Qualitytrace could not get traces back from the data store",
 			Error:   err,
 			Status:  model.StatusFailed,
 		}

@@ -51,14 +51,14 @@ func LoadConfig(configFile string) (Config, error) {
 		return Config{}, fmt.Errorf("could not get user home path")
 	}
 
-	globalConfigPath := filepath.Join(homePath, ".tracetest/config.yml")
+	globalConfigPath := filepath.Join(homePath, ".quality-trace/config.yml")
 	return loadConfig(globalConfigPath)
 }
 
 func loadConfig(configFile string) (Config, error) {
 	viper.SetConfigFile(configFile)
 	viper.SetConfigType("yaml")
-	viper.SetEnvPrefix("tracetest")
+	viper.SetEnvPrefix("quality-trace")
 	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
 	viper.AutomaticEnv()
 

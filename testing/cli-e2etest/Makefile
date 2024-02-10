@@ -1,5 +1,5 @@
 PROJECT_ROOT=${PWD}
-TRACETEST_CLI?="${PROJECT_ROOT}/../../dist/tracetest"
+QUALITYTRACE_CLI?="${PROJECT_ROOT}/../../dist/quality-trace"
 TEST_ENVIRONMENT?="jaeger"
 TAG?="dev"
 ENABLE_CLI_DEBUG?="false"
@@ -11,7 +11,7 @@ help: Makefile ## show list of commands
 	@awk 'BEGIN {FS = ":.*?## "} /[a-zA-Z_-]+:.*?## / {sub("\\\\n",sprintf("\n%22c"," "), $$2);printf "\033[36m%-40s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST) | sort
 
 test: ## run tests for this application
-	export TRACETEST_CLI=$(TRACETEST_CLI); \
+	export QUALITYTRACE_CLI=$(QUALITYTRACE_CLI_CLI); \
 	export TEST_ENVIRONMENT=$(TEST_ENVIRONMENT); \
 	export TAG=$(TAG); \
 	export ENABLE_CLI_DEBUG=$(ENABLE_CLI_DEBUG); \
@@ -19,7 +19,7 @@ test: ## run tests for this application
 	go test -v -timeout 300s -p 1 ./...;
 
 test/scenario: ## run tests for this application
-	export TRACETEST_CLI=$(TRACETEST_CLI); \
+	export QUALITYTRACE_CLI=$(QUALITYTRACE_CLI); \
 	export TEST_ENVIRONMENT=$(TEST_ENVIRONMENT); \
 	export TAG=$(TAG); \
 	export ENABLE_CLI_DEBUG=$(ENABLE_CLI_DEBUG); \

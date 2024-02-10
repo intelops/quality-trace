@@ -94,8 +94,8 @@ func (te *grpcTriggerer) Trigger(ctx context.Context, test test.Test, opts *Trig
 	}
 
 	response.SpanAttributes = map[string]string{
-		"tracetest.run.trigger.grpc.response_status_code": strconv.Itoa(int(h.respCode)),
-		"tracetest.run.trigger.grpc.response_status":      h.respCode.String(),
+		"quality-trace.run.trigger.grpc.response_status_code": strconv.Itoa(int(h.respCode)),
+		"quality-trace.run.trigger.grpc.response_status":      h.respCode.String(),
 	}
 
 	return response, nil

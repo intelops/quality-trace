@@ -14,11 +14,11 @@ func TestSpecV1(t *testing.T) {
 	oldSpecFormat := `
 	[
 		{
-			"Key": "span[tracetest.span.type=\"general\" name=\"Tracetest trigger\"]",
+			"Key": "span[quality-trace.span.type=\"general\" name=\"Qualitytrace trigger\"]",
 			"Value": {
 				"Name": "my check",
 				"Assertions": [
-					"attr:name = \"Tracetest trigger\""
+					"attr:name = \"Qualitytrace trigger\""
 				]
 			}
 		},
@@ -40,10 +40,10 @@ func TestSpecV1(t *testing.T) {
 	require.NoError(t, err)
 	require.Len(t, testObject.Specs, 2)
 
-	assert.Equal(t, test.SpanQuery("span[tracetest.span.type=\"general\" name=\"Tracetest trigger\"]"), testObject.Specs[0].Selector)
+	assert.Equal(t, test.SpanQuery("span[quality-trace.span.type=\"general\" name=\"Qualitytrace trigger\"]"), testObject.Specs[0].Selector)
 	assert.Equal(t, "my check", testObject.Specs[0].Name)
 	assert.Len(t, testObject.Specs[0].Assertions, 1)
-	assert.Equal(t, test.Assertion("attr:name = \"Tracetest trigger\""), testObject.Specs[0].Assertions[0])
+	assert.Equal(t, test.Assertion("attr:name = \"Qualitytrace trigger\""), testObject.Specs[0].Assertions[0])
 
 	assert.Equal(t, test.SpanQuery("span[name=\"GET /api/tests\"]"), testObject.Specs[1].Selector)
 	assert.Equal(t, "validate status", testObject.Specs[1].Name)
@@ -57,14 +57,14 @@ func TestV1WithEmptySelector(t *testing.T) {
 			"Key": "",
 			"Value": {
 				"Name": "DURATION_CHECK",
-				"Assertions": ["attr:tracetest.span.duration < 2s"]
+				"Assertions": ["attr:quality-trace.span.duration < 2s"]
 			}
 		},
 		{
-			"Key": "span[tracetest.span.type=\"database\"]",
+			"Key": "span[quality-trace.span.type=\"database\"]",
 			"Value": {
 				"Name": "All Database Spans: Processing time is less than 100ms",
-				"Assertions": ["attr:tracetest.span.duration < 100ms"]
+				"Assertions": ["attr:quality-trace.span.duration < 100ms"]
 			}
 		}
 	]`
@@ -75,22 +75,22 @@ func TestV1WithEmptySelector(t *testing.T) {
 	assert.Equal(t, test.SpanQuery(""), testObject.Specs[0].Selector)
 	assert.Equal(t, "DURATION_CHECK", testObject.Specs[0].Name)
 	assert.Len(t, testObject.Specs[0].Assertions, 1)
-	assert.Equal(t, test.Assertion("attr:tracetest.span.duration < 2s"), testObject.Specs[0].Assertions[0])
+	assert.Equal(t, test.Assertion("attr:quality-trace.span.duration < 2s"), testObject.Specs[0].Assertions[0])
 
-	assert.Equal(t, test.SpanQuery("span[tracetest.span.type=\"database\"]"), testObject.Specs[1].Selector)
+	assert.Equal(t, test.SpanQuery("span[quality-trace.span.type=\"database\"]"), testObject.Specs[1].Selector)
 	assert.Equal(t, "All Database Spans: Processing time is less than 100ms", testObject.Specs[1].Name)
 	assert.Len(t, testObject.Specs[1].Assertions, 1)
-	assert.Equal(t, test.Assertion("attr:tracetest.span.duration < 100ms"), testObject.Specs[1].Assertions[0])
+	assert.Equal(t, test.Assertion("attr:quality-trace.span.duration < 100ms"), testObject.Specs[1].Assertions[0])
 }
 
 func TestSpecV2(t *testing.T) {
 	specFormat := `
 	[
 		{
-			"selector": "span[tracetest.span.type=\"general\" name=\"Tracetest trigger\"]",
+			"selector": "span[quality-trace.span.type=\"general\" name=\"Qualitytrace trigger\"]",
 			"name": "my check",
 			"assertions": [
-				"attr:name = \"Tracetest trigger\""
+				"attr:name = \"Qualitytrace trigger\""
 			]
 		},
 		{
@@ -109,10 +109,10 @@ func TestSpecV2(t *testing.T) {
 	require.NoError(t, err)
 	require.Len(t, testObject.Specs, 2)
 
-	assert.Equal(t, test.SpanQuery("span[tracetest.span.type=\"general\" name=\"Tracetest trigger\"]"), testObject.Specs[0].Selector)
+	assert.Equal(t, test.SpanQuery("span[quality-trace.span.type=\"general\" name=\"Qualitytrace trigger\"]"), testObject.Specs[0].Selector)
 	assert.Equal(t, "my check", testObject.Specs[0].Name)
 	assert.Len(t, testObject.Specs[0].Assertions, 1)
-	assert.Equal(t, test.Assertion("attr:name = \"Tracetest trigger\""), testObject.Specs[0].Assertions[0])
+	assert.Equal(t, test.Assertion("attr:name = \"Qualitytrace trigger\""), testObject.Specs[0].Assertions[0])
 
 	assert.Equal(t, test.SpanQuery("span[name=\"GET /api/tests\"]"), testObject.Specs[1].Selector)
 	assert.Equal(t, "validate status", testObject.Specs[1].Name)

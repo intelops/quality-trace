@@ -18,7 +18,7 @@ const ConfigCTA = ({onSkip}: IProps) => {
           <S.ConfigIcon alt="tracing data stores" src={icon} />
           <Typography.Title>Configure your trace data store</Typography.Title>
           <Typography.Text>
-            Tracetest utilizes the trace collected by your existing OpenTelemetry compatible trace data store to apply
+            Qualitytrace utilizes the trace collected by your existing OpenTelemetry compatible trace data store to apply
             assertions against. Do you want to configure this now?
           </Typography.Text>
           <S.ConfigFooter>

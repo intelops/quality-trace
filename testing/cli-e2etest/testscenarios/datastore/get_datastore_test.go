@@ -32,7 +32,7 @@ func TestGetDatastore(t *testing.T) {
 	cliConfig := env.GetCLIConfigPath(t)
 
 	t.Run("get with no datastore initialized", func(t *testing.T) {
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 		// And no datastores registered
 
@@ -50,7 +50,7 @@ func TestGetDatastore(t *testing.T) {
 	addGetDatastorePreReqs(t, env)
 
 	t.Run("get with YAML format", func(t *testing.T) {
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 		// And I have a Datastore already set
 
@@ -67,7 +67,7 @@ func TestGetDatastore(t *testing.T) {
 	})
 
 	t.Run("get with JSON format", func(t *testing.T) {
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 		// And I have a Datastore already set
 
@@ -84,7 +84,7 @@ func TestGetDatastore(t *testing.T) {
 	})
 
 	t.Run("get with pretty format", func(t *testing.T) {
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 		// And I have a Datastore already set
 

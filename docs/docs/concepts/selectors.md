@@ -50,7 +50,7 @@ flowchart TD
 
         attributes:
         service.name: cart-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: POST
     "]
     B[" id: 2
@@ -58,7 +58,7 @@ flowchart TD
 
         attributes:
         service.name: product-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: GET
     "]
     C[" id: 3
@@ -66,7 +66,7 @@ flowchart TD
 
         attributes:
         service.name: product-api
-        tracetest.span.type: db
+        quality-trace.span.type: db
         db.statement: SELECT * FROM ...
     "]
     D[" id: 4
@@ -74,7 +74,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: GET
     "]
     E[" id: 5
@@ -82,7 +82,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: db
+        quality-trace.span.type: db
         db.statement: SELECT * FROM ...
     "]
     F[" id: 6
@@ -90,7 +90,7 @@ flowchart TD
 
         attributes:
         service.name: cart-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: POST
     "]
     G[" id: 7
@@ -98,7 +98,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: GET
     "]
     H[" id: 8
@@ -106,7 +106,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: db
+        quality-trace.span.type: db
         db.statement: SELECT * FROM ...
     "]
     I[" id: 9
@@ -114,7 +114,7 @@ flowchart TD
 
         attributes:
         service.name: notification-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: POST
     "]
     J[" id: 10
@@ -122,14 +122,14 @@ flowchart TD
 
         attributes:
         service.name: notification-api
-        tracetest.span.type: messaging
+        quality-trace.span.type: messaging
     "]
     K[" id: 10
         send message to users
 
         attributes:
         service.name: external-service
-        tracetest.span.type: messaging
+        quality-trace.span.type: messaging
     "]
 
 
@@ -154,7 +154,7 @@ By providing an empty selector, all spans from the trace are selected. Note that
 The most basic way of filtering the spans to apply an assertion to is to use the span's attributes. A good starting example would be filtering all spans of type `http`:
 
 ```css
-span[tracetest.span.type="http"]
+span[quality-trace.span.type="http"]
 ```
 
 This would select the following spans:
@@ -166,7 +166,7 @@ flowchart TD
 
         attributes:
         service.name: cart-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: POST
     "]
     B[" id: 2
@@ -174,7 +174,7 @@ flowchart TD
 
         attributes:
         service.name: product-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: GET
     "]
     C[" id: 3
@@ -182,7 +182,7 @@ flowchart TD
 
         attributes:
         service.name: product-api
-        tracetest.span.type: db
+        quality-trace.span.type: db
         db.statement: SELECT * FROM ...
     "]
     D[" id: 4
@@ -190,7 +190,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: GET
     "]
     E[" id: 5
@@ -198,7 +198,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: db
+        quality-trace.span.type: db
         db.statement: SELECT * FROM ...
     "]
     F[" id: 6
@@ -206,7 +206,7 @@ flowchart TD
 
         attributes:
         service.name: cart-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: POST
     "]
     G[" id: 7
@@ -214,7 +214,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: GET
     "]
     H[" id: 8
@@ -222,7 +222,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: db
+        quality-trace.span.type: db
         db.statement: SELECT * FROM ...
     "]
     I[" id: 9
@@ -230,7 +230,7 @@ flowchart TD
 
         attributes:
         service.name: notification-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: POST
     "]
     J[" id: 10
@@ -238,14 +238,14 @@ flowchart TD
 
         attributes:
         service.name: notification-api
-        tracetest.span.type: messaging
+        quality-trace.span.type: messaging
     "]
     K[" id: 10
         send message to users
 
         attributes:
         service.name: external-service
-        tracetest.span.type: messaging
+        quality-trace.span.type: messaging
     "]
 
 
@@ -275,7 +275,7 @@ flowchart TD
 If you need to narrow down your results, you can provide multiple properties in the selector by separating them using a space. The following will select all `http` spans **AND** spans that were created by the service `cart-api`:
 
 ```css
-span[tracetest.span.type="http" service.name="cart-api"]
+span[quality-trace.span.type="http" service.name="cart-api"]
 ```
 
 This would select the following spans:
@@ -287,7 +287,7 @@ flowchart TD
 
         attributes:
         service.name: cart-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: POST
     "]
     B[" id: 2
@@ -295,7 +295,7 @@ flowchart TD
 
         attributes:
         service.name: product-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: GET
     "]
     C[" id: 3
@@ -303,7 +303,7 @@ flowchart TD
 
         attributes:
         service.name: product-api
-        tracetest.span.type: db
+        quality-trace.span.type: db
         db.statement: SELECT * FROM ...
     "]
     D[" id: 4
@@ -311,7 +311,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: GET
     "]
     E[" id: 5
@@ -319,7 +319,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: db
+        quality-trace.span.type: db
         db.statement: SELECT * FROM ...
     "]
     F[" id: 6
@@ -327,7 +327,7 @@ flowchart TD
 
         attributes:
         service.name: cart-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: POST
     "]
     G[" id: 7
@@ -335,7 +335,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: GET
     "]
     H[" id: 8
@@ -343,7 +343,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: db
+        quality-trace.span.type: db
         db.statement: SELECT * FROM ...
     "]
     I[" id: 9
@@ -351,7 +351,7 @@ flowchart TD
 
         attributes:
         service.name: notification-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: POST
     "]
     J[" id: 10
@@ -359,14 +359,14 @@ flowchart TD
 
         attributes:
         service.name: notification-api
-        tracetest.span.type: messaging
+        quality-trace.span.type: messaging
     "]
     K[" id: 10
         send message to users
 
         attributes:
         service.name: external-service
-        tracetest.span.type: messaging
+        quality-trace.span.type: messaging
     "]
 
 
@@ -404,7 +404,7 @@ flowchart TD
 
         attributes:
         service.name: cart-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: POST
     "]
     B[" id: 2
@@ -412,7 +412,7 @@ flowchart TD
 
         attributes:
         service.name: product-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: GET
     "]
     C[" id: 3
@@ -420,7 +420,7 @@ flowchart TD
 
         attributes:
         service.name: product-api
-        tracetest.span.type: db
+        quality-trace.span.type: db
         db.statement: SELECT * FROM ...
     "]
     D[" id: 4
@@ -428,7 +428,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: GET
     "]
     E[" id: 5
@@ -436,7 +436,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: db
+        quality-trace.span.type: db
         db.statement: SELECT * FROM ...
     "]
     F[" id: 6
@@ -444,7 +444,7 @@ flowchart TD
 
         attributes:
         service.name: cart-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: POST
     "]
     G[" id: 7
@@ -452,7 +452,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: GET
     "]
     H[" id: 8
@@ -460,7 +460,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: db
+        quality-trace.span.type: db
         db.statement: SELECT * FROM ...
     "]
     I[" id: 9
@@ -468,7 +468,7 @@ flowchart TD
 
         attributes:
         service.name: notification-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: POST
     "]
     J[" id: 10
@@ -476,14 +476,14 @@ flowchart TD
 
         attributes:
         service.name: notification-api
-        tracetest.span.type: messaging
+        quality-trace.span.type: messaging
     "]
     K[" id: 10
         send message to users
 
         attributes:
         service.name: external-service
-        tracetest.span.type: messaging
+        quality-trace.span.type: messaging
     "]
 
 
@@ -531,7 +531,7 @@ flowchart TD
 
         attributes:
         service.name: cart-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: POST
     "]
     B[" id: 2
@@ -539,7 +539,7 @@ flowchart TD
 
         attributes:
         service.name: product-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: GET
     "]
     C[" id: 3
@@ -547,7 +547,7 @@ flowchart TD
 
         attributes:
         service.name: product-api
-        tracetest.span.type: db
+        quality-trace.span.type: db
         db.statement: SELECT * FROM ...
     "]
     D[" id: 4
@@ -555,7 +555,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: GET
     "]
     E[" id: 5
@@ -563,7 +563,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: db
+        quality-trace.span.type: db
         db.statement: SELECT * FROM ...
     "]
     F[" id: 6
@@ -571,7 +571,7 @@ flowchart TD
 
         attributes:
         service.name: cart-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: POST
     "]
     G[" id: 7
@@ -579,7 +579,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: GET
     "]
     H[" id: 8
@@ -587,7 +587,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: db
+        quality-trace.span.type: db
         db.statement: SELECT * FROM ...
     "]
     I[" id: 9
@@ -595,7 +595,7 @@ flowchart TD
 
         attributes:
         service.name: notification-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: POST
     "]
     J[" id: 10
@@ -603,14 +603,14 @@ flowchart TD
 
         attributes:
         service.name: notification-api
-        tracetest.span.type: messaging
+        quality-trace.span.type: messaging
     "]
     K[" id: 10
         send message to users
 
         attributes:
         service.name: external-service
-        tracetest.span.type: messaging
+        quality-trace.span.type: messaging
     "]
 
 
@@ -650,7 +650,7 @@ This is where pseudo-classes enter the scene. Pseudo-classes are ways of filteri
 For the examples of the three pseudo-classes, let's consider that we want to select a specific `http` span based on when it happens.
 
 ```css
-span[tracetest.span.type="http"]
+span[quality-trace.span.type="http"]
 ```
 
 This will select the following spans:
@@ -662,7 +662,7 @@ flowchart TD
 
         attributes:
         service.name: cart-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: POST
     "]
     B[" id: 2
@@ -670,7 +670,7 @@ flowchart TD
 
         attributes:
         service.name: product-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: GET
     "]
     C[" id: 3
@@ -678,7 +678,7 @@ flowchart TD
 
         attributes:
         service.name: product-api
-        tracetest.span.type: db
+        quality-trace.span.type: db
         db.statement: SELECT * FROM ...
     "]
     D[" id: 4
@@ -686,7 +686,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: GET
     "]
     E[" id: 5
@@ -694,7 +694,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: db
+        quality-trace.span.type: db
         db.statement: SELECT * FROM ...
     "]
     F[" id: 6
@@ -702,7 +702,7 @@ flowchart TD
 
         attributes:
         service.name: cart-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: POST
     "]
     G[" id: 7
@@ -710,7 +710,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: GET
     "]
     H[" id: 8
@@ -718,7 +718,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: db
+        quality-trace.span.type: db
         db.statement: SELECT * FROM ...
     "]
     I[" id: 9
@@ -726,7 +726,7 @@ flowchart TD
 
         attributes:
         service.name: notification-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: POST
     "]
     J[" id: 10
@@ -734,14 +734,14 @@ flowchart TD
 
         attributes:
         service.name: notification-api
-        tracetest.span.type: messaging
+        quality-trace.span.type: messaging
     "]
     K[" id: 10
         send message to users
 
         attributes:
         service.name: external-service
-        tracetest.span.type: messaging
+        quality-trace.span.type: messaging
     "]
 
 
@@ -771,7 +771,7 @@ flowchart TD
 This would return the first appearing span from the list:
 
 ```css
-span[tracetest.span.type="http"]:first
+span[quality-trace.span.type="http"]:first
 ```
 
 ```mermaid
@@ -781,7 +781,7 @@ flowchart TD
 
         attributes:
         service.name: cart-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: POST
     "]
     B[" id: 2
@@ -789,7 +789,7 @@ flowchart TD
 
         attributes:
         service.name: product-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: GET
     "]
     C[" id: 3
@@ -797,7 +797,7 @@ flowchart TD
 
         attributes:
         service.name: product-api
-        tracetest.span.type: db
+        quality-trace.span.type: db
         db.statement: SELECT * FROM ...
     "]
     D[" id: 4
@@ -805,7 +805,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: GET
     "]
     E[" id: 5
@@ -813,7 +813,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: db
+        quality-trace.span.type: db
         db.statement: SELECT * FROM ...
     "]
     F[" id: 6
@@ -821,7 +821,7 @@ flowchart TD
 
         attributes:
         service.name: cart-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: POST
     "]
     G[" id: 7
@@ -829,7 +829,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: GET
     "]
     H[" id: 8
@@ -837,7 +837,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: db
+        quality-trace.span.type: db
         db.statement: SELECT * FROM ...
     "]
     I[" id: 9
@@ -845,7 +845,7 @@ flowchart TD
 
         attributes:
         service.name: notification-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: POST
     "]
     J[" id: 10
@@ -853,14 +853,14 @@ flowchart TD
 
         attributes:
         service.name: notification-api
-        tracetest.span.type: messaging
+        quality-trace.span.type: messaging
     "]
     K[" id: 10
         send message to users
 
         attributes:
         service.name: external-service
-        tracetest.span.type: messaging
+        quality-trace.span.type: messaging
     "]
 
 
@@ -890,7 +890,7 @@ flowchart TD
 This would return the last appearing span from the list:
 
 ```css
-span[tracetest.span.type="http"]:last
+span[quality-trace.span.type="http"]:last
 ```
 
 ```mermaid
@@ -900,7 +900,7 @@ flowchart TD
 
         attributes:
         service.name: cart-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: POST
     "]
     B[" id: 2
@@ -908,7 +908,7 @@ flowchart TD
 
         attributes:
         service.name: product-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: GET
     "]
     C[" id: 3
@@ -916,7 +916,7 @@ flowchart TD
 
         attributes:
         service.name: product-api
-        tracetest.span.type: db
+        quality-trace.span.type: db
         db.statement: SELECT * FROM ...
     "]
     D[" id: 4
@@ -924,7 +924,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: GET
     "]
     E[" id: 5
@@ -932,7 +932,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: db
+        quality-trace.span.type: db
         db.statement: SELECT * FROM ...
     "]
     F[" id: 6
@@ -940,7 +940,7 @@ flowchart TD
 
         attributes:
         service.name: cart-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: POST
     "]
     G[" id: 7
@@ -948,7 +948,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: GET
     "]
     H[" id: 8
@@ -956,7 +956,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: db
+        quality-trace.span.type: db
         db.statement: SELECT * FROM ...
     "]
     I[" id: 9
@@ -964,7 +964,7 @@ flowchart TD
 
         attributes:
         service.name: notification-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: POST
     "]
     J[" id: 10
@@ -972,14 +972,14 @@ flowchart TD
 
         attributes:
         service.name: notification-api
-        tracetest.span.type: messaging
+        quality-trace.span.type: messaging
     "]
     K[" id: 10
         send message to users
 
         attributes:
         service.name: external-service
-        tracetest.span.type: messaging
+        quality-trace.span.type: messaging
     "]
 
 
@@ -1009,7 +1009,7 @@ flowchart TD
 This enables you to fetch any item from the list based on its index. `n` starts at 1 (first element) and ends at `length` (last element). Any invalid `n` value will return in an empty list of spans being returned:
 
 ```css
-span[tracetest.span.type="http"]:nth_child(3)
+span[quality-trace.span.type="http"]:nth_child(3)
 ```
 
 ```mermaid
@@ -1019,7 +1019,7 @@ flowchart TD
 
         attributes:
         service.name: cart-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: POST
     "]
     B[" id: 2
@@ -1027,7 +1027,7 @@ flowchart TD
 
         attributes:
         service.name: product-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: GET
     "]
     C[" id: 3
@@ -1035,7 +1035,7 @@ flowchart TD
 
         attributes:
         service.name: product-api
-        tracetest.span.type: db
+        quality-trace.span.type: db
         db.statement: SELECT * FROM ...
     "]
     D[" id: 4
@@ -1043,7 +1043,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: GET
     "]
     E[" id: 5
@@ -1051,7 +1051,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: db
+        quality-trace.span.type: db
         db.statement: SELECT * FROM ...
     "]
     F[" id: 6
@@ -1059,7 +1059,7 @@ flowchart TD
 
         attributes:
         service.name: cart-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: POST
     "]
     G[" id: 7
@@ -1067,7 +1067,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: GET
     "]
     H[" id: 8
@@ -1075,7 +1075,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: db
+        quality-trace.span.type: db
         db.statement: SELECT * FROM ...
     "]
     I[" id: 9
@@ -1083,7 +1083,7 @@ flowchart TD
 
         attributes:
         service.name: notification-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: POST
     "]
     J[" id: 10
@@ -1091,14 +1091,14 @@ flowchart TD
 
         attributes:
         service.name: notification-api
-        tracetest.span.type: messaging
+        quality-trace.span.type: messaging
     "]
     K[" id: 10
         send message to users
 
         attributes:
         service.name: external-service
-        tracetest.span.type: messaging
+        quality-trace.span.type: messaging
     "]
 
 
@@ -1137,7 +1137,7 @@ What if I want to test if a product only available in US can be bought in UK? Th
 For example:
 
 ```css
-span[service.name="auth-api" tracetest.span.type="http"]
+span[service.name="auth-api" quality-trace.span.type="http"]
 ```
 
 Will return:
@@ -1148,7 +1148,7 @@ flowchart TD
 
         attributes:
         service.name: cart-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: POST
     "]
     B[" id: 2
@@ -1156,7 +1156,7 @@ flowchart TD
 
         attributes:
         service.name: product-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: GET
     "]
     C[" id: 3
@@ -1164,7 +1164,7 @@ flowchart TD
 
         attributes:
         service.name: product-api
-        tracetest.span.type: db
+        quality-trace.span.type: db
         db.statement: SELECT * FROM ...
     "]
     D[" id: 4
@@ -1172,7 +1172,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: GET
     "]
     E[" id: 5
@@ -1180,7 +1180,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: db
+        quality-trace.span.type: db
         db.statement: SELECT * FROM ...
     "]
     F[" id: 6
@@ -1188,7 +1188,7 @@ flowchart TD
 
         attributes:
         service.name: cart-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: POST
     "]
     G[" id: 7
@@ -1196,7 +1196,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: GET
     "]
     H[" id: 8
@@ -1204,7 +1204,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: db
+        quality-trace.span.type: db
         db.statement: SELECT * FROM ...
     "]
     I[" id: 9
@@ -1212,7 +1212,7 @@ flowchart TD
 
         attributes:
         service.name: notification-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: POST
     "]
     J[" id: 10
@@ -1220,14 +1220,14 @@ flowchart TD
 
         attributes:
         service.name: notification-api
-        tracetest.span.type: messaging
+        quality-trace.span.type: messaging
     "]
     K[" id: 10
         send message to users
 
         attributes:
         service.name: external-service
-        tracetest.span.type: messaging
+        quality-trace.span.type: messaging
     "]
 
 
@@ -1254,7 +1254,7 @@ This is a problem, because if we apply the same assertion to both spans, one of 
 We could use the `purchase products` parent to ensure just `http` class to the `auth-api` triggered by the `purchase-api` would be selected:
 
 ```css
-span[service.name="cart-api", name="purchase products"] span[service.name="auth-api" tracetest.span.type="http"]
+span[service.name="cart-api", name="purchase products"] span[service.name="auth-api" quality-trace.span.type="http"]
 ```
 
 This would find the parent span and only select the spans that are descedents of that parent and match the provided filter:
@@ -1266,7 +1266,7 @@ flowchart TD
 
         attributes:
         service.name: cart-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: POST
     "]
     B[" id: 2
@@ -1274,7 +1274,7 @@ flowchart TD
 
         attributes:
         service.name: product-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: GET
     "]
     C[" id: 3
@@ -1282,7 +1282,7 @@ flowchart TD
 
         attributes:
         service.name: product-api
-        tracetest.span.type: db
+        quality-trace.span.type: db
         db.statement: SELECT * FROM ...
     "]
     D[" id: 4
@@ -1290,7 +1290,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: GET
     "]
     E[" id: 5
@@ -1298,7 +1298,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: db
+        quality-trace.span.type: db
         db.statement: SELECT * FROM ...
     "]
     F[" id: 6
@@ -1306,7 +1306,7 @@ flowchart TD
 
         attributes:
         service.name: cart-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: POST
     "]
     G[" id: 7
@@ -1314,7 +1314,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: GET
     "]
     H[" id: 8
@@ -1322,7 +1322,7 @@ flowchart TD
 
         attributes:
         service.name: auth-api
-        tracetest.span.type: db
+        quality-trace.span.type: db
         db.statement: SELECT * FROM ...
     "]
     I[" id: 9
@@ -1330,7 +1330,7 @@ flowchart TD
 
         attributes:
         service.name: notification-api
-        tracetest.span.type: http
+        quality-trace.span.type: http
         http.method: POST
     "]
     J[" id: 10
@@ -1338,14 +1338,14 @@ flowchart TD
 
         attributes:
         service.name: notification-api
-        tracetest.span.type: messaging
+        quality-trace.span.type: messaging
     "]
     K[" id: 10
         send message to users
 
         attributes:
         service.name: external-service
-        tracetest.span.type: messaging
+        quality-trace.span.type: messaging
     "]
 
 

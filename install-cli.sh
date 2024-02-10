@@ -21,7 +21,7 @@ get_latest_version() {
 
   ensure_dependency_exist "curl"
 
-  curl --silent "https://api.github.com/repos/kubeshop/tracetest/releases/latest" |
+  curl --silent "https://api.github.com/repos/intelops/quality-trace/releases/latest" |
   grep '"tag_name":' |
   sed -E 's/.*"([^"]+)".*/\1/'
 }
@@ -60,7 +60,7 @@ get_download_link() {
   pkg=$1
 
 
-  echo "https://github.com/kubeshop/tracetest/releases/download/${version}/tracetest_${raw_version}_${os}_${arch}.${pkg}"
+  echo "https://github.com/intelops/quality-trace/releases/download/${version}/quality-trace_${raw_version}_${os}_${arch}.${pkg}"
 }
 
 download_file() {
@@ -83,8 +83,8 @@ install_tar() {
 
   echo "Extracting file"
   tar -xf $file_path -C /tmp
-  echo "Installing to /usr/local/bin/tracetest"
-  $SUDO mv /tmp/tracetest /usr/local/bin/tracetest
+  echo "Installing to /usr/local/bin/quality-trace"
+  $SUDO mv /tmp/quality-trace /usr/local/bin/quality-trace
   rm -f $file_path
 }
 
@@ -109,24 +109,24 @@ install_rpm() {
 install_apt() {
   $SUDO apt-get update
   $SUDO apt-get install -y apt-transport-https ca-certificates
-  echo "deb [trusted=yes] https://apt.fury.io/tracetest/ /" | $SUDO tee /etc/apt/sources.list.d/fury.list
+  echo "deb [trusted=yes] https://apt.fury.io/quality-trace/ /" | $SUDO tee /etc/apt/sources.list.d/fury.list
   $SUDO apt-get update
-  $SUDO apt-get install -y tracetest
+  $SUDO apt-get install -y quality-trace
 }
 
 install_yum() {
-  cat <<EOF | $SUDO tee /etc/yum.repos.d/tracetest.repo
-[tracetest]
-name=Tracetest
-baseurl=https://yum.fury.io/tracetest/
+  cat <<EOF | $SUDO tee /etc/yum.repos.d/quality-trace.repo
+[quality-trace]
+name=Qualitytrace
+baseurl=https://yum.fury.io/quality-trace/
 enabled=1
 gpgcheck=0
 EOF
-  $SUDO yum install -y tracetest --refresh
+  $SUDO yum install -y quality-trace --refresh
 }
 
 install_brew() {
-  brew install kubeshop/tracetest/tracetest
+  brew install intelops/quality-trace/quality-trace
 }
 
 run() {
@@ -145,21 +145,21 @@ run() {
   elif cmd_exists rpm; then
     install_rpm
   elif [ "$(get_arch)" == "unknown" ]; then
-    echo "unknown system architecture. Try manual install. See https://kubeshop.github.io/tracetest/installing/#cli-installation"
+    echo "unknown system architecture. Try manual install. See https://intelops.github.io/quality-trace"
     exit 1;
   elif [[ "$(get_os)" =~ ^(darwin|linux)$ ]]; then
     install_tar
   else
-    echo 'OS not supported by this script. See https://kubeshop.github.io/tracetest/installing/#cli-installation'
+    echo 'OS not supported by this script. See https://intelops.github.io/quality-trace'
     exit 1
   fi
 
   echo
   echo "Succesfull install!"
   echo
-  echo "run 'tracetest --help' to see what you can do"
+  echo "run 'quality-trace --help' to see what you can do"
   echo
-  echo "To setup a new server, run 'tracetest server install'"
+  echo "To setup a new server, run 'quality-trace server install'"
 }
 
 SUDO=""

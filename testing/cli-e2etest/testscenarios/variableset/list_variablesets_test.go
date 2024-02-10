@@ -14,7 +14,7 @@ import (
 func addListVariableSetPreReqs(t *testing.T, env environment.Manager) {
 	cliConfig := env.GetCLIConfigPath(t)
 
-	// Given I am a Tracetest CLI user
+	// Given I am a Qualitytrace CLI user
 	// And I have my server recently created
 
 	// When I try to set up a new environment
@@ -50,7 +50,7 @@ func TestListVariableSets(t *testing.T) {
 	cliConfig := env.GetCLIConfigPath(t)
 
 	t.Run("list no variable sets", func(t *testing.T) {
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 		// And there is no variable sets
 		result := tracetestcli.Exec(t, "list variableset --sortBy name --sortDirection asc --output yaml", tracetestcli.WithCLIConfig(cliConfig))
@@ -63,7 +63,7 @@ func TestListVariableSets(t *testing.T) {
 	addListVariableSetPreReqs(t, env)
 
 	t.Run("list with invalid sortBy field", func(t *testing.T) {
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 
 		// When I try to list these variable set by an invalid field
@@ -74,7 +74,7 @@ func TestListVariableSets(t *testing.T) {
 	})
 
 	t.Run("list with YAML format", func(t *testing.T) {
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 
 		// When I try to list these variable sets by a valid field and in YAML format
@@ -119,7 +119,7 @@ func TestListVariableSets(t *testing.T) {
 	})
 
 	t.Run("list with JSON format", func(t *testing.T) {
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 
 		// When I try to list these environments by a valid field and in JSON format
@@ -165,7 +165,7 @@ func TestListVariableSets(t *testing.T) {
 	})
 
 	t.Run("list with pretty format", func(t *testing.T) {
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 
 		// When I try to list these environments by a valid field and in pretty format
@@ -198,7 +198,7 @@ func TestListVariableSets(t *testing.T) {
 	})
 
 	t.Run("list with YAML format skipping the first and taking two items", func(t *testing.T) {
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 
 		// When I try to list these environments by a valid field, paging options and in YAML format

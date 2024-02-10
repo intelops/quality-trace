@@ -82,7 +82,7 @@ const DataStoreProvider = ({children}: IProps) => {
   const onDeleteConfig = useCallback(async () => {
     onOpen({
       title:
-        "Tracetest will remove the trace data store configuration information and enter the 'No-Tracing Mode'. You can still run tests against the responses until you configure a new trace data store.",
+        "Qualitytrace will remove the trace data store configuration information and enter the 'No-Tracing Mode'. You can still run tests against the responses until you configure a new trace data store.",
       heading: 'Save Confirmation',
       okText: 'Save',
       onConfirm: async () => {

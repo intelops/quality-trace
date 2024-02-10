@@ -69,7 +69,7 @@ const Layout = ({hasMenu = false, customHeader: CustomHeader = Header}: IProps) 
                   <S.Sider width={256}>
                     <S.LogoContainer>
                       <Link to="/">
-                        <img alt="Tracetest logo" src={logoAsset} />
+                        <img alt="Qualitytrace logo" src={logoAsset} />
                       </Link>
                     </S.LogoContainer>
 

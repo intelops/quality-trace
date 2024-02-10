@@ -40,7 +40,7 @@ You can trigger this use case by calling the endpoint `GET /pokemon/25` without 
 
 ## Building a Test for the Described Scenarios
 
-Using Tracetest, we can [create two tests](../../../web-ui/creating-tests.md) that will execute an API call on `GET /pokemon/25` and validate the following scenarios:
+Using Qualitytrace, we can [create two tests](../../../web-ui/creating-tests.md) that will execute an API call on `GET /pokemon/25` and validate the following scenarios:
 1. **An API call with a cache hit.**
    - The API should return a valid result with HTTP 200 OK.
    - The cache should be queried.
@@ -63,7 +63,7 @@ Running these tests for the first time will create an Observability trace with t
 
 ### Assertions
 
-With this trace, we can build [assertions](../../../concepts/assertions.md) on Tracetest and validate API, cache, and database responses:
+With this trace, we can build [assertions](../../../concepts/assertions.md) on Qualitytrace and validate API, cache, and database responses:
 
 - [Both Cases] The API should return a valid result with HTTP 200 OK.
 ![](../images/get-pokemon-by-id-api-test-spec.png)
@@ -84,10 +84,10 @@ Now you can validate this entire use case.
 
 ### Test Definition
 
-If you want to replicate those tests on Tracetest, you can replicate these steps on our Web UI or using our CLI, saving one of the test definitions as the file `test-definition.yml` and running:
+If you want to replicate those tests on Qualitytrace, you can replicate these steps on our Web UI or using our CLI, saving one of the test definitions as the file `test-definition.yml` and running:
 
 ```sh
-tracetest run test -f test-definition.yml
+quality-trace run test -f test-definition.yml
 ```
 
 #### Cache Miss Scenario
@@ -105,21 +105,21 @@ spec:
       - key: Content-Type
         value: application/json
   specs:
-  - selector: span[tracetest.span.type="http" http.method="GET"]
+  - selector: span[quality-trace.span.type="http" http.method="GET"]
     assertions:
     - attr:http.status_code  =  200
     - attr:http.response.body | json_path '$.id'  =  '${var:POKEMON_ID}'
-  - selector: span[tracetest.span.type="database" db.system="redis" db.operation="get"]
+  - selector: span[quality-trace.span.type="database" db.system="redis" db.operation="get"]
     assertions:
     - attr:name  =  "get pokemon-${var:POKEMON_ID}"
-  - selector: span[tracetest.span.type="database" db.system="redis" db.operation="set"]
+  - selector: span[quality-trace.span.type="database" db.system="redis" db.operation="set"]
     assertions:
     - attr:name = "set pokemon-${var:POKEMON_ID}"
   - selector: |-
-      span[tracetest.span.type="database" name="findOne pokeshop.pokemon"
+      span[quality-trace.span.type="database" name="findOne pokeshop.pokemon"
             db.system="postgres" db.name="pokeshop" db.operation="findOne" db.sql.table="pokemon"]
     assertions:
-    - attr:tracetest.selected_spans.count > 0
+    - attr:quality-trace.selected_spans.count > 0
 ```
 
 #### Cache Miss Scenario
@@ -137,17 +137,17 @@ spec:
       - key: Content-Type
         value: application/json
   specs:
-  - selector: span[tracetest.span.type="http" http.method="GET"]
+  - selector: span[quality-trace.span.type="http" http.method="GET"]
     assertions:
     - attr:http.status_code  =  200
     - attr:http.response.body | json_path '$.id'  =  "${var:POKEMON_ID}"
-  - selector: span[tracetest.span.type="database" db.system="redis" db.operation="get"]
+  - selector: span[quality-trace.span.type="database" db.system="redis" db.operation="get"]
     assertions:
     - attr:name = "get pokemon-${var:POKEMON_ID}"
     - attr:db.result | json_path '$.id' = "${var:POKEMON_ID}"
   - selector: |-
-      span[tracetest.span.type="database" name="findOne pokeshop.pokemon"
+      span[quality-trace.span.type="database" name="findOne pokeshop.pokemon"
             db.system="postgres" db.name="pokeshop" db.operation="findOne" db.sql.table="pokemon"]
     assertions:
-    - attr:tracetest.selected_spans.count  =  0
+    - attr:quality-trace.selected_spans.count  =  0
 ```

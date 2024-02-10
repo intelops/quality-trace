@@ -26,7 +26,7 @@ function getOptionsMetadata({
   return {
     [CliCommandOption.UseId]: {label: `Use ${resourceType} ID instead of file`},
     [CliCommandOption.SkipResultWait]: {label: `Skip waiting for ${resourceType} to complete`},
-    [CliCommandOption.UseHostname]: {label: 'Specify QT server hostname'},
+    [CliCommandOption.UseHostname]: {label: 'Specify Qualitytrace server hostname'},
     [CliCommandOption.UseCurrentVariableSet]: {
       label: 'Use selected variable set',
       help: !isVariableSetSelected ? 'This option is only available when a variable set is selected' : undefined,

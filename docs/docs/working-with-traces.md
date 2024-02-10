@@ -12,6 +12,6 @@ Each run of the test is listed here along with the Execution Time, Status, Total
 
 ![Test Run List](img/test-run-list.png)
 
-Select a run of the test and the Tracetest dashboard will display:
+Select a run of the test and the Qualitytrace dashboard will display:
 
-![Tracetest Dashboard](img/tracetest-dashboard.png)
+![Qualitytrace Dashboard](img/quality-trace-dashboard.png)

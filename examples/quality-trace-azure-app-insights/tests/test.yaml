@@ -1,0 +1,21 @@
+type: Test
+spec:
+  id: 4F1jCHJVR
+  name: App Insights
+  description: App Insights
+  trigger:
+    type: http
+    httpRequest:
+      url: http://app:8080/http-request
+      method: GET
+      headers:
+        - key: Content-Type
+          value: application/json
+  specs:
+    - selector: span[quality-trace.span.type="http"]
+      assertions:
+        - attr:quality-trace.selected_spans.count   =   3
+        - attr:quality-trace.span.duration   <   1s
+    - selector: span[quality-trace.span.type="http" name="GET /"]
+      assertions:
+        - attr:http.target =   "/"

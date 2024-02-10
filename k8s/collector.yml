@@ -23,7 +23,7 @@ data:
       logging:
         logLevel: debug
       jaeger:
-        endpoint: jaeger-collector.tracetest:14250
+        endpoint: jaeger-collector.quality-trace:14250
         tls:
           insecure: true
 

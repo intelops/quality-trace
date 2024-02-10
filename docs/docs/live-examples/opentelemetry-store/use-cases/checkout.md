@@ -57,7 +57,7 @@ If it is the first time that you are calling this endpoint, to see an item into 
 
 ## Building a Test for This Scenario
 
-Using Tracetest, we can [create a test](../../../web-ui/creating-tests.md) that will execute an API call on `POST /api/cart` and validate the following properties:
+Using Qualitytrace, we can [create a test](../../../web-ui/creating-tests.md) that will execute an API call on `POST /api/cart` and validate the following properties:
 - An order was placed.
 - The user was charged.
 - The product was shipped.
@@ -70,7 +70,7 @@ Running these tests for the first time will create an Observability trace like t
 
 ### Assertions
 
-With this trace, now we can build [assertions](../../../concepts/assertions.md) on Tracetest and validate the properties:
+With this trace, now we can build [assertions](../../../concepts/assertions.md) on Qualitytrace and validate the properties:
 
 - **An order was placed.**
 ![](../images/checkout-api-test-spec.png)
@@ -88,10 +88,10 @@ Now you can validate this entire use case.
 
 ### Test Definition
 
-To replicate this entire test on Tracetest, you can replicate these steps on our Web UI or using our CLI, saving the following test definition as the file `test-definition.yml` and later running:
+To replicate this entire test on Qualitytrace, you can replicate these steps on our Web UI or using our CLI, saving the following test definition as the file `test-definition.yml` and later running:
 
 ```sh
-tracetest run test -f test-definition.yml
+quality-trace run test -f test-definition.yml
 ```
 
 We are assuming that the Frontend service is exposed on `http://otel-demo-frontend:8080`:
@@ -112,24 +112,24 @@ spec:
       body: '{"userId":"2491f868-88f1-4345-8836-d5d8511a9f83","email":"someone@example.com","address":{"streetAddress":"1600
         Amphitheatre Parkway","state":"CA","country":"United States","city":"Mountain View","zipCode":"94043"},"userCurrency":"USD","creditCard":{"creditCardCvv":672,"creditCardExpirationMonth":1,"creditCardExpirationYear":2030,"creditCardNumber":"4432-8015-6152-0454"}}'
   specs:
-  - selector: span[tracetest.span.type="rpc" name="hipstershop.CheckoutService/PlaceOrder"
+  - selector: span[quality-trace.span.type="rpc" name="hipstershop.CheckoutService/PlaceOrder"
       rpc.system="grpc" rpc.method="PlaceOrder" rpc.service="hipstershop.CheckoutService"]
     assertions: # checking if an order was placed
     - attr:app.user.id = "2491f868-88f1-4345-8836-d5d8511a9f83"
     - attr:app.order.items.count = 1
-  - selector: span[tracetest.span.type="rpc" name="hipstershop.PaymentService/Charge"
+  - selector: span[quality-trace.span.type="rpc" name="hipstershop.PaymentService/Charge"
       rpc.system="grpc" rpc.method="Charge" rpc.service="hipstershop.PaymentService"]
     assertions: # checking if the user was charged
     - attr:rpc.grpc.status_code  =  0
-    - attr:tracetest.selected_spans.count >= 1
-  - selector: span[tracetest.span.type="rpc" name="hipstershop.ShippingService/ShipOrder"
+    - attr:quality-trace.selected_spans.count >= 1
+  - selector: span[quality-trace.span.type="rpc" name="hipstershop.ShippingService/ShipOrder"
       rpc.system="grpc" rpc.method="ShipOrder" rpc.service="hipstershop.ShippingService"]
     assertions: # checking if the product was shipped
     - attr:rpc.grpc.status_code = 0
-    - attr:tracetest.selected_spans.count >= 1
-  - selector: span[tracetest.span.type="rpc" name="hipstershop.CartService/EmptyCart"
+    - attr:quality-trace.selected_spans.count >= 1
+  - selector: span[quality-trace.span.type="rpc" name="hipstershop.CartService/EmptyCart"
       rpc.system="grpc" rpc.method="EmptyCart" rpc.service="hipstershop.CartService"]
     assertions: # checking if the cart was set empty
     - attr:rpc.grpc.status_code = 0
-    - attr:tracetest.selected_spans.count >= 1
+    - attr:quality-trace.selected_spans.count >= 1
 ```

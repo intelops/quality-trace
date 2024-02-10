@@ -21,7 +21,7 @@ func TestRunTestSuite(t *testing.T) {
 		// instantiate require with testing helper
 		require := require.New(t)
 
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 		// And the datasource is already set
 
@@ -45,7 +45,7 @@ func TestRunTestSuite(t *testing.T) {
 		// instantiate require with testing helper
 		require := require.New(t)
 
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 		// And the datasource is already set
 

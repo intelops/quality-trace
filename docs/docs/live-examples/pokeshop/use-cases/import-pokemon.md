@@ -61,7 +61,7 @@ It should return the following payload:
 
 ## Building a Test for This Scenario
 
-Using Tracetest, we can [create a test](../../../web-ui/creating-tests.md) that will execute an API call on `POST /pokemon/import` and validate the following properties:
+Using Qualitytrace, we can [create a test](../../../web-ui/creating-tests.md) that will execute an API call on `POST /pokemon/import` and validate the following properties:
 - The API should enqueue an import task and return HTTP 200 OK.
 - The worker should dequeue the import task.
 - PokeAPI should return a valid response.
@@ -75,7 +75,7 @@ Running these tests for the first time will create an Observability trace like t
 
 ### Assertions
 
-With this trace, we can build [assertions](../../../concepts/assertions.md) on Tracetest and validate the API and Worker behaviors:
+With this trace, we can build [assertions](../../../concepts/assertions.md) on Qualitytrace and validate the API and Worker behaviors:
 
 - **The API should enqueue an import task and return HTTP 200 OK:**
 ![](../images/import-pokemon-message-enqueue-test-spec.png)
@@ -94,10 +94,10 @@ Now you can validate this entire use case.
 
 ### Test Definition
 
-If you want to replicate this entire test on Tracetest, you can replicate these steps on our Web UI or using our CLI, saving the following test definition as the file `test-definition.yml` and later running:
+If you want to replicate this entire test on Qualitytrace, you can replicate these steps on our Web UI or using our CLI, saving the following test definition as the file `test-definition.yml` and later running:
 
 ```sh
-tracetest run test -f test-definition.yml
+quality-trace run test -f test-definition.yml
 ```
 
 ```yaml
@@ -115,24 +115,24 @@ spec:
         value: application/json
       body: '{"id":52}'
   specs:
-  - selector: span[tracetest.span.type="messaging" name="queue.synchronizePokemon
+  - selector: span[quality-trace.span.type="messaging" name="queue.synchronizePokemon
       send" messaging.system="rabbitmq" messaging.destination="queue.synchronizePokemon"]
     assertions:
     - attr:messaging.payload = '{"id":52}'
-  - selector: span[tracetest.span.type="http" name="POST /pokemon/import" http.method="POST"]
+  - selector: span[quality-trace.span.type="http" name="POST /pokemon/import" http.method="POST"]
     assertions:
     - attr:http.status_code = 200
     - attr:http.response.body = '{"id":52}'
-  - selector: span[tracetest.span.type="messaging" name="queue.synchronizePokemon
+  - selector: span[quality-trace.span.type="messaging" name="queue.synchronizePokemon
       receive" messaging.system="rabbitmq" messaging.destination="queue.synchronizePokemon"]
     assertions:
     - attr:name = "queue.synchronizePokemon receive"
-  - selector: span[tracetest.span.type="http" name="HTTP GET pokeapi.pokemon" http.method="GET"]
+  - selector: span[quality-trace.span.type="http" name="HTTP GET pokeapi.pokemon" http.method="GET"]
     assertions:
     - attr:http.response.body  =  '{"name":"meowth"}'
     - attr:http.status_code  =  200
-  - selector: span[tracetest.span.type="database"]
+  - selector: span[quality-trace.span.type="database"]
     assertions:
-    - attr:tracetest.span.duration <= 200ms
+    - attr:quality-trace.span.duration <= 200ms
 
 ```

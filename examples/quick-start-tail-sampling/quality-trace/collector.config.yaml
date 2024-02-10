@@ -1,0 +1,50 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+      http:
+
+processors:
+  batch:
+    timeout: 100ms
+  probabilistic_sampler:
+    hash_seed: 22
+    sampling_percentage: 50.0 # 50%
+  tail_sampling:
+    decision_wait: 10s
+    num_traces: 100
+    expected_new_traces_per_sec: 10
+    policies:
+      [
+        {
+          name: Accept only traces that started from quality-trace,
+          type: trace_state,
+          trace_state: {
+            key: quality-trace,
+            values: ["true"]
+          }
+        }
+      ]
+
+exporters:
+  logging:
+    loglevel: debug
+  otlp/quality-trace:
+    endpoint: quality-trace:4317 # Send traces to Qualitytrace.
+    tls:
+      insecure: true
+  otlp/jaeger:
+    endpoint: jaeger:4317 # Send traces to Jager
+    tls:
+      insecure: true
+
+service:
+  pipelines:
+    traces/quality-trace:
+      receivers: [otlp]
+      processors: [batch, tail_sampling]
+      exporters: [otlp/quality-trace, logging]
+    traces/jaeger:
+      receivers: [otlp]
+      processors: [batch, probabilistic_sampler]
+      exporters: [otlp/jaeger]

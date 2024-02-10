@@ -4,7 +4,7 @@ import "os"
 
 type EnvironmentVars struct {
 	EnableCLIDebug   bool
-	TracetestCommand string
+	QualitytraceCommand string
 	TestEnvironment  string
 }
 
@@ -17,9 +17,9 @@ func GetConfigAsEnvVars() *EnvironmentVars {
 
 	enableCLIDebug := (os.Getenv("ENABLE_CLI_DEBUG") == "true")
 
-	tracetestCommand := os.Getenv("TRACETEST_CLI")
-	if tracetestCommand == "" {
-		tracetestCommand = "qt"
+	qualitytraceCommand := os.Getenv("QUALITYTRACE_CLI")
+	if qualitytraceCommand == "" {
+		qualitytraceCommand = "quality-trace"
 	}
 
 	testEnvironment := os.Getenv("TEST_ENVIRONMENT")
@@ -29,7 +29,7 @@ func GetConfigAsEnvVars() *EnvironmentVars {
 
 	return &EnvironmentVars{
 		EnableCLIDebug:   enableCLIDebug,
-		TracetestCommand: tracetestCommand,
+		QualitytraceCommand: qualitytraceCommand,
 		TestEnvironment:  testEnvironment,
 	}
 }

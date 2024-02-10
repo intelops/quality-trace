@@ -19,8 +19,8 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func getTracetestApp(options ...testmock.TestingAppOption) (*app.App, error) {
-	tracetestApp, err := testmock.GetTestingApp(options...)
+func getQualitytraceApp(options ...testmock.TestingAppOption) (*app.App, error) {
+	qualitytraceApp, err := testmock.GetTestingApp(options...)
 	if err != nil {
 		return nil, err
 	}
@@ -29,24 +29,24 @@ func getTracetestApp(options ...testmock.TestingAppOption) (*app.App, error) {
 	wg.Add(1)
 
 	go func() {
-		tracetestApp.Start()
+		qualitytraceAppApp.Start()
 		time.Sleep(1 * time.Second)
 		wg.Done()
 	}()
 
 	wg.Wait()
 
-	return tracetestApp, nil
+	return qualitytraceAppApp, nil
 }
 
 func TestServerPrefix(t *testing.T) {
-	_, err := getTracetestApp(
-		testmock.WithServerPrefix("/tracetest"),
+	_, err := getQualitytraceApp(
+		testmock.WithServerPrefix("/quality-trace"),
 		testmock.WithHttpPort(8000),
 	)
 	require.NoError(t, err)
 
-	expectedEndpoint := "http://localhost:8000/tracetest"
+	expectedEndpoint := "http://localhost:8000/quality-trace"
 	tests := getTests(t, expectedEndpoint)
 	assert.NotNil(t, tests)
 

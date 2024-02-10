@@ -14,7 +14,7 @@ import (
 func addGetTestSuitePreReqs(t *testing.T, env environment.Manager) {
 	cliConfig := env.GetCLIConfigPath(t)
 
-	// Given I am a Tracetest CLI user
+	// Given I am a Qualitytrace CLI user
 	// And I have my server recently created
 
 	// When I try to set up a new testsuite
@@ -35,7 +35,7 @@ func TestGetTestSuite(t *testing.T) {
 	cliConfig := env.GetCLIConfigPath(t)
 
 	t.Run("get with no testsuite initialized", func(t *testing.T) {
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 		// And no testsuite registered
 
@@ -49,7 +49,7 @@ func TestGetTestSuite(t *testing.T) {
 	addGetTestSuitePreReqs(t, env)
 
 	t.Run("get with YAML format", func(t *testing.T) {
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 		// And I have a TestSuite already set
 
@@ -70,7 +70,7 @@ func TestGetTestSuite(t *testing.T) {
 	})
 
 	t.Run("get with JSON format", func(t *testing.T) {
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 		// And I have a TestSuite already set
 
@@ -95,7 +95,7 @@ func TestGetTestSuite(t *testing.T) {
 	})
 
 	t.Run("get with pretty format", func(t *testing.T) {
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 		// And I have a TestSuite already set
 

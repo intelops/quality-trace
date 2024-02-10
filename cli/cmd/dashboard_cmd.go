@@ -11,12 +11,12 @@ import (
 var dashboardCmd = &cobra.Command{
 	GroupID: cmdGroupMisc.ID,
 	Use:     "dashboard",
-	Short:   "Opens the qt Dashboard URL",
-	Long:    "Opens the qt Dashboard URL",
+	Short:   "Opens the quality-trace Dashboard URL",
+	Long:    "Opens the quality-trace Dashboard URL",
 	PreRun:  setupCommand(),
 	Run: WithResultHandler(func(_ *cobra.Command, _ []string) (string, error) {
 		if cliConfig.IsEmpty() {
-			return "", fmt.Errorf("missing Tracetest endpoint configuration")
+			return "", fmt.Errorf("missing quality-trace endpoint configuration")
 		}
 
 		err := openBrowser(cliConfig.URL())

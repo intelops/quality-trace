@@ -4,7 +4,7 @@ The Test Runner settings allow you to configure the default behavior used when e
 
 ## Setting Up the Default Test Runner Settings
 
-In the Tracetest settings, on the **Test Runner** tab, select the default gates used for every test to determine success or failure:
+In the Qualitytrace settings, on the **Test Runner** tab, select the default gates used for every test to determine success or failure:
 
 ![Test Runner](./img/test-runner-settings.png)
 

@@ -1,7 +1,7 @@
 {
-  "index_name": "docs_tracetest",
+  "index_name": "docs_quality-trace",
   "sitemap_urls": [
-    "https://docs.tracetest.io/sitemap.xml"
+    "https://docs.quality-trace.io/sitemap.xml"
   ],
   "sitemap_alternate_links": true,
   "stop_urls": [

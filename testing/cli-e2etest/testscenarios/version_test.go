@@ -19,8 +19,8 @@ func TestVersionCommand(t *testing.T) {
 
 	cliConfig := env.GetCLIConfigPath(t)
 
-	// Given I am a Tracetest CLI user
-	// When I try to check the tracetest version
+	// Given I am a Qualitytrace CLI user
+	// When I try to check the quality-trace version
 	// Then I should receive a version string with success
 	result := tracetestcli.Exec(t, "version", tracetestcli.WithCLIConfig(cliConfig))
 

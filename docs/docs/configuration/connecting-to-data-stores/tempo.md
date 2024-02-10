@@ -1,9 +1,9 @@
 # Tempo
 
-Tracetest fetches traces from [Tempo on the default gRPC port](https://grafana.com/docs/tempo/latest/configuration/#server) `9095`, or [default HTTP port](https://grafana.com/docs/tempo/latest/configuration/#server) `80`.
+Qualitytrace fetches traces from [Tempo on the default gRPC port](https://grafana.com/docs/tempo/latest/configuration/#server) `9095`, or [default HTTP port](https://grafana.com/docs/tempo/latest/configuration/#server) `80`.
 
 :::tip
-Examples of configuring Tracetest can be found in the [`examples` folder of the Tracetest GitHub repo](https://github.com/kubeshop/tracetest/tree/main/examples).
+Examples of configuring Qualitytrace can be found in the [`examples` folder of the Qualitytrace GitHub repo](https://github.com/intelops/quality-trace/tree/main/examples).
 :::
 
 ## Configure Tempo
@@ -56,17 +56,17 @@ storage:
       queue_depth: 10000
 ```
 
-## Configure Tracetest to Use Tempo as a Trace Data Store
+## Configure Qualitytrace to Use Tempo as a Trace Data Store
 
-Configure Tracetest to be aware that it has to fetch trace data from Tempo.
+Configure Qualitytrace to be aware that it has to fetch trace data from Tempo.
 
-Tracetest uses [Tempo's gRPC endpoint](https://grafana.com/docs/tempo/latest/configuration/#server) on port `9095` to fetch trace data. Alternatively, you can use Tempo's HTTP endpoint and default port `80`.
+Qualitytrace uses [Tempo's gRPC endpoint](https://grafana.com/docs/tempo/latest/configuration/#server) on port `9095` to fetch trace data. Alternatively, you can use Tempo's HTTP endpoint and default port `80`.
 
 :::tip
 Need help configuring the OpenTelemetry Collector so send trace data from your application to Jaeger? Read more in [the reference page here](../opentelemetry-collector-configuration-file-reference)).
 :::
 
-## Connect Tracetest to Tempo with the Web UI
+## Connect Qualitytrace to Tempo with the Web UI
 
 IIn the Web UI, (1) open Settings, and, on the (2) Configure Data Store tab, (3) select Tempo. Then, select either `gRPC` or `HTTP`.
 
@@ -90,7 +90,7 @@ http://tempo
 
 <!---![](https://res.cloudinary.com/djwdcmwdz/image/upload/v1678982310/Blogposts/Docs/screely-1678982283099_ywstac.png)-->
 
-## Connect Tracetest to Tempo with the CLI
+## Connect Qualitytrace to Tempo with the CLI
 
 Or, if you prefer using the CLI, you can use this file config.
 
@@ -129,9 +129,9 @@ spec:
 Proceed to run this command in the terminal, and specify the file above.
 
 ```bash
-tracetest apply datastore -f my/data-store/file/location.yaml
+quality-trace apply datastore -f my/data-store/file/location.yaml
 ```
 
 :::tip
-To learn more, [read the recipe on running a sample app with Tempo and Tracetest](../../examples-tutorials/recipes/running-tracetest-with-tempo.md).
+To learn more, [read the recipe on running a sample app with Tempo and Qualitytrace](../../examples-tutorials/recipes/running-quality-trace-with-tempo.md).
 :::

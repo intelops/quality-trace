@@ -11,8 +11,8 @@ processors:
 exporters:
   logging:
     loglevel: debug
-  otlp/tracetest:
-    endpoint: tracetest:4317
+  otlp/quality-trace:
+    endpoint: quality-trace:4317
     tls:
       insecure: true
 
@@ -21,4 +21,4 @@ service:
     traces:
       receivers: [otlp]
       processors: [batch]
-      exporters: [otlp/tracetest]
+      exporters: [otlp/quality-trace]

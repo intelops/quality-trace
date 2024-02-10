@@ -60,10 +60,10 @@ func (db *signalfxDB) TestConnection(ctx context.Context) model.ConnectionResult
 		connection.WithAuthenticationTest(connection.NewTestStep(func(ctx context.Context) (string, error) {
 			_, err := db.GetTraceByID(ctx, trace.TraceID{}.String())
 			if strings.Contains(strings.ToLower(err.Error()), "401") {
-				return "Tracetest tried to execute an signalFX API request but it failed due to authentication issues", err
+				return "Qualitytrace tried to execute an signalFX API request but it failed due to authentication issues", err
 			}
 
-			return "Tracetest managed to authenticate with signalFX", nil
+			return "Qualitytrace managed to authenticate with signalFX", nil
 		})),
 	)
 	return tester.TestConnection(ctx)
@@ -178,8 +178,8 @@ func convertSignalFXSpan(in signalFXSpan) traces.Span {
 		attributes[name] = value
 	}
 
-	attributes[traces.TracetestMetadataFieldParentID] = in.ParentID
-	attributes[traces.TracetestMetadataFieldKind] = attributes["span.kind"]
+	attributes[traces.QualitytraceMetadataFieldParentID] = in.ParentID
+	attributes[traces.QualitytraceMetadataFieldKind] = attributes["span.kind"]
 	delete(attributes, "span.kind")
 
 	spanID, _ := trace.SpanIDFromHex(in.SpanID)

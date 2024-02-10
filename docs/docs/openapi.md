@@ -1,1 +1,1 @@
-!!swagger-http https://raw.githubusercontent.com/kubeshop/tracetest/main/api/openapi.yaml!!
+!!swagger-http https://raw.githubusercontent.com/intelops/quality-trace/main/api/openapi.yaml!!

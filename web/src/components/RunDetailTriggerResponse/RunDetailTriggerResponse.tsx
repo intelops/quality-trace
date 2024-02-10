@@ -25,7 +25,7 @@ const TabsKeys = {
   VariableSet: 'variable-set',
 };
 
-const tracetestTriggerSelector = 'span[tracetest.span.type="general" name="Tracetest trigger"]';
+const qualitytraceTriggerSelector = 'span[quality-trace.span.type="general" name="Qualitytrace trigger"]';
 
 const RunDetailTriggerResponse = ({
   runId,
@@ -47,7 +47,7 @@ const RunDetailTriggerResponse = ({
   const handleCreateTestOutput = useCallback(
     ({key}: TSpanFlatAttribute) => {
       TestRunAnalyticsService.onAddAssertionButtonClick();
-      const selector = tracetestTriggerSelector;
+      const selector = qualitytraceTriggerSelector;
 
       const output = TestOutput({
         selector,
@@ -64,7 +64,7 @@ const RunDetailTriggerResponse = ({
   const handleCreateTestSpec = useCallback(
     ({value, key}: TSpanFlatAttribute) => {
       TestRunAnalyticsService.onAddAssertionButtonClick();
-      const selector = tracetestTriggerSelector;
+      const selector = qualitytraceTriggerSelector;
 
       open({
         isEditing: false,
@@ -96,7 +96,7 @@ const RunDetailTriggerResponse = ({
               Status: <S.StatusSpan $isError={statusCode >= 400}>{statusCode}</S.StatusSpan>
             </S.StatusText>
             <AttributeActions
-              attribute={{key: 'tracetest.response.status', value: `${statusCode}`}}
+              attribute={{key: 'quality-trace.response.status', value: `${statusCode}`}}
               onCreateTestOutput={handleCreateTestOutput}
               onCreateTestSpec={handleCreateTestSpec}
             />
@@ -109,7 +109,7 @@ const RunDetailTriggerResponse = ({
               </S.StatusSpan>
             </S.StatusText>
             <AttributeActions
-              attribute={{key: 'tracetest.span.duration', value: `${triggerTime}ms`}}
+              attribute={{key: 'quality-trace.span.duration', value: `${triggerTime}ms`}}
               onCreateTestOutput={handleCreateTestOutput}
               onCreateTestSpec={handleCreateTestSpec}
             />

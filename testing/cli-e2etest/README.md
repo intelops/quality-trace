@@ -1,7 +1,7 @@
-# Tracetest CLI e2e Tests
+# Qualitytrace CLI e2e Tests
 
 In this folder we have the End-to-end tests done on the CLI to guarantee that the CLI is working fine. 
-The main idea is to test every CLI command against the Tracetest server with different data stores and different operating systems.
+The main idea is to test every CLI command against the Qualitytrace server with different data stores and different operating systems.
 
 ## Implementation Status
 
@@ -9,7 +9,7 @@ The main idea is to test every CLI command against the Tracetest server with dif
 | ------------------ | ------- | ------ |
 | :white_check_mark: | :soon:  | :soon: |
 
-## Tracetest Data Store
+## Qualitytrace Data Store
 
 | Jaeger             | Tempo  | OpenSearch | SignalFx | OTLP   | ElasticAPM | New Relic | Lightstep | Datadog | AWS X-Ray | Honeycomb | Dynatrace |
 | ------------------ | ------ | ---------- | -------- | ------ | ---------- | --------- | --------- | ------- | --------- | --------- | --------- |

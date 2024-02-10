@@ -55,7 +55,7 @@ export const SemanticGroupNamesToSystem = {
   [SemanticGroupNames.Compatibility]: '',
 } as const;
 
-export const BASE_ATTRIBUTES = [Attributes.TRACETEST_SPAN_TYPE, Attributes.SERVICE_NAME, Attributes.NAME];
+export const BASE_ATTRIBUTES = [Attributes.QUALITYTRACE_SPAN_TYPE, Attributes.SERVICE_NAME, Attributes.NAME];
 
 export const SELECTOR_DEFAULT_ATTRIBUTES = [
   {

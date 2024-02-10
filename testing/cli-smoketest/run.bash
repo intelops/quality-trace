@@ -6,11 +6,11 @@ export TAG=${TAG:-"latest"}
 export TEST_ENV=${TEST_ENV:-"local"}
 
 if [ $TEST_ENV = "local" ]; then
-  export TRACETEST_ENDPOINT="localhost:11633"
-  export TRACETEST_CLI_COMMAND=$TRACETEST_CLI
+  export QUALITYTRACE_ENDPOINT="localhost:11633"
+  export QUALITYTRACE_CLI_COMMAND=$QUALITYTRACE_CLI
 else
-  export TRACETEST_ENDPOINT="host.docker.internal:11633"
-  export TRACETEST_CLI_COMMAND="docker run --volume $PWD/tests:/app/tests --entrypoint tracetest --add-host=host.docker.internal:host-gateway kubeshop/tracetest:$TAG"
+  export QUALITYTRACE_ENDPOINT="host.docker.internal:11633"
+  export QUALITYTRACE_CLI_COMMAND="docker run --volume $PWD/tests:/app/tests --entrypoint quality-trace --add-host=host.docker.internal:host-gateway intelops/quality-trace:$TAG"
 fi
 
 echo "Preparing to run CLI tests..."
@@ -19,17 +19,17 @@ echo ""
 echo "Environment variables considered on this run:"
 echo "TAG:                   $TAG"
 echo "TEST_ENV:              $TEST_ENV"
-echo "TRACETEST_ENDPOINT:    $TRACETEST_ENDPOINT"
-echo "TRACETEST_CLI_COMMAND: $TRACETEST_CLI_COMMAND"
+echo "QUALITYTRACE_ENDPOINT:    $QUALITYTRACE_ENDPOINT"
+echo "QUALITYTRACE_CLI_COMMAND: $QUALITYTRACE_CLI_COMMAND"
 echo ""
 
-echo "Setting up tracetest CLI configuration..."
+echo "Setting up quality-trace CLI configuration..."
 cat << EOF > tests/config.yml
 scheme: http
-endpoint: $TRACETEST_ENDPOINT
+endpoint: $QUALITYTRACE_ENDPOINT
 analyticsEnabled: false
 EOF
-echo "tracetest CLI set up."
+echo "quality-trace CLI set up."
 echo ""
 
 echo "Setting up test helpers..."
@@ -37,7 +37,7 @@ echo "Setting up test helpers..."
 run_cli_command() {
   args=$1
 
-  $TRACETEST_CLI_COMMAND --config ./tests/config.yml $args
+  $QUALITYTRACE_CLI_COMMAND --config ./tests/config.yml $args
   return $?
 }
 

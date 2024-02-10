@@ -1,9 +1,9 @@
 ---
 id: installation
-title: Installing Tracetest
-description: Tracetest allows you to quickly build integration and end-to-end tests, powered by your OpenTelemetry traces.
+title: Installing Qualitytrace
+description: Qualitytrace allows you to quickly build integration and end-to-end tests, powered by your OpenTelemetry traces.
 keywords:
-  - tracetest
+  - quality-trace
   - trace-based testing
   - observability
   - distributed tracing
@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import GtagInstallCliTabs from '@site/src/components/GtagInstallCliTabs';
 
-This page showcases getting started with Tracetest by using the Tracetest CLI, Docker, or Kubernetes.
+This page showcases getting started with Qualitytrace by using the Qualitytrace CLI, Docker, or Kubernetes.
 
-This simple installation includes a demo app called [Pokeshop](../live-examples/pokeshop/overview.md) that will be installed alongside Tracetest. It shows how to configure OpenTelemetry and Tracetest and the architecture of the Pokeshop sample app.
+This simple installation includes a demo app called [Pokeshop](../live-examples/pokeshop/overview.md) that will be installed alongside Qualitytrace. It shows how to configure OpenTelemetry and Qualitytrace and the architecture of the Pokeshop sample app.
 
-## Install the Tracetest CLI
+## Install the Qualitytrace CLI
 
 <GtagInstallCliTabs></GtagInstallCliTabs>
 
@@ -28,21 +28,21 @@ This simple installation includes a demo app called [Pokeshop](../live-examples/
 Read the CLI installation reference [here](../cli/cli-installation-reference.md).
 :::
 
-## Install the Tracetest Server
+## Install the Qualitytrace Server
 
-Tracetest runs as a standalone container. It runs a Server and exposes a Web UI on port `11633`.
+Qualitytrace runs as a standalone container. It runs a Server and exposes a Web UI on port `11633`.
 
-You have three options to install Tracetest Server:
+You have three options to install Qualitytrace Server:
 
-- Using the Tracetest CLI to guide your installation in Docker and Kubernetes.
-- Using the official [Helm chart](https://github.com/kubeshop/helm-charts/tree/main/charts/tracetest).
-- Using the [Docker Compose Quick Start with the Pokeshop Sample App](https://github.com/kubeshop/tracetest/tree/main/examples/quick-start-pokeshop).
+- Using the Qualitytrace CLI to guide your installation in Docker and Kubernetes.
+- Using the official [Helm chart](https://intelops.github.io/quality-trace/).
+- Using the [Docker Compose Quick Start with the Pokeshop Sample App](https://github.com/kubeshoptracetest/tree/main/examples/quick-start-pokeshop).
 
 <Tabs groupId="installation">
-  <TabItem value="cli" label="Tracetest CLI" default>
+  <TabItem value="cli" label="Qualitytrace CLI" default>
 
 ```bash title="Terminal"
-tracetest server install
+quality-trace server install
 ```
 
 <Tabs groupId="container-orchestrators">
@@ -51,23 +51,23 @@ tracetest server install
         language="text"
         title="Terminal"
     >
-    {`How do you want to run TraceTest? [type to search]:
+    {`How do you want to run Qualitytrace? [type to search]:
 > Using Docker Compose
   Using Kubernetes`}
     </CodeBlock>
 
-Choose to install Tracetest with the OpenTelemetry Collector and the [Pokeshop](../live-examples/pokeshop/overview.md) sample app.
+Choose to install Qualitytrace with the OpenTelemetry Collector and the [Pokeshop](../live-examples/pokeshop/overview.md) sample app.
 
 ```text title="Expected output:"
 Do you have OpenTelemetry based tracing already set up, or would you like us to install a demo tracing environment and app? [type to search]: 
-  I have a tracing environment already. - Just install Tracetest.
-> Just learning tracing! Install Tracetest, OpenTelemetry Collector and the sample app.
+  I have a tracing environment already. - Just install Qualitytrace.
+> Just learning tracing! Install Qualitytrace, OpenTelemetry Collector and the sample app.
 ```
 
-Choosing any option, this installer will create a `tracetest` directory in the current directory and add a `docker-compose.yaml` file to it.
+Choosing any option, this installer will create a `quality-trace` directory in the current directory and add a `docker-compose.yaml` file to it.
 
-- If you choose the first option, the `docker-compose.yaml` will have only Tracetest and its dependencies.
-- **By choosing the second option, a sample app called [Pokeshop](../live-examples/pokeshop/overview.md) will be installed with Tracetest, allowing you to create sample tests right away!**
+- If you choose the first option, the `docker-compose.yaml` will have only Qualitytrace and its dependencies.
+- **By choosing the second option, a sample app called [Pokeshop](../live-examples/pokeshop/overview.md) will be installed with Qualitytrace, allowing you to create sample tests right away!**
 
 <details>
   <summary>
@@ -81,7 +81,7 @@ Here's the Architecture of the Pokeshop Sample App:
 
 The communication between the API and Worker is made using a `RabbitMQ` queue, and both services emit telemetry data to OpenTelemetry Collector and communicate with a Postgres database.
 
-Tracetest triggers tests against the Node.js API.
+Qualitytrace triggers tests against the Node.js API.
 
 ```mermaid
 flowchart TD
@@ -91,7 +91,7 @@ flowchart TD
     D(RabbitMQ)
     E(Worker)
     F(OpenTelemetry Collector)
-    G(Tracetest)
+    G(Qualitytrace)
 
     G --> C
     F --> G
@@ -107,16 +107,16 @@ flowchart TD
 ```
 </details>
 
-**Start Docker Compose from the directory where you ran `tracetest server install`.**
+**Start Docker Compose from the directory where you ran `quality-trace server install`.**
 
 <CodeBlock
   language="bash"
   title="Terminal"
 >
-{`docker compose -f tracetest/docker-compose.yaml up -d`}
+{`docker compose -f quality-trace/docker-compose.yaml up -d`}
 </CodeBlock>
 
-This will start the Tracetest Server and expose the Web UI on [`http://localhost:11633`](http://localhost:11633).
+This will start the Qualitytrace Server and expose the Web UI on [`http://localhost:11633`](http://localhost:11633).
 
   </TabItem>
   <TabItem value="kubernetes" label="Kubernetes">
@@ -124,23 +124,23 @@ This will start the Tracetest Server and expose the Web UI on [`http://localhost
         language="text"
         title="Terminal"
     >
-    {`How do you want to run TraceTest? [type to search]:
+    {`How do you want to run Qualitytrace? [type to search]:
   Using Docker Compose
 > Using Kubernetes`}
     </CodeBlock>
 
-Choose to install Tracetest with the OpenTelemetry Collector and the [Pokeshop](../live-examples/pokeshop/overview.md) sample app.
+Choose to install Qualitytrace with the OpenTelemetry Collector and the [Pokeshop](../live-examples/pokeshop/overview.md) sample app.
 
 ```text title="Expected output:"
 Do you have OpenTelemetry based tracing already set up, or would you like us to install a demo tracing environment and app? [type to search]: 
-  I have a tracing environment already - Just install Tracetest.
-> Just learning tracing! Install Tracetest, OpenTelemetry Collector and the sample app.
+  I have a tracing environment already - Just install Qualitytrace.
+> Just learning tracing! Install Qualitytrace, OpenTelemetry Collector and the sample app.
 ```
 
-Choosing any option, this installer will create a `tracetest` namespace in the Kubernetes context you choose and create deployments for Tracetest and its dependencies.
+Choosing any option, this installer will create a `quality-trace` namespace in the Kubernetes context you choose and create deployments for Qualitytrace and its dependencies.
 
-- If you choose the first option, the `tracetest` namespace will only contain Tracetest and its dependencies.
-- **By choosing the second option, a sample app called [Pokeshop](../live-examples/pokeshop/overview.md) will be installed in a `demo` namespace alongside Tracetest, allowing you to create sample tests right away!**
+- If you choose the first option, the `quality-trace` namespace will only contain Qualitytrace and its dependencies.
+- **By choosing the second option, a sample app called [Pokeshop](../live-examples/pokeshop/overview.md) will be installed in a `demo` namespace alongside Qualitytrace, allowing you to create sample tests right away!**
 
 <details>
   <summary>
@@ -154,7 +154,7 @@ Here's the Architecture of the Pokeshop Sample App:
 
 The communication between the API and Worker is made using a `RabbitMQ` queue, and both services emit telemetry data to OpenTelemetry Collector and communicate with a Postgres database.
 
-Tracetest triggers tests against the Node.js API.
+Qualitytrace triggers tests against the Node.js API.
 
 ```mermaid
 flowchart TD
@@ -164,7 +164,7 @@ flowchart TD
     D(RabbitMQ)
     E(Worker)
     F(OpenTelemetry Collector)
-    G(Tracetest)
+    G(Qualitytrace)
 
     G --> C
     F --> G
@@ -180,7 +180,7 @@ flowchart TD
 ```
 </details>
 
-**Access the Tracetest Server by port forwarding to the Tracetest `service`.**
+**Access the Qualitytrace Server by port forwarding to the Qualitytrace `service`.**
 
 ```bash title=Terminal
 export POD_NAME=$(kubectl get pods --namespace demo -l "app.kubernetes.io/name=pokemon-api,app.kubernetes.io/instance=demo" -o jsonpath="{.items[0].metadata.name}")
@@ -188,11 +188,11 @@ export CONTAINER_PORT=$(kubectl get pod --namespace demo $POD_NAME -o jsonpath="
 kubectl --namespace demo port-forward $POD_NAME 8080:$CONTAINER_PORT
 echo "Open http://127.0.0.1:8080 to view the Pokeshop demo app"
 
-kubectl --kubeconfig <path-to-your-home>/.kube/config --context <your-cluster-context> --namespace tracetest port-forward svc/tracetest 11633
-echo "Open http://127.0.0.1:11633 to view the Tracetest Web UI"
+kubectl --kubeconfig <path-to-your-home>/.kube/config --context <your-cluster-context> --namespace quality-trace port-forward svc/quality-trace 11633
+echo "Open http://127.0.0.1:11633 to view the Qualitytrace Web UI"
 ```
 
-Access the Tracetest Web UI on [`http://localhost:11633`](http://localhost:11633).
+Access the Qualitytrace Web UI on [`http://localhost:11633`](http://localhost:11633).
 
   </TabItem>
 </Tabs>
@@ -202,35 +202,35 @@ Access the Tracetest Web UI on [`http://localhost:11633`](http://localhost:11633
 
 First, be sure that you have [Helm](https://helm.sh/) installed in your machine.
 
-The Tracetest Helm charts are located [here](https://github.com/kubeshop/helm-charts/tree/main/charts/tracetest).
+The Qualitytrace Helm charts are located [here](https://intelops.github.io/quality-trace/).
 
 You can install them locally on your machine with the command:
 
 ```bash title=Terminal
-helm repo add kubeshop https://kubeshop.github.io/helm-charts
+helm repo add quality-trace https://intelops.github.io/quality-trace
 helm repo update
 ```
 
-After that, you can install Tracetest with `helm install`:
+After that, you can install Qualitytrace with `helm install`:
 
 ```bash title=Terminal
-helm install tracetest kubeshop/tracetest --namespace=tracetest --create-namespace
+helm install quality-trace intelops/quality-trace --namespace=quality-trace --create-namespace
 ```
 
 Or, generate a manifest file and apply it manually in your Kubernetes cluster:
 
 ```bash title=Terminal
-helm template tracetest kubeshop/tracetest > tracetest-kubernetes-manifests.yaml
-kubectl apply -f ./tracetest-kubernetes-manifests.yaml
+helm template quality-trace intelops/quality-trace > quality-trace-kubernetes-manifests.yaml
+kubectl apply -f ./quality-trace-kubernetes-manifests.yaml
 ```
 
-**Access the Tracetest Server by port forwarding to the Tracetest `service`.**
+**Access the Qualitytrace Server by port forwarding to the Qualitytrace `service`.**
 
 ```bash title=Terminal
-kubectl --kubeconfig <path-to-your-home>/.kube/config --context <your-cluster-context> --namespace tracetest port-forward svc/tracetest 11633
+kubectl --kubeconfig <path-to-your-home>/.kube/config --context <your-cluster-context> --namespace quality-trace port-forward svc/quality-trace 11633
 ```
 
-Access the Tracetest Web UI on [`http://localhost:11633`](http://localhost:11633).
+Access the Qualitytrace Web UI on [`http://localhost:11633`](http://localhost:11633).
 
   </TabItem>
   <TabItem value="docker-compose" label="Docker Compose">
@@ -239,7 +239,7 @@ First, be sure that you have [Docker](https://docker.com/) installed in your mac
 
 The Quick Start with the Pokeshop Sample App is located [here](https://github.com/kubeshop/tracetest/tree/main/examples/quick-start-pokeshop).
 
-**The [`docker-compose.yaml`](https://github.com/kubeshop/tracetest/blob/main/examples/quick-start-pokeshop/docker-compose.yml) contains Tracetest, the OpenTelemetry Collector, and a sample app called [Pokeshop](../live-examples/pokeshop/overview.md). This allows you to create sample tests right away!**
+<!-- **The [`docker-compose.yaml`](https://github.com/kubeshop/tracetest/blob/main/examples/quick-start-pokeshop/docker-compose.yml) contains Tracetest, the OpenTelemetry Collector, and a sample app called [Pokeshop](../live-examples/pokeshop/overview.md). This allows you to create sample tests right away!** -->
 
 <details>
   <summary>
@@ -253,7 +253,7 @@ Here's the Architecture of the Pokeshop Sample App:
 
 The communication between the API and Worker is made using a `RabbitMQ` queue, and both services emit telemetry data to OpenTelemetry Collector and communicate with a Postgres database.
 
-Tracetest triggers tests against the Node.js API.
+Qualitytrace triggers tests against the Node.js API.
 
 ```mermaid
 flowchart TD
@@ -263,7 +263,7 @@ flowchart TD
     D(RabbitMQ)
     E(Worker)
     F(OpenTelemetry Collector)
-    G(Tracetest)
+    G(Qualitytrace)
 
     G --> C
     F --> G
@@ -288,13 +288,13 @@ flowchart TD
 {`docker compose -f docker-compose.yaml up -d`}
 </CodeBlock>
 
-This will start the Tracetest Server and expose the Web UI on [`http://localhost:11633`](http://localhost:11633).
+This will start the Qualitytrace Server and expose the Web UI on [`http://localhost:11633`](http://localhost:11633).
 
   </TabItem>
 </Tabs>
 
 :::tip Don't have OpenTelemetry installed?
-Tracetest requires that you have [OpenTelemetry instrumentation](https://opentelemetry.io/docs/instrumentation/) added in your code, and configured [sending traces to a trace data store](../configuration/connecting-to-data-stores/jaeger.md), or [Tracetest directly](../configuration/connecting-to-data-stores/opentelemetry-collector.md).
+Qualitytrace requires that you have [OpenTelemetry instrumentation](https://opentelemetry.io/docs/instrumentation/) added in your code, and configured [sending traces to a trace data store](../configuration/connecting-to-data-stores/jaeger.md), or [Qualitytrace directly](../configuration/connecting-to-data-stores/opentelemetry-collector.md).
 
 [Follow these instructions to install OpenTelemetry in 5 minutes without any code changes!](./no-otel.mdx)
 :::

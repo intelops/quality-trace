@@ -11,7 +11,7 @@ var (
 	KubernetesContext = ""
 )
 
-const createIssueMsg = "If you need help, please create an issue: https://github.com/kubeshop/tracetest/issues/new/choose"
+const createIssueMsg = "If you need help, please create an issue: https://github.com/intelops/quality-trace/issues/new/choose"
 
 func Start() {
 	ui := cliUI.DefaultUI
@@ -19,31 +19,30 @@ func Start() {
 	ui.Banner()
 
 	ui.Println(`
-Hi! Welcome to the QT server installer. I'll help you set up your QT server by asking you a few questions
-and configuring your system with all the requirements, so you can start TraceTesting right away!
+Hi! Welcome to the Qualitytrace server installer. I'll help you set up your Qualitytrace  server by asking you a few questions
+and configuring your system with all the requirements, so you can start Qualitytracing right away!
 
-To get more info about QT, you can check our docs at https://kubeshop.github.io/tracetest/
+To get more info about Qualitytrace , you can check our docs at https://intelops.github.io/quality-trace/
 
-If you have any issues, please let us know by creating an issue (https://github.com/kubeshop/tracetest/issues/new/choose)
-or reach us on Discord https://discord.gg/6zupCZFQbe
+If you have any issues, please let us know by creating an issue (https://github.com/intelops/quality-trace/issues/new/choose)
 
 `)
 
 	if RunEnvironment == DockerRunEnvironmentType { // check if docker was previously chosen as a CLI arg
-		ui.Println("How do you want to run TraceTest?")
+		ui.Println("How do you want to run Quality-trace?")
 		ui.Println("  > Using Docker Compose")
 		dockerCompose.Install(ui)
 		return
 	}
 
 	if RunEnvironment == KubernetesRunEnvironmentType { // check if kubernetes was previously chosen as a CLI arg
-		ui.Println("How do you want to run TraceTest?")
+		ui.Println("How do you want to run Quality-trace?")
 		ui.Println("  > Using Kubernetes")
 		kubernetes.Install(ui)
 		return
 	}
 
-	option := ui.Select("How do you want to run TraceTest?", []cliUI.Option{
+	option := ui.Select("How do you want to run Quality-trace?", []cliUI.Option{
 		{Text: "Using Docker Compose", Fn: dockerCompose.Install},
 		{Text: "Using Kubernetes", Fn: kubernetes.Install},
 	}, 0)
@@ -64,7 +63,7 @@ func (i installer) PreCheck(ui cliUI.UI) {
 		pc(ui)
 	}
 
-	ui.Title("Your system is ready! Now, let's configure TraceTest")
+	ui.Title("Your system is ready! Now, let's configure Qualitytrace")
 }
 
 func (i installer) Configure(ui cliUI.UI) configuration {
@@ -85,7 +84,7 @@ func (i installer) Install(ui cliUI.UI) {
 
 	conf := i.Configure(ui)
 
-	ui.Title("Thanks! We are ready to install TraceTest now")
+	ui.Title("Thanks! We are ready to install Qualitytrace now")
 
 	i.installFn(conf, ui)
 }
@@ -95,24 +94,24 @@ type preChecker func(ui cliUI.UI)
 func setInstallationType(ui cliUI.UI, config configuration) {
 	if InstallationMode == WithoutDemoInstallationModeType { // check if it was previously chosen
 		ui.Println("Do you have OpenTelemetry based tracing already set up, or would you like us to install a demo tracing environment and app?")
-		ui.Println("  > I have a tracing environment already. Just install Tracetest")
-		config.set("installer.only_tracetest", true)
+		ui.Println("  > I have a tracing environment already. Just install Qualitytrace")
+		config.set("installer.only_quality-trace", true)
 		return
 	}
 
 	if InstallationMode == WithDemoInstallationModeType { // check if it was previously chosen
 		ui.Println("Do you have OpenTelemetry based tracing already set up, or would you like us to install a demo tracing environment and app?")
-		ui.Println("  > Just learning tracing! Install Tracetest, OpenTelemetry Collector and the sample app.")
-		config.set("installer.only_tracetest", false)
+		ui.Println("  > Just learning tracing! Install Quality-trace, OpenTelemetry Collector and the sample app.")
+		config.set("installer.only_quality-trace", false)
 		return
 	}
 
 	option := ui.Select("Do you have OpenTelemetry based tracing already set up, or would you like us to install a demo tracing environment and app?", []cliUI.Option{
-		{Text: "I have a tracing environment already. Just install Tracetest", Fn: func(ui cliUI.UI) {
-			config.set("installer.only_tracetest", true)
+		{Text: "I have a tracing environment already. Just install Qualitytrace", Fn: func(ui cliUI.UI) {
+			config.set("installer.only_quality-trace", true)
 		}},
-		{Text: "Just learning tracing! Install Tracetest, OpenTelemetry Collector and the sample app.", Fn: func(ui cliUI.UI) {
-			config.set("installer.only_tracetest", false)
+		{Text: "Just learning tracing! Install Qualitytrace, OpenTelemetry Collector and the sample app.", Fn: func(ui cliUI.UI) {
+			config.set("installer.only_quality-trace", false)
 		}},
 	}, 0)
 

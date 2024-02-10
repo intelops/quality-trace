@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "tracetest.fullname" . }}-otel-collector
+  name: {{ include "quality-trace.fullname" . }}-otel-collector
   labels:
     {{- include "otelCollector.labels" . | nindent 4 }}
 spec:
@@ -70,4 +70,4 @@ spec:
             items:
               - key: otel-collector-config.yaml
                 path: otel-collector-config.yaml
-            name: {{ include "tracetest.fullname" . }}-collector-config
+            name: {{ include "quality-trace.fullname" . }}-collector-config

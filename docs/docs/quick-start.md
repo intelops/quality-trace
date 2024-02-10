@@ -6,19 +6,19 @@ In this section, you will:
 3. ...
 4. ...
 
-### **1. Install the Tracetest CLI**
+### **1. Install the Qualitytrace CLI**
 
 ...
 
-### **2. Scaffold Tracetest Docker config with the CLI**
+### **2. Scaffold Qualitytrace Docker config with the CLI**
 
 ...
 
-### **3. Point Tracetest to a trace back end**
+### **3. Point Qualitytrace to a trace back end**
 
 ...
 
-### **4. Run Tracetest with Docker or the CLI**
+### **4. Run Qualitytrace with Docker or the CLI**
 
 ...
 
@@ -34,4 +34,4 @@ In this section, you will:
 
 ...
 
-And, if you want, connect with us on [Discord](https://discord.gg/6zupCZFQbe) to tell us about your experience!
+<!--And, if you want, connect with us on [Discord](https://discord.gg/6zupCZFQbe) to tell us about your experience!-->

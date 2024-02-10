@@ -24,7 +24,7 @@ func TestApplyTestSuite(t *testing.T) {
 
 	t.Run("should apply a test suite", func(t *testing.T) {
 
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 
 		// When I try to set up a new testsuite
@@ -115,7 +115,7 @@ func TestApplyTestSuite(t *testing.T) {
 	})
 
 	t.Run("should apply a legacy transaction", func(t *testing.T) {
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 
 		// When I try to set up a legacy transaction

@@ -1,22 +1,22 @@
 # Docker Deployment
 
-This guide walks you through using the Tracetest CLI to deploy Tracetest with Docker.
+This guide walks you through using the Qualitytrace CLI to deploy Qualitytrace with Docker.
 
 :::note
 This is an example of a production-ready deployment, but real-world deployments can vary significantly depending on desired performance and scale.
 :::
 
-In this form, Tracetest runs in parallel to your Dockerized application,
+In this form, Qualitytrace runs in parallel to your Dockerized application,
 allowing you to interact with your app and its traces, create and run tests over them, etc.
 
 After installing the CLI, run:
 
 ```bash
-tracetest server install
+quality-trace server install
 ```
 
 ```bash title="Expected output"
-How do you want to run TraceTest? [type to search]:
+How do you want to run Qualitytrace? [type to search]:
 > Using Docker Compose
   Using Kubernetes
 ```
@@ -30,25 +30,25 @@ Select `Using Docker Compose` and follow the instructions.
 
 **Optionals**:
 
-- [PokeShop demo app](https://github.com/kubeshop/pokeshop/). A sample microservice app to test your Tracetest installation.
-- [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/). A trace collector, that receives telemetry of other applications and sent it to Tracetest.
+- [PokeShop demo app](https://github.com/kubeshop/pokeshop/). A sample microservice app to test your Qualitytrace installation.
+- [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/). A trace collector, that receives telemetry of other applications and sent it to Qualitytrace.
 
 **Result**:
 
-- `tracetest/` directory (configurable) with a `docker-compose.yaml` and other config files.
+- `quality-trace/` directory (configurable) with a `docker-compose.yaml` and other config files.
 - [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/), if selected.
 - [PokeShop demo app](https://github.com/kubeshop/pokeshop/), if selected.
 
 **How to start**:
 
-In the folder where you ran `tracetest server install`, run this command to start the Tracetest cluster:
+In the folder where you ran `quality-trace server install`, run this command to start the Qualitytrace cluster:
 
 ```bash
-docker compose -f tracetest/docker-compose.yaml up -d
+docker compose -f quality-trace/docker-compose.yaml up -d
 ```
 
-```bash title="Condensed expected output from the Tracetest container:"
-Starting tracetest ...
+```bash title="Condensed expected output from the Qualitytrace container:"
+Starting quality-trace ...
 ...
 2022/11/28 18:24:09 HTTP Server started
 ...

@@ -8,15 +8,15 @@ services:
     ports:
       - "80:80"
 
-  tracetest:
-    image: kubeshop/tracetest:${TAG:-latest}
+  quality-trace:
+    image: intelops/quality-trace:${TAG:-latest}
     platform: linux/amd64
     volumes:
       - type: bind
-        source: ./tracetest-config.yaml
-        target: /app/tracetest.yaml
+        source: ./quality-trace-config.yaml
+        target: /app/quality-trace.yaml
       - type: bind
-        source: ./tracetest-provision.yaml
+        source: ./quality-trace-provision.yaml
         target: /app/provisioning.yaml
     ports:
       - 11633:11633

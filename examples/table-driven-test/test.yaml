@@ -17,6 +17,6 @@ spec:
 
   specs:
   - name: 'All Database Spans: Processing time is less than 100ms'
-    selector: span[tracetest.span.type="database"]
+    selector: span[quality-trace.span.type="database"]
     assertions:
-    - attr:tracetest.span.duration < 100ms
+    - attr:quality-trace.span.duration < 100ms

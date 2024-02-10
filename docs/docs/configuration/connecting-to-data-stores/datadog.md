@@ -1,20 +1,20 @@
 # Datadog
 
-If you want to use [Datadog](https://www.datadoghq.com/) as the trace data store, you'll configure the OpenTelemetry Collector to receive traces from your system and then send them to both Tracetest and Datadog. And, you don't have to change your existing pipelines to do so.
+If you want to use [Datadog](https://www.datadoghq.com/) as the trace data store, you'll configure the OpenTelemetry Collector to receive traces from your system and then send them to both Qualitytrace and Datadog. And, you don't have to change your existing pipelines to do so.
 
 :::tip
-Examples of configuring Tracetest with Datadog can be found in the [`examples` folder of the Tracetest GitHub repo](https://github.com/kubeshop/tracetest/tree/main/examples).
+Examples of configuring Qualitytrace with Datadog can be found in the [`examples` folder of the Qualitytrace GitHub repo](https://github.com/intelops/quality-trace/tree/main/examples).
 :::
 
-## Configuring OpenTelemetry Collector to Send Traces to Both Datadog and Tracetest
+## Configuring OpenTelemetry Collector to Send Traces to Both Datadog and Qualitytrace
 
 In your OpenTelemetry Collector config file:
 
-- Set the `exporter` to `otlp/tracetest`
-- Set the `endpoint` to your Tracetest instance on port `4317`
+- Set the `exporter` to `otlp/quality-trace`
+- Set the `endpoint` to your Qualitytrace instance on port `4317`
 
 :::tip
-If you are running Tracetest with Docker, and Tracetest's service name is `tracetest`, then the endpoint might look like this `http://tracetest:4317`
+If you are running Qualitytrace with Docker, and Qualitytrace's service name is `quality-trace`, then the endpoint might look like this `http://quality-trace:4317`
 :::
 
 Additionally, add another config:
@@ -43,11 +43,11 @@ processors:
     timeout: 10s
 
 exporters:
-  # OTLP for Tracetest
-  # Send traces to Tracetest.
-  # Read more in docs here: https://docs.tracetest.io/configuration/connecting-to-data-stores/opentelemetry-collector
-  otlp/tracetest:
-    endpoint: tracetest:4317
+  # OTLP for Qualitytrace
+  # Send traces to Qualitytrace.
+  # Read more in docs here: https://docs.quality-trace.io/configuration/connecting-to-data-stores/opentelemetry-collector
+  otlp/quality-trace:
+    endpoint: quality-trace:4317
     tls:
       insecure: true
 
@@ -61,27 +61,27 @@ exporters:
 
 service:
   pipelines:
-    traces/tracetest:
+    traces/quality-trace:
       receivers: [otlp]
       processors: [batch]
-      exporters: [otlp/tracetest] # exporter sending traces to your Tracetest instance
+      exporters: [otlp/quality-trace] # exporter sending traces to your Qualitytrace instance
     traces/datadog:
       receivers: [otlp]
       processors: [batch]
       exporters: [datadog] # exporter sending traces to directly to Datadog
 ```
 
-## Configure Tracetest to Use Datadog as a Trace Data Store
+## Configure Qualitytrace to Use Datadog as a Trace Data Store
 
-Configure your Tracetest instance to expose an `otlp` endpoint to make it aware it will receive traces from the OpenTelemetry Collector. This will expose Tracetest's trace receiver on port `4317`.
+Configure your Qualitytrace instance to expose an `otlp` endpoint to make it aware it will receive traces from the OpenTelemetry Collector. This will expose Qualitytrace's trace receiver on port `4317`.
 
-## Connect Tracetest to Datadog with the Web UI
+## Connect Qualitytrace to Datadog with the Web UI
 
 In the Web UI, (1) open Settings, and, on the (2) Configure Data Store tab, select (3) Datadog.
 
 ![Datadog](../img/configure-datadog-0.11.3.png)
 
-## Connect Tracetest to Datadog with the CLI
+## Connect Qualitytrace to Datadog with the CLI
 
 Or, if you prefer using the CLI, you can use this file config.
 
@@ -96,9 +96,9 @@ spec:
 Proceed to run this command in the terminal and specify the file above.
 
 ```bash
-tracetest apply datastore -f my/data-store/file/location.yaml
+quality-trace apply datastore -f my/data-store/file/location.yaml
 ```
 
 :::tip
-To learn more, [read the recipe for running a sample app with Datadog and Tracetest](../../examples-tutorials/recipes/running-tracetest-with-datadog.md).
+To learn more, [read the recipe for running a sample app with Datadog and Qualitytrace](../../examples-tutorials/recipes/running-quality-trace-with-datadog.md).
 :::

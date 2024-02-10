@@ -40,7 +40,7 @@ If it is the first time that you are calling this endpoint, to see an item into 
 
 ## Building a Test for This Scenario
 
-Using Tracetest, we can [create a test](../../../web-ui/creating-tests.md) that will execute an API call on `GET /api/cart?sessionId={some-uuid}&currecyCode=` and validate the following properties:
+Using Qualitytrace, we can [create a test](../../../web-ui/creating-tests.md) that will execute an API call on `GET /api/cart?sessionId={some-uuid}&currecyCode=` and validate the following properties:
 - The product ID `66VCHSJNUP`, previously added, exists in the cart.
 - The size of the shopping cart should be 1.
 
@@ -51,7 +51,7 @@ Running these tests for the first time will create an Observability trace like t
 
 ### Assertions
 
-With this trace, now we can build [assertions](../../../concepts/assertions.md) on Tracetest and validate the properties:
+With this trace, now we can build [assertions](../../../concepts/assertions.md) on Qualitytrace and validate the properties:
 
 - **The product ID `66VCHSJNUP`, previously added, exists in the cart.**
 ![](../images/check-shopping-cart-contents-product-catalog.png)
@@ -63,10 +63,10 @@ Now you can validate this entire use case.
 
 ### Test Definition
 
-To replicate this entire test on Tracetest, you can replicate these steps on our Web UI or using our CLI, saving the following test definition as the file `test-definition.yml` and later running:
+To replicate this entire test on Qualitytrace, you can replicate these steps on our Web UI or using our CLI, saving the following test definition as the file `test-definition.yml` and later running:
 
 ```sh
-tracetest run test -f test-definition.yml
+quality-trace run test -f test-definition.yml
 ```
 
 We are assuming that the Frontend service is exposed on `http://otel-demo-frontend:8080`:
@@ -84,11 +84,11 @@ spec:
       - key: Content-Type
         value: application/json
   specs:
-  - selector: span[tracetest.span.type="rpc" name="hipstershop.ProductCatalogService/GetProduct"
+  - selector: span[quality-trace.span.type="rpc" name="hipstershop.ProductCatalogService/GetProduct"
       rpc.system="grpc" rpc.method="GetProduct" rpc.service="hipstershop.ProductCatalogService"]
     assertions:
     - attr:app.product.id = "66VCHSJNUP"
-  - selector: span[tracetest.span.type="general" name="Tracetest trigger"]
+  - selector: span[quality-trace.span.type="general" name="Qualitytrace trigger"]
     assertions:
-    - attr:tracetest.response.body | json_path '$.items.length' = 1
+    - attr:quality-trace.response.body | json_path '$.items.length' = 1
 ```

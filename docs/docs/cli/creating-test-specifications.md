@@ -24,9 +24,9 @@ Imagine you have to ensure that all your `database select statements` take `less
 1. Select all spans in your trace related to `select statements`.
 2. Check if all those spans lasted `less than 500ms`.
 
-For the first task, we use a selector: `span[db.statement contains "SELECT"]`. While the second one is achieved by using an assertion: `attr:tracetest.span.duration < 500ms`.
+For the first task, we use a selector: `span[db.statement contains "SELECT"]`. While the second one is achieved by using an assertion: `attr:quality-trace.span.duration < 500ms`.
 
-> **Note:** When asserting time fields, you can use the following time units: `ns` (nanoseconds), `us` (microseconds), `ms` (milliseconds), `s` (seconds), `m` (minutes), and `h` (hours). Instead of defining `attr:tracetest.span.duration <= 3600s`, you can set it as `attr:tracetest.span.duration <= 1h`.
+> **Note:** When asserting time fields, you can use the following time units: `ns` (nanoseconds), `us` (microseconds), `ms` (milliseconds), `s` (seconds), `m` (minutes), and `h` (hours). Instead of defining `attr:quality-trace.span.duration <= 3600s`, you can set it as `attr:quality-trace.span.duration <= 1h`.
 
 To write that in your test definition, you can define the following YAML definition:
 
@@ -34,18 +34,18 @@ To write that in your test definition, you can define the following YAML definit
 specs:
 - selector: span[db.statement contains "SELECT"]
   assertions:
-    - attr:tracetest.span.duration < 500ms
+    - attr:quality-trace.span.duration < 500ms
 ```
 
 As you probably noticed in the test definition structure, you can have multiple assertions for the same selector. This is useful to group related validations. For example, ensuring that all your HTTP calls are successful and take less than 1000ms:
 
 ```yaml
 specs:
-- selector: span[tracetest.span.type="http"]
+- selector: span[quality-trace.span.type="http"]
   assertions:
     - attr:http.status_code >= 200
     - attr:http.status_code < 300
-    - attr:tracetest.span.duration < 1000ms
+    - attr:quality-trace.span.duration < 1000ms
 ```
 
 #### Referencing Other Fields from the Same Span

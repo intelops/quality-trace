@@ -14,7 +14,7 @@ exporters:
     loglevel: debug
 
   otlp/1:
-    endpoint: ${TRACETEST_ENDPOINT}
+    endpoint: ${QUALITYTRACE_ENDPOINT}
     tls:
       insecure: true
 

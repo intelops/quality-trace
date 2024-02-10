@@ -14,7 +14,7 @@ const Header = ({hasLogo = false, isNoTracingMode}: IProps) => (
     <div>
       {hasLogo && (
         <Link to="/">
-          <S.Logo alt="Tracetest logo" data-cy="logo" src={Logo} />
+          <S.Logo alt="Qualitytrace logo" data-cy="logo" src={Logo} />
         </Link>
       )}
     </div>

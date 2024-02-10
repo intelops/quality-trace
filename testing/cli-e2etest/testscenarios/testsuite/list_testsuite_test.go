@@ -14,7 +14,7 @@ import (
 func addListTestSuitePreReqs(t *testing.T, env environment.Manager) {
 	cliConfig := env.GetCLIConfigPath(t)
 
-	// Given I am a Tracetest CLI user
+	// Given I am a Qualitytrace CLI user
 	// And I have my server recently created
 
 	// When I try to set up a new environment
@@ -50,7 +50,7 @@ func TestListTestSuites(t *testing.T) {
 	cliConfig := env.GetCLIConfigPath(t)
 
 	t.Run("list no testsuites", func(t *testing.T) {
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 		// And there is no envs
 		result := tracetestcli.Exec(t, "list testsuite --sortBy name --sortDirection asc --output yaml", tracetestcli.WithCLIConfig(cliConfig))
@@ -63,7 +63,7 @@ func TestListTestSuites(t *testing.T) {
 	addListTestSuitePreReqs(t, env)
 
 	t.Run("list with invalid sortBy field", func(t *testing.T) {
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 
 		// When I try to list these testsuites by an invalid field
@@ -74,7 +74,7 @@ func TestListTestSuites(t *testing.T) {
 	})
 
 	t.Run("list with YAML format", func(t *testing.T) {
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 
 		// When I try to list these testsuites by a valid field and in YAML format
@@ -126,7 +126,7 @@ func TestListTestSuites(t *testing.T) {
 	})
 
 	t.Run("list with JSON format", func(t *testing.T) {
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 
 		// When I try to list these testsuites by a valid field and in JSON format
@@ -179,7 +179,7 @@ func TestListTestSuites(t *testing.T) {
 	})
 
 	t.Run("list with pretty format", func(t *testing.T) {
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 
 		// When I try to list these testsuites by a valid field and in pretty format
@@ -222,7 +222,7 @@ func TestListTestSuites(t *testing.T) {
 	})
 
 	t.Run("list with YAML format skipping the first and taking two items", func(t *testing.T) {
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 
 		// When I try to list these testsuites by a valid field, paging options and in YAML format

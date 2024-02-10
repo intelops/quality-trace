@@ -1,7 +1,7 @@
 ﻿$ErrorActionPreference = 'Stop';
 $packageArgs = @{
   packageName   = $env:ChocolateyPackageName
-  softwareName  = 'tracetest*'
+  softwareName  = 'quality-trace*'
   fileType      = 'exe'
   # MSI
   silentArgs    = "/qn /norestart"

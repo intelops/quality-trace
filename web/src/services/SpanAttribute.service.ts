@@ -38,7 +38,7 @@ const getCustomAttributeList = (attributeList: TSpanFlatAttribute[]) => {
 
 const SpanAttributeService = () => ({
   getPseudoAttributeList: (count: number): TSpanFlatAttribute[] => [
-    {key: TraceTestAttributes.TRACETEST_SELECTED_SPANS_COUNT, value: count.toString()},
+    {key: TraceTestAttributes.QUALITYTRACE_SELECTED_SPANS_COUNT, value: count.toString()},
   ],
 
   getFilteredSelectorAttributeList(

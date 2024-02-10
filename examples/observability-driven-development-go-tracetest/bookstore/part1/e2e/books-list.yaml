@@ -12,9 +12,9 @@ spec:
       - key: Content-Type
         value: application/json
   specs:
-    - selector: span[name="Tracetest trigger"]
+    - selector: span[name="Qualitytrace trigger"]
       assertions:
-        - attr:tracetest.response.status = 200
+        - attr:quality-trace.response.status = 200
     - selector: span[name="Books List"]
       assertions:
-        - attr:tracetest.selected_spans.count = 1
+        - attr:quality-trace.selected_spans.count = 1

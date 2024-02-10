@@ -1,13 +1,13 @@
 version: '3'
 services:
-  tracetest:
-    image: kubeshop/tracetest:${TAG:-latest}
+  quality-trace:
+    image: intelops/quality-trace:${TAG:-latest}
     volumes:
       - type: bind
-        source: ./tracetest-config.yaml
-        target: /app/tracetest.yaml
+        source: ./quality-trace-config.yaml
+        target: /app/quality-trace.yaml
       - type: bind
-        source: ./tracetest-provision.yaml
+        source: ./quality-trace-provision.yaml
         target: /app/provision.yaml
     command: --provisioning-file /app/provision.yaml
     ports:
@@ -25,7 +25,7 @@ services:
       timeout: 3s
       retries: 60
     environment:
-      TRACETEST_DEV: ${TRACETEST_DEV}
+      QUALITYTRACE_DEV: ${QUALITYTRACE_DEV}
 
   postgres:
     image: postgres:14

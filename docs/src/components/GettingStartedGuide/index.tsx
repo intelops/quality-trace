@@ -8,21 +8,21 @@ import Heading from '@theme/Heading';
 
 const GettingStartedGuides = [
   {
-    name: '👇 Install Tracetest',
+    name: '👇 Install Qualitytrace',
     url: './installation',
     description: (
       <Translate >
-        Set up Tracetest and start trace-based testing your distributed system.
+        Set up Qualitytrace and start trace-based testing your distributed system.
       </Translate>
     ),
-    button: 'Set up Tracetest',
+    button: 'Set up Qualitytrace',
   },
   {
-    name: '🙌 Open Tracetest',
+    name: '🙌 Open Qualitytrace',
     url: './open',
     description: (
       <Translate>
-        After installing it, open Tracetest start to creating trace-based tests.
+        After installing it, open Qualitytrace start to creating trace-based tests.
       </Translate>
     ),
     button: 'Create tests',
@@ -39,10 +39,10 @@ const GettingStartedGuides = [
   },
   {
     name: '🤩 Open Source',
-    url: 'https://github.com/kubeshop/tracetest',
+    url: 'https://github.com/intelops/quality-trace',
     description: (
       <Translate>
-        Check out the Tracetest GitHub repo! Please consider giving us a star! ⭐️
+        Check out the Qualitytrace GitHub repo! Please consider giving us a star! ⭐️
       </Translate>
     ),
     button: 'Go to GitHub',

@@ -1,26 +1,26 @@
 # OpenTelemetry Collector
 
-Tracetest receives trace data on port `4317`. Tracetest's trace receiver endpoint might look like:
+Qualitytrace receives trace data on port `4317`. Qualitytrace's trace receiver endpoint might look like:
 
 ```
-http://your-tracetest-instance.com:4317
+http://your-quality-trace-instance.com:4317
 ```
 
 :::tip
-Examples of configuring Tracetest can be found in the [`examples` folder of the Tracetest GitHub repo](https://github.com/kubeshop/tracetest/tree/main/examples).
+Examples of configuring Qualitytrace can be found in the [`examples` folder of the Qualitytrace GitHub repo](https://github.com/intelops/quality-trace/tree/main/examples).
 :::
 
-## Configuring OpenTelemetry Collector to Send Traces to Tracetest
+## Configuring OpenTelemetry Collector to Send Traces to Qualitytrace
 
-If you don't want to use a trace data store, you can send all traces directly to Tracetest using your OpenTelemetry Collector. And, you don't have to change your existing pipelines to do so.
+If you don't want to use a trace data store, you can send all traces directly to Qualitytrace using your OpenTelemetry Collector. And, you don't have to change your existing pipelines to do so.
 
 In your OpenTelemetry Collector config file:
 
 - Set the `exporter` to `otlp/1`
-- Set the `endpoint` to your Tracetest instance on port `4317`
+- Set the `endpoint` to your Qualitytrace instance on port `4317`
 
 :::tip
-If you are running Tracetest with Docker, and Tracetest's service name is `tracetest`, then the endpoint might look like this `http://tracetest:4317`
+If you are running Qualitytrace with Docker, and Qualitytrace's service name is `quality-trace`, then the endpoint might look like this `http://quality-trace:4317`
 :::
 
 ```yaml
@@ -39,9 +39,9 @@ processors:
     timeout: 100ms
 
 exporters:
-  # This is the exporter that will send traces to Tracetest
+  # This is the exporter that will send traces to Qualitytrace
   otlp/1:
-    endpoint: http://your-tracetest-instance.com:4317
+    endpoint: http://your-quality-trace-instance.com:4317
     tls:
       insecure: true
 
@@ -53,14 +53,14 @@ service:
     traces/1:
       receivers: [otlp] # your receiver
       processors: [batch]
-      exporters: [otlp/1] # your exporter pointing to your tracetest instance
+      exporters: [otlp/1] # your exporter pointing to your quality-trace instance
 ```
 
-## Configure Tracetest to Use OpenTelemetry Collector
+## Configure Qualitytrace to Use OpenTelemetry Collector
 
-Configure your Tracetest instance to expose an `otlp` endpoint to make it aware it will receive traces from the OpenTelemetry Collector. This will expose Tracetest's trace receiver on port `4317`.
+Configure your Qualitytrace instance to expose an `otlp` endpoint to make it aware it will receive traces from the OpenTelemetry Collector. This will expose Qualitytrace's trace receiver on port `4317`.
 
-## Connect Tracetest to OpenTelemetry Collector with the Web UI
+## Connect Qualitytrace to OpenTelemetry Collector with the Web UI
 
 In the Web UI, (1) open Settings, and, on the (2) Configure Data Store tab, select (3) OpenTelemetry.
 
@@ -68,7 +68,7 @@ In the Web UI, (1) open Settings, and, on the (2) Configure Data Store tab, sele
 
 <!---![](https://res.cloudinary.com/djwdcmwdz/image/upload/v1674644190/Blogposts/Docs/screely-1674644186486_pahrds.png) -->
 
-## Connect Tracetest to OpenTelemetry Collector with the CLI
+## Connect Qualitytrace to OpenTelemetry Collector with the CLI
 
 Or, if you prefer using the CLI, you can use this file config.
 
@@ -83,9 +83,9 @@ spec:
 Proceed to run this command in the terminal, and specify the file above.
 
 ```bash
-tracetest apply datastore -f my/data-store/file/location.yaml
+quality-trace apply datastore -f my/data-store/file/location.yaml
 ```
 
 :::tip
-To learn more, [read the recipe on running a sample app with OpenTelemetry Collector and Tracetest](../../examples-tutorials/recipes/running-tracetest-without-a-trace-data-store.md).
+To learn more, [read the recipe on running a sample app with OpenTelemetry Collector and Qualitytrace](../../examples-tutorials/recipes/running-quality-trace-without-a-trace-data-store.md).
 :::
