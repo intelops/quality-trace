@@ -106,7 +106,7 @@ image:
   tag: latest
 
 env:
-  tracetestDev: ""
+  qualitytraceDev: ""
 
 imagePullSecrets: []
 nameOverride: ""

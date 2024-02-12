@@ -3,7 +3,7 @@ import posthog from 'posthog-js';
 import {Categories} from 'constants/Analytics.constants';
 import Env from 'utils/Env';
 
-const isAnalyticsEnabled = () => Env.get('analyticsEnabled') && !Env.get('isTracetestDev');
+const isAnalyticsEnabled = () => Env.get('analyticsEnabled') && !Env.get('isQualitytraceDev');
 const appVersion = Env.get('appVersion');
 const env = Env.get('env');
 const serverID = Env.get('serverID');

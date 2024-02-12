@@ -23,7 +23,7 @@ services:
             timeout: 3s
             retries: 60
         environment:
-            TRACETEST_DEV: ${TRACETEST_DEV}
+            QUALITYTRACE_DEV: ${QUALITYTRACE_DEV}
             # contents of `quality-trace-provision.yaml` encoded as base64
             QUALITYTRACE_PROVISIONING: "LS0tCnR5cGU6IFBvbGxpbmdQcm9maWxlCnNwZWM6CiAgbmFtZTogRGVmYXVsdAogIHN0cmF0ZWd5OiBwZXJpb2RpYwogIGRlZmF1bHQ6IHRydWUKICBwZXJpb2RpYzoKICAgIHJldHJ5RGVsYXk6IDVzCiAgICB0aW1lb3V0OiAxMG0KCi0tLQp0eXBlOiBEYXRhU3RvcmUKc3BlYzoKICBuYW1lOiBKYWVnZXIKICB0eXBlOiBqYWVnZXIKICBkZWZhdWx0OiB0cnVlCiAgamFlZ2VyOgogICAgZW5kcG9pbnQ6IGphZWdlcjoxNjY4NQogICAgdGxzOgogICAgICBpbnNlY3VyZTogdHJ1ZQotLS0KdHlwZTogVGVzdFJ1bm5lcgpzcGVjOgogIGlkOiBjdXJyZW50CiAgbmFtZTogZGVmYXVsdAogIHJlcXVpcmVkR2F0ZXM6CiAgICAtIGFuYWx5emVyLXNjb3JlCiAgICAtIHRlc3Qtc3BlY3MK"
 

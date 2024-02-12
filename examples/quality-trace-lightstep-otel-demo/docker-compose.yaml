@@ -673,7 +673,7 @@ services:
         condition: service_started
     logging: *logging
     environment:
-      TRACETEST_DEV: ${TRACETEST_DEV}
+      QUALITYTRACE_DEV: ${QUALITYTRACE_DEV}
 
   # Postgres used by the Qualitytrace instance
   tt_postgres:

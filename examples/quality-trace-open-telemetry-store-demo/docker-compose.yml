@@ -30,7 +30,7 @@ services:
             timeout: 3s
             retries: 60
         environment:
-            TRACETEST_DEV: ${TRACETEST_DEV}
+            QUALITYTRACE_DEV: ${QUALITYTRACE_DEV}
 
     quality-trace-postgres:
         image: postgres:14

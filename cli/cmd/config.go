@@ -162,7 +162,7 @@ func setupVersion() {
 }
 
 func validateVersionMismatch() {
-	if !isVersionMatch && os.Getenv("TRACETEST_DEV") == "" {
+	if !isVersionMatch && os.Getenv("QUALITYTRACE_DEV") == "" {
 		fmt.Fprintf(os.Stderr, versionText+`
 ✖️ Error: Version Mismatch
 The CLI version and the server version are not compatible. To fix this, you'll need to make sure that both your CLI and server are using compatible versions.

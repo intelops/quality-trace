@@ -67,7 +67,7 @@
           appVersion: getTemplateValue('{{ .AppVersion }}', '', parser.toString),
           env: getTemplateValue('{{ .Env }}', '', parser.toString),
           experimentalFeatures: getTemplateValue('{{ .ExperimentalFeatures }}', '[]', parser.toArray),
-          isTracetestDev: getTemplateValue('{{ .IsTracetestDev }}', 'false', parser.toBoolean),
+          isQualitytraceDev: getTemplateValue('{{ .IsQualitytraceDev }}', 'false', parser.toBoolean),
         };
 
         var base = document.createElement('base');

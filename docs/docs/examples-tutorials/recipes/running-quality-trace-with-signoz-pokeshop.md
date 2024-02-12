@@ -265,7 +265,7 @@ services:
       timeout: 3s
       retries: 60
     environment:
-      TRACETEST_DEV: ${TRACETEST_DEV}
+      QUALITYTRACE_DEV: ${QUALITYTRACE_DEV}
 
   otel-collector:
     image: otel/opentelemetry-collector:0.54.0
