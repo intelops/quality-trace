@@ -11,7 +11,7 @@ data:
     googleAnalytics:
       enabled: {{.Values.analytics.enabled}}
     postgres:
-      host: {{ include "quality-trace.postgresql.fullname" . }}
+      host: {{ include "tracetest.postgresql.fullname" . }}
       user: {{.Values.postgresql.auth.username}}
       password: {{.Values.postgresql.auth.password}}
       port: 5432
