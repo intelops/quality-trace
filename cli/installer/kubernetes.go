@@ -168,8 +168,8 @@ func installQualitytraceChart(conf configuration, ui cliUI.UI) {
 		cmd = append(cmd, "--set image.tag=latest")
 	}
 
-	if os.Getenv("QUALITYTRACE_DEV") != "" {
-		cmd = append(cmd, "--set env.qualitytraceDev=true")
+	if os.Getenv("TRACETEST_DEV") != "" {
+		cmd = append(cmd, "--set env.tracetestDev=true")
 	}
 
 	execCmd(helmCmd(conf, cmd...), ui)

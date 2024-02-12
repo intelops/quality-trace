@@ -87,17 +87,17 @@ func TestIsAnalyticsEnabled(t *testing.T) {
 
 		cfg := repo.Current(context.TODO())
 
-		os.Setenv("QUALITYTRACE_DEV", "yes")
+		os.Setenv("TRACETEST_DEV", "yes")
 		assert.False(t, cfg.IsAnalyticsEnabled())
 
 	})
 }
 
 func cleanEnv() func() {
-	val := os.Getenv("QUALITYTRACE_DEV")
+	val := os.Getenv("TRACETEST_DEV")
 	// make sure this env is empty
-	os.Setenv("QUALITYTRACE_DEV", "")
+	os.Setenv("TRACETEST_DEV", "")
 	return func() {
-		os.Setenv("QUALITYTRACE_DEV", val)
+		os.Setenv("TRACETEST_DEV", val)
 	}
 }

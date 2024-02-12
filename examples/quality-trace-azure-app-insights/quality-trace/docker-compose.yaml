@@ -20,7 +20,7 @@ services:
       postgres:
         condition: service_healthy
     environment:
-      QUALITYTRACE_DEV: ${QUALITYTRACE_DEV}
+      TRACETEST_DEV: ${TRACETEST_DEV}
     extra_hosts:
       host.docker.internal: host-gateway
     healthcheck:

@@ -129,7 +129,7 @@ func getDockerComposeFileContents(ui cliUI.UI, config configuration) []byte {
 
 	sout := fixPortConfig(string(output))
 	sout = strings.ReplaceAll(sout, "$", "$$")
-	sout = strings.ReplaceAll(sout, "$${QUALITYTRACE_DEV}", "${QUALITYTRACE_DEV}")
+	sout = strings.ReplaceAll(sout, "$${TRACETEST_DEV}", "${TRACETEST_DEV}")
 
 	return []byte(sout)
 }
@@ -259,8 +259,8 @@ func fixQualitytraceContainer(config configuration, project *types.Project, vers
 	tts.Image = "intelops/quality-trace:" + version
 	tts.Build = nil
 	tts.Volumes[0].Source = qualitytraceConfigFilename
-	qualitytraceDevEnv := "${QUALITYTRACE_DEV}"
-	tts.Environment["QUALITYTRACE_DEV"] = &qualitytraceDevEnv
+	tracetestDevEnv := "${TRACETEST_DEV}"
+	tts.Environment["TRACETEST_DEV"] = &tracetestDevEnv
 
 	replaceService(project, serviceName, tts)
 
@@ -325,7 +325,7 @@ func getCompleteProject(ui cliUI.UI, config configuration) *types.Project {
 		WorkingDir:  workingDir,
 		ConfigFiles: configFiles,
 		Environment: map[string]string{
-			"QUALITYTRACE_DEV": "",
+			"TRACETEST_DEV": "",
 		},
 	})
 	if err != nil {

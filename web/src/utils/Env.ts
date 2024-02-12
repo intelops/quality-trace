@@ -12,7 +12,7 @@ const emptyValues: IEnv = {
   serverID: '',
   serverPathPrefix: '/',
   segmentLoaded: false,
-  isQualitytraceDev: false,
+  isTracetestDev: false,
 };
 
 const Env = {

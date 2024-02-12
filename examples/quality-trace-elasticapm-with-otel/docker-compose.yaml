@@ -170,7 +170,7 @@ services:
     platform: linux/amd64
     environment:
       - ELASTICSEARCH_SSL_VERIFICATION_MODE=none
-      - QUALITYTRACE_DEV=${QUALITYTRACE_DEV}
+      - TRACETEST_DEV=${TRACETEST_DEV}
     volumes:
       - type: bind
         source: ./quality-trace-config.yaml

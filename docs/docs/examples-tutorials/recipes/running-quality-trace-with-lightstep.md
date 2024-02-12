@@ -91,7 +91,7 @@ services:
       otel-collector:
         condition: service_started
     environment:
-      QUALITYTRACE_DEV: ${QUALITYTRACE_DEV}
+      TRACETEST_DEV: ${TRACETEST_DEV}
 
   postgres:
     image: postgres:14
