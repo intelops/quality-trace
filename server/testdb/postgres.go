@@ -23,9 +23,8 @@ func Postgres(options ...PostgresOption) (*postgresDB, error) {
 			return nil, err
 		}
 	}
-
-	err := ps.ensureLatestMigration()
 	fmt.Println("checking migration")
+	err := ps.ensureLatestMigration()
 	if err != nil {
 		return nil, fmt.Errorf("could not execute migrations: %w", err)
 	}
