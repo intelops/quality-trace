@@ -20,7 +20,7 @@ var singletonTestDatabaseEnvironment *testDatabaseEnvironment
 
 type testDatabaseEnvironment struct {
 	container      *gnomock.Container
-	mainConnection *sql.DBtracetest
+	mainConnection *sql.DB
 
 	mutex sync.Mutex
 }

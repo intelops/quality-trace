@@ -412,7 +412,7 @@ func registerTestSuiteResource(repo *testsuite.Repository, router *mux.Router, p
 	manager := resourcemanager.New[testsuite.TestSuite](
 		testsuite.TestSuiteResourceName,
 		testsuite.TestSuiteResourceNamePlural,
-		repo,HotReload
+		repo,
 		resourcemanager.CanBeAugmented(),
 		resourcemanager.WithTracer(tracer),
 	)
