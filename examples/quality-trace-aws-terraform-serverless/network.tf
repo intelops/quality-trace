@@ -95,7 +95,7 @@ resource "aws_lb" "internal_quality-trace_alb" {
   name               = "quality-trace-internal-alb"
   internal           = true
   load_balancer_type = "application"
-  security_groups    = [module.internal_tracetest_alb_security_group.security_group_id]
+  security_groups    = [module.internal_quality-trace_alb_security_group.security_group_id]
   subnets            = module.network.private_subnets_ids
 
   enable_deletion_protection = false

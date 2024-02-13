@@ -4,7 +4,7 @@ import Test, {TRawTest, TRawTestResource, TRawTestResourceList} from 'models/Tes
 import {PaginationResponse} from 'hooks/usePagination';
 import {TTestApiEndpointBuilder} from '../Tracetest.api';
 
-const defaultHeaders = {'content-type': 'application/json', 'X-Tracetest-Augmented': 'true'};
+const defaultHeaders = {'content-type': 'application/json', 'X-Qualitytrace-Augmented': 'true'};
 
 export const testEndpoints = (builder: TTestApiEndpointBuilder) => ({
   createTest: builder.mutation<Test, TRawTestResource>({

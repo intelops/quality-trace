@@ -118,7 +118,7 @@ resource "aws_ecs_service" "jaeger_service" {
 
   network_configuration {
     subnets          = module.network.private_subnets_ids
-    security_groups  = [module.tracetest_ecs_service_security_group.security_group_id]
+    security_groups  = [module.quality-trace_ecs_service_security_group.security_group_id]
     assign_public_ip = false
   }
 }
@@ -179,7 +179,7 @@ resource "aws_lb_listener" "quality-trace-jaeger-collector-alb-listener" {
 }
 
 resource "aws_lb_listener" "quality-trace-jaeger-api-alb-listener" {
-  load_balancer_arn = aws_lb.internal_tracetest_alb.arn
+  load_balancer_arn = aws_lb.internal_quality-trace_alb.arn
   port              = "16685"
   protocol          = "HTTPS"
   certificate_arn   = aws_acm_certificate.cert.arn

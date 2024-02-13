@@ -16,7 +16,7 @@ export const HTTP_SPANS_STATUS_CODE: TSnippet = {
 
 export const TRIGGER_SPAN_RESPONSE_TIME: TSnippet = {
   name: 'Trigger Span: Response time is less than 200ms',
-  selector: 'span[quality-trace.span.type="general" name="Tracetest trigger"]',
+  selector: 'span[quality-trace.span.type="general" name="Qualitytrace trigger"]',
   assertions: [
     {
       left: 'attr:quality-trace.span.duration',
@@ -40,7 +40,7 @@ export const DB_SPANS_RESPONSE_TIME: TSnippet = {
 
 export const TRIGGER_SPAN_RESPONSE_BODY_CONTAINS: TSnippet = {
   name: 'Trigger Span: Response body contains "this string"',
-  selector: 'span[quality-trace.span.type="general" name="Tracetest trigger"]',
+  selector: 'span[quality-trace.span.type="general" name="Qualitytrace trigger"]',
   assertions: [
     {
       left: 'attr:quality-trace.response.body',

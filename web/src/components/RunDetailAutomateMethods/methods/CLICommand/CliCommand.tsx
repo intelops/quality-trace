@@ -25,7 +25,7 @@ const CLiCommand = ({id, variableSetId, fileName = '', resourceType, docsUrl}: I
         </a>
       </S.TitleContainer>
       <FramedCodeBlock
-        title="Tracetest CLI command:"
+        title="Qualitytrace CLI command:"
         language="bash"
         value={command}
         minHeight="100px"
