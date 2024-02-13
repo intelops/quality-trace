@@ -11,8 +11,8 @@ postgresql:
 
   # credentials for accessing the database
   auth:
-    database: "quality-trace"
-    username: "quality-trace"
+    database: "qualitytrace"
+    username: "qualitytrace"
     password: not-secure-database-password
     existingSecret: ""
 

@@ -139,7 +139,7 @@ func installOtelCollector(conf configuration, ui cliUI.UI) {
 }
 
 func fixQualitytraceConfiguration(conf configuration, ui cliUI.UI) {
-	c := getQualitytraceConfigFileContents("quality-trace-postgresql", "quality-trace", "not-secure-database-password", ui, conf)
+	c := getQualitytraceConfigFileContents("quality-trace-postgresql", "qualitytrace", "not-secure-database-password", ui, conf)
 	ttc := createTmpFile("quality-trace-config", string(c), ui)
 	defer os.Remove(ttc.Name())
 
