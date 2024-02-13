@@ -20,7 +20,7 @@ var singletonTestDatabaseEnvironment *testDatabaseEnvironment
 
 type testDatabaseEnvironment struct {
 	container      *gnomock.Container
-	mainConnection *sql.DB
+	mainConnection *sql.DBtracetest
 
 	mutex sync.Mutex
 }
@@ -129,6 +129,7 @@ func createRandomDatabaseForTest(baseDatabase string) (*sql.DB, error) {
 	db := getTestDatabaseEnvironment()
 
 	newDatabaseName := fmt.Sprintf("%s_%d%d%d", baseDatabase, randomInt(), randomInt(), randomInt())
+	fmt.Printf("New db name= %s", newDatabaseName)
 	_, err := db.mainConnection.Exec(fmt.Sprintf("CREATE DATABASE %s WITH TEMPLATE %s", newDatabaseName, baseDatabase))
 	if err != nil {
 		return nil, fmt.Errorf("could not create database %s: %w", newDatabaseName, err)
@@ -136,7 +137,7 @@ func createRandomDatabaseForTest(baseDatabase string) (*sql.DB, error) {
 
 	connStr := fmt.Sprintf(
 		"host=%s port=%d user=%s password=%s  dbname=%s sslmode=disable",
-		db.container.Host, db.container.DefaultPort(), "qualitytrace", "qualitytrace", newDatabaseName,
+		db.container.Host, db.container.DefaultPort(), "qualitytrace", "qt", newDatabaseName,
 	)
 
 	return sql.Open("postgres", connStr)
@@ -144,7 +145,7 @@ func createRandomDatabaseForTest(baseDatabase string) (*sql.DB, error) {
 
 func getPostgresContainer() (*gnomock.Container, error) {
 	preset := postgres.Preset(
-		postgres.WithUser("qualitytrace", "qualitytrace"),
+		postgres.WithUser("qualitytrace", "qt"),
 		postgres.WithDatabase("qualitytrace"),
 	)
 
@@ -159,7 +160,7 @@ func getPostgresContainer() (*gnomock.Container, error) {
 func getMainDatabaseConnection(container *gnomock.Container) (*sql.DB, error) {
 	connStr := fmt.Sprintf(
 		"host=%s port=%d user=%s password=%s  dbname=%s sslmode=disable",
-		container.Host, container.DefaultPort(), "qualitytrace", "qualitytrace", "postgres",
+		container.Host, container.DefaultPort(), "qualitytrace", "qt", "postgres",
 	)
 
 	return sql.Open("postgres", connStr)
