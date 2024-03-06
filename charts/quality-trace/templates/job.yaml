@@ -1,0 +1,52 @@
+{{- if not .Values.postgresql.enabled }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: create-users-databases
+spec:
+  template:
+    metadata:
+      name: create-users-databases
+    spec:
+      containers:
+      - name: postgresql-client
+        image: {{ .Values.postgresql.image.registry }}/{{ .Values.postgresql.image.repository }}:{{ .Values.postgresql.image.tag }}
+        command: 
+          - "/bin/bash"
+          - "-c"
+          - |
+            if psql -h {{ .Values.externalPostgresql.host }} -p 5432 -U postgres -t -c "SELECT 1 FROM pg_database WHERE datname='{{ .Values.externalPostgresql.database }}'" | grep -q 1; then
+                echo "Database '{{ .Values.externalPostgresql.database }}' already exists. Skipping database creation."
+            else
+                psql -h {{ .Values.externalPostgresql.host }} -p 5432 -U postgres -c "CREATE DATABASE {{ .Values.externalPostgresql.database }}"
+                echo "Database '{{ .Values.externalPostgresql.database }}' created."
+            fi
+
+            if psql -h {{ .Values.externalPostgresql.host }} -p 5432 -U postgres -t -c "SELECT 1 FROM pg_roles WHERE rolname='{{ .Values.externalPostgresql.username }}'" | grep -q 1; then
+                echo "User '{{ .Values.externalPostgresql.username }}' already exists. Skipping user creation."
+            else
+                psql -h {{ .Values.externalPostgresql.host }} -p 5432 -U postgres -c "CREATE USER {{ .Values.externalPostgresql.username }} WITH PASSWORD '{{ .Values.externalPostgresql.password }}'"
+            fi
+
+            # Change the ownership of the database
+            psql -h {{ .Values.externalPostgresql.host }} -p 5432 -U postgres -c "ALTER DATABASE {{ .Values.externalPostgresql.database }} OWNER TO {{ .Values.externalPostgresql.username }}"
+            echo "Ownership of database '{{ .Values.externalPostgresql.database }}' changed to '{{ .Values.externalPostgresql.username }}'."
+
+            # Grant the CREATE DATABASE privilege to the user
+            psql -h {{ .Values.externalPostgresql.host }} -p 5432 -U postgres -c "ALTER ROLE {{ .Values.externalPostgresql.username }} CREATEDB"
+            echo "Granted CREATE DATABASE privilege to user '{{ .Values.externalPostgresql.username }}'."
+
+        env:
+          - name: PGPASSWORD
+            {{- if not .Values.externalPostgresql.existingSecret }}
+            value: "{{ .Values.externalPostgresql.postgresqlPassword }}"
+            {{- else }}
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.externalPostgresql.existingSecret.name }}
+                key: {{ .Values.externalPostgresql.existingSecret.passwordKey }}
+            {{- end }}
+      restartPolicy: Never
+{{- end }}
+
+

@@ -351,3 +351,14 @@ otelCollector:
           receivers: [otlp]
           processors: [probabilistic_sampler, batch]
           exporters: [otlp/signoz, otlp/quality-trace, logging]
+
+
+externalPostgresql:
+  host: postgresql
+  database: ""
+  username: ""
+  password: ""
+  postgresqlPassword: ""
+  existingSecret: {}
+    # name:
+    # passwordKey:
