@@ -36,7 +36,7 @@ spec:
           - name: TRACETEST_DEV
             value: "{{ .Values.env.tracetestDev }}"
           - name: TRACETEST_PWD
-            value: "{{ .Values.auth.password }}"
+            value: {{ .Values.postgresql.auth.password }}
           args:
           - --config
           - '/app/config/config.yaml'
