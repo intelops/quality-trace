@@ -139,7 +139,7 @@ func installOtelCollector(conf configuration, ui cliUI.UI) {
 }
 
 func fixTracetestConfiguration(conf configuration, ui cliUI.UI) {
-	c := getTracetestConfigFileContents("tracetest-postgresql", "tracetest", "not-secure-database-password", ui, conf)
+	c := getTracetestConfigFileContents("tracetest-postgresql", "tracetest", "${TRACETEST_PWD}", ui, conf)
 	ttc := createTmpFile("tracetest-config", string(c), ui)
 	defer os.Remove(ttc.Name())
 
@@ -170,6 +170,11 @@ func installTracetestChart(conf configuration, ui cliUI.UI) {
 
 	if os.Getenv("TRACETEST_DEV") != "" {
 		cmd = append(cmd, "--set env.tracetestDev=true")
+	}
+	// Set TRACETEST_PWD as an environment variable if it's not already set
+	tracetestPwd := os.Getenv("TRACETEST_PWD")
+	if tracetestPwd == "" {
+    	os.Setenv("TRACETEST_PWD", "not-secure-database-password")
 	}
 
 	execCmd(helmCmd(conf, cmd...), ui)

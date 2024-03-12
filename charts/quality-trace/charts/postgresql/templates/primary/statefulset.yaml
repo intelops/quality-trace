@@ -236,6 +236,8 @@ spec:
             - name: POSTGRES_DB
               value: {{ (include "postgresql.database" .) | quote }}
             {{- end }}
+            - name: POSTGRES_PWD
+              value: "postgres"
             # Replication
             {{- if or (eq .Values.architecture "replication") .Values.primary.standby.enabled }}
             - name: POSTGRES_REPLICATION_MODE

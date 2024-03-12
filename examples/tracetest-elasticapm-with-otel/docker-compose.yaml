@@ -171,6 +171,7 @@ services:
     environment:
       - ELASTICSEARCH_SSL_VERIFICATION_MODE=none
       - TRACETEST_DEV=${TRACETEST_DEV}
+      - TRACETEST_PWD=${TRACETEST_PWD}
     volumes:
       - type: bind
         source: ./tracetest-config.yaml
@@ -197,7 +198,7 @@ services:
   postgres:
     image: postgres:14
     environment:
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PWD}
       POSTGRES_USER: postgres
     ports:
       - 5432:5432

@@ -40,7 +40,7 @@ Tracetest can be configured via a configuration file:
 postgres:
   host: postgres
   user: postgres
-  password: postgres
+  password: ${POSTGRES_PWD}
   port: 5432
   dbname: postgres
   params: sslmode=disable

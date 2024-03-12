@@ -86,7 +86,7 @@ The `TRACETEST_SERVICE_PORT` is configured in the `.env` file
   tt_postgres:
     image: postgres:14
     environment:
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PWD}
       POSTGRES_USER: postgres
     healthcheck:
       test: pg_isready -U "$$POSTGRES_USER" -d "$$POSTGRES_DB"
@@ -106,7 +106,7 @@ The `tracetest.config.yaml` file contains the basic setup of connecting Tracetes
 postgres:
   host: tt_postgres
   user: postgres
-  password: postgres
+  password: ${POSTGRES_PWD}
   port: 5432
   dbname: postgres
   params: sslmode=disable

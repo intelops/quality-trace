@@ -674,12 +674,13 @@ services:
     logging: *logging
     environment:
       TRACETEST_DEV: ${TRACETEST_DEV}
+      TRACETEST_PWD: ${TRACETEST_PWD}
 
   # Postgres used by the Tracetest instance
   tt_postgres:
     image: postgres:14
     environment:
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PWD}
       POSTGRES_USER: postgres
     healthcheck:
       test: pg_isready -U "$$POSTGRES_USER" -d "$$POSTGRES_DB"

@@ -130,6 +130,7 @@ func getDockerComposeFileContents(ui cliUI.UI, config configuration) []byte {
 	sout := fixPortConfig(string(output))
 	sout = strings.ReplaceAll(sout, "$", "$$")
 	sout = strings.ReplaceAll(sout, "$${TRACETEST_DEV}", "${TRACETEST_DEV}")
+	sout += "\nTRACETEST_PWD: ${TRACETEST_PWD}"
 
 	return []byte(sout)
 }

@@ -8,7 +8,7 @@ Tracetest can be configured using a config.yaml file placed on the same director
 postgres:
   host: localhost
   user: postgres
-  password: postgres
+  password: ${POSTGRES_PWD}
 
 # Instance of jaeger that will be used to retrieve the trace of the service under test
 tracingBackend:

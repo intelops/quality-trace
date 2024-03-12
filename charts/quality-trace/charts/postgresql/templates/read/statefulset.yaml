@@ -226,6 +226,8 @@ spec:
                   name: {{ include "postgresql.secretName" . }}
                   key: {{ include "postgresql.userPasswordKey" . }}
             {{- end }}
+            - name: POSTGRES_PWD
+              value: "postgres"
             # Replication
             - name: POSTGRES_REPLICATION_MODE
               value: "slave"
