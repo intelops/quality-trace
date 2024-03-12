@@ -33,7 +33,7 @@ services:
                 create_host_path: true
     postgres:
         environment:
-            POSTGRES_PASSWORD: postgres
+            POSTGRES_PASSWORD: ${POSTGRES_PWD}
             POSTGRES_USER: postgres
         healthcheck:
             test:

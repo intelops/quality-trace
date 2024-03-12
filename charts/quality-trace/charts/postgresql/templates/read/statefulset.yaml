@@ -140,7 +140,9 @@ spec:
               chmod -R 777 /dev/shm
               {{- end }}
               {{- if .Values.tls.enabled }}
-              cp /tmp/certs/* /opt/bitnami/postgresql/certs/
+              cp /tmp/certs/* /opt/bitnarazena@jad-razena:~$ kubectl get secret -n quality
+NAME                       TYPE                 DATA   AGE
+cert-quality mi/postgresql/certs/
               {{- if eq ( toString ( .Values.volumePermissions.containerSecurityContext.runAsUser )) "auto" }}
               chown -R `id -u`:`id -G | cut -d " " -f2` /opt/bitnami/postgresql/certs/
               {{- else }}
@@ -226,6 +228,8 @@ spec:
                   name: {{ include "postgresql.secretName" . }}
                   key: {{ include "postgresql.userPasswordKey" . }}
             {{- end }}
+            - name: POSTGRES_PWD
+              value: "postgres"
             # Replication
             - name: POSTGRES_REPLICATION_MODE
               value: "slave"

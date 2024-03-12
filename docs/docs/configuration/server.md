@@ -10,7 +10,7 @@ This is an example of a `tracetest.yaml` file:
 postgres:
   host: postgres
   user: postgres
-  password: postgres
+  password: ${POSTGRES_PWD}
   port: 5432
   dbname: postgres
   params: sslmode=disable

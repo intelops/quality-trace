@@ -97,7 +97,7 @@ The `docker-compose.yaml` includes two other services.
 services:
   postgres:
     environment:
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD:  ${POSTGRES_PWD}
       POSTGRES_USER: postgres
     healthcheck:
       test:
@@ -156,7 +156,7 @@ The `tracetest.config.yaml` file contains the basic setup of connecting Tracetes
 postgres:
   host: postgres
   user: postgres
-  password: postgres
+  password: ${POSTGRES_PWD}
   port: 5432
   dbname: postgres
   params: sslmode=disable
