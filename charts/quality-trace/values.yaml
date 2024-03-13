@@ -77,7 +77,7 @@ telemetry:
         type: collector
         collector:
           # endpoint to send traces to the collector
-          endpoint: otel-collector:4317
+          endpoint: quality-trace-otel-collector:4317
 
 # Configures the server
 server:
