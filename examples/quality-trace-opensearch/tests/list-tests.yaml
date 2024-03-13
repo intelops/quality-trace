@@ -1,0 +1,18 @@
+---
+type: Test
+spec:
+  id: e9c6cff9-974d-4263-8a23-22f1e9f975aa
+  name: List all quality-trace tests
+  description: List all existing tests from quality-trace API
+  trigger:
+    type: http
+    httpRequest:
+      url: http://quality-trace:11633/api/tests
+      method: GET
+      headers:
+        - key: Content-Type
+          value: application/json
+  specs:
+    - selector: span[quality-trace.span.type="http" name="GET /api/tests"]
+      assertions:
+        - attr:quality-trace.selected_spans.count = 1

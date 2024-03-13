@@ -15,7 +15,7 @@ import {settingsEndpoints} from './endpoints/Setting.endpoint';
 export type TTestApiEndpointBuilder = EndpointBuilder<
   BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError>,
   TracetestApiTags,
-  'tracetest'
+  'quality-trace'
 >;
 
 export type TBaseQueryFn = BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError>;
@@ -44,7 +44,7 @@ type TSingletonTracetestAPI = {
 
 const generateAPI = (customBaseQuery = defaultBaseQuery) => {
   return createApi({
-    reducerPath: 'tracetest',
+    reducerPath: 'quality-trace',
     baseQuery: customBaseQuery,
     tagTypes: Object.values(TracetestApiTags),
     endpoints: builder => ({

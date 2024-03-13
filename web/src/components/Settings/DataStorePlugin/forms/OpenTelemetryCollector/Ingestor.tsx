@@ -12,20 +12,20 @@ const Ingestor = () => {
   return (
     <S.Container>
       <S.Description>
-        Tracetest easily integrates with any distributed tracing solution via the OpenTelemetry Collector. It allows
-        your current tracing system to send only Tracetest spans while the rest go to your chosen backend.
+        Qualitytrace easily integrates with any distributed tracing solution via the OpenTelemetry Collector. It allows
+        your current tracing system to send only Qualitytrace spans while the rest go to your chosen backend.
       </S.Description>
       <S.Title>Ingestor Endpoint</S.Title>
       <S.Description>
-        Tracetest exposes trace ingestion endpoints on ports 4317 for gRPC and 4318 for HTTP. Turn on the Tracetest
-        ingestion endpoint to start sending traces. Use the Tracetest Server’s hostname and port to connect.For example,
-        with Docker use tracetest:4317 for gRPC.
+        Qualitytrace exposes trace ingestion endpoints on ports 4317 for gRPC and 4318 for HTTP. Turn on the Qualitytrace
+        ingestion endpoint to start sending traces. Use the Qualitytrace Server’s hostname and port to connect.For example,
+        with Docker use quality-trace:4317 for gRPC.
       </S.Description>
       <S.SwitchContainer>
         <Form.Item name={[...baseName, 'isIngestorEnabled']} valuePropName="checked">
           <Switch />
         </Form.Item>
-        Enable Tracetest ingestion endpoint
+        Enable Qualitytrace ingestion endpoint
       </S.SwitchContainer>
       <DocsBanner>
         Need more information about setting up ingestion endpoint?{' '}

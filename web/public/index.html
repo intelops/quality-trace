@@ -21,7 +21,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>Tracetest</title>
+    <title>Qualitytrace</title>
     <script>
       const parser = {
         toArray(value) {
@@ -67,7 +67,7 @@
           appVersion: getTemplateValue('{{ .AppVersion }}', '', parser.toString),
           env: getTemplateValue('{{ .Env }}', '', parser.toString),
           experimentalFeatures: getTemplateValue('{{ .ExperimentalFeatures }}', '[]', parser.toArray),
-          isTracetestDev: getTemplateValue('{{ .IsTracetestDev }}', 'false', parser.toBoolean),
+          isQualitytraceDev: getTemplateValue('{{ .IsQualitytraceDev }}', 'false', parser.toBoolean),
         };
 
         var base = document.createElement('base');

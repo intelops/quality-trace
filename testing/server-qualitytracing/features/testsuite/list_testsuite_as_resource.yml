@@ -1,0 +1,23 @@
+---
+type: Test
+spec:
+  id: TjkNeDwVRZ
+  name: List TestSuite as Resource
+  description: Test step of 'TestSuite Feature - Test Suite'
+  trigger:
+    type: http
+    httpRequest:
+      url: ${var:TARGET_URL}/api/resources
+      method: GET
+      headers:
+        - key: Content-Type
+          value: application/json
+  specs:
+    - selector: span[name = "Qualitytrace trigger"]
+      assertions:
+        - attr:quality-trace.selected_spans.count = 1
+        - attr:quality-trace.response.status = 200
+        - attr:quality-trace.response.body | json_path '$[*].item.id' contains var:TRANSACTION_ID # check if the testsuite is listed
+    - selector: span[name="GET /api/resources" quality-trace.span.type="http"]
+      assertions:
+        - attr:quality-trace.selected_spans.count = 1

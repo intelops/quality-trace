@@ -31,7 +31,7 @@ const UrlDockerTipInput = ({onChange = noop, value = ''}: IProps) => {
 
   return !!hostname && localhostDns.includes(hostname) ? (
     <S.Paragraph>
-      Are you running Tracetest on Docker?{' '}
+      Are you running Qualitytrace on Docker?{' '}
       <Typography.Text type="secondary">
         Try replacing <code>{hostname}</code> with <code>host.docker.internal</code> by clicking{'  '}
         <a onClick={() => handleReplaceUrl()}>here.</a>

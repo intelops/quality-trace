@@ -21,7 +21,7 @@ import (
 const (
 	QueueWorkerCount = 5
 
-	JobCountHeader string = "X-Tracetest-Job-Count"
+	JobCountHeader string = "X-Qualitytrace-Job-Count"
 )
 
 type headers map[string]string

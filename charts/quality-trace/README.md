@@ -1,6 +1,6 @@
-# Tracetest
+# Qualitytrace
 
-This is the Helm chart for [Tracetest](https://github.com/kubeshop/tracetest) installation.
+This is the Helm chart for [Qualitytrace](https://github.com/intelops/quality-trace) installation.
 
 ## Installation
 
@@ -9,17 +9,17 @@ This is the Helm chart for [Tracetest](https://github.com/kubeshop/tracetest) in
 Add repo:
 
 ```sh
-helm repo add kubeshop https://kubeshop.github.io/helm-charts
+helm repo add quality-trace https://intelops.github.io/quality-trace
 helm repo update
 
 ```
 
 ```sh
-helm install tracetest kubeshop/tracetest
+helm install quality-trace quality-trace/quality-trace
 ```
 
 ## Uninstall
 
 ```sh
-helm delete tracetest
+helm delete quality-trace
 ```

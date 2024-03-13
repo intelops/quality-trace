@@ -1,20 +1,20 @@
 # Honeycomb
 
-If you want to use [Honeycomb](https://honeycomb.io/) as the trace data store, you'll configure the OpenTelemetry Collector to receive traces from your system and then send them to both Tracetest and Honeycomb. And, you don't have to change your existing pipelines to do so.
+If you want to use [Honeycomb](https://honeycomb.io/) as the trace data store, you'll configure the OpenTelemetry Collector to receive traces from your system and then send them to both Qualitytrace and Honeycomb. And, you don't have to change your existing pipelines to do so.
 
 :::tip
-Examples of configuring Tracetest with Honeycomb can be found in the [`examples` folder of the Tracetest GitHub repo](https://github.com/kubeshop/tracetest/tree/main/examples).
+Examples of configuring Qualitytrace with Honeycomb can be found in the [`examples` folder of the Qualitytrace GitHub repo](https://github.com/intelops/quality-trace/tree/main/examples).
 :::
 
-## Configuring OpenTelemetry Collector to Send Traces to both Honeycomb and Tracetest
+## Configuring OpenTelemetry Collector to Send Traces to both Honeycomb and Qualitytrace
 
 In your OpenTelemetry Collector config file:
 
-- Set the `exporter` to `otlp/tracetest`
-- Set the `endpoint` to your Tracetest instance on port `4317`
+- Set the `exporter` to `otlp/quality-trace`
+- Set the `endpoint` to your Qualitytrace instance on port `4317`
 
 :::tip
-If you are running Tracetest with Docker, and Tracetest's service name is `tracetest`, then the endpoint might look like this `http://tracetest:4317`
+If you are running Qualitytrace with Docker, and Qualitytrace's service name is `quality-trace`, then the endpoint might look like this `http://quality-trace:4317`
 :::
 
 Additionally, add another config:
@@ -40,9 +40,9 @@ processors:
 exporters:
   logging:
     logLevel: debug
-  # OTLP for Tracetest
-  otlp/tracetest:
-    endpoint: tracetest:4317 # Send traces to Tracetest. Read more in docs here:  https://docs.tracetest.io/configuration/connecting-to-data-stores/opentelemetry-collector
+  # OTLP for Qualitytrace
+  otlp/quality-trace:
+    endpoint: quality-trace:4317 # Send traces to Qualitytrace. Read more in docs here:  https://docs.quality-trace.io/configuration/connecting-to-data-stores/opentelemetry-collector
     tls:
       insecure: true
   # OTLP for Honeycomb
@@ -54,27 +54,27 @@ exporters:
 
 service:
   pipelines:
-    traces/tracetest:
+    traces/quality-trace:
       receivers: [otlp]
       processors: [batch]
-      exporters: [otlp/tracetest]
+      exporters: [otlp/quality-trace]
     traces/honeycomb:
       receivers: [otlp]
       processors: [batch]
       exporters: [logging, otlp/honeycomb]
 ```
 
-## Configure Tracetest to Use Honeycomb as a Trace Data Store
+## Configure Qualitytrace to Use Honeycomb as a Trace Data Store
 
-Configure your Tracetest instance to expose an `otlp` endpoint to make it aware it will receive traces from the OpenTelemetry Collector. This will expose Tracetest's trace receiver on port `4317`.
+Configure your Qualitytrace instance to expose an `otlp` endpoint to make it aware it will receive traces from the OpenTelemetry Collector. This will expose Qualitytrace's trace receiver on port `4317`.
 
-## Connect Tracetest to Honeycomb with the Web UI
+## Connect Qualitytrace to Honeycomb with the Web UI
 
 In the Web UI, (1) open Settings, and, on the (2) Configure Data Store tab, select (3) Honeycomb.
 
 ![Honeycomb](../img/honeycomb-settings.png)
 
-## Connect Tracetest to Honeycomb with the CLI
+## Connect Qualitytrace to Honeycomb with the CLI
 
 Or, if you prefer using the CLI, you can use this file config.
 
@@ -89,9 +89,9 @@ spec:
 Proceed to run this command in the terminal and specify the file above.
 
 ```bash
-tracetest apply datastore -f my/data-store/file/location.yaml
+quality-trace apply datastore -f my/data-store/file/location.yaml
 ```
 
 :::tip
-To learn more, [read the recipe on running a sample app with Honeycomb and Tracetest](../../examples-tutorials/recipes/running-tracetest-with-honeycomb.md).
+To learn more, [read the recipe on running a sample app with Honeycomb and Qualitytrace](../../examples-tutorials/recipes/running-quality-trace-with-honeycomb.md).
 :::

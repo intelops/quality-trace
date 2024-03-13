@@ -26,7 +26,7 @@ func (c Config) Validate() error {
 }
 
 func (c Config) IsAnalyticsEnabled() bool {
-	if os.Getenv("TRACETEST_DEV") != "" {
+	if os.Getenv("QUALITYTRACE_DEV") != "" {
 		return false
 	}
 

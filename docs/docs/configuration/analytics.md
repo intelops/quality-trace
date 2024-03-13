@@ -1,14 +1,14 @@
 # Analytics Settings
 
-To improve the end user experience and to help determine where to focus team resources to improve the tool, Tracetest collects analytics and telemetry information from the system.
+To improve the end user experience and to help determine where to focus team resources to improve the tool, Qualitytrace collects analytics and telemetry information from the system.
 
 Participation in this program is optional, and you may opt-out by following the directions below if you'd prefer not to share any information.
 
-The data collected is anonymous and is not traceable to the source. You can learn more about how we treat your data by [reading our privacy statement](https://kubeshop.io/privacy).
+The data collected is anonymous and is not traceable to the source. <!-- You can learn more about how we treat your data by [reading our privacy statement](https://kubeshop.io/privacy).-->
 
 ## Changing Analytics Settings from the UI
 
-In the Tracetest Web UI, open (1) Settings and select the (2) Analytics tab:
+In the Qualitytrace Web UI, open (1) Settings and select the (2) Analytics tab:
 
 ![Analytics Settings](./img/analytics-settings-0.11.3.png)
 
@@ -27,6 +27,6 @@ spec:
 Proceed to run this command in the terminal and specify the file above.
 
 ```bash
-tracetest apply config -f my/resource/analytics-resource.yaml
+quality-trace apply config -f my/resource/analytics-resource.yaml
 ```
 

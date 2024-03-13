@@ -24,7 +24,7 @@ const AnalyzerResult = ({result: {score, minimumScore, plugins = [], passed}, tr
       </S.Title>
 
       <S.Description>
-        The Tracetest Analyzer is a plugin based framework used to analyze OpenTelemetry traces to help teams improve
+        The Qualitytrace Analyzer is a plugin based framework used to analyze OpenTelemetry traces to help teams improve
         their instrumentation data, find potential problems and provide tips to fix the problems.{' '}
         {linter.enabled && (
           <>

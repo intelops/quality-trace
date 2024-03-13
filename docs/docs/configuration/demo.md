@@ -1,6 +1,6 @@
 # Demo Settings
 
-Tracetest has the option to enable Test examples for our Pokeshop Demo App or the OpenTelemetry Astronomy Shop Demo. You will need an instance of those applications running alongside your Tracetest server to be able to use them. The demo settings can be adjusted both from the Tracetest UI and from the CLI. 
+Qualitytrace has the option to enable Test examples for our Pokeshop Demo App or the OpenTelemetry Astronomy Shop Demo. You will need an instance of those applications running alongside your Qualitytrace server to be able to use them. The demo settings can be adjusted both from the Qualitytrace UI and from the CLI. 
 
 ## Changing Demo Settings from the UI
 
@@ -8,7 +8,7 @@ In the Web UI, open (1) Settings and select the (2) Demo tab:
 
 ![Demo Settings](./img/demo-settings-0.11.3.png)
 
-From this demo settings page, you can enable the Pokeshop and/or OpenTelemetry Astronomy Shop demos. For each demo, you will need to tell Tracetest the location of the relevant demo's endpoints, adjusting the domain name/ip address and, possibly, the port to match your configuration.
+From this demo settings page, you can enable the Pokeshop and/or OpenTelemetry Astronomy Shop demos. For each demo, you will need to tell Qualitytrace the location of the relevant demo's endpoints, adjusting the domain name/ip address and, possibly, the port to match your configuration.
 
 ## Changing Demo Settings with the CLI
 
@@ -29,7 +29,7 @@ spec:
 Proceed to run this command in the terminal and specify the file above.
 
 ```bash
-tracetest apply demo -f my/resource/demo-resource.yaml
+quality-trace apply demo -f my/resource/demo-resource.yaml
 ```
 
 You can configure the OpenTelemetry Community Demo using the same commands with this yaml file:

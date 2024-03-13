@@ -3,7 +3,7 @@
 When a user runs a test or a Test Suite, any variables that will be needed but are not defined will be prompted for:
 
 ```sh
-tracetest run test -f path/to/test.yaml
+quality-trace run test -f path/to/test.yaml
 ```
 
 ```text title="Output:"
@@ -16,7 +16,7 @@ POKENAME:
 Undefined variables are dependent on the variable set selected and whether or not the variable is defined in the current variable set. Select the variable set to run the Test or Test Suite by passing it into the test run command.
 
 ```sh
-tracetest list variableset
+quality-trace list variableset
 ```
 
 ```text title="Output:"
@@ -26,7 +26,7 @@ tracetest list variableset
 ```
 
 ```sh
-tracetest get variableset --id testvars
+quality-trace get variableset --id testvars
 ```
 
 ```text title="Output:"
@@ -44,7 +44,7 @@ spec:
 ```
 
 ```sh
-tracetest run test -f path/to/test.yaml --vars testvars
+quality-trace run test -f path/to/test.yaml --vars testvars
 ```
 
 ```text title="Output:"

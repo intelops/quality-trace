@@ -51,8 +51,8 @@ const CliCommandService = () => ({
     [CliCommandOption.useDocker]: ({enabled, command}) =>
       `${
         enabled
-          ? 'docker run --rm -it -v$(pwd):$(pwd) -w $(pwd) --network host --entrypoint tracetest kubeshop/tracetest:latest -s http://localhost:11633/'
-          : 'tracetest'
+          ? 'docker run --rm -it -v$(pwd):$(pwd) -w $(pwd) --network host --entrypoint quality-trace intelops/quality-trace:latest -s http://localhost:11633/'
+          : 'quality-trace'
       } ${command}`,
   } as Record<CliCommandOption, TApplyOption>,
 

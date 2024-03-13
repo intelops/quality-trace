@@ -19,7 +19,7 @@ export default function GtagInstallCliTabs() {
               language="bash"
               title="Terminal"
               >
-            {`brew install kubeshop/tracetest/tracetest`}
+            {`brew install intelops/quality-trace/quality-trace`}
           </CodeBlock>
         </div>
       </TabItem>
@@ -29,7 +29,7 @@ export default function GtagInstallCliTabs() {
               language="bash"
               title="Terminal"
           >
-          {`curl -L https://raw.githubusercontent.com/kubeshop/tracetest/main/install-cli.sh | bash`}
+          {`curl -L https://raw.githubusercontent.com/intelops/quality-trace/main/install-cli.sh | bash`}
           </CodeBlock>
         </div>
       </TabItem>
@@ -39,7 +39,7 @@ export default function GtagInstallCliTabs() {
               language="bash"
               title="Terminal"
           >
-          {`choco source add --name=kubeshop_repo --source=https://chocolatey.kubeshop.io/chocolatey ; choco install tracetest`}
+          {`choco source add --name=intelops_repo --source=https://chocolatey.intelops.io/chocolatey ; choco install quality-trace`}
           </CodeBlock>
         </div>
       </TabItem>

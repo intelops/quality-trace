@@ -22,10 +22,10 @@ spec:
       value: mysecret
 ```
 
-In order to apply this configuration to your Tracetest instance, make sure to have your [CLI configured](./configuring-your-cli.md) and run:
+In order to apply this configuration to your Qualitytrace instance, make sure to have your [CLI configured](./configuring-your-cli.md) and run:
 
 ```sh
-tracetest apply variableset -f <variableset.yaml>
+quality-trace apply variableset -f <variableset.yaml>
 ```
 
-> If the file contains the property `spec.id`, the operation will be considered a variable set update. If you try to apply a variable set and you get the error: `could not apply variableset: 404 Not Found`, it means the provided ID doesn't exist. Either update the ID to reference an existing variable set or remove the property from the file. Tracetest will create a new variable set and a new ID.
+> If the file contains the property `spec.id`, the operation will be considered a variable set update. If you try to apply a variable set and you get the error: `could not apply variableset: 404 Not Found`, it means the provided ID doesn't exist. Either update the ID to reference an existing variable set or remove the property from the file. Qualitytrace will create a new variable set and a new ID.

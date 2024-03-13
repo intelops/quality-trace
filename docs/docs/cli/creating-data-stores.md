@@ -1,6 +1,6 @@
 # Defining Data Stores as Text Files
 
-You might have multiple Tracetest instances that need to be connected to the same data stores. An easy way of sharing the configuration is by using a configuration file that can be applied to your Tracetest instance.
+You might have multiple Qualitytrace instances that need to be connected to the same data stores. An easy way of sharing the configuration is by using a configuration file that can be applied to your Qualitytrace instance.
 
 ## Supported Trace Data Stores
 
@@ -151,14 +151,14 @@ spec:
   default: true
 ```
 
-> Consider reading about [how to use the OTEL collector](../configuration/connecting-to-data-stores/opentelemetry-collector.md) to send traces to your Tracetest instance.
+> Consider reading about [how to use the OTEL collector](../configuration/connecting-to-data-stores/opentelemetry-collector.md) to send traces to your Qualitytrace instance.
 
 ## Apply Configuration
 
 To apply the configuration, you need a [configured CLI](./configuring-your-cli.md) pointed to the instance you want to apply the data store. Then use the following command:
 
 ```
-tracetest apply datastore -f my/data-store/file/location.yaml
+quality-trace apply datastore -f my/data-store/file/location.yaml
 ```
 
 ## Additional Information
@@ -168,5 +168,5 @@ In the current version, you can only have one active data store at any given tim
 After a configuration is applied, you can export it using the CLI by using the following command:
 
 ```
-tracetest export datastore -f my/file/location.yaml --id my-data-store-id
+quality-trace export datastore -f my/file/location.yaml --id my-data-store-id
 ```

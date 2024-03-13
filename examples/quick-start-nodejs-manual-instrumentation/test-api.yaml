@@ -12,10 +12,10 @@ spec:
       - key: Content-Type
         value: application/json
   specs:
-  - selector: span[tracetest.span.type="http" name="GET /books" http.target="/books"
+  - selector: span[quality-trace.span.type="http" name="GET /books" http.target="/books"
       http.method="GET"]
     assertions:
-    - attr:tracetest.span.duration  < 500ms
-  - selector: span[tracetest.span.type="general" name="Books List"]
+    - attr:quality-trace.span.duration  < 500ms
+  - selector: span[quality-trace.span.type="general" name="Books List"]
     assertions:
     - attr:books.list.count = 4

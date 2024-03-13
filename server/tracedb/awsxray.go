@@ -101,10 +101,10 @@ func (db *awsxrayDB) TestConnection(ctx context.Context) model.ConnectionResult 
 		connection.WithAuthenticationTest(connection.NewTestStep(func(ctx context.Context) (string, error) {
 			_, err := db.GetTraceByID(ctx, db.GetTraceID().String())
 			if err != nil && strings.Contains(strings.ToLower(err.Error()), "403") {
-				return `Tracetest tried to execute an AWS XRay API request but it failed due to authentication issues`, err
+				return `Qualitytrace tried to execute an AWS XRay API request but it failed due to authentication issues`, err
 			}
 
-			return "Tracetest managed to authenticate with the AWS Services", nil
+			return "Qualitytrace managed to authenticate with the AWS Services", nil
 		})),
 	)
 
@@ -206,9 +206,9 @@ func generateSpan(seg *segment, parent *traces.Span) (traces.Span, error) {
 			return span, err
 		}
 
-		attributes[traces.TracetestMetadataFieldParentID] = parentID.String()
+		attributes[traces.QualitytraceMetadataFieldParentID] = parentID.String()
 	} else if parent != nil {
-		attributes[traces.TracetestMetadataFieldParentID] = parent.ID.String()
+		attributes[traces.QualitytraceMetadataFieldParentID] = parent.ID.String()
 	}
 
 	// decode span id

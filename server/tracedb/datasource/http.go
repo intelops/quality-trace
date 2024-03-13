@@ -75,13 +75,13 @@ func (client *HttpClient) Connect(ctx context.Context) error {
 
 func (client *HttpClient) TestConnection(ctx context.Context) model.ConnectionTestStep {
 	connectionTestResult := model.ConnectionTestStep{
-		Message: fmt.Sprintf(`Tracetest connected to "%s"`, client.config.URL.String()),
+		Message: fmt.Sprintf(`Qualitytrace connected to "%s"`, client.config.URL.String()),
 	}
 
 	err := connection.CheckReachability(client.config.URL.String(), model.ProtocolHTTP)
 	if err != nil {
 		return model.ConnectionTestStep{
-			Message: fmt.Sprintf(`Tracetest tried to connect to "%s" and failed`, client.config.URL.String()),
+			Message: fmt.Sprintf(`Qualitytrace tried to connect to "%s" and failed`, client.config.URL.String()),
 			Error:   err,
 		}
 	}
@@ -90,7 +90,7 @@ func (client *HttpClient) TestConnection(ctx context.Context) model.ConnectionTe
 	wrappedErr := errors.Unwrap(err)
 	if errors.Is(wrappedErr, connection.ErrConnectionFailed) {
 		return model.ConnectionTestStep{
-			Message: fmt.Sprintf(`Tracetest tried to open a connection against "%s" and failed`, client.config.URL.String()),
+			Message: fmt.Sprintf(`Qualitytrace tried to open a connection against "%s" and failed`, client.config.URL.String()),
 			Error:   err,
 		}
 	}

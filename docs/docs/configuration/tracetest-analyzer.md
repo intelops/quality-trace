@@ -1,16 +1,16 @@
-# Tracetest Analyzer Settings
+# Qualitytrace Analyzer Settings
 
-Tracetest Analyzer is provided in the Tracetest application to aid in the analysis of traces and easily pinpoint issues to speed up resolution.
+Qualitytrace Analyzer is provided in the Qualitytrace application to aid in the analysis of traces and easily pinpoint issues to speed up resolution.
 
 :::tip
-[Read more about Tracetest Analyzer concepts here.](../analyzer/concepts.md)
+[Read more about Qualitytrace Analyzer concepts here.](../analyzer/concepts.md)
 :::
 
 ## Create a Test
 
-For this example, we will use the Pokemon List test provided in the Tracetest Pokeshop demo.
+For this example, we will use the Pokemon List test provided in the Qualitytrace Pokeshop demo.
 
-Start Tracetest, click the **Create** button and select **Create New Test** in the drop down:
+Start Qualitytrace, click the **Create** button and select **Create New Test** in the drop down:
 
 ![Create a Test Button](../img/analyzer-create-test.png)
 
@@ -30,7 +30,7 @@ Leave the default values and click **Create and Run**:
 
 ## View the Trace Analyzer Results
 
-The Tracetest Analyzer results help teams improve their instrumentation data, find potential problems and provide tips to fix the problems.
+The Qualitytrace Analyzer results help teams improve their instrumentation data, find potential problems and provide tips to fix the problems.
 
 ![Analyzer Results](../img/analyzer-results.png)
 
@@ -38,9 +38,9 @@ Click the arrow next to any category to see suggestions for trace improvements:
 
 ![Analyzer Results Expanded](../img/analyzer-expanded.png)
 
-## Disable Tracetest Analyzer
+## Disable Qualitytrace Analyzer
 
-In the Tracetest UI, go to **Settings** and the **Analyzer** tab:
+In the Qualitytrace UI, go to **Settings** and the **Analyzer** tab:
 
 ![Analyzer Settings](../img/analyzer-settings.png)
 
@@ -50,6 +50,6 @@ Here, you can also set the thresholds for `Otel Semantic Conventions`, `Common P
 
 ![Analyzer Settings 2](../img/analyzer-settings-2.png)
 
-## Tracetest Analyzer in the CLI
+## Qualitytrace Analyzer in the CLI
 
-You can use Tracetest Analyzer in the CLI to analyze per individual test. Visit the [Creating Transactions](../web-ui/creating-test-suites.md) page for details.
+You can use Qualitytrace Analyzer in the CLI to analyze per individual test. Visit the [Creating Transactions](../web-ui/creating-test-suites.md) page for details.

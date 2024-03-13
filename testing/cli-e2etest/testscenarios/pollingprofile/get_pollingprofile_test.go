@@ -32,7 +32,7 @@ func TestGetPollingProfile(t *testing.T) {
 	cliConfig := env.GetCLIConfigPath(t)
 
 	t.Run("get with no polling profile initialized", func(t *testing.T) {
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 		// And no polling profile previously registered
 
@@ -54,7 +54,7 @@ func TestGetPollingProfile(t *testing.T) {
 	addGetPollingProfilePreReqs(t, env)
 
 	t.Run("get with YAML format", func(t *testing.T) {
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 		// And I have a polling profile already set
 
@@ -74,7 +74,7 @@ func TestGetPollingProfile(t *testing.T) {
 	})
 
 	t.Run("get with JSON format", func(t *testing.T) {
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 		// And I have a polling profile already set
 
@@ -94,7 +94,7 @@ func TestGetPollingProfile(t *testing.T) {
 	})
 
 	t.Run("get with pretty format", func(t *testing.T) {
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 		// And I have a polling profile already set
 

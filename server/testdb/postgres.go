@@ -23,7 +23,6 @@ func Postgres(options ...PostgresOption) (*postgresDB, error) {
 			return nil, err
 		}
 	}
-
 	err := ps.ensureLatestMigration()
 	if err != nil {
 		return nil, fmt.Errorf("could not execute migrations: %w", err)
@@ -42,7 +41,7 @@ func (p *postgresDB) ensureLatestMigration() error {
 		log.Fatal(err)
 	}
 
-	migrateClient, err := migrate.NewWithInstance("iofs", sourceDriver, "tracetest", driver)
+	migrateClient, err := migrate.NewWithInstance("iofs", sourceDriver, "qualitytrace", driver)
 	if err != nil {
 		return fmt.Errorf("could not get migration client: %w", err)
 	}

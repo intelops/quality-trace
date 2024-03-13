@@ -9,15 +9,15 @@ import {
   structuralPseudoClassRule,
 } from './Rules';
 
-const {TRACETEST_SPAN_TYPE} = TraceTestAttributes;
+const {QUALITYTRACE_SPAN_TYPE} = TraceTestAttributes;
 const {SERVICE_NAME} = SemanticResourceAttributes;
 
 const rules = [
   allSpansRule,
-  createByAttributeAllSpansRule(TRACETEST_SPAN_TYPE),
+  createByAttributeAllSpansRule(QUALITYTRACE_SPAN_TYPE),
   createByAttributeAllSpansRule(SERVICE_NAME),
   structuralPseudoClassRule,
-  createByAttributeDescendantsRule(TRACETEST_SPAN_TYPE),
+  createByAttributeDescendantsRule(QUALITYTRACE_SPAN_TYPE),
   selectedSpanRule,
 ];
 

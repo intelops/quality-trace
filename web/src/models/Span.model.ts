@@ -64,10 +64,10 @@ const Span = ({id = '', attributes = {}, startTime = 0, endTime = 0, parentId = 
   }, {});
 
   const kind = SpanKindList.find(spanKind => spanKind === attributes[Attributes.KIND]) || SpanKind.INTERNAL;
-  const duration = attributes[Attributes.TRACETEST_SPAN_DURATION] || '0ns';
+  const duration = attributes[Attributes.QUALITYTRACE_SPAN_DURATION] || '0ns';
   const type =
     SemanticGroupNamesList.find(
-      semanticGroupName => semanticGroupName === attributes[Attributes.TRACETEST_SPAN_TYPE]
+      semanticGroupName => semanticGroupName === attributes[Attributes.QUALITYTRACE_SPAN_TYPE]
     ) || SemanticGroupNames.General;
   const service = attributes?.[Attributes.SERVICE_NAME] ?? '';
   const system = attributes?.[SemanticGroupNamesToSystem[type]] ?? '';

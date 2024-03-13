@@ -39,7 +39,7 @@ func (a configureAction) Run(ctx context.Context, args ConfigureConfig) error {
 	if args.SetValues.Endpoint != "" {
 		serverURL = args.SetValues.Endpoint
 	} else {
-		serverURL = ui.TextInput("Enter your qt server URL", existingConfig.URL())
+		serverURL = ui.TextInput("Enter your quality-trace server URL", existingConfig.URL())
 	}
 
 	if err := config.ValidateServerURL(serverURL); err != nil {
@@ -107,7 +107,7 @@ func (a configureAction) getConfigurationPath(args ConfigureConfig) (string, err
 		if err != nil {
 			return "", fmt.Errorf("could not get user home dir: %w", err)
 		}
-		configPath = path.Join(homePath, ".tracetest/config.yml")
+		configPath = path.Join(homePath, ".quality-trace/config.yml")
 	}
 
 	return configPath, nil

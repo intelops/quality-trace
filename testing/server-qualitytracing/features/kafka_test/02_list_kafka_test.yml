@@ -1,0 +1,28 @@
+type: Test
+spec:
+  id: jkbd86ads
+  name: List Kafka Test
+  description: Test step of 'Kafka Test Feature - Test Suite'
+  trigger:
+    type: http
+    httpRequest:
+      url: ${var:TARGET_URL}/api/tests
+      method: GET
+      headers:
+      - key: Content-Type
+        value: application/json
+  specs:
+  - name: Qualitytrace API listed the test last test created
+    selector: span[name = "Qualitytrace trigger"]
+    assertions:
+    - attr:quality-trace.selected_spans.count = 1
+    - attr:quality-trace.response.status = 200
+    - attr:quality-trace.response.body | json_path '$.items[*].spec.id' contains var:KAFKA_TEST_ID # check if the test is listed
+  - name: Qualitytrace API endpoint 'GET /api/tests' was called once
+    selector: span[name="GET /api/tests" quality-trace.span.type="http"]
+    assertions:
+    - attr:quality-trace.selected_spans.count = 1
+  - name: Two queries were executed on the database, one for counting and another for listing
+    selector: span[name = "query SELECT"]
+    assertions:
+    - attr:quality-trace.selected_spans.count = 2

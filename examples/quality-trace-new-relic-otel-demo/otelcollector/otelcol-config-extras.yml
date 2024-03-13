@@ -1,0 +1,30 @@
+# extra settings to be merged into OpenTelemetry Collector configuration
+# do not delete this file
+
+processors:
+  batch:
+    timeout: 100ms
+
+exporters:
+  # OTLP for Qualitytrace
+  otlp/quality-trace:
+    endpoint: quality-trace:4317 # Send traces to Qualitytrace. Read more in docs here:  https://docs.quality-trace.io/configuration/connecting-to-data-stores/opentelemetry-collector
+    tls:
+      insecure: true
+  otlp/newrelic:
+    endpoint: otlp.nr-data.net:443
+    headers:
+      api-key: <new_relic_ingest_licence_key> # Send traces to New Relic.
+      # Read more in docs here: https://docs.newrelic.com/docs/more-integrations/open-source-telemetry-integrations/opentelemetry/opentelemetry-setup/#collector-export
+      # And here: https://docs.newrelic.com/docs/more-integrations/open-source-telemetry-integrations/opentelemetry/collector/opentelemetry-collector-basic/
+
+service:
+  pipelines:
+    traces/quality-trace:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [otlp/quality-trace]
+    traces/newrelic:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [logging, otlp/newrelic]

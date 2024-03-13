@@ -1,6 +1,6 @@
 # Websocket endpoint
 
-Tracetest allow you to subscribe to updates of resources using websockets. There are two endpoints that you can use to manage subscriptions:
+Qualitytrace allow you to subscribe to updates of resources using websockets. There are two endpoints that you can use to manage subscriptions:
 
 ## Endpoint
  

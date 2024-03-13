@@ -1,7 +1,7 @@
 telemetry:
   exporters:
     otelcollector:
-      serviceName: tracetest
+      serviceName: quality-trace
       sampling: 100
       exporter:
         type: collector

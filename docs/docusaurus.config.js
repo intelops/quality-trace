@@ -6,9 +6,9 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Tracetest Docs',
+  title: 'Qualitytrace Docs',
   tagline: 'Trace-based testing',
-  url: 'https://docs.tracetest.io',
+  url: 'https://docs.quality-trace.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -16,8 +16,8 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'kubeshop', // Usually your GitHub org/user name.
-  projectName: 'tracetest', // Usually your repo name.
+  organizationName: 'intelops', // Usually your GitHub org/user name.
+  projectName: 'quality-trace', // Usually your repo name.
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
@@ -41,7 +41,7 @@ const config = {
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: "https://github.com/kubeshop/tracetest/blob/main/docs/",
+          editUrl: "https://github.com/intelops/quality-trace/blob/main/docs/",
           routeBasePath: "/",
         },
         theme: {
@@ -61,7 +61,7 @@ const config = {
         // Plugin Options for loading OpenAPI files
         specs: [
           {
-            spec: "https://raw.githubusercontent.com/kubeshop/tracetest/main/api/openapi.yaml",
+            spec: "https://raw.githubusercontent.com/intelops/quality-trace/main/api/openapi.yaml",
             route: "/openapi/",
           },
         ],
@@ -105,7 +105,7 @@ const config = {
         redirects: [
           // /docs/oldDoc -> /docs/newDoc
           // {
-          //   to: '/using-tracetest/adding-assertions',
+          //   to: '/using-quality-trace/adding-assertions',
           //   from: '/adding-assertions',
           // },
           // Redirect from multiple old paths to the new path
@@ -139,19 +139,19 @@ const config = {
           },
           {
             to: '/web-ui/creating-tests',
-            from: ['/using-tracetest/create-test' /*, '/docs/legacyDocFrom2016'*/],
+            from: ['/using-quality-trace/create-test' /*, '/docs/legacyDocFrom2016'*/],
           },
           {
             to: '/web-ui/test-results',
-            from: ['/using-tracetest/test-results' /*, '/docs/legacyDocFrom2016'*/],
+            from: ['/using-quality-trace/test-results' /*, '/docs/legacyDocFrom2016'*/],
           },
           {
             to: '/web-ui/creating-test-specifications',
-            from: ['/using-tracetest/adding-assertions' /*, '/docs/legacyDocFrom2016'*/],
+            from: ['/using-quality-trace/adding-assertions' /*, '/docs/legacyDocFrom2016'*/],
           },
           {
             to: '/concepts/versioning',
-            from: ['/using-tracetest/versioning' /*, '/docs/legacyDocFrom2016'*/],
+            from: ['/using-quality-trace/versioning' /*, '/docs/legacyDocFrom2016'*/],
           },
           {
             to: '/cli/creating-tests',
@@ -179,11 +179,11 @@ const config = {
           },
           {
             to: '/ci-cd-automation/testkube-pipeline',
-            from: ['/examples-tutorials/recipes/running-tracetest-with-testkube' /*, '/docs/legacyDocFrom2016'*/],
+            from: ['/examples-tutorials/recipes/running-quality-trace-with-testkube' /*, '/docs/legacyDocFrom2016'*/],
           },
           {
             to: '/analyzer/concepts',
-            from: ['/concepts/tracetest-analyzer-concepts'],
+            from: ['/concepts/quality-trace-analyzer-concepts'],
           },
           {
             to: '/cli/cli-installation-reference',
@@ -232,10 +232,10 @@ const config = {
       navbar: {
         hideOnScroll: true,
         logo: {
-          alt: 'Tracetest Logo',
+          alt: 'Qualitytrace Logo',
           src: 'img/logo-landscape.svg',
           srcDark: 'img/logo-landscape-dark.svg',
-          href: 'https://tracetest.io/',
+          href: 'https://quality-trace.io/',
           target: '_blank',
         },
         items: [
@@ -268,14 +268,14 @@ const config = {
             target: '_self',
           },
           {
-            href: "https://tracetest.io/community",
+            href: "https://quality-trace.io/community",
             label: "Community",
             position: "left",
           },
           {
             type: "html",
             position: "left",
-            value: `<iframe src="https://ghbtns.com/github-btn.html?user=kubeshop&repo=tracetest&type=star&count=true&size=medium" style='margin-top: 6px' frameborder="0" scrolling="0" width="150" height="20" title="GitHub"></iframe>`,
+            value: `<iframe src="https://ghbtns.com/github-btn.html?user=intelops&repo=quality-trace&type=star&count=true&size=medium" style='margin-top: 6px' frameborder="0" scrolling="0" width="150" height="20" title="GitHub"></iframe>`,
           },
           {
             type: "search",
@@ -304,7 +304,7 @@ const config = {
               },
               {
                 label: "Twitter",
-                href: "https://twitter.com/tracetest_io",
+                href: "https://twitter.com/quality-trace_io",
               },
               {
                 label: "LinkedIn",
@@ -317,15 +317,15 @@ const config = {
             items: [
               {
                 label: "Home",
-                to: "https://tracetest.io",
+                to: "https://quality-trace.io",
               },
               {
                 label: "Blog",
-                to: "https://tracetest.io/blog",
+                to: "https://quality-trace.io/blog",
               },
               {
                 label: "GitHub",
-                href: "https://github.com/kubeshop/tracetest",
+                href: "https://github.com/intelops/quality-trace",
               },
             ],
           },
@@ -343,7 +343,7 @@ const config = {
         // Public API key: it is safe to commit it
         apiKey: "663c91299e298ff34c5a7a18f4451d1a",
 
-        indexName: "tracetest",
+        indexName: "quality-trace",
 
         contextualSearch: false,
 

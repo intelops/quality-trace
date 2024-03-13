@@ -33,7 +33,7 @@ func TestListPollingProfile(t *testing.T) {
 	cliConfig := env.GetCLIConfigPath(t)
 
 	t.Run("list with no polling profile initialized", func(t *testing.T) {
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 
 		// When I try to list polling profile on pretty mode and there is no polling profile previously registered
@@ -52,7 +52,7 @@ func TestListPollingProfile(t *testing.T) {
 	addListPollingProfilePreReqs(t, env)
 
 	t.Run("list with invalid sortBy field", func(t *testing.T) {
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 		// And I already have a polling profile created
 
@@ -64,7 +64,7 @@ func TestListPollingProfile(t *testing.T) {
 	})
 
 	t.Run("list with YAML format", func(t *testing.T) {
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 		// And I already have a polling profile created
 
@@ -86,7 +86,7 @@ func TestListPollingProfile(t *testing.T) {
 	})
 
 	t.Run("list with JSON format", func(t *testing.T) {
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 		// And I already have a polling profile created
 
@@ -109,7 +109,7 @@ func TestListPollingProfile(t *testing.T) {
 	})
 
 	t.Run("list with pretty format", func(t *testing.T) {
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 		// And I already have a polling profile created
 

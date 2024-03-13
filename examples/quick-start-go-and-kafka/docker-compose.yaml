@@ -61,15 +61,15 @@ services:
     ports:
       - 29092:29092
 
-  tracetest:
-    image: kubeshop/tracetest:${TAG:-latest}
+  quaity-trace:
+    image: intelops/quaity-trace:${TAG:-latest}
     platform: linux/amd64
     volumes:
       - type: bind
-        source: ./tracetest/tracetest-config.yaml
-        target: /app/tracetest.yaml
+        source: ./quaity-trace/quaity-trace-config.yaml
+        target: /app/quaity-trace.yaml
       - type: bind
-        source: ./tracetest/tracetest-provision.yaml
+        source: ./quaity-trace/quaity-trace-provision.yaml
         target: /app/provisioning.yaml
     ports:
       - 11633:11633
@@ -87,7 +87,7 @@ services:
       timeout: 3s
       retries: 60
     environment:
-      TRACETEST_DEV: ${TRACETEST_DEV}
+      QUALITYTRACE_DEV: ${QUALITYTRACE_DEV}
 
   postgres:
     image: postgres:14
@@ -108,7 +108,7 @@ services:
       - "--config"
       - "/otel-local-config.yaml"
     volumes:
-      - ./tracetest/collector.config.yaml:/otel-local-config.yaml
+      - ./quaity-trace/collector.config.yaml:/otel-local-config.yaml
     ports:
       - 4317:4317
     depends_on:

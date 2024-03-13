@@ -85,11 +85,11 @@ const GuidedTourProvider = ({children}: IProps) => {
 
     showNotification({
       type: 'open',
-      description: 'Walk through Tracetest features',
+      description: 'Walk through Qualitytrace features',
       duration: 0,
       btn,
       key: NOTIFICATION_KEY,
-      title: 'Do you want to take a quick tour of Tracetest?',
+      title: 'Do you want to take a quick tour of Qualitytrace?',
       onClose: onSkip,
     });
   }, [dispatch, showGuidedTourNotification, showNotification, tourByPathname]);

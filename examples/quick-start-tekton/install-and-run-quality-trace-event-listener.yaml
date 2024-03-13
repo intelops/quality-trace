@@ -1,0 +1,12 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: EventListener
+metadata:
+  name: install-and-run-quality-trace-event-listener
+spec:
+  serviceAccountName: tekton-robot
+  triggers:
+    - name: install-and-run-quality-trace-trigger 
+      bindings:
+      - ref: install-and-run-quality-trace-binding
+      template:
+        ref: install-and-run-quality-trace-template

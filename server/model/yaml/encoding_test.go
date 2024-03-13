@@ -42,9 +42,9 @@ func TestDecode(t *testing.T) {
 					},
 					Specs: []yaml.TestSpec{
 						{
-							Selector: `span[name = "Tracetest trigger"]`,
+							Selector: `span[name = "Qualitytrace trigger"]`,
 							Assertions: []string{
-								"tracetest.response.status = 200",
+								"quality-trace.response.status = 200",
 							},
 						},
 					},

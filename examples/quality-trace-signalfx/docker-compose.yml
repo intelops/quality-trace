@@ -1,0 +1,49 @@
+version: '3'
+services:
+
+    quality-trace:
+        image: intelops/quality-trace:${TAG:-latest}
+        platform: linux/amd64
+        volumes:
+            - type: bind
+              source: ./quality-trace-config.yaml
+              target: /app/quality-trace.yaml
+            - type: bind
+              source: ./quality-trace-provision.yaml
+              target: /app/provision.yaml
+        command: --provisioning-file /app/provision.yaml
+        ports:
+            - 11633:11633
+        extra_hosts:
+          - "host.docker.internal:host-gateway"
+        depends_on:
+            postgres:
+                condition: service_healthy
+            otel-collector:
+                condition: service_started
+        healthcheck:
+            test: ["CMD", "wget", "--spider", "localhost:11633"]
+            interval: 1s
+            timeout: 3s
+            retries: 60
+        environment:
+            QUALITYTRACE_DEV: ${QUALITYTRACE_DEV}
+
+    postgres:
+        image: postgres:14
+        environment:
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_USER: postgres
+        healthcheck:
+            test: pg_isready -U "$$POSTGRES_USER" -d "$$POSTGRES_DB"
+            interval: 1s
+            timeout: 5s
+            retries: 60
+
+    otel-collector:
+        image: otel/opentelemetry-collector-contrib:0.54.0
+        command:
+            - "--config"
+            - "/otel-local-config.yaml"
+        volumes:
+            - ./collector.config.yaml:/otel-local-config.yaml

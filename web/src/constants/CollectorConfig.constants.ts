@@ -13,9 +13,9 @@ processors:
 exporters:
   logging:
     logLevel: debug
-  # OTLP for Tracetest
-  otlp/tracetest:
-    endpoint: tracetest:4317 # Send traces to Tracetest. Read more in docs here:  https://docs.tracetest.io/configuration/connecting-to-data-stores/opentelemetry-collector
+  # OTLP for Qualitytrace
+  otlp/quality-trace:
+    endpoint: quality-trace:4317 # Send traces to Qualitytrace. Read more in docs here:  https://docs.tracetest.io/configuration/connecting-to-data-stores/opentelemetry-collector
     tls:
       insecure: true
   # OTLP for Lightstep
@@ -26,10 +26,10 @@ exporters:
 
 service:
   pipelines:
-    traces/tracetest:
+    traces/quality-trace:
       receivers: [otlp]
       processors: [batch]
-      exporters: [otlp/tracetest]
+      exporters: [otlp/quality-trace]
     traces/lightstep:
       receivers: [otlp]
       processors: [batch]
@@ -48,7 +48,7 @@ processors:
 
 exporters:
   otlp/1:
-    endpoint: tracetest:4317
+    endpoint: quality-trace:4317
     tls:
       insecure: true
 
@@ -73,9 +73,9 @@ processors:
 exporters:
   logging:
     logLevel: debug
-  # OTLP for Tracetest
-  otlp/tracetest:
-    endpoint: tracetest:4317 # Send traces to Tracetest. Read more in docs here:  https://docs.tracetest.io/configuration/connecting-to-data-stores/opentelemetry-collector
+  # OTLP for Qualitytrace
+  otlp/quality-trace:
+    endpoint: quality-trace:4317 # Send traces to Qualitytrace. Read more in docs here:  https://docs.tracetest.io/configuration/connecting-to-data-stores/opentelemetry-collector
     tls:
       insecure: true
   # OTLP for New Relic
@@ -88,10 +88,10 @@ exporters:
 
 service:
   pipelines:
-    traces/tracetest:
+    traces/quality-trace:
       receivers: [otlp]
       processors: [batch]
-      exporters: [otlp/tracetest]
+      exporters: [otlp/quality-trace]
     traces/newrelic:
       receivers: [otlp]
       processors: [batch]
@@ -111,9 +111,9 @@ processors:
     timeout: 10s
 
 exporters:
-  # OTLP for Tracetest
-  otlp/tracetest:
-    endpoint: tracetest:4317 # Send traces to Tracetest. Read more in docs here:  https://docs.tracetest.io/configuration/connecting-to-data-stores/opentelemetry-collector
+  # OTLP for Qualitytrace
+  otlp/quality-trace:
+    endpoint: quality-trace:4317 # Send traces to Qualitytrace. Read more in docs here:  https://docs.tracetest.io/configuration/connecting-to-data-stores/opentelemetry-collector
     tls:
       insecure: true
   # Datadog exporter
@@ -124,10 +124,10 @@ exporters:
       # Read more in docs here: https://docs.datadoghq.com/opentelemetry/otel_collector_datadog_exporter
 service:
   pipelines:
-    traces/tracetest:
+    traces/quality-trace:
       receivers: [otlp]
       processors: [batch]
-      exporters: [otlp/tracetest]
+      exporters: [otlp/quality-trace]
     traces/datadog:
       receivers: [otlp]
       processors: [batch]
@@ -147,9 +147,9 @@ processors:
 exporters:
   logging:
     logLevel: debug
-  # OTLP for Tracetest
-  otlp/tracetest:
-    endpoint: tracetest:4317 # Send traces to Tracetest. Read more in docs here:  https://docs.tracetest.io/configuration/connecting-to-data-stores/opentelemetry-collector
+  # OTLP for Qualitytrace
+  otlp/quality-trace:
+    endpoint: quality-trace:4317 # Send traces to Qualitytrace. Read more in docs here:  https://docs.tracetest.io/configuration/connecting-to-data-stores/opentelemetry-collector
     tls:
       insecure: true
   # OTLP for Honeycomb
@@ -161,10 +161,10 @@ exporters:
 
 service:
   pipelines:
-    traces/tracetest:
+    traces/quality-trace:
       receivers: [otlp]
       processors: [batch]
-      exporters: [otlp/tracetest]
+      exporters: [otlp/quality-trace]
     traces/honeycomb:
       receivers: [otlp]
       processors: [batch]
@@ -183,17 +183,17 @@ processors:
 exporters:
   azuremonitor:
     instrumentation_key: <your-instrumentation-key>
-  otlp/tracetest:
-    endpoint: tracetest:4317
+  otlp/quality-trace:
+    endpoint: quality-trace:4317
     tls:
       insecure: true
 
 service:
   pipelines:
-    traces/tracetest:
+    traces/quality-trace:
       receivers: [otlp]
       processors: [batch]
-      exporters: [otlp/tracetest]
+      exporters: [otlp/quality-trace]
     traces/appinsights:
       receivers: [otlp]
       exporters: [azuremonitor]
@@ -212,9 +212,9 @@ processors:
 exporters:
   logging:
     logLevel: debug
-  # OTLP for Tracetest
-  otlp/tracetest:
-    endpoint: tracetest:4317 # Send traces to Tracetest. Read more in docs here:  https://docs.tracetest.io/configuration/connecting-to-data-stores/opentelemetry-collector
+  # OTLP for Qualitytrace
+  otlp/quality-trace:
+    endpoint: quality-trace:4317 # Send traces to Qualitytrace. Read more in docs here:  https://docs.quality-trace.io/configuration/connecting-to-data-stores/opentelemetry-collector
     tls:
       insecure: true
   # OTLP for Signoz
@@ -225,10 +225,10 @@ exporters:
 
 service:
   pipelines:
-    traces/tracetest:
+    traces/quality-trace:
       receivers: [otlp]
       processors: [batch]
-      exporters: [logging, otlp/tracetest]
+      exporters: [logging, otlp/quality-trace]
     traces/signoz:
       receivers: [otlp]
       processors: [batch]
@@ -248,9 +248,9 @@ processors:
 exporters:
   logging:
     verbosity: detailed
-  # OTLP for Tracetest
-  otlp/tracetest:
-    endpoint: tracetest:4317 # Send traces to Tracetest. Read more in docs here:  https://docs.tracetest.io/configuration/connecting-to-data-stores/opentelemetry-collector
+  # OTLP for Qualitytrace
+  otlp/quality-trace:
+    endpoint: quality-trace:4317 # Send traces to Qualitytrace. Read more in docs here:  https://docs.tracetest.io/configuration/connecting-to-data-stores/opentelemetry-collector
     tls:
       insecure: true
   # OTLP for Dynatrace
@@ -261,10 +261,10 @@ exporters:
 
 service:
   pipelines:
-    traces/tracetest:
+    traces/quality-trace:
       receivers: [otlp]
       processors: [batch]
-      exporters: [logging, otlp/tracetest]
+      exporters: [logging, otlp/quality-trace]
     traces/dynatrace:
       receivers: [otlp]
       processors: [batch]

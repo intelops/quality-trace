@@ -15,21 +15,21 @@ jobs:
       uses: actions/checkout@v1
 
     - name: Start containers
-      run: docker compose -f "docker-compose.yaml" -f "tracetest/docker-compose.yaml" up -d --build
+      run: docker compose -f "docker-compose.yaml" -f "quality-trace/docker-compose.yaml" up -d --build
 
-    - name: Install Tracetest CLI
+    - name: Install Qualitytrace CLI
       shell: bash
-      run: curl -L https://raw.githubusercontent.com/kubeshop/tracetest/main/install-cli.sh | bash
+      run: curl -L https://raw.githubusercontent.com/intelops/quality-trace/main/install-cli.sh | bash
 
-    - name: Configure Tracetest CLI
-      run: tracetest configure -g --endpoint http://localhost:11633
+    - name: Configure Qualitytrace CLI
+      run: quality-trace configure -g --endpoint http://localhost:11633
 
-    - name: Run tests via the Tracetest CLI
+    - name: Run tests via the Qualitytrace CLI
       run: |
-        tracetest run test -f ./tracetest/tests/test-api.yaml
-        tracetest run test -f ./tracetest/tests/test-api-and-av.yaml
-        tracetest run transaction test -f ./tracetest/tests/transaction-api.yaml
+        quality-trace run test -f ./quality-trace/tests/test-api.yaml
+        quality-trace run test -f ./quality-trace/tests/test-api-and-av.yaml
+        quality-trace run transaction test -f ./quality-trace/tests/transaction-api.yaml
 
     - name: Stop containers
       if: always()
-      run: docker compose -f "docker-compose.yaml" -f "tracetest/docker-compose.yaml" down -v
+      run: docker compose -f "docker-compose.yaml" -f "quality-trace/docker-compose.yaml" down -v

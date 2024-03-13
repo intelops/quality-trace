@@ -22,7 +22,7 @@ func TestApplyVariableSet(t *testing.T) {
 	cliConfig := env.GetCLIConfigPath(t)
 
 	t.Run("When I try to set up a new variable set", func(t *testing.T) {
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 
 		// When I try to set up a new variable set

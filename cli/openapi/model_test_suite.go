@@ -1,7 +1,7 @@
 /*
-TraceTest
+Qualitytrace
 
-OpenAPI definition for TraceTest endpoint and resources
+OpenAPI definition for Qualitytrace endpoint and resources
 
 API version: 0.2.1
 */

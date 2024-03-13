@@ -1,18 +1,18 @@
 version: "3.2"
 services:
-  tracetest:
+  qualityt-race:
     restart: unless-stopped
-    image: kubeshop/tracetest:${TAG:-latest}
+    image: intelops/quality-trace:${TAG:-latest}
     extra_hosts:
       - "host.docker.internal:host-gateway"
     build:
       context: .
     volumes:
       - type: bind
-        source: ./local-config/tracetest.config.yaml
-        target: /app/tracetest.yaml
+        source: ./local-config/quality-trace.config.yaml
+        target: /app/quality-trace.yaml
       - type: bind
-        source: ./local-config/tracetest.provision.yaml
+        source: ./local-config/quality-trace.provision.yaml
         target: /app/provisioning.yaml
     ports:
       - 11633:11633
@@ -26,7 +26,7 @@ services:
       postgres:
         condition: service_healthy
     environment:
-      TRACETEST_DEV: ${TRACETEST_DEV}
+      QUALITYTRACE_DEV: ${QUALITYTRACE_DEV}
 
   postgres:
     image: postgres:14
@@ -55,4 +55,4 @@ services:
     volumes:
       - ./local-config/collector.config.yaml:/otel-local-config.yaml
     depends_on:
-      - tracetest
+      - quality-trace

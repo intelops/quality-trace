@@ -143,7 +143,7 @@ func runTestSuiteRunnerTest(t *testing.T, withErrors bool, assert func(t *testin
 
 	metadata := test.RunMetadata{
 		"environment": "production",
-		"service":     "tracetest",
+		"service":     "quality-trace",
 	}
 
 	envRepository := variableset.NewRepository(rawDB)

@@ -59,12 +59,12 @@ func TestFromEnv(t *testing.T) {
 	})
 
 	t.Run("InvalidData", func(t *testing.T) {
-		os.Setenv("TRACETEST_PROVISIONING", "this is not base64")
+		os.Setenv("QUALITYTRACE_PROVISIONING", "this is not base64")
 
 		provisioner := provisioning.New()
 
 		err := provisioner.FromEnv()
-		assert.ErrorContains(t, err, "cannot decode env variable TRACETEST_PROVISIONING")
+		assert.ErrorContains(t, err, "cannot decode env variable QUALITYTRACE_PROVISIONING")
 	})
 
 	for _, c := range cases {
@@ -78,7 +78,7 @@ func TestFromEnv(t *testing.T) {
 				}
 
 				encoded := base64.StdEncoding.EncodeToString(fcontents)
-				os.Setenv("TRACETEST_PROVISIONING", encoded)
+				os.Setenv("QUALITYTRACE_PROVISIONING", encoded)
 
 				err = f.provisioner.FromEnv()
 				assert.NoError(t, err)

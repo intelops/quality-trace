@@ -108,7 +108,7 @@ func GetManager(environmentType string, options ...option) Manager {
 		dockerComposeNoApiFilePath:              dockerComposeNoApiFilepath,
 		dockerComposePokeshopFilePath:           dockerComposePokeshopFilepath,
 		dockerComposePokeshopWithStreamFilepath: dockerComposePokeshopWithStreamFilepath,
-		dockerProjectName:                       fmt.Sprintf("tracetest-env-%d", envCounter),
+		dockerProjectName:                       fmt.Sprintf("quality-trace-env-%d", envCounter),
 	}
 
 	for _, option := range options {
@@ -150,7 +150,7 @@ func (m *internalManager) Start(t *testing.T) {
 	require.NoError(t, err)
 	helpers.RequireExitCodeEqual(t, result, 0)
 
-	// wait until tracetest port is ready
+	// wait until quality-trace port is ready
 	waitForPort("11633")
 
 	if m.pokeshopEnabled {

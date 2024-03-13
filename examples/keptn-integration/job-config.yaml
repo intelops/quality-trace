@@ -1,19 +1,19 @@
 apiVersion: v2
 actions:
-- name: "Run tracetest on your service"
+- name: "Run quality-trace on your service"
   events:
     - name: "sh.keptn.event.test.triggered"
   tasks:
-    - name: "Run tracetest"
+    - name: "Run quality-trace"
       files:
         - data/test-definition.yaml
-        - data/tracetest-cli-config.yaml
-      image: "kubeshop/tracetest:latest"
+        - data/quality-trace-cli-config.yaml
+      image: "intelops/quality-trace:latest"
       cmd:
-        - tracetest
+        - quality-trace
       args:
         - --config
-        - /keptn/data/tracetest-cli-config.yaml
+        - /keptn/data/quality-trace-cli-config.yaml
         - run
         - test
         - --file

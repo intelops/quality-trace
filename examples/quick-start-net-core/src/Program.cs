@@ -2,7 +2,7 @@ using OpenTelemetry.Exporter;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 
-var serviceName = "tracetest-example";
+var serviceName = "quality-trace-example";
 var serviceVersion = "1.0.0";
 
 var builder = WebApplication.CreateBuilder(args);

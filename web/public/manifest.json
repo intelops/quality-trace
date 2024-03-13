@@ -1,6 +1,6 @@
 {
-  "short_name": "Tracetest",
-  "name": "Tracetest",
+  "short_name": "Qualitytrace",
+  "name": "Qualitytrace",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,7 +8,7 @@
       "type": "image/x-icon"
     },
     {
-      "src": "Tracetest_favicone-04.svg",
+      "src": "Qualitytrace_favicone-04.svg",
       "type": "image/svg+xml",
       "sizes": "256x256 512x512"
     }

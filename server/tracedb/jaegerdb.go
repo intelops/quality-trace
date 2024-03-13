@@ -58,10 +58,10 @@ func (jtd *jaegerTraceDB) TestConnection(ctx context.Context) model.ConnectionRe
 		connection.WithAuthenticationTest(connection.NewTestStep(func(ctx context.Context) (string, error) {
 			_, err := jtd.GetTraceByID(ctx, id.NewRandGenerator().TraceID().String())
 			if strings.Contains(err.Error(), "authentication handshake failed") {
-				return "Tracetest tried to execute a gRPC request but it failed due to authentication issues", err
+				return "Qualitytrace tried to execute a gRPC request but it failed due to authentication issues", err
 			}
 
-			return "Tracetest managed to authenticate with Jaeger", nil
+			return "Qualitytrace managed to authenticate with Jaeger", nil
 		})),
 	)
 

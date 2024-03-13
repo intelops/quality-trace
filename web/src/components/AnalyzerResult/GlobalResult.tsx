@@ -21,7 +21,7 @@ const GlobalResult = ({score, minimumScore, allRulesPassed}: IProps) => {
           <TooltipQuestion
             title={
               <>
-                Tracetest core system supports analyzer evaluation as part of the testing capabilities.{' '}
+                Qualitytrace core system supports analyzer evaluation as part of the testing capabilities.{' '}
                 <a href={ANALYZER_DOCUMENTATION_URL} target="_blank">
                   Learn more
                 </a>{' '}

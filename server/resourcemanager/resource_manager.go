@@ -480,7 +480,7 @@ func (m *manager[T]) list(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-const HeaderAugmented = "X-Tracetest-Augmented"
+const HeaderAugmented = "X-Qualitytrace-Augmented"
 
 func isRequestForAugmented(r *http.Request) bool {
 	return r.Header.Get(HeaderAugmented) == "true"

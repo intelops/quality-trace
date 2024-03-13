@@ -33,7 +33,7 @@ var serverOptions = options{
 	},
 	{
 		key:          "postgres.dbname",
-		defaultValue: "tracetest",
+		defaultValue: "qualitytrace",
 		description:  "Postgres DB database name",
 	},
 	{
@@ -49,12 +49,12 @@ var serverOptions = options{
 	{
 		key:          "server.httpPort",
 		defaultValue: 11633,
-		description:  "Tracetest server HTTP Port",
+		description:  "Qualitytrace server HTTP Port",
 	},
 	{
 		key:          "server.pathPrefix",
 		defaultValue: "",
-		description:  "Tracetest server HTTP Path prefix",
+		description:  "Qualitytrace server HTTP Path prefix",
 	},
 	{
 		key:          "experimentalFeatures",

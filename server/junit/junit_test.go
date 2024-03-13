@@ -24,7 +24,7 @@ func TestConversion(t *testing.T) {
 
 	results := test.RunResults{
 		Results: (maps.Ordered[test.SpanQuery, []test.AssertionResult]{}).MustAdd(
-			test.SpanQuery(`span[tracetest.span.type = "database"]`), []test.AssertionResult{
+			test.SpanQuery(`span[quality-trace.span.type = "database"]`), []test.AssertionResult{
 				{
 					Assertion: `attr:db.statement contains "INSERT"`,
 					Results: []test.SpanAssertionResult{
@@ -35,7 +35,7 @@ func TestConversion(t *testing.T) {
 					},
 				},
 				{
-					Assertion: `attr:tracetest.span.duration < 500`,
+					Assertion: `attr:quality-trace.span.duration < 500`,
 					Results: []test.SpanAssertionResult{
 						{
 							ObservedValue: "notANumber",
@@ -44,7 +44,7 @@ func TestConversion(t *testing.T) {
 					},
 				},
 				{
-					Assertion: `attr:tracetest.span.type = "http"`,
+					Assertion: `attr:quality-trace.span.type = "http"`,
 					Results: []test.SpanAssertionResult{
 						{
 							ObservedValue: "database",

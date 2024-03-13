@@ -49,7 +49,7 @@ func NewTracer(ctx context.Context, cfg exporterConfig) (trace.Tracer, error) {
 
 	otel.SetTracerProvider(tracerProvider)
 
-	tracer := tracerProvider.Tracer("tracetest")
+	tracer := tracerProvider.Tracer("quality-trace")
 	return tracer, nil
 }
 

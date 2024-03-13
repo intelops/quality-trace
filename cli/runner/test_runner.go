@@ -69,7 +69,7 @@ func (r testRunner) Apply(ctx context.Context, df fileutil.File) (resource any, 
 }
 
 func (r testRunner) StartRun(ctx context.Context, resource any, runInfo openapi.RunInformation) (RunResult, error) {
-	
+
 	test := resource.(openapi.TestResource)
 	run, resp, err := r.openapiClient.ApiApi.
 		RunTest(ctx, test.Spec.GetId()).

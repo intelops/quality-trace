@@ -1,23 +1,23 @@
 ---
 id: open
-title: Opening Tracetest
-description: Tracetest allows you to quickly build integration and end-to-end tests, powered by your OpenTelemetry traces. Learn how to get started with creating tests once you open Tracetest.
+title: Opening Qualitytrace
+description: Qualitytrace allows you to quickly build integration and end-to-end tests, powered by your OpenTelemetry traces. Learn how to get started with creating tests once you open Qualitytrace.
 keywords:
-  - tracetest
+  - quality-trace
   - trace-based testing
   - observability
   - distributed tracing
   - testing
-image: https://res.cloudinary.com/djwdcmwdz/image/upload/v1689693872/docs/Blog_Thumbnail_28_ugy2yy.png
+<!-- image: https://res.cloudinary.com/djwdcmwdz/image/upload/v1689693872/docs/Blog_Thumbnail_28_ugy2yy.png -->
 ---
 
-This page showcases opening the Tracetest Web UI regardless if you used the Tracetest CLI, Docker, Kubernetes, or Helm to install Tracetest Server.
+This page showcases opening the Qualitytrace Web UI regardless if you used the Qualitytrace CLI, Docker, Kubernetes, or Helm to install Qualitytrace Server.
 
-Once you've installed Tracetest, as explained in the [installation guide](./installation.mdx), you access the Tracetest Web UI on [`http://localhost:11633`](http://localhost:11633). Here's what will greet you after a fresh install.
+Once you've installed Qualitytrace, as explained in the [installation guide](./installation.mdx), you access the Qualitytrace Web UI on [`http://localhost:11633`](http://localhost:11633). Here's what will greet you after a fresh install.
 
-![Landing page Tracetest](https://res.cloudinary.com/djwdcmwdz/image/upload/v1688474565/docs/screely-1688474539641_kbhvvc.png)
+<!-- ![Landing page Tracetest](https://res.cloudinary.com/djwdcmwdz/image/upload/v1688474565/docs/screely-1688474539641_kbhvvc.png)  -->
 
-By following the [installation guide](./installation.mdx) your Tracetest instance will have a `demo` Pokeshop app installed that generates distributed traces when triggered.
+By following the [installation guide](./installation.mdx) your Qualitytrace instance will have a `demo` Pokeshop app installed that generates distributed traces when triggered.
 
 ## Creating Trace-based Tests
 
@@ -38,18 +38,18 @@ To view the in-depth guide on creating tests visually, [check out this docs page
 
 On the top right, click the **Create** button and select **Create New Test** in the drop down.
 
-![Create a new test](https://res.cloudinary.com/djwdcmwdz/image/upload/v1688475179/docs/screely-1688475174365_ckq3cn.png)
+<!--![Create a new test](https://res.cloudinary.com/djwdcmwdz/image/upload/v1688475179/docs/screely-1688475174365_ckq3cn.png)-->
 
 Select an **HTTP Request** as the **test trigger**, and choose the **Pokeshop - Import** example.
 
-![Select Pokeshop example](https://res.cloudinary.com/djwdcmwdz/image/upload/v1688475514/docs/screely-1688475510090_r6hqmx.png)
+<!--![Select Pokeshop example](https://res.cloudinary.com/djwdcmwdz/image/upload/v1688475514/docs/screely-1688475510090_r6hqmx.png)-->
 
 This will populate a sample API test against a POST endpoint in the Pokeshop app demo. Clicking **Create & Run** will save and trigger the test.
 
-![API test against POST endpoint](https://res.cloudinary.com/djwdcmwdz/image/upload/v1688475680/docs/screely-1688475676524_vvtxsu.png)
+<!--![API test against POST endpoint](https://res.cloudinary.com/djwdcmwdz/image/upload/v1688475680/docs/screely-1688475676524_vvtxsu.png)-->
 
 :::info
-Running a test against `localhost` will resolve as `127.0.0.1` inside the Tracetest container. To run tests against apps running on your local machine, add them to the same network and use service name mapping instead. Example: Instead of running an app on `localhost:8080`, add it to your Docker Compose file, connect it to the same network as your Tracetest service, and use `service-name:8080` in the URL field when creating an app.
+Running a test against `localhost` will resolve as `127.0.0.1` inside the Qualitytrace container. To run tests against apps running on your local machine, add them to the same network and use service name mapping instead. Example: Instead of running an app on `localhost:8080`, add it to your Docker Compose file, connect it to the same network as your Qualitytrace service, and use `service-name:8080` in the URL field when creating an app.
 
 You can reach services running on your local machine using:
 
@@ -72,13 +72,13 @@ To view the in-depth guide on test results, [check out this docs page](http://lo
 
 The **Trigger** tab shows how the test was triggered and what the API response was.
 
-![test result](https://res.cloudinary.com/djwdcmwdz/image/upload/v1688476389/docs/screely-1688476384678_edcsgx.png)
+<!--![test result](https://res.cloudinary.com/djwdcmwdz/image/upload/v1688476389/docs/screely-1688476384678_edcsgx.png)-->
 
 ### Trace
 
 The **Trace** tab shows the entire distributed trace for debugging and a trace analysis score.
 
-![distributed trace and trace analysis score](https://res.cloudinary.com/djwdcmwdz/image/upload/v1688476460/docs/screely-1688476455986_q24aa2.png)
+!<!--[distributed trace and trace analysis score](https://res.cloudinary.com/djwdcmwdz/image/upload/v1688476460/docs/screely-1688476455986_q24aa2.png)-->
 
 ### Test
 
@@ -86,13 +86,13 @@ The **Test** tab shows span attributes. Here you add test specs and assertions o
 
 In the sample below, you see how to assert that all database spans return in less than `100ms`.
 
-![test specs](https://res.cloudinary.com/djwdcmwdz/image/upload/v1688476657/docs/screely-1688476653521_omxe4r.png)
+<!--![test specs](https://res.cloudinary.com/djwdcmwdz/image/upload/v1688476657/docs/screely-1688476653521_omxe4r.png)-->
 
 ### Automate
 
-The **Automate** tab shows how to automate the test run with the Tracetest CLI and other automation options.
+The **Automate** tab shows how to automate the test run with the Qualitytrace CLI and other automation options.
 
-![automate](https://res.cloudinary.com/djwdcmwdz/image/upload/v1688564019/docs/screely-1688564011617_n5pizv.png)
+<!--![automate](https://res.cloudinary.com/djwdcmwdz/image/upload/v1688564019/docs/screely-1688564011617_n5pizv.png)-->
 
 From here you can download a YAML file test definition and run it with the CLI.
 
@@ -126,9 +126,9 @@ spec:
       body: '{"id":52}'
   specs:
   - name: 'All Database Spans: Processing time is less than 100ms'
-    selector: span[tracetest.span.type="database"]
+    selector: span[quality-trace.span.type="database"]
     assertions:
-    - attr:tracetest.span.duration < 100ms
+    - attr:quality-trace.span.duration < 100ms
 ```
 
 ### Trigger
@@ -136,7 +136,7 @@ spec:
 Using the CLI, trigger a test run.
 
 ```bash title="Terminal"
-tracetest run test -f pokeshop_import.yaml -o pretty
+quality-trace run test -f pokeshop_import.yaml -o pretty
 ```
 
 ### Output
@@ -148,4 +148,4 @@ The test run will complete and show a result.
 	✔ All Database Spans: Processing time is less than 100ms
 ```
 
-The provided link in the test output will open the test run in the Tracetest Web UI.
+The provided link in the test output will open the test run in the Qualitytrace Web UI.

@@ -1,0 +1,17 @@
+type: Test
+spec:
+  id: 4iiL0j1Vg
+  name: Hello World
+  trigger:
+    type: http
+    httpRequest:
+      url: <your_api_endpoint>
+      method: GET
+      headers:
+        - key: Content-Type
+          value: application/json
+  specs:
+    - selector: span[quality-trace.span.type="faas" name="HelloWorld"]
+      assertions:
+        - attr:quality-trace.selected_spans.count = 1
+        - attr:quality-trace.span.duration < 1s

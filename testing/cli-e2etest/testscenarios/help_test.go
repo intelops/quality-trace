@@ -12,8 +12,8 @@ func TestHelpCommand(t *testing.T) {
 	// instantiate require with testing helper
 	require := require.New(t)
 
-	// Given I am a Tracetest CLI user
-	// When I try to get help with the commands "tracetest help", "tracetest --help" or "tracetest -h"
+	// Given I am a Qualitytrace CLI user
+	// When I try to get help with the commands "quality-trace help", "quality-trace --help" or "quality-trace-h"
 	// Then I should receive a message with sucess
 
 	possibleCommands := []string{"help", "--help", "-h"}

@@ -22,7 +22,7 @@ func TestRunTestSuiteInsteadOfTest(t *testing.T) {
 		// instantiate require with testing helper
 		require := require.New(t)
 
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 		// And the datasource is already set
 
@@ -48,7 +48,7 @@ func TestRunTestWithHttpTriggerAndVariableSetFile(t *testing.T) {
 	require := require.New(t)
 
 	t.Run("should pass when using variable set definition file", func(t *testing.T) {
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 		// And the datasource is already set
 
@@ -113,7 +113,7 @@ func TestRunTestWithHttpTriggerAndVariableSetFile(t *testing.T) {
 	})
 
 	t.Run("should pass when using variable set id", func(t *testing.T) {
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 		// And the datasource is already set
 
@@ -147,7 +147,7 @@ func TestRunTestWithHttpTriggerAndVariableSetFile(t *testing.T) {
 	})
 
 	t.Run("should pass when using variable set id but using the old environment flag", func(t *testing.T) {
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 		// And the datasource is already set
 
@@ -192,7 +192,7 @@ func TestRunTestWithGrpcTrigger(t *testing.T) {
 		// instantiate require with testing helper
 		require := require.New(t)
 
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 		// And the datasource is already set
 
@@ -210,7 +210,7 @@ func TestRunTestWithGrpcTrigger(t *testing.T) {
 		// instantiate require with testing helper
 		require := require.New(t)
 
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 		// And the datasource is already set
 
@@ -236,7 +236,7 @@ func TestRunTestWithKafkaTrigger(t *testing.T) {
 		// instantiate require with testing helper
 		require := require.New(t)
 
-		// Given I am a Tracetest CLI user
+		// Given I am a Qualitytrace CLI user
 		// And I have my server recently created
 		// And the datasource is already set
 

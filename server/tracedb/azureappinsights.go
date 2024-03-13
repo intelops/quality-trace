@@ -87,10 +87,10 @@ func (db *azureAppInsightsDB) TestConnection(ctx context.Context) model.Connecti
 		connection.WithAuthenticationTest(connection.NewTestStep(func(ctx context.Context) (string, error) {
 			_, err := db.GetTraceByID(ctx, db.GetTraceID().String())
 			if err != nil && strings.Contains(strings.ToLower(err.Error()), "403") {
-				return `Tracetest tried to execute an Azure API request but it failed due to authentication issues`, err
+				return `Qualitytrace tried to execute an Azure API request but it failed due to authentication issues`, err
 			}
 
-			return "Tracetest managed to authenticate with the Azure Services", nil
+			return "Qualitytrace managed to authenticate with the Azure Services", nil
 		})),
 	)
 
@@ -329,9 +329,9 @@ func parseAttributes(span *traces.Span, value any) error {
 func parseParentID(span *traces.Span, value any) error {
 	rawParentID, ok := value.(string)
 	if ok {
-		span.Attributes[traces.TracetestMetadataFieldParentID] = rawParentID
+		span.Attributes[traces.QualitytraceMetadataFieldParentID] = rawParentID
 	} else {
-		span.Attributes[traces.TracetestMetadataFieldParentID] = ""
+		span.Attributes[traces.QualitytraceMetadataFieldParentID] = ""
 	}
 	return nil
 }

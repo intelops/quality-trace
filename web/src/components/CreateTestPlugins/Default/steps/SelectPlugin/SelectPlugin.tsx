@@ -20,7 +20,7 @@ const SelectPlugin = () => {
   return (
     <Step.Step>
       <Step.FormContainer>
-        <Step.Title>What kind of trigger do you want to use to initiate this Tracetest?</Step.Title>
+        <Step.Title>What kind of trigger do you want to use to initiate this Qualitytrace?</Step.Title>
         <Form id={ComponentNames.SelectPlugin} form={form} onFinish={handleSubmit}>
           <S.PluginCardList>
             {pluginList.map(plugin => (

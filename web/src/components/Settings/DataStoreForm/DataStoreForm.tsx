@@ -73,7 +73,7 @@ const DataStoreForm = ({
         <S.FactoryContainer>
           <S.TopContainer>
             <S.Description>
-              Tracetest needs configuration information to be able to retrieve your trace from your distributed tracing
+              Qualitytrace needs configuration information to be able to retrieve your trace from your distributed tracing
               solution. Select your tracing data store and enter the configuration info.
             </S.Description>
             {dataStoreType && <DataStoreComponentFactory dataStoreType={dataStoreType} />}

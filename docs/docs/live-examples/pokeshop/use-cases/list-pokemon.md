@@ -39,7 +39,7 @@ You can trigger this use case by calling the endpoint `GET /pokemon?take=20&skip
 
 ## Building a Test for This Scenario
 
-Using Tracetest, we can [create a test](../../../web-ui/creating-tests.md) that will execute an API call on `GET /pokemon` and validate three properties:
+Using Qualitytrace, we can [create a test](../../../web-ui/creating-tests.md) that will execute an API call on `GET /pokemon` and validate three properties:
 - The API should return results with HTTP 200 OK.
 - The database should respond with low latency (< 200ms).
 - The database query should use the query string parameters `take` and `skip` correctly.
@@ -51,7 +51,7 @@ Running these tests for the first time will create an Observability trace like t
 
 ### Assertions
 
-With this trace, we can build [assertions](../../../concepts/assertions.md) on Tracetest and validate the API response and the database responses:
+With this trace, we can build [assertions](../../../concepts/assertions.md) on Qualitytrace and validate the API response and the database responses:
 
 - **The API should return results with HTTP 200 OK:**
 ![](../images/list-pokemons-api-test-spec.png)
@@ -66,10 +66,10 @@ Now you can validate this entire use case.
 
 ### Test Definition
 
-If you want to replicate this entire test on Tracetest, you can replicate these steps on our Web UI or using our CLI, saving the following test definition as the file `test-definition.yml` and later running:
+If you want to replicate this entire test on Qualitytrace, you can replicate these steps on our Web UI or using our CLI, saving the following test definition as the file `test-definition.yml` and later running:
 
 ```sh
-tracetest run test -f test-definition.yml
+quality-trace run test -f test-definition.yml
 ```
 
 ```yaml
@@ -86,13 +86,13 @@ spec:
       - key: Content-Type
         value: application/json
   specs:
-  - selector: span[tracetest.span.type="http" name="GET /pokemon?take=20&skip=0" http.method="GET"]
+  - selector: span[quality-trace.span.type="http" name="GET /pokemon?take=20&skip=0" http.method="GET"]
     assertions:
     - attr:http.status_code = 200
-  - selector: span[tracetest.span.type="database"]
+  - selector: span[quality-trace.span.type="database"]
     assertions:
-    - attr:tracetest.span.duration   <=   200ms
-  - selector: span[tracetest.span.type="database" name="pg.query:SELECT pokeshop"
+    - attr:quality-trace.span.duration   <=   200ms
+  - selector: span[quality-trace.span.type="database" name="pg.query:SELECT pokeshop"
       db.system="postgresql" db.name="pokeshop" db.user="ashketchum" db.statement
       contains "SELECT \"id\""]
     assertions:

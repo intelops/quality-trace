@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "tracetest.name" -}}
+{{- define "quality-trace.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "tracetest.fullname" -}}
+{{- define "quality-trace.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "tracetest.chart" -}}
+{{- define "quality-trace.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "tracetest.labels" -}}
-helm.sh/chart: {{ include "tracetest.chart" . }}
-{{ include "tracetest.selectorLabels" . }}
+{{- define "quality-trace.labels" -}}
+helm.sh/chart: {{ include "quality-trace.chart" . }}
+{{ include "quality-trace.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -46,16 +46,16 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 Create a default fully qualified postgresql name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 */}}
-{{- define "tracetest.postgresql.fullname" -}}
+{{- define "quality-trace.postgresql.fullname" -}}
 {{- include "common.names.dependency.fullname" (dict "chartName" "postgresql" "chartValues" .Values.postgresql "context" $) -}}
 {{- end -}}
 
 
-{{- define "tracetest.database.encryptedPassword" -}}
-  {{- include "tracetest.database.rawPassword" . | b64enc | quote -}}
+{{- define "quality-trace.database.encryptedPassword" -}}
+  {{- include "quality-trace.database.rawPassword" . | b64enc | quote -}}
 {{- end -}}
 
-{{- define "tracetest.database.rawPassword" -}}
+{{- define "quality-trace.database.rawPassword" -}}
 {{- if .Values.postgresql.enabled }}
     {{- if .Values.global.postgresql }}
         {{- if .Values.global.postgresql.auth }}
@@ -75,17 +75,17 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 {{/*
 Selector labels
 */}}
-{{- define "tracetest.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "tracetest.name" . }}
+{{- define "quality-trace.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "quality-trace.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "tracetest.serviceAccountName" -}}
+{{- define "quality-trace.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "tracetest.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "quality-trace.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
@@ -94,7 +94,7 @@ Create the name of the service account to use
 {{/*
 Define a valid pathPrefix
 */}}
-{{- define "tracetest.pathPrefix" -}}
+{{- define "quality-trace.pathPrefix" -}}
     {{- if .Values.server.pathPrefix }}
         {{- .Values.server.pathPrefix }}
     {{- else }}
@@ -106,7 +106,7 @@ Define a valid pathPrefix
 Common labels
 */}}
 {{- define "otelCollector.labels" -}}
-helm.sh/chart: {{ include "tracetest.chart" . }}
+helm.sh/chart: {{ include "quality-trace.chart" . }}
 {{ include "otelCollector.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}

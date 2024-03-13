@@ -13,15 +13,15 @@ services:
       - OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=http://otel-collector:4318/v1/traces
       - OTEL_SERVICE_NAME=quick_start_ruby_on_rails
 
-  tracetest:
-    image: kubeshop/tracetest:latest
+  quality-trace:
+    image: intelops/quality-trace:latest
     platform: linux/amd64
     volumes:
       - type: bind
-        source: ./tracetest/tracetest-config.yaml
-        target: /app/tracetest.yaml
+        source: ./quality-trace/quality-trace-config.yaml
+        target: /app/quality-trace.yaml
       - type: bind
-        source: ./tracetest/tracetest-provision.yaml
+        source: ./quality-trace/quality-trace-provision.yaml
         target: /app/provisioning.yaml
     ports:
       - 11633:11633
@@ -37,7 +37,7 @@ services:
       timeout: 3s
       retries: 60
     environment:
-      TRACETEST_DEV: ${TRACETEST_DEV}
+      QUALITYTRACE_DEV: ${QUALITYTRACE_DEV}
 
   postgres:
     image: postgres:14
@@ -56,4 +56,4 @@ services:
       - "--config"
       - "/otel-local-config.yaml"
     volumes:
-      - ./tracetest/collector.config.yaml:/otel-local-config.yaml
+      - ./quality-trace/collector.config.yaml:/otel-local-config.yaml

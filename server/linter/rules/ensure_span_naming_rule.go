@@ -36,7 +36,7 @@ func (r ensureSpanNamingRule) Evaluate(ctx context.Context, trace traces.Trace, 
 }
 
 func (r ensureSpanNamingRule) validateSpanName(ctx context.Context, span *traces.Span) analyzer.Result {
-	switch span.Attributes.Get("tracetest.span.type") {
+	switch span.Attributes.Get("quality-trace.span.type") {
 	case "http":
 		return r.validateHTTPSpanName(ctx, span)
 	case "database":
@@ -69,7 +69,7 @@ func (r ensureSpanNamingRule) validateHTTPSpanName(ctx context.Context, span *tr
 			Passed: false,
 			Errors: []analyzer.Error{
 				{
-					Value:       "tracetest.span.name",
+					Value:       "quality-trace.span.name",
 					Expected:    expectedName,
 					Description: fmt.Sprintf(`The Span name %s is not matching the naming convention`, span.Name),
 				},
@@ -105,7 +105,7 @@ func (r ensureSpanNamingRule) validateDatabaseSpanName(ctx context.Context, span
 			Passed: false,
 			Errors: []analyzer.Error{
 				{
-					Value:       "tracetest.span.name",
+					Value:       "quality-trace.span.name",
 					Expected:    expectedName,
 					Description: fmt.Sprintf(`The Span name %s is not matching the naming convention`, span.Name),
 				},
@@ -131,7 +131,7 @@ func (r ensureSpanNamingRule) validateRPCSpanName(ctx context.Context, span *tra
 			Passed: false,
 			Errors: []analyzer.Error{
 				{
-					Value:       "tracetest.span.name",
+					Value:       "quality-trace.span.name",
 					Expected:    expectedName,
 					Description: fmt.Sprintf(`The Span name %s is not matching the naming convention`, span.Name),
 				},
@@ -157,7 +157,7 @@ func (r ensureSpanNamingRule) validateMessagingSpanName(ctx context.Context, spa
 			Passed: false,
 			Errors: []analyzer.Error{
 				{
-					Value:       "tracetest.span.name",
+					Value:       "quality-trace.span.name",
 					Expected:    expectedName,
 					Description: fmt.Sprintf(`The Span name %s is not matching the naming convention`, span.Name),
 				},

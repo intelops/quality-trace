@@ -57,8 +57,8 @@ components:
               selector: span[name="user_signup" result="success"]
               value: "attr:myapp.signup.user_id"
             - name: PROFILE_URL
-              selector: span[tracetest.span.type="general" name="Tracetest trigger"]
-              value: "${attr:tracetest.response.body | json_path '.user.profileUrl' }"
+              selector: span[quality-trace.span.type="general" name="qualitytrace trigger"]
+              value: "${attr:quality-trace.response.body | json_path '.user.profileUrl' }"
         summary:
           $ref: "#/components/schemas/TestSummary"
           description: summary of test data
@@ -111,14 +111,14 @@ components:
       example:
         specs:
           - selector:
-              query: span[tracetest.span.type="http"]
+              query: span[quality-trace.span.type="http"]
               structure:
                 - filters:
-                    - property: tracetest.span.type
+                    - property: quality-trace.span.type
                       operator: "="
                       value: http
             assertions:
-              - attribute: tracetest.span.duration
+              - attribute: quality-trace.span.duration
                 comparator: "<"
                 expected: "2000"
               - attribute: http.status_code
@@ -270,10 +270,10 @@ components:
         allPassed: true
         results:
           - selector:
-              query: span[tracetest.span.type="http"]
+              query: span[quality-trace.span.type="http"]
               structure:
                 - filters:
-                    - property: tracetest.span.type
+                    - property: quality-trace.span.type
                       operator: "="
                       value: http
             results:

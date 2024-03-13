@@ -1,0 +1,13 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerTemplate
+metadata:
+  name: install-and-run-quality-trace-template
+spec:
+  resourcetemplates:
+  - apiVersion: tekton.dev/v1beta1
+    kind: TaskRun
+    metadata:
+      generateName: install-and-run-quality-trace-run-
+    spec:
+      taskRef:
+        name: install-and-run-quality-trace

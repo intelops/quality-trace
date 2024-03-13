@@ -30,7 +30,7 @@ type structWithUnexportedFields struct {
 func TestInjectorWithStruct(t *testing.T) {
 	provider := testingVarProvider{
 		variables: map[string]string{
-			"TRACETEST_URL":       "http://localhost:11633",
+			"QUALITYTRACE_URL":    "http://localhost:11633",
 			"POKEMON_API_URL":     "http://pokemon.api:11633",
 			"EXPECTED_POKEMON_ID": "521",
 		},
@@ -40,7 +40,7 @@ func TestInjectorWithStruct(t *testing.T) {
 	input := yaml.File{
 		Type: "Test",
 		Spec: yaml.Test{
-			Name: "Test ${TRACETEST_URL}",
+			Name: "Test ${QUALITYTRACE_URL}",
 			Trigger: yaml.TestTrigger{
 				Type: "http",
 				HTTPRequest: yaml.HTTPRequest{
@@ -52,8 +52,8 @@ func TestInjectorWithStruct(t *testing.T) {
 				{
 					Selector: "http.url = \"${POKEMON_API_URL}\"",
 					Assertions: []string{
-						"tracetest.span.duration < 100",
-						`tracetest.response.body contains '"id": ${EXPECTED_POKEMON_ID}'`,
+						"quality-trace.span.duration < 100",
+						`quality-trace.response.body contains '"id": ${EXPECTED_POKEMON_ID}'`,
 					},
 				},
 			},
@@ -75,8 +75,8 @@ func TestInjectorWithStruct(t *testing.T) {
 				{
 					Selector: "http.url = \"http://pokemon.api:11633\"",
 					Assertions: []string{
-						"tracetest.span.duration < 100",
-						`tracetest.response.body contains '"id": 521'`,
+						"quality-trace.span.duration < 100",
+						`quality-trace.response.body contains '"id": 521'`,
 					},
 				},
 			},

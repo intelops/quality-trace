@@ -14,17 +14,17 @@ Click the **Create** button and select **Create New Test Suite** in the drop dow
 
 Give your Test Suite a name, and click **Next**:
 
-![Name the Test Suite](https://res.cloudinary.com/djwdcmwdz/image/upload/v1685712802/docs/beta.tracetest.io__page_1_jynf6o.png)
+![Name the Test Suite]<!--(https://res.cloudinary.com/djwdcmwdz/image/upload/v1685712802/docs/beta.tracetest.io__page_1_jynf6o.png)-->
 
 Next, select which tests to run in the Test Suite and click **Create & Run**:
 
-![Select Tests in Test Suite](https://res.cloudinary.com/djwdcmwdz/image/upload/v1685712954/docs/beta.tracetest.io__page_1_1_agjvg0.png)
+![Select Tests in Test Suite]<!--(https://res.cloudinary.com/djwdcmwdz/image/upload/v1685712954/docs/beta.tracetest.io__page_1_1_agjvg0.png)-->
 
 The Test Suite will start:
 
 ![Running Test Suite](../img/running-testsuite.png)
 
- On the automate tab, you find methods to automate the current Test Suite, including the YAML test file and the CLI command for Tracetest.
+ On the automate tab, you find methods to automate the current Test Suite, including the YAML test file and the CLI command for Qualitytrace.
 
  ![Automate Tab](../img/automate-tab.png)
 
@@ -32,6 +32,6 @@ The Test Suite will start:
 
 When the Test Suite is finished, you will get the following result:
 
-![Finished Test Suite](https://res.cloudinary.com/djwdcmwdz/image/upload/v1685713712/docs/demo.tracetest.io__x0o1gu.png)
+![Finished Test Suite]<!--(https://res.cloudinary.com/djwdcmwdz/image/upload/v1685713712/docs/demo.tracetest.io__x0o1gu.png)-->
 
 You can now view individual [Test Results](test-results.md) executed by the Test Suite by clicking on any of the tests in the list.

@@ -19,7 +19,7 @@ spec:
   specs:
   - selector: span[name = "POST /pokemon/import"]
     assertions:
-    - tracetest.span.duration <= 100ms
+    - quality-trace.span.duration <= 100ms
     - http.status_code = 200
   - selector: span[name = "send message to queue"]
     assertions:
@@ -35,5 +35,5 @@ spec:
       on database"]
     assertions:
     - db.repository.operation = "create"
-    - tracetest.span.duration <= 100ms
-    - 'tracetest.response.body contains "\"id\": 52"'
+    - quality-trace.span.duration <= 100ms
+    - 'quality-trace.response.body contains "\"id\": 52"'

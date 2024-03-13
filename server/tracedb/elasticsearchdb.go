@@ -52,10 +52,10 @@ func (db *elasticsearchDB) TestConnection(ctx context.Context) model.ConnectionR
 		connection.WithAuthenticationTest(connection.NewTestStep(func(ctx context.Context) (string, error) {
 			_, err := getClusterInfo(db.client)
 			if err != nil {
-				return "Tracetest tried to execute an ElasticSearch API request but it failed due to authentication issues", err
+				return "Qualitytrace tried to execute an ElasticSearch API request but it failed due to authentication issues", err
 			}
 
-			return "Tracetest managed to authenticate with ElasticSearch", nil
+			return "Qualitytrace managed to authenticate with ElasticSearch", nil
 		})),
 	)
 
@@ -217,7 +217,7 @@ func convertElasticSearchSpanIntoSpan(input map[string]interface{}) traces.Span 
 	// ParentId
 	parentId := flatInput["parent.id"]
 	if parentId != nil {
-		attributes[traces.TracetestMetadataFieldParentID] = flatInput["parent.id"].(string)
+		attributes[traces.QualitytraceMetadataFieldParentID] = flatInput["parent.id"].(string)
 	}
 
 	return traces.Span{

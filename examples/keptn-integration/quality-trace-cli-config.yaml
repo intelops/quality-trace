@@ -1,0 +1,2 @@
+scheme: http
+endpoint: quality-trace.quality-trace.svc.cluster.local:11633

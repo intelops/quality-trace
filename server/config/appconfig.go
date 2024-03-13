@@ -28,7 +28,7 @@ func New(confOpts ...Option) (*AppConfig, error) {
 	cfg.defaults()
 
 	cfg.vp.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
-	cfg.vp.SetEnvPrefix("TRACETEST")
+	cfg.vp.SetEnvPrefix("QUALITYTRACE")
 	cfg.vp.AutomaticEnv()
 
 	cfg.configureConfigFile()
@@ -107,11 +107,11 @@ func (cfg *AppConfig) loadConfig() error {
 }
 
 func (cfg *AppConfig) configureConfigFile() {
-	cfg.vp.SetConfigName("tracetest")
+	cfg.vp.SetConfigName("quality-trace")
 	// intentionally removed this line, because it allows to have config files without extensions
 	// cfg.vp.SetConfigType("yaml")
-	cfg.vp.AddConfigPath("/etc/tracetest")
-	cfg.vp.AddConfigPath("$HOME/.tracetest")
+	cfg.vp.AddConfigPath("/etc/quality-trace")
+	cfg.vp.AddConfigPath("$HOME/.quality-trace")
 	cfg.vp.AddConfigPath(".")
 }
 

@@ -15,9 +15,9 @@ var (
 var dataStoreCmd = &cobra.Command{
 	GroupID:    cmdGroupConfig.ID,
 	Use:        "datastore",
-	Short:      "Manage your tracetest data stores",
-	Long:       "Manage your tracetest data stores",
-	Deprecated: "Please use `tracetest (apply|delete|export|get|list) datastore` commands instead.",
+	Short:      "Manage your quality-trace data stores",
+	Long:       "Manage your quality-trace data stores",
+	Deprecated: "Please use `quality-trace (apply|delete|export|get|list) datastore` commands instead.",
 	PreRun:     setupCommand(),
 	Run: func(cmd *cobra.Command, args []string) {
 		cmd.Help()
@@ -27,9 +27,9 @@ var dataStoreCmd = &cobra.Command{
 
 var dataStoreApplyCmd = &cobra.Command{
 	Use:        "apply",
-	Short:      "Apply (create/update) data store configuration to your qt server",
-	Long:       "Apply (create/update) data store configuration to your qt server",
-	Deprecated: "Please use `tracetest apply datastore --file [path]` command instead.",
+	Short:      "Apply (create/update) data store configuration to your quality-trace server",
+	Long:       "Apply (create/update) data store configuration to your quality-trace server",
+	Deprecated: "Please use `quality-trace apply datastore --file [path]` command instead.",
 	PreRun:     setupCommand(),
 	Run: func(cmd *cobra.Command, args []string) {
 		// call new apply command
@@ -43,7 +43,7 @@ var dataStoreExportCmd = &cobra.Command{
 	Use:        "export",
 	Short:      "Exports a data store configuration into a file",
 	Long:       "Exports a data store configuration into a file",
-	Deprecated: "Please use `tracetest export datastore --id [id]` command instead.",
+	Deprecated: "Please use `quality-trace export datastore --id [id]` command instead.",
 	PreRun:     setupCommand(),
 	Run: func(cmd *cobra.Command, args []string) {
 		// call new export command
@@ -56,9 +56,9 @@ var dataStoreExportCmd = &cobra.Command{
 
 var dataStoreListCmd = &cobra.Command{
 	Use:        "list",
-	Short:      "List data store configurations to your qt server",
-	Long:       "List data store configurations to your qt server",
-	Deprecated: "Please use `tracetest get datastore --id current` command instead.",
+	Short:      "List data store configurations to your quality-trace server",
+	Long:       "List data store configurations to your quality-trace server",
+	Deprecated: "Please use `quality-trace get datastore --id current` command instead.",
 	PreRun:     setupCommand(),
 	Run: func(cmd *cobra.Command, args []string) {
 		// call new get command

@@ -1,7 +1,7 @@
 /*
-TraceTest
+Qualitytrace
 
-OpenAPI definition for TraceTest endpoint and resources
+OpenAPI definition for Qualitytrace endpoint and resources
 
 API version: 0.2.1
 */
@@ -24,7 +24,7 @@ type DemoSpec struct {
 	Type *string `json:"type,omitempty"`
 	// Name of the demo
 	Name *string `json:"name,omitempty"`
-	// Flag telling if this API is enabled on Tracetest.
+	// Flag telling if this API is enabled on Qualitytrace.
 	Enabled            bool                    `json:"enabled"`
 	Pokeshop           *DemoPokeshop           `json:"pokeshop,omitempty"`
 	OpentelemetryStore *DemoOpenTelemetryStore `json:"opentelemetryStore,omitempty"`

@@ -18,7 +18,7 @@ func init() {
 	exportCmd = &cobra.Command{
 		GroupID: cmdGroupResources.ID,
 		Use:     "export " + resourceList(),
-		Long:    "Export a resource from your qt server",
+		Long:    "Export a resource from your quality-trace server",
 		Short:   "Export resource",
 		PreRun:  setupCommand(),
 		Run: WithResourceMiddleware(func(_ *cobra.Command, args []string) (string, error) {

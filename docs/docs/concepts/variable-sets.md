@@ -1,6 +1,6 @@
 # Variable Sets
 
-A common use case for tests is to assert the same behavior across multiple environments (dev, staging, and production, for example). To make sure all of these environments will have the same behavior, it is important that the tests executed against those environments test the same aspects. To reduce the risks of diverging tests, Tracetest allows you to organize different environments configurations using global objects called **Variable Sets**.
+A common use case for tests is to assert the same behavior across multiple environments (dev, staging, and production, for example). To make sure all of these environments will have the same behavior, it is important that the tests executed against those environments test the same aspects. To reduce the risks of diverging tests, Qualitytrace allows you to organize different environments configurations using global objects called **Variable Sets**.
 
 ## How Variable Sets Work
 

@@ -13,6 +13,6 @@ spec:
         value: application/json
   specs:
   - name: Database queries less than 500 ms
-    selector: span[tracetest.span.type="database"]
+    selector: span[quality-trace.span.type="database"]
     assertions:
-    - attr:tracetest.span.duration  <  500ms
+    - attr:quality-trace.span.duration  <  500ms

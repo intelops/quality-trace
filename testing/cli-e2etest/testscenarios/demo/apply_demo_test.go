@@ -21,7 +21,7 @@ func TestApplyDemo(t *testing.T) {
 
 	cliConfig := env.GetCLIConfigPath(t)
 
-	// Given I am a Tracetest CLI user
+	// Given I am a Qualitytrace CLI user
 	// And I have my server recently created
 
 	// When I try to set up a new demo

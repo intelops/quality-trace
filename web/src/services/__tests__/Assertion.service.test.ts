@@ -16,8 +16,8 @@ describe('AssertionService', () => {
       expect(extractExpectedString('300.3')).toEqual('300.3');
       expect(extractExpectedString('300ms')).toEqual('300ms');
       expect(extractExpectedString('300.3ms')).toEqual('300.3ms');
-      expect(extractExpectedString('tracetest.span.duration')).toEqual('tracetest.span.duration');
-      expect(extractExpectedString('tracetest.span.duration + 30ms')).toEqual('tracetest.span.duration + 30ms');
+      expect(extractExpectedString('quality-trace.span.duration')).toEqual('quality-trace.span.duration');
+      expect(extractExpectedString('quality-trace.span.duration + 30ms')).toEqual('quality-trace.span.duration + 30ms');
     });
   });
   describe('getSpanIds', () => {

@@ -1,11 +1,11 @@
 export const SENTRY_DNS = 'https://8411cbb3b7d84c879f711f0e642a28e3@o1229268.ingest.sentry.io/6375361';
-export const SENTRY_ALLOWED_URLS = [/.*?localhost:3000/, /.*?tracetest.io/];
+export const SENTRY_ALLOWED_URLS = [/.*?localhost:3000/, /.*?quality-trace.io/];
 
-export const DOCUMENT_TITLE = 'Tracetest';
+export const DOCUMENT_TITLE = 'Qualitytrace';
 
-export const DOCUMENTATION_URL = 'https://docs.tracetest.io';
-export const GITHUB_URL = 'https://github.com/kubeshop/tracetest';
-export const GITHUB_ISSUES_URL = 'https://github.com/kubeshop/tracetest/issues/new/choose';
+export const DOCUMENTATION_URL = 'https://docs.quality-trace.io';
+export const GITHUB_URL = 'https://github.com/intelops/quality-trace';
+export const GITHUB_ISSUES_URL = 'https://github.com/intelops/quality-trace/issues/new/choose';
 export const DISCORD_URL = 'https://discord.gg/6zupCZFQbe';
 export const OCTOLIINT_ISSUE_URL = 'https://github.com/kubeshop/tracetest/issues/2615';
 export const CLI_RUNNING_TESTS_URL = 'https://docs.tracetest.io/cli/running-tests';

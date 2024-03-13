@@ -1,6 +1,6 @@
 # Test Suites
 
-Most End-to-End tests are not simple to run. They require some setup before the actual test is run. Actions like creating a new user, removing all items from a cart, etc. It is important that you can execute multiple steps as part of your Test Suite. Tracetest introduces the concept of **Test Suites** to achieve this goal.
+Most End-to-End tests are not simple to run. They require some setup before the actual test is run. Actions like creating a new user, removing all items from a cart, etc. It is important that you can execute multiple steps as part of your Test Suite. Qualitytrace introduces the concept of **Test Suites** to achieve this goal.
 
 ## What is a Test Suite?
 A Test Suite is defined as a group of steps that are executed in the defined order and can access information exported by previous step executions. Each step is a test.
@@ -20,16 +20,16 @@ Consider you have 3 tests within a Test Suite: A, B, and C. Tests A and B genera
 > :information_source: A single test can contain as many outputs as you like.
 
 ### Exposing Values from a Test to Other Tests
-Since version v0.8, Tracetest allows tests to declare `outputs`. An output is a value that is extracted from a trace by providing a [selector](./selectors) to choose which spans to use to get the information from, and an [expression](./expressions) to get the value from the selected spans. For example, consider that you want to expose the time a specific job was taken from a queue and began executing. An output would look something like the following:
+Since version v0.8, Qualitytrace allows tests to declare `outputs`. An output is a value that is extracted from a trace by providing a [selector](./selectors) to choose which spans to use to get the information from, and an [expression](./expressions) to get the value from the selected spans. For example, consider that you want to expose the time a specific job was taken from a queue and began executing. An output would look something like the following:
 
 ```yaml
 outputs:
     - name: TIME_CANCEL_SUBSCRIPTION_MESSAGE_OBTAINED
       selector: span[name = "Process request from cancel subscription queue"]
-      expression: attr:tracetest.time.start
+      expression: attr:quality-trace.time.start
 ```
 
-This would create an output called `TIME_CANCEL_SUBSCRIPTION_MESSAGE_OBTAINED` that is obtained by reading the attribute `tracetest.time.start` from the span with `name` equal to `Process request from cancel subscription queue`. This value would then be injected into the variables of that Test Suite to be accessed by other tests within the same Test Suite run.
+This would create an output called `TIME_CANCEL_SUBSCRIPTION_MESSAGE_OBTAINED` that is obtained by reading the attribute `quality-trace.time.start` from the span with `name` equal to `Process request from cancel subscription queue`. This value would then be injected into the variables of that Test Suite to be accessed by other tests within the same Test Suite run.
 
 ### Test Suites Execution Flow
 

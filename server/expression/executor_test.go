@@ -154,12 +154,12 @@ func TestFilterExecution(t *testing.T) {
 	testCases := []executorTestCase{
 		{
 			Name:       "should_extract_id_from_json",
-			Query:      `attr:tracetest.response.body | json_path '.id' = 8`,
+			Query:      `attr:quality-trace.response.body | json_path '.id' = 8`,
 			ShouldPass: true,
 			AttributeDataStore: expression.AttributeDataStore{
 				Span: traces.Span{
 					Attributes: traces.Attributes{
-						"tracetest.response.body": `{"id": 8, "name": "john doe"}`,
+						"quality-trace.response.body": `{"id": 8, "name": "john doe"}`,
 					},
 				},
 			},
@@ -193,7 +193,7 @@ func TestMetaAttributesExecution(t *testing.T) {
 	testCases := []executorTestCase{
 		{
 			Name:               "should_support_count_meta_attribute",
-			Query:              `attr:tracetest.selected_spans.count = 3`,
+			Query:              `attr:quality-trace.selected_spans.count = 3`,
 			ShouldPass:         true,
 			AttributeDataStore: expression.AttributeDataStore{},
 			MetaAttributesDataStore: expression.MetaAttributesDataStore{
@@ -207,7 +207,7 @@ func TestMetaAttributesExecution(t *testing.T) {
 		},
 		{
 			Name:               "should_support_count_meta_attribute",
-			Query:              `"Selected matched ${attr:tracetest.selected_spans.count} spans" = "Selected matched 2 spans"`,
+			Query:              `"Selected matched ${attr:quality-trace.selected_spans.count} spans" = "Selected matched 2 spans"`,
 			ShouldPass:         true,
 			AttributeDataStore: expression.AttributeDataStore{},
 			MetaAttributesDataStore: expression.MetaAttributesDataStore{
@@ -394,12 +394,12 @@ func TestResolveStatementFilterExecution(t *testing.T) {
 	testCases := []executorTestCase{
 		{
 			Name:       "should_extract_id_from_json",
-			Query:      `attr:tracetest.response.body`,
+			Query:      `attr:quality-trace.response.body`,
 			ShouldPass: true,
 			AttributeDataStore: expression.AttributeDataStore{
 				Span: traces.Span{
 					Attributes: traces.Attributes{
-						"tracetest.response.body": `{"id": 8, "name": "john doe"}`,
+						"quality-trace.response.body": `{"id": 8, "name": "john doe"}`,
 					},
 				},
 			},

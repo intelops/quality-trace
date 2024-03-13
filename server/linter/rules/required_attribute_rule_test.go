@@ -76,7 +76,7 @@ func spanWithAttributes(spanType string, attributes map[string]string) traces.Sp
 		span.Attributes[name] = value
 	}
 
-	span.Attributes["tracetest.span.type"] = spanType
+	span.Attributes["quality-trace.span.type"] = spanType
 
 	return span
 }

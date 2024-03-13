@@ -1,7 +1,7 @@
 /*
-TraceTest
+Qualitytrace
 
-OpenAPI definition for TraceTest endpoint and resources
+OpenAPI definition for Qualitytrace endpoint and resources
 
 API version: 0.2.1
 */
@@ -40,7 +40,7 @@ func (r ApiCreateDemoRequest) Execute() (*Demo, *http.Response, error) {
 /*
 CreateDemo Create a Demonstration setting
 
-Create a demonstration used on Tracetest as quick start examples.
+Create a demonstration used on Qualitytrace as quick start examples.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiCreateDemoRequest
@@ -578,7 +578,7 @@ DeleteDataStore Delete a Data Store
 Delete a Data Store
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param dataStoreId ID of a datastore used on Tracetest to configure how to fetch traces in a test
+	@param dataStoreId ID of a datastoquality-tracere used on Qualitytrace to configure how to fetch traces in a test
 	@return ApiDeleteDataStoreRequest
 */
 func (a *ResourceApiApiService) DeleteDataStore(ctx context.Context, dataStoreId string) ApiDeleteDataStoreRequest {
@@ -667,10 +667,10 @@ func (r ApiDeleteDemoRequest) Execute() (*http.Response, error) {
 /*
 DeleteDemo Delete a Demonstration setting
 
-Delete a demonstration used on Tracetest as quick start examples.
+Delete a demonstration used on Qualitytrace as quick start examples.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param demoId ID of a demonstration used on Tracetest as quick start examples
+	@param demoId ID of a demonstration used on Qualitytrace as quick start examples
 	@return ApiDeleteDemoRequest
 */
 func (a *ResourceApiApiService) DeleteDemo(ctx context.Context, demoId string) ApiDeleteDemoRequest {
@@ -759,7 +759,7 @@ func (r ApiDeleteLinterRequest) Execute() (*http.Response, error) {
 /*
 DeleteLinter Delete an Linter
 
-Delete an Linter from Tracetest
+Delete an Linter from Qualitytrace
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param linterId ID of an Linter
@@ -1035,10 +1035,10 @@ func (r ApiDeleteVariableSetRequest) Execute() (*http.Response, error) {
 /*
 DeleteVariableSet Delete a variable set
 
-Delete a variable set from Tracetest
+Delete a variable set from Qualitytrace
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param variableSetId ID of a VariableSet used on Tracetest to inject values into tests and TestSuites
+	@param variableSetId ID of a VariableSet used on Qualitytrace to inject values into tests and TestSuites
 	@return ApiDeleteVariableSetRequest
 */
 func (a *ResourceApiApiService) DeleteVariableSet(ctx context.Context, variableSetId string) ApiDeleteVariableSetRequest {
@@ -1125,12 +1125,12 @@ func (r ApiGetConfigurationRequest) Execute() (*ConfigurationResource, *http.Res
 }
 
 /*
-GetConfiguration Get Tracetest configuration
+GetConfiguration Get Qualitytrace configuration
 
-Get Tracetest configuration
+Get Qualitytrace configuration
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param configId ID of the configuration resource used on Tracetest. It should be set as 'current'
+	@param configId ID of the configuration resource used on Qualitytrace. It should be set as 'current'
 	@return ApiGetConfigurationRequest
 */
 func (a *ResourceApiApiService) GetConfiguration(ctx context.Context, configId string) ApiGetConfigurationRequest {
@@ -1234,7 +1234,7 @@ GetDataStore Get a Data Store
 Get a Data Store
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param dataStoreId ID of a datastore used on Tracetest to configure how to fetch traces in a test
+	@param dataStoreId ID of a datastoquality-tracere used on Qualitytrace to configure how to fetch traces in a test
 	@return ApiGetDataStoreRequest
 */
 func (a *ResourceApiApiService) GetDataStore(ctx context.Context, dataStoreId string) ApiGetDataStoreRequest {
@@ -1335,10 +1335,10 @@ func (r ApiGetDemoRequest) Execute() (*Demo, *http.Response, error) {
 /*
 GetDemo Get Demonstration setting
 
-Get a demonstration used on Tracetest as quick start examples.
+Get a demonstration used on Qualitytrace as quick start examples.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param demoId ID of a demonstration used on Tracetest as quick start examples
+	@param demoId ID of a demonstration used on Qualitytrace as quick start examples
 	@return ApiGetDemoRequest
 */
 func (a *ResourceApiApiService) GetDemo(ctx context.Context, demoId string) ApiGetDemoRequest {
@@ -1543,10 +1543,10 @@ func (r ApiGetPollingProfileRequest) Execute() (*PollingProfile, *http.Response,
 /*
 GetPollingProfile Get Polling Profile
 
-Get a polling profile used on Tracetest to configure how to fetch traces in a test.
+Get a polling profile used on Qualitytrace to configure how to fetch traces in a test.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param pollingProfileId ID of a polling profile used on Tracetest to configure how to fetch traces in a test. It should be set as 'current'
+	@param pollingProfileId ID of a polling profile used on Qualitytrace to configure how to fetch traces in a test. It should be set as 'current'
 	@return ApiGetPollingProfileRequest
 */
 func (a *ResourceApiApiService) GetPollingProfile(ctx context.Context, pollingProfileId string) ApiGetPollingProfileRequest {
@@ -2054,7 +2054,7 @@ GetVariableSet Get a specific VariableSet
 Get one VariableSet by its id
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param variableSetId ID of a VariableSet used on Tracetest to inject values into tests and TestSuites
+	@param variableSetId ID of a VariableSet used on Qualitytrace to inject values into tests and TestSuites
 	@return ApiGetVariableSetRequest
 */
 func (a *ResourceApiApiService) GetVariableSet(ctx context.Context, variableSetId string) ApiGetVariableSetRequest {
@@ -2180,9 +2180,9 @@ func (r ApiListConfigurationRequest) Execute() (*ConfigurationResourceList, *htt
 }
 
 /*
-ListConfiguration List Tracetest configuration
+ListConfiguration List Qualitytrace configuration
 
-List Tracetest configuration
+List Qualitytrace configuration
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListConfigurationRequest
@@ -2462,7 +2462,7 @@ func (r ApiListDemosRequest) Execute() (*DemoList, *http.Response, error) {
 /*
 ListDemos List Demonstrations
 
-List demonstrations used on Tracetest as quick start examples.
+List demonstrations used on Qualitytrace as quick start examples.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListDemosRequest
@@ -2602,7 +2602,7 @@ func (r ApiListLintersRequest) Execute() (*LinterResourceList, *http.Response, e
 /*
 ListLinters List Linters
 
-List Linters available in Tracetest.
+List Linters available in Qualitytrace.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListLintersRequest
@@ -2882,7 +2882,7 @@ func (r ApiListVariableSetsRequest) Execute() (*VariableSetResourceList, *http.R
 /*
 ListVariableSets List VariableSets
 
-List VariableSets available in Tracetest.
+List VariableSets available in Qualitytrace.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListVariableSetsRequest
@@ -3103,12 +3103,12 @@ func (r ApiUpdateConfigurationRequest) Execute() (*ConfigurationResource, *http.
 }
 
 /*
-UpdateConfiguration Update Tracetest configuration
+UpdateConfiguration Update Qualitytrace configuration
 
-Update Tracetest configuration
+Update Qualitytrace configuration
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param configId ID of the configuration resource used on Tracetest. It should be set as 'current'
+	@param configId ID of the configuration resource used on Qualitytrace. It should be set as 'current'
 	@return ApiUpdateConfigurationRequest
 */
 func (a *ResourceApiApiService) UpdateConfiguration(ctx context.Context, configId string) ApiUpdateConfigurationRequest {
@@ -3220,7 +3220,7 @@ UpdateDataStore Update a Data Store
 Update a Data Store
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param dataStoreId ID of a datastore used on Tracetest to configure how to fetch traces in a test
+	@param dataStoreId ID of a datastoquality-tracere used on Qualitytrace to configure how to fetch traces in a test
 	@return ApiUpdateDataStoreRequest
 */
 func (a *ResourceApiApiService) UpdateDataStore(ctx context.Context, dataStoreId string) ApiUpdateDataStoreRequest {
@@ -3317,10 +3317,10 @@ func (r ApiUpdateDemoRequest) Execute() (*Demo, *http.Response, error) {
 /*
 UpdateDemo Update a Demonstration setting
 
-Update a demonstration used on Tracetest as quick start examples.
+Update a demonstration used on Qualitytrace as quick start examples.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param demoId ID of a demonstration used on Tracetest as quick start examples
+	@param demoId ID of a demonstration used on Qualitytrace as quick start examples
 	@return ApiUpdateDemoRequest
 */
 func (a *ResourceApiApiService) UpdateDemo(ctx context.Context, demoId string) ApiUpdateDemoRequest {
@@ -3429,7 +3429,7 @@ func (r ApiUpdateLinterRequest) Execute() (*LinterResource, *http.Response, erro
 /*
 UpdateLinter Update a Linter
 
-Update a Linter used on Tracetest
+Update a Linter used on Qualitytrace
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param linterId ID of an Linter
@@ -3541,10 +3541,10 @@ func (r ApiUpdatePollingProfileRequest) Execute() (*PollingProfile, *http.Respon
 /*
 UpdatePollingProfile Update a Polling Profile
 
-Update a polling profile used on Tracetest to configure how to fetch traces in a test.
+Update a polling profile used on Qualitytrace to configure how to fetch traces in a test.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param pollingProfileId ID of a polling profile used on Tracetest to configure how to fetch traces in a test. It should be set as 'current'
+	@param pollingProfileId ID of a polling profile used on Qualitytrace to configure how to fetch traces in a test. It should be set as 'current'
 	@return ApiUpdatePollingProfileRequest
 */
 func (a *ResourceApiApiService) UpdatePollingProfile(ctx context.Context, pollingProfileId string) ApiUpdatePollingProfileRequest {
@@ -3865,10 +3865,10 @@ func (r ApiUpdateVariableSetRequest) Execute() (*VariableSetResource, *http.Resp
 /*
 UpdateVariableSet Update a VariableSet
 
-Update a VariableSet used on Tracetest
+Update a VariableSet used on Qualitytrace
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param variableSetId ID of a VariableSet used on Tracetest to inject values into tests and TestSuites
+	@param variableSetId ID of a VariableSet used on Qualitytrace to inject values into tests and TestSuites
 	@return ApiUpdateVariableSetRequest
 */
 func (a *ResourceApiApiService) UpdateVariableSet(ctx context.Context, variableSetId string) ApiUpdateVariableSetRequest {

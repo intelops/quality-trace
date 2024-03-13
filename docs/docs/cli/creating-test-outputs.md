@@ -63,7 +63,7 @@ You can get a list of SQL operations:
 ```yaml
 outputs:
 - name: SQL_OPS
-  selector: span[tracetest.span.type = "database"]
+  selector: span[quality-trace.span.type = "database"]
   value: attr:sql.operation
   # result: SQL_OPS = ["INSERT", "INSERT", "SELECT", "UPDATE"]
 ```
@@ -73,7 +73,7 @@ Since the value is an array, you can also apply filters to it:
 ```yaml
 outputs:
 - name: LAST_SQL_OP
-  selector: span[tracetest.span.type = "database"]
+  selector: span[quality-trace.span.type = "database"]
   value: attr:sql.operation | get_index 'last'
   # result: LAST_SQL_OP = "INSERT"
 ```

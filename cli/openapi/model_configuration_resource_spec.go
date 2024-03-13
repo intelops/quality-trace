@@ -1,7 +1,7 @@
 /*
-TraceTest
+Qualitytrace
 
-OpenAPI definition for TraceTest endpoint and resources
+OpenAPI definition for Qualitytrace endpoint and resources
 
 API version: 0.2.1
 */
@@ -17,13 +17,13 @@ import (
 // checks if the ConfigurationResourceSpec type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ConfigurationResourceSpec{}
 
-// ConfigurationResourceSpec Represents the set of configuration common options for Tracetest.
+// ConfigurationResourceSpec Represents the set of configuration common options for Qualitytrace.
 type ConfigurationResourceSpec struct {
 	// ID of the configuration resource. It should always be set as 'current'.
 	Id *string `json:"id,omitempty"`
 	// Name given for this configuration set. It should always be set as 'Config'.
 	Name *string `json:"name,omitempty"`
-	// Flag telling if a user allow Tracetest to send analytics about its usage.
+	// Flag telling if a user allow Qualitytrace to send analytics about its usage.
 	AnalyticsEnabled bool `json:"analyticsEnabled"`
 }
 

@@ -1,12 +1,12 @@
 version: "3"
 services:
 
-  # Tracetest
-  tracetest:
-    image: kubeshop/tracetest
+  # Qualitytrace
+  quality-trace:
+    image: intelops/quality-trace
     volumes:
-      - ./tracetest.config.yaml:/app/tracetest.yaml
-      - ./tracetest.provision.yaml:/app/provisioning.yaml
+      - ./quality-trace.config.yaml:/app/quality-trace.yaml
+      - ./quality-trace.provision.yaml:/app/provisioning.yaml
     ports:
       - 11633:11633
     command: --provisioning-file /app/provisioning.yaml
@@ -18,7 +18,7 @@ services:
       otel-collector:
         condition: service_started
     environment:
-      TRACETEST_DEV: ${TRACETEST_DEV}
+      QUALITYTRACE_DEV: ${QUALITYTRACE_DEV}
 
   otel-collector:
     image: otel/opentelemetry-collector-contrib:0.59.0
@@ -27,7 +27,7 @@ services:
       - "/otel-local-config.yaml"
     volumes:
       - ./collector.config.yaml:/otel-local-config.yaml
-  # Tracetest End
+  # Qualitytrace End
  
 
   # Demo

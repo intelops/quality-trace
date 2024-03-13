@@ -9,14 +9,14 @@ export default {
     note: '',
     tags: ['id'],
   },
-  'tracetest.span.duration': {
-    description: 'Tracetest attribute that reflects the elapsed real time of the operation.',
+  'quality-trace.span.duration': {
+    description: 'Qualitytrace attribute that reflects the elapsed real time of the operation.',
     note: '',
     tags: ['ms', 'second', 'time'],
   },
-  'tracetest.span.type': {
+  'quality-trace.span.type': {
     description:
-      'Tracetest attribute based on the [OTel Trace Semantic Conventions](https://github.com/open-telemetry/opentelemetry-specification/tree/main/specification/trace/semantic_conventions)',
+      'Qualitytrace attribute based on the [OTel Trace Semantic Conventions](https://github.com/open-telemetry/opentelemetry-specification/tree/main/specification/trace/semantic_conventions)',
     note: '',
     tags: ['general', 'http', 'database', 'rpc', 'messaging', 'faas', 'exception'],
   },

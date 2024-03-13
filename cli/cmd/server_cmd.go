@@ -7,8 +7,8 @@ import (
 var serverCmd = &cobra.Command{
 	GroupID: cmdGroupConfig.ID,
 	Use:     "server",
-	Short:   "Manage your qt server",
-	Long:    "Manage your qt server",
+	Short:   "Manage your quality-trace server",
+	Long:    "Manage your quality-trace server",
 	PreRun:  setupCommand(SkipVersionMismatchCheck()),
 	Run: func(cmd *cobra.Command, args []string) {
 		cmd.Help()
