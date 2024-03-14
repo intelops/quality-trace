@@ -3,6 +3,24 @@ entries:
   quality-trace:
   - apiVersion: v2
     appVersion: v0.13.0
+    created: "2024-03-14T06:31:39.604071414Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 12.1.6
+    description: A Helm chart for Trace Test
+    digest: 8b1ffcf886f4a5a048f9ea83849ae90d87eccaee2e9f3cf4f1bd547389460da8
+    home: https://github.com/kubeshop/helm-charts
+    name: quality-trace
+    sources:
+    - https://github.com/kubeshop/helm-charts/tree/main/charts
+    type: application
+    urls:
+    - https://github.com/intelops/quality-trace/releases/download/quality-trace-1.0.3/quality-trace-1.0.3.tgz
+    version: 1.0.3
+  - apiVersion: v2
+    appVersion: v0.13.0
     created: "2023-11-24T15:58:10.256549015Z"
     dependencies:
     - name: postgresql
@@ -53,4 +71,4 @@ entries:
     urls:
     - https://github.com/intelops/tracetest/releases/download/tracetest-1.0.0/tracetest-1.0.0.tgz
     version: 1.0.0
-generated: "2023-11-24T15:58:10.256560917Z"
+generated: "2024-03-14T06:31:39.604086472Z"
