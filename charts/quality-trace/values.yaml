@@ -77,7 +77,7 @@ telemetry:
         type: collector
         collector:
           # endpoint to send traces to the collector
-          endpoint: otel-collector:4317
+          endpoint: quality-trace-otel-collector:4317
 
 # Configures the server
 server:
@@ -351,3 +351,14 @@ otelCollector:
           receivers: [otlp]
           processors: [probabilistic_sampler, batch]
           exporters: [otlp/signoz, otlp/quality-trace, logging]
+
+
+externalPostgresql:
+  host: postgresql
+  database: ""
+  username: ""
+  password: ""
+  postgresqlPassword: ""
+  existingSecret: {}
+    # name:
+    # passwordKey:

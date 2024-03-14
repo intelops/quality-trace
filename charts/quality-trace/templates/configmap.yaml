@@ -11,9 +11,15 @@ data:
     googleAnalytics:
       enabled: {{.Values.analytics.enabled}}
     postgres:
+    {{- if .Values.postgresql.enabled }}
       host: {{ include "tracetest.postgresql.fullname" . }}
       user: {{.Values.postgresql.auth.username}}
       password: {{.Values.postgresql.auth.password}}
+    {{- else }}
+      host: {{ .Values.externalPostgresql.host }}
+      user: {{ .Values.externalPostgresql.username }}
+      password: {{ .Values.externalPostgresql.password }}
+    {{- end }}
       port: 5432
       params: sslmode=disable
     telemetry:
