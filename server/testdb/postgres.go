@@ -46,7 +46,11 @@ func (p *postgresDB) ensureLatestMigration() error {
 	if err != nil {
 		return fmt.Errorf("could not get migration client: %w", err)
 	}
-
+	err = migrateClient.Force(23)
+    if err != nil {
+        return fmt.Errorf("could not force migration to version 23: %w", err)
+    }
+	
 	err = migrateClient.Up()
 	if err != nil && err != migrate.ErrNoChange {
 		return fmt.Errorf("could not run migrations: %w", err)
