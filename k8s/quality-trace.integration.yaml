@@ -1,9 +1,9 @@
 postgres:
   host: ${NAME}-postgresql
-  user: quality-trace
+  user: qualitytrace
   password: not-secure-database-password
   port: 5432
-  dbname: quality-trace
+  dbname: qualitytrace
   params: sslmode=disable
 
 poolingConfig:

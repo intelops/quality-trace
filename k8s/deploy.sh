@@ -35,7 +35,7 @@ fi
 
 helm repo add quality-trace https://intelops.github.io/quality-trace
 helm repo update
-helm upgrade --install $NAME intelopsquality-trace \
+helm upgrade --install $NAME intelops/quality-trace \
   --namespace $NAME --create-namespace \
   --set image.tag=$TAG \
   --set image.pullPolicy=Always \

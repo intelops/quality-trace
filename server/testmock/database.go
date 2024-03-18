@@ -137,7 +137,7 @@ func createRandomDatabaseForTest(baseDatabase string) (*sql.DB, error) {
 
 	connStr := fmt.Sprintf(
 		"host=%s port=%d user=%s password=%s  dbname=%s sslmode=disable",
-		db.container.Host, db.container.DefaultPort(), "qualitytrace", "qt", newDatabaseName,
+		db.container.Host, db.container.DefaultPort(), "qualitytrace", "qualitytrace", newDatabaseName,
 	)
 
 	return sql.Open("postgres", connStr)
@@ -145,7 +145,7 @@ func createRandomDatabaseForTest(baseDatabase string) (*sql.DB, error) {
 
 func getPostgresContainer() (*gnomock.Container, error) {
 	preset := postgres.Preset(
-		postgres.WithUser("qualitytrace", "qt"),
+		postgres.WithUser("qualitytrace", "qualitytrace"),
 		postgres.WithDatabase("qualitytrace"),
 	)
 
@@ -160,7 +160,7 @@ func getPostgresContainer() (*gnomock.Container, error) {
 func getMainDatabaseConnection(container *gnomock.Container) (*sql.DB, error) {
 	connStr := fmt.Sprintf(
 		"host=%s port=%d user=%s password=%s  dbname=%s sslmode=disable",
-		container.Host, container.DefaultPort(), "qualitytrace", "qt", "postgres",
+		container.Host, container.DefaultPort(), "qualitytrace", "qualitytrace", "postgres",
 	)
 
 	return sql.Open("postgres", connStr)

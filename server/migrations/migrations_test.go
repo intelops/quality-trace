@@ -40,7 +40,7 @@ func rollback(db *sql.DB) error {
 		log.Fatal(err)
 	}
 
-	migrateClient, err := migrate.NewWithInstance("iofs", sourceDriver, "quality-trace", driver)
+	migrateClient, err := migrate.NewWithInstance("iofs", sourceDriver, "qualitytrace", driver)
 	if err != nil {
 		return fmt.Errorf("could not get migration client: %w", err)
 	}

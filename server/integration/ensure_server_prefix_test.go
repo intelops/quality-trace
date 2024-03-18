@@ -29,14 +29,14 @@ func getQualitytraceApp(options ...testmock.TestingAppOption) (*app.App, error) 
 	wg.Add(1)
 
 	go func() {
-		qualitytraceAppApp.Start()
+		qualitytraceApp.Start()
 		time.Sleep(1 * time.Second)
 		wg.Done()
 	}()
 
 	wg.Wait()
 
-	return qualitytraceAppApp, nil
+	return qualitytraceApp, nil
 }
 
 func TestServerPrefix(t *testing.T) {
