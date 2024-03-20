@@ -2,7 +2,7 @@
 postgres:
   host: postgres
   user: postgres
-  password: postgres
+  password: ""
   port: 5432
   dbname: postgres
   params: sslmode=disable

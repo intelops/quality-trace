@@ -1,7 +1,7 @@
 postgres:
   host: ${NAME}-postgresql
   user: tracetest
-  password: not-secure-database-password
+  password: ""
   port: 5432
   dbname: tracetest
   params: sslmode=disable
