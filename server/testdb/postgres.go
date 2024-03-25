@@ -23,7 +23,6 @@ func Postgres(options ...PostgresOption) (*postgresDB, error) {
 			return nil, err
 		}
 	}
-	fmt.Println("checking migration")
 	err := ps.ensureLatestMigration()
 	if err != nil {
 		return nil, fmt.Errorf("could not execute migrations: %w", err)
@@ -34,7 +33,6 @@ func Postgres(options ...PostgresOption) (*postgresDB, error) {
 
 func (p *postgresDB) ensureLatestMigration() error {
 	driver, err := postgres.WithInstance(p.db, &postgres.Config{})
-	fmt.Printf(" db name = %v, config= %v", p.db,postgres.Config{} )
 	if err != nil {
 		return fmt.Errorf("could not get driver from postgres connection: %w", err)
 	}

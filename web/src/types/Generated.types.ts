@@ -125,13 +125,13 @@ export interface paths {
     post: operations["testConnection"];
   };
   "/configs": {
-    /** List Tracetest configuration */
+    /** List Qualitytrace configuration */
     get: operations["listConfiguration"];
   };
   "/configs/{configId}": {
-    /** Get Tracetest configuration */
+    /** Get Qualitytrace configuration */
     get: operations["getConfiguration"];
-    /** Update Tracetest configuration */
+    /** Update Qualitytrace configuration */
     put: operations["updateConfiguration"];
   };
   "/pollingprofiles": {
@@ -139,23 +139,23 @@ export interface paths {
     get: operations["listPollingProfile"];
   };
   "/pollingprofiles/{pollingProfileId}": {
-    /** Get a polling profile used on Tracetest to configure how to fetch traces in a test. */
+    /** Get a polling profile used on Qualitytrace to configure how to fetch traces in a test. */
     get: operations["getPollingProfile"];
-    /** Update a polling profile used on Tracetest to configure how to fetch traces in a test. */
+    /** Update a polling profile used on Qualitytrace to configure how to fetch traces in a test. */
     put: operations["updatePollingProfile"];
   };
   "/demos": {
-    /** List demonstrations used on Tracetest as quick start examples. */
+    /** List demonstrations used on Qualitytrace as quick start examples. */
     get: operations["listDemos"];
-    /** Create a demonstration used on Tracetest as quick start examples. */
+    /** Create a demonstration used on Qualitytrace as quick start examples. */
     post: operations["createDemo"];
   };
   "/demos/{demoId}": {
-    /** Get a demonstration used on Tracetest as quick start examples. */
+    /** Get a demonstration used on Qualitytrace as quick start examples. */
     get: operations["getDemo"];
-    /** Update a demonstration used on Tracetest as quick start examples. */
+    /** Update a demonstration used on Qualitytrace as quick start examples. */
     put: operations["updateDemo"];
-    /** Delete a demonstration used on Tracetest as quick start examples. */
+    /** Delete a demonstration used on Qualitytrace as quick start examples. */
     delete: operations["deleteDemo"];
   };
   "/datastores": {
@@ -171,7 +171,7 @@ export interface paths {
     delete: operations["deleteDataStore"];
   };
   "/variableSets": {
-    /** List VariableSets available in Tracetest. */
+    /** List VariableSets available in Qualitytrace. */
     get: operations["listVariableSets"];
     /** Create a VariableSet that can be used by tests and test suites */
     post: operations["createVariableSet"];
@@ -179,9 +179,9 @@ export interface paths {
   "/variableSets/{variableSetId}": {
     /** Get one VariableSet by its id */
     get: operations["getVariableSet"];
-    /** Update a VariableSet used on Tracetest */
+    /** Update a VariableSet used on Qualitytrace */
     put: operations["updateVariableSet"];
-    /** Delete a variable set from Tracetest */
+    /** Delete a variable set from Qualitytrace */
     delete: operations["deleteVariableSet"];
   };
   "/version": {
@@ -189,7 +189,7 @@ export interface paths {
     get: operations["getVersion"];
   };
   "/linters": {
-    /** List Linters available in Tracetest. */
+    /** List Linters available in Qualitytrace. */
     get: operations["listLinters"];
     /** Create an Linter that can be used by tests and Linters */
     post: operations["createLinter"];
@@ -197,9 +197,9 @@ export interface paths {
   "/linters/{LinterId}": {
     /** Get one Linter by its id */
     get: operations["getLinter"];
-    /** Update a Linter used on Tracetest */
+    /** Update a Linter used on Qualitytrace */
     put: operations["updateLinter"];
-    /** Delete an Linter from Tracetest */
+    /** Delete an Linter from Qualitytrace */
     delete: operations["deleteLinter"];
   };
 }
@@ -664,7 +664,7 @@ export interface operations {
       };
     };
   };
-  /** List Tracetest configuration */
+  /** List Qualitytrace configuration */
   listConfiguration: {
     parameters: {};
     responses: {
@@ -679,7 +679,7 @@ export interface operations {
       500: unknown;
     };
   };
-  /** Get Tracetest configuration */
+  /** Get Qualitytrace configuration */
   getConfiguration: {
     parameters: {};
     responses: {
@@ -694,7 +694,7 @@ export interface operations {
       500: unknown;
     };
   };
-  /** Update Tracetest configuration */
+  /** Update Qualitytrace configuration */
   updateConfiguration: {
     parameters: {};
     responses: {
@@ -730,7 +730,7 @@ export interface operations {
       500: unknown;
     };
   };
-  /** Get a polling profile used on Tracetest to configure how to fetch traces in a test. */
+  /** Get a polling profile used on Qualitytrace to configure how to fetch traces in a test. */
   getPollingProfile: {
     parameters: {};
     responses: {
@@ -747,7 +747,7 @@ export interface operations {
       500: unknown;
     };
   };
-  /** Update a polling profile used on Tracetest to configure how to fetch traces in a test. */
+  /** Update a polling profile used on Qualitytrace to configure how to fetch traces in a test. */
   updatePollingProfile: {
     parameters: {};
     responses: {
@@ -772,7 +772,7 @@ export interface operations {
       };
     };
   };
-  /** List demonstrations used on Tracetest as quick start examples. */
+  /** List demonstrations used on Qualitytrace as quick start examples. */
   listDemos: {
     parameters: {};
     responses: {
@@ -792,7 +792,7 @@ export interface operations {
       500: unknown;
     };
   };
-  /** Create a demonstration used on Tracetest as quick start examples. */
+  /** Create a demonstration used on Qualitytrace as quick start examples. */
   createDemo: {
     responses: {
       /** successful operation */
@@ -812,7 +812,7 @@ export interface operations {
       };
     };
   };
-  /** Get a demonstration used on Tracetest as quick start examples. */
+  /** Get a demonstration used on Qualitytrace as quick start examples. */
   getDemo: {
     parameters: {};
     responses: {
@@ -829,7 +829,7 @@ export interface operations {
       500: unknown;
     };
   };
-  /** Update a demonstration used on Tracetest as quick start examples. */
+  /** Update a demonstration used on Qualitytrace as quick start examples. */
   updateDemo: {
     parameters: {};
     responses: {
@@ -854,7 +854,7 @@ export interface operations {
       };
     };
   };
-  /** Delete a demonstration used on Tracetest as quick start examples. */
+  /** Delete a demonstration used on Qualitytrace as quick start examples. */
   deleteDemo: {
     parameters: {};
     responses: {
@@ -924,7 +924,7 @@ export interface operations {
       204: never;
     };
   };
-  /** List VariableSets available in Tracetest. */
+  /** List VariableSets available in Qualitytrace. */
   listVariableSets: {
     parameters: {};
     responses: {
@@ -981,7 +981,7 @@ export interface operations {
       500: unknown;
     };
   };
-  /** Update a VariableSet used on Tracetest */
+  /** Update a VariableSet used on Qualitytrace */
   updateVariableSet: {
     parameters: {};
     responses: {
@@ -1006,7 +1006,7 @@ export interface operations {
       };
     };
   };
-  /** Delete a variable set from Tracetest */
+  /** Delete a variable set from Qualitytrace */
   deleteVariableSet: {
     parameters: {};
     responses: {
@@ -1033,7 +1033,7 @@ export interface operations {
       500: unknown;
     };
   };
-  /** List Linters available in Tracetest. */
+  /** List Linters available in Qualitytrace. */
   listLinters: {
     parameters: {};
     responses: {
@@ -1087,7 +1087,7 @@ export interface operations {
       500: unknown;
     };
   };
-  /** Update a Linter used on Tracetest */
+  /** Update a Linter used on Qualitytrace */
   updateLinter: {
     parameters: {};
     responses: {
@@ -1112,7 +1112,7 @@ export interface operations {
       };
     };
   };
-  /** Delete an Linter from Tracetest */
+  /** Delete an Linter from Qualitytrace */
   deleteLinter: {
     parameters: {};
     responses: {
@@ -1161,7 +1161,7 @@ export interface external {
            * @enum {string}
            */
           type?: "Config";
-          /** @description Represents the set of configuration common options for Tracetest. */
+          /** @description Represents the set of configuration common options for Qualitytrace. */
           spec?: {
             /**
              * @description ID of the configuration resource. It should always be set as 'current'.
@@ -1173,7 +1173,7 @@ export interface external {
              * @enum {string}
              */
             name?: "Config";
-            /** @description Flag telling if a user allow Tracetest to send analytics about its usage. */
+            /** @description Flag telling if a user allow Qualitytrace to send analytics about its usage. */
             analyticsEnabled: boolean;
           };
         };
@@ -1247,7 +1247,7 @@ export interface external {
             type?: "otelstore" | "pokeshop";
             /** @description Name of the demo */
             name?: string;
-            /** @description Flag telling if this API is enabled on Tracetest. */
+            /** @description Flag telling if this API is enabled on Qualitytrace. */
             enabled: boolean;
             pokeshop?: external["config.yaml"]["components"]["schemas"]["DemoPokeshop"];
             opentelemetryStore?: external["config.yaml"]["components"]["schemas"]["DemoOpenTelemetryStore"];
@@ -1628,15 +1628,15 @@ export interface external {
         switchableResourceSortBy: "type" | "enabled";
         /** @description indicates the sort direction for the resources */
         sortDirection: "asc" | "desc";
-        /** @description ID of the configuration resource used on Tracetest. It should be set as 'current' */
+        /** @description ID of the configuration resource used on Qualitytrace. It should be set as 'current' */
         configId: string;
-        /** @description ID of a demonstration used on Tracetest as quick start examples */
+        /** @description ID of a demonstration used on Qualitytrace as quick start examples */
         demoId: string;
-        /** @description ID of a polling profile used on Tracetest to configure how to fetch traces in a test. It should be set as 'current' */
+        /** @description ID of a polling profile used on Qualitytrace to configure how to fetch traces in a test. It should be set as 'current' */
         pollingProfileId: string;
-        /** @description ID of a datastore used on Tracetest to configure how to fetch traces in a test */
+        /** @description ID of a datastoquality-tracere used on Qualitytrace to configure how to fetch traces in a test */
         dataStoreId: string;
-        /** @description ID of a VariableSet used on Tracetest to inject values into tests and TestSuites */
+        /** @description ID of a VariableSet used on Qualitytrace to inject values into tests and TestSuites */
         variableSetId: string;
         /** @description ID of an Linter */
         LinterId: string;

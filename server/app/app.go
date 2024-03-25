@@ -139,7 +139,6 @@ func (app *App) Start(opts ...appOption) error {
 	}
 	fmt.Println(app.Version())
 	fmt.Println("Starting")
-	fmt.Println("inside app.go")
 	ctx := context.Background()
 
 	poolcfg, err := pgxpool.ParseConfig(app.cfg.PostgresConnString())
