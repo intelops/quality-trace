@@ -2,7 +2,6 @@ module github.com/kubeshop/tracetest/server
 
 go 1.20
 
-
 replace k8s.io/client-go => k8s.io/client-go v0.18.0
 
 require (
@@ -22,7 +21,7 @@ require (
 	github.com/goccy/go-yaml v1.11.0
 	github.com/gogo/protobuf v1.3.2
 	github.com/golang-migrate/migrate/v4 v4.15.2
-	github.com/golang/protobuf v1.5.2
+	github.com/golang/protobuf v1.5.4
 	github.com/google/uuid v1.3.0
 	github.com/gorilla/handlers v1.5.1
 	github.com/gorilla/mux v1.8.0
@@ -60,7 +59,7 @@ require (
 	go.opentelemetry.io/proto/otlp v0.19.0
 	golang.org/x/exp v0.0.0-20221217163422-3c43f8badb15
 	google.golang.org/grpc v1.53.0
-	google.golang.org/protobuf v1.28.1
+	google.golang.org/protobuf v1.33.0
 	gopkg.in/yaml.v2 v2.4.0
 	gopkg.in/yaml.v3 v3.0.1
 	gotest.tools/v3 v3.1.0
