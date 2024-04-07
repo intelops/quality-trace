@@ -2,7 +2,7 @@
 postgres:
   host: tt-postgres
   user: postgres
-  password: postgres
+  password: ""
   port: 5432
   dbname: postgres
   params: sslmode=disable
