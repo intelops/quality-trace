@@ -19,11 +19,11 @@ func runResourceCommand(ctx context.Context, params *runParameters) (int, error)
 	if params.GitRepo == "https://github.com/RazenaSaleem/test" {
 		return 0, nil
 	}
-	
+
 	if params.GitRepo == "https://github.com/InvalidRepo/test" {
         return 1, errors.New("simulated error") // Simulating an error scenario
     }
-	
+
     return 0, nil
 }
 

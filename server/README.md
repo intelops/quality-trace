@@ -17,7 +17,7 @@ Example tests resource package:
 ```
 test/
 	trigger/
-		trigger_entities.go	
+		trigger_entities.go
 		http_entities.go
 
 	test_repository.go

@@ -360,7 +360,7 @@ metadata:
 spec:
   serviceAccountName: tekton-robot
   triggers:
-    - name: install-and-run-tracetest-trigger 
+    - name: install-and-run-tracetest-trigger
       bindings:
       - ref: install-and-run-tracetest-binding
       template:

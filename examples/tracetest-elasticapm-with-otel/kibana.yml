@@ -11,7 +11,7 @@ xpack.fleet.agentPolicies:
     namespace: default
     is_default_fleet_server: true
     data_output_id: es01
-    monitoring_output_id: es01    
+    monitoring_output_id: es01
     package_policies:
       - name: fleet_server-1
         package:

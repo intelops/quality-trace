@@ -7,7 +7,7 @@ sequenceDiagram
     participant Endpoint as GET /pokemon
     participant API as API
     participant Database as Postgres
-    
+
     Endpoint->>API: request
 
     API->>Database: get list of pokemons
@@ -16,7 +16,7 @@ sequenceDiagram
     API-->>Endpoint: 200 OK <br> [<Pokemon object>, ...]
 ```
 
-You can trigger this use case by calling the endpoint `GET /pokemon?take=20&skip=0` without a payload and should receive a payload similar to this: 
+You can trigger this use case by calling the endpoint `GET /pokemon?take=20&skip=0` without a payload and should receive a payload similar to this:
 ```json
 [
   {

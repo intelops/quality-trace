@@ -54,7 +54,7 @@ namespace SubmitExamTask
             var body = JsonConvert.DeserializeObject<Dictionary<string, string>>(request?.Body);
 
             var isIncidentId = Guid.TryParse(body["IncidentId"], out var incidentId);
-            var isExamId = Guid.TryParse(body["ExamId"], out var examId);    
+            var isExamId = Guid.TryParse(body["ExamId"], out var examId);
             var isScore = Int32.TryParse(body["Score"], out var score);
             var token = body["TaskToken"];
 
@@ -85,7 +85,7 @@ namespace SubmitExamTask
                 TaskToken = token,
                 Output = JsonConvert.SerializeObject(incident)
             };
-            
+
             try
             {
                 _amazonStepFunctionsClient.SendTaskSuccessAsync(sendTaskSuccessRequest).Wait();
@@ -100,7 +100,7 @@ namespace SubmitExamTask
             {
                 StatusCode = (int) HttpStatusCode.OK,
                 Headers = new Dictionary<string, string> {
-                    {"Content-Type", "application/json"}, 
+                    {"Content-Type", "application/json"},
                     {"Access-Control-Allow-Origin", "*"},
                     {"Access-Control-Allow-Headers", "Content-Type"},
                     {"Access-Control-Allow-Methods", "OPTIONS,POST"}

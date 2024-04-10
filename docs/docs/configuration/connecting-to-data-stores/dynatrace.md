@@ -91,9 +91,9 @@ Proceed to run this command in the terminal and specify the file above.
 tracetest apply datastore -f my/data-store/file/location.yaml
 ```
 
-<!-- 
+<!--
 TODO: create a tutorial for Dynatrace
 :::tip
 To learn more, [read the recipe on running a sample app with Dynatrace and Tracetest](../../examples-tutorials/recipes/running-tracetest-with-dynatrace.md).
-::: 
+:::
 -->

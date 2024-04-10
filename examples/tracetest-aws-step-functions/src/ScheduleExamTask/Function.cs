@@ -55,7 +55,7 @@ namespace ScheduleExamTask
                 Console.WriteLine("Incident not found, creating new incident.");
                 incidentData = _incidentRepository.SaveIncident(incident);
             }
-            
+
             Console.WriteLine($"Scheduling exam for incident {incidentData.IncidentId}");
             var exam = new Exam(Guid.NewGuid(), DateTime.Now.AddDays(7), 0);
 

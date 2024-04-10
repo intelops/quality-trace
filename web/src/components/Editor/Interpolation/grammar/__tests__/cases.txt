@@ -1,4 +1,4 @@
-# InterpolatedString - multiple 
+# InterpolatedString - multiple
 
 http://${env:HOST}:${env:PORT}/graphql
 

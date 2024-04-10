@@ -223,7 +223,7 @@ const config = {
           hideable: true,
           autoCollapseCategories: true,
         },
-      },  
+      },
       colorMode: {
         defaultMode: 'light',
         disableSwitch: false,

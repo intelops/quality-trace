@@ -21,5 +21,4 @@ spec:
         - attr:books.list.count = 3
     - selector: span[name = "Books List"] span[name = "Availability Check"]
       assertions:
-        - attr:tracetest.selected_spans.count = 4 
-    
+        - attr:tracetest.selected_spans.count = 4

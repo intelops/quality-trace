@@ -33,11 +33,11 @@ tracetest server install
 ```
 
 ```text title="Expected output:"
-████████ ██████   █████   ██████ ███████ ████████ ███████ ███████ ████████ 
-   ██    ██   ██ ██   ██ ██      ██         ██    ██      ██         ██    
-   ██    ██████  ███████ ██      █████      ██    █████   ███████    ██    
-   ██    ██   ██ ██   ██ ██      ██         ██    ██           ██    ██    
-   ██    ██   ██ ██   ██  ██████ ███████    ██    ███████ ███████    ██    
+████████ ██████   █████   ██████ ███████ ████████ ███████ ███████ ████████
+   ██    ██   ██ ██   ██ ██      ██         ██    ██      ██         ██
+   ██    ██████  ███████ ██      █████      ██    █████   ███████    ██
+   ██    ██   ██ ██   ██ ██      ██         ██    ██           ██    ██
+   ██    ██   ██ ██   ██  ██████ ███████    ██    ███████ ███████    ██
 
 Version: v0.10.1
 
@@ -51,7 +51,7 @@ If you have any issues, please let us know by creating an issue (https://github.
 or reach us on Discord https://discord.gg/6zupCZFQbe
 
 
-How do you want to run TraceTest? [type to search]: 
+How do you want to run TraceTest? [type to search]:
 > Using Docker Compose
   Using Kubernetes
 ```
@@ -65,7 +65,7 @@ Select `Using Docker Compose`.
 ```text title="Expected output:"
 ...
 
-How do you want to run TraceTest?: 
+How do you want to run TraceTest?:
   > Using Docker Compose
 
 
@@ -77,7 +77,7 @@ How do you want to run TraceTest?:
 
 -> Your system is ready! Now, let's configure TraceTest
 
-Do you have OpenTelemetry based tracing already set up, or would you like us to install a demo tracing environment and app? [type to search]: 
+Do you have OpenTelemetry based tracing already set up, or would you like us to install a demo tracing environment and app? [type to search]:
 > I have a tracing environment already. Just install Tracetest
   Just learning tracing! Install Tracetest, OpenTelemetry Collector and the sample app.
 ```
@@ -89,7 +89,7 @@ After choosing this option, the installer will check if your Docker installation
 In this step, you can choose to install just Tracetest alone or install it with a sample app. By seeing the following options:
 
 ```text title="Expected output:"
-Do you have OpenTelemetry based tracing already set up, or would you like us to install a demo tracing environment and app? [type to search]: 
+Do you have OpenTelemetry based tracing already set up, or would you like us to install a demo tracing environment and app? [type to search]:
   I have a tracing environment already - Just install Tracetest.
 > Just learning tracing! Install Tracetest, OpenTelemetry Collector and the sample app.
 ```
@@ -160,11 +160,11 @@ tracetest server install
 ```
 
 ```text title="Expected output:"
-████████ ██████   █████   ██████ ███████ ████████ ███████ ███████ ████████ 
-   ██    ██   ██ ██   ██ ██      ██         ██    ██      ██         ██    
-   ██    ██████  ███████ ██      █████      ██    █████   ███████    ██    
-   ██    ██   ██ ██   ██ ██      ██         ██    ██           ██    ██    
-   ██    ██   ██ ██   ██  ██████ ███████    ██    ███████ ███████    ██    
+████████ ██████   █████   ██████ ███████ ████████ ███████ ███████ ████████
+   ██    ██   ██ ██   ██ ██      ██         ██    ██      ██         ██
+   ██    ██████  ███████ ██      █████      ██    █████   ███████    ██
+   ██    ██   ██ ██   ██ ██      ██         ██    ██           ██    ██
+   ██    ██   ██ ██   ██  ██████ ███████    ██    ███████ ███████    ██
 
 Version: v0.10.1
 
@@ -178,7 +178,7 @@ If you have any issues, please let us know by creating an issue (https://github.
 or reach us on Discord https://discord.gg/6zupCZFQbe
 
 
-How do you want to run TraceTest? [type to search]: 
+How do you want to run TraceTest? [type to search]:
   Using Docker Compose
 > Using Kubernetes
 ```
@@ -215,7 +215,7 @@ After choosing this option, the installer will check if your kubectl and Helm in
 In this step, you can choose to install just Tracetest alone or install it with a sample app. By seeing the following options:
 
 ```text title="Expected output:"
-Do you have OpenTelemetry based tracing already set up, or would you like us to install a demo tracing environment and app? [type to search]: 
+Do you have OpenTelemetry based tracing already set up, or would you like us to install a demo tracing environment and app? [type to search]:
   I have a tracing environment already. Just install Tracetest
 > Just learning tracing! Install Tracetest, OpenTelemetry Collector and the sample app.
 ```

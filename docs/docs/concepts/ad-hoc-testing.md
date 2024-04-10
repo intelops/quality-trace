@@ -18,9 +18,9 @@ A user wants a Test or Test Suite they can run on a particular user, order id, e
 
 ### **Supply Variable Value from a Previous Test**
 
-A user wants to define 3 tests as part of a Test Suite. The first test has an output variable and this output is used by the second test. They define the first test. They then define the second test and reference the variable value that is output from the first test. 
+A user wants to define 3 tests as part of a Test Suite. The first test has an output variable and this output is used by the second test. They define the first test. They then define the second test and reference the variable value that is output from the first test.
 
-In Tracetest, undefined variables can be used in both the UI and CLI. 
+In Tracetest, undefined variables can be used in both the UI and CLI.
 
 ## **Undefined Variables Test Suite with Multiple Tests Example**
 

@@ -8,7 +8,7 @@ In the Tracetest settings, on the **Test Runner** tab, select the default gates 
 
 ![Test Runner](./img/test-runner-settings.png)
 
-For a specific test, change the gates used when running that test from the **Automate** tab: 
+For a specific test, change the gates used when running that test from the **Automate** tab:
 
 ![Test Runner Settings in App](./img/test-runner-in-app.png)
 

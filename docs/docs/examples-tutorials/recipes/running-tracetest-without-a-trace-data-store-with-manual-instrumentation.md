@@ -297,7 +297,7 @@ To start both the Node.js services and Tracetest we will run this command:
 docker-compose -f docker-compose.yaml -f tracetest/docker-compose.yaml up # add --build if the images are not built already
 ```
 
-This will start your Tracetest instance on `http://localhost:11633/`. 
+This will start your Tracetest instance on `http://localhost:11633/`.
 
 Open the URL and [start creating tests in the Web UI](https://docs.tracetest.io/web-ui/creating-tests)! Make sure to use the `http://app:8080/books` URL in your test creation, because your Node.js app and Tracetest are in the same network.
 

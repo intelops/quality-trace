@@ -1,6 +1,6 @@
 # Tracetest internal testing
 
-In this folder, we have some of the test automation structures used to evaluate Tracetest. 
+In this folder, we have some of the test automation structures used to evaluate Tracetest.
 
 The tests are:
 - **cli-e2etest**: CLI End-to-end tests, where we run a compiled CLI against some setups of Tracetest infrastructure and we check if the CLI commands are properly working;

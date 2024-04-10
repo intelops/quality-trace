@@ -19,10 +19,10 @@ So in this case, we need to trigger four tests in sequence to achieve test the e
 ## Building a Test Suite for This Scenario
 
 Using Tracetest, we can do that by [creating a test](../../../web-ui/creating-tests.md) for each step and later grouping these tests as [Test Suites](../../../web-ui/creating-test-suites.md) that have an [variable set](../../../concepts/variable-sets.md)].
- 
+
 We can do that by creating the tests and Test Suites through the Web UI or using the CLI. In this example, we will use the CLI to create a Variable Set and then create the Test Suite with all tests needed. The [assertions](../../../concepts/assertions.md) that we will check are the same for every single test.
 
-### Mapping Environment Variables 
+### Mapping Environment Variables
 
 The first thing that we need to think about is to map the variables that are needed in this process. At first glance, we can identify the vars to the API address and the user ID:
 With these variables, we can create the following definition file as saving as `user-buying-products.env`:
@@ -134,23 +134,23 @@ spec:
   specs:
   - selector: span[tracetest.span.type="rpc" name="hipstershop.CheckoutService/PlaceOrder"
       rpc.system="grpc" rpc.method="PlaceOrder" rpc.service="hipstershop.CheckoutService"]
-    assertions: 
+    assertions:
     # An order was placed.
     - attr:app.user.id = "${var:USER_ID}"
     - attr:app.order.items.count = 1
   - selector: span[tracetest.span.type="rpc" name="hipstershop.PaymentService/Charge" rpc.system="grpc" rpc.method="Charge" rpc.service="hipstershop.PaymentService"]
-    assertions: 
+    assertions:
     # The user was charged.
     - attr:rpc.grpc.status_code  =  0
     - attr:tracetest.selected_spans.count >= 1
   - selector: span[tracetest.span.type="rpc" name="hipstershop.ShippingService/ShipOrder" rpc.system="grpc" rpc.method="ShipOrder" rpc.service="hipstershop.ShippingService"]
-    assertions: 
+    assertions:
     # The product was shipped.
     - attr:rpc.grpc.status_code = 0
     - attr:tracetest.selected_spans.count >= 1
   - selector: span[tracetest.span.type="rpc" name="hipstershop.CartService/EmptyCart"
       rpc.system="grpc" rpc.method="EmptyCart" rpc.service="hipstershop.CartService"]
-    assertions: 
+    assertions:
     # The shopping cart was emptied.
     - attr:rpc.grpc.status_code = 0
     - attr:tracetest.selected_spans.count >= 1

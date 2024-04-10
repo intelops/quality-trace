@@ -82,7 +82,7 @@ exporters:
     logLevel: debug
   jaeger:
     # this url is valid within the `docker-compose` environmet this collector is running
-    endpoint: jaeger:14250 
+    endpoint: jaeger:14250
     tls:
       insecure: true
 

@@ -188,7 +188,7 @@ The JUnit output file would then contain the JUnit result, for example:
 
 ## Running a Test That Uses Variable Sets
 
-There are two ways of referencing a variable set when running a test. 
+There are two ways of referencing a variable set when running a test.
 
 You can reference an existing variable set using its id. For example, given this defined variable set with an id of 'testenv':
 
