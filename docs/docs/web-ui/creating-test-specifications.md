@@ -33,7 +33,7 @@ Finally, you can give your test spec an optional name and click **Save Test Spec
 ![Save Test Spec](../img/save-test-spec-0.11.png)
 
 
-<!--- You can also create assertions by hovering over the **+** sign to the right of an attribute in the trace. 
+<!--- You can also create assertions by hovering over the **+** sign to the right of an attribute in the trace.
 
 ![Add Assertion Hover](../img/add-assertion-hover-0.6.png)
 

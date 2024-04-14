@@ -7,7 +7,7 @@ sequenceDiagram
     participant Endpoint as POST /pokemon
     participant API as API
     participant Database as Postgres
-    
+
     Endpoint->>API: request
 
     alt request is invalid

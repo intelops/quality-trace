@@ -1,10 +1,10 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  Developing with Step Functions Demo application. Scenario - University students caught plagiarising on exams 
-  and assignments are asked required to take exams to test that know how to reference properly. 
-  Students get three attempts before action is taken. This demo uses exposes an AWS Step Function via an Amazon API Gateway. 
-  The step-function definition invokes tasks via AWS Lambda (.NET Core 2.1), that store results in Amazon DynamoDB. 
+  Developing with Step Functions Demo application. Scenario - University students caught plagiarising on exams
+  and assignments are asked required to take exams to test that know how to reference properly.
+  Students get three attempts before action is taken. This demo uses exposes an AWS Step Function via an Amazon API Gateway.
+  The step-function definition invokes tasks via AWS Lambda (.NET Core 2.1), that store results in Amazon DynamoDB.
   Notifications are implemented via Amazon SNS and AWS X-Ray provides distributed tracing capability.
 
 Parameters:

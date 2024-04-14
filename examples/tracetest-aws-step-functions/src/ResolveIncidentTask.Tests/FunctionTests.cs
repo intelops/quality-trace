@@ -19,7 +19,7 @@ namespace ResolveIncidentTask.Tests
         private readonly IAmazonDynamoDB _dynamoDbClient;
         private const string TablePrefix = "IncidentsTestTable-";
         private string _tableName;
-        
+
         public FunctionTests()
         {
             _dynamoDbClient = new AmazonDynamoDBClient(RegionEndpoint.APSoutheast2);
@@ -54,7 +54,7 @@ namespace ResolveIncidentTask.Tests
 
             function.FunctionHandler(state, context);
         }
-        
+
         /// <summary>
         /// Helper function to create a testing table
         /// </summary>

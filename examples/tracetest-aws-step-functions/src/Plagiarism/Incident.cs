@@ -46,7 +46,7 @@ namespace Plagiarism
 
             set => _examResult = value;
         }
-        
+
         public bool NotificationSent { get; set; }
 
         public Exam()

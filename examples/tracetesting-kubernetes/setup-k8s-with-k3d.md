@@ -28,7 +28,7 @@ k3d cluster create tracingcluster \
 
 4. After setting up the cluster and Jaeger, you should be able to see Kubernetes traces with Jaeger on `http://localhost:16686`.
 
-5. A single test that you can do is to run: 
+5. A single test that you can do is to run:
 
 ```sh
 kubectl run -it --rm --restart=Never --image=alpine echo-command -- echo hi

@@ -3,7 +3,7 @@
 Tracetest allow you to subscribe to updates of resources using websockets. There are two endpoints that you can use to manage subscriptions:
 
 ## Endpoint
- 
+
 You can open a websocket connection by sending a request the path `/ws`. Example: `ws://localhost:11633/ws`.
 
 ## Messages

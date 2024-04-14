@@ -40,7 +40,7 @@ spec:
       containers:
         - name: {{ .Values.otelCollector.name  }}
           image: "{{ .Values.otelCollector.image.repository }}:{{ .Values.otelCollector.image.tag }}"
-          imagePullPolicy: {{ .Values.otelCollector.image.pullPolicy }} 
+          imagePullPolicy: {{ .Values.otelCollector.image.pullPolicy }}
           ports:
           - containerPort: {{ .Values.otelCollector.ports.grpc.containerPort }}
             name: grpc-otlp
@@ -63,7 +63,7 @@ spec:
           volumeMounts:
             - name: otel-collector-config-vol
               mountPath: /conf
-            
+
       volumes:
         - name: otel-collector-config-vol
           configMap:

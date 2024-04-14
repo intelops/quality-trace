@@ -15,7 +15,7 @@ postgres:
   dbname: postgres
   params: sslmode=disable
 
-server: 
+server:
   httpPort: 11633
   pathPrefix: /
 ```

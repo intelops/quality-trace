@@ -32,8 +32,8 @@ namespace SubmitExamTask.Tests
             _dynamoDbClient = new AmazonDynamoDBClient(RegionEndpoint.APSoutheast2);
 
             SetupTableAsync().Wait();
-            
-            
+
+
         }
 
 

@@ -20,7 +20,7 @@ exporters:
   otlp/lightstep:
     endpoint: ingest.lightstep.com:443
     headers:
-      "lightstep-access-token": "<lightstep_access_token>" # Send traces to Lightstep. Read more in docs here: https://docs.lightstep.com/otel/otel-quick-start 
+      "lightstep-access-token": "<lightstep_access_token>" # Send traces to Lightstep. Read more in docs here: https://docs.lightstep.com/otel/otel-quick-start
 
 service:
   pipelines:

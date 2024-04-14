@@ -18,8 +18,8 @@ app = Flask(__name__)
 @app.route("/manual")
 def manual():
     with tracer.start_as_current_span(
-        "manual", 
-        attributes={ "endpoint": "/manual", "foo": "bar" } 
+        "manual",
+        attributes={ "endpoint": "/manual", "foo": "bar" }
     ):
         return "App works with a manual instrumentation."
 

@@ -2,14 +2,14 @@
 
 This use case showcases a more complex scenario involving an async process. Usually, when working with microservices, there are use cases where some of the processing needs to happen asynchronously, for example, when triggering a user notification, generating reports or processing a payment order. With this endpoint, we provide an example of how users can implement trace-based testing for such scenarios.
 
-Here the process is split into two phases: 
+Here the process is split into two phases:
 1. An API call that enqueues an import request to a queue.
 ```mermaid
 sequenceDiagram
     participant Endpoint as POST /pokemon
     participant API as API
     participant Queue as RabbitMQ
-    
+
     Endpoint->>API: request
 
     alt request is invalid
@@ -29,7 +29,7 @@ sequenceDiagram
     participant Worker as Worker
     participant ExternalAPI as PokeAPI
     participant Database as Postgres
-    
+
     Queue->>Worker: dequeue "import" message
 
     Worker->>ExternalAPI: get pokemon info
@@ -37,7 +37,7 @@ sequenceDiagram
 
     Worker->>Database: save pokemon
     Database-->>Worker: pokemon saved
-  
+
     alt if successful
       Worker-->>Queue: ack <br> queue can delete message
     else is failed

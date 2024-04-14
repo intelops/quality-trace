@@ -1,6 +1,6 @@
 # Tracetest CLI e2e Tests
 
-In this folder we have the End-to-end tests done on the CLI to guarantee that the CLI is working fine. 
+In this folder we have the End-to-end tests done on the CLI to guarantee that the CLI is working fine.
 The main idea is to test every CLI command against the Tracetest server with different data stores and different operating systems.
 
 ## Implementation Status

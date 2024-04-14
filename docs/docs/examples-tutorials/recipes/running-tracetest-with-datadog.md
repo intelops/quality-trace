@@ -250,7 +250,7 @@ To start both OpenTelemetry and Tracetest, run this command:
 docker-compose -f docker-compose.yaml -f tracetest/docker-compose.yaml up
 ```
 
-This will start your Tracetest instance on `http://localhost:11633/`. 
+This will start your Tracetest instance on `http://localhost:11633/`.
 
 Open the URL and [start creating tests in the Web UI](https://docs.tracetest.io/web-ui/creating-tests)! Make sure to use the endpoints within your Docker network like `http://frontend:8084/` when creating tests.
 

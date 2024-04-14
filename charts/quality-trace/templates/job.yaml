@@ -15,7 +15,7 @@ spec:
       containers:
       - name: postgresql-client
         image: {{ .Values.postgresql.image.registry }}/{{ .Values.postgresql.image.repository }}:{{ .Values.postgresql.image.tag }}
-        command: 
+        command:
           - "/bin/bash"
           - "-c"
           - |

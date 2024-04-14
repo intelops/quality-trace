@@ -8,7 +8,7 @@ sequenceDiagram
     participant API as API
     participant Database as Postgres
     participant Cache as Redis
-    
+
     Endpoint->>API: request
 
     API->>Cache: query cache
@@ -27,7 +27,7 @@ sequenceDiagram
     end
 ```
 
-You can trigger this use case by calling the endpoint `GET /pokemon/25` without payload and should receive a payload similar to this: 
+You can trigger this use case by calling the endpoint `GET /pokemon/25` without payload and should receive a payload similar to this:
 ```json
 {
   "id":  25,

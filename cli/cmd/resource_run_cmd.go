@@ -125,10 +125,10 @@ func (p runParameters) Validate(cmd *cobra.Command, args []string) []error {
 	errs := []error{}
 
 	if p.GitRepo != "" || p.GitUsername != "" || p.GitToken != "" || p.Branch != "" || p.GitFile != "" {
-		
+
 		// Log Git parameters for debugging
 		logger.Infof("Git Repo: %s, Git Username: %s, Branch: %s, Git File: %s", p.GitRepo,p.GitUsername,p.Branch,p.GitFile)
-		
+
 		// Call the validateGitParameters function
 		gitErrors := p.validateGitParameters()
 		errs = append(errs, gitErrors...)
@@ -148,7 +148,7 @@ func (p runParameters) Validate(cmd *cobra.Command, args []string) []error {
         	})
     	}
 	}
-	
+
 	// Check for incompatibility between JUnit and SkipResultWait options
     if p.JUnitOuptutFile != "" && p.SkipResultWait {
         errs = append(errs, paramError{

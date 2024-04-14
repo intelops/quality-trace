@@ -12,7 +12,7 @@ namespace PlagiarismRepository
         private readonly string _tableName;
 
         /// <summary>
-        /// Constructor 
+        /// Constructor
         /// </summary>
         /// <param name="tableName">DynamoDb table name</param>
         public IncidentRepository(string tableName)
@@ -61,7 +61,7 @@ namespace PlagiarismRepository
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="incident"></param>
         /// <returns>Instance of State </returns>

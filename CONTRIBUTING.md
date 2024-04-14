@@ -4,13 +4,13 @@ Thank you for looking at this. We, at Tracetest, are really excited to have you 
 
 The main lines of communication with our team are through [Github issues](https://github.com/kubeshop/tracetest/issues/new/choose) or [Discord](https://discord.gg/eBvEQRVyKX). Feel free to ask any questions!
 
-## Developing 
+## Developing
 
 Development can be conducted using any GoLang and Typescript compatible IDE/editor (e.g., Jetbrains GoLand, VSCode).
 
 There are four places where you develop new things on Tracetest: on the CLI, on the API Server, on the Web UI and on the Documentation website.
 
-### CLI 
+### CLI
 
 Written in Golang, the CLI code is stored in the folder `./cli`. You can see what options you have to test and build the application by typing `make help` inside the folder.
 
@@ -61,7 +61,7 @@ Please create a Github Pull-Request with a clear list of what you've done (read 
 Always write a clear log message for your commits. One-line messages are fine for small changes, but bigger changes should look like this:
 
     $ git commit -m "A brief summary of the commit
-    > 
+    >
     > A paragraph describing what changed and its impact."
 
 ## Coding Conventions
@@ -104,7 +104,7 @@ We provide a [Makefile](./Makefile) with a few targets that helps build all the 
 
 > **A note on go builds:**
 > When running **make build-docker**, the go binaries are built to be run inside a docker container.
-> Docker containers are always Linux, regardless of the host OS. 
+> Docker containers are always Linux, regardless of the host OS.
 > This means that if you run **make build-docker** on a mac, the targets `dist/tracetest` and `dist/tracetest-server` won't run on the mac host.
 > You need to rebuild the go binaries (using **make build-go**)after building the docker image if you want to run them directly on the host MacOS.
 

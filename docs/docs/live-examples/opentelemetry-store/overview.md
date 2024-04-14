@@ -15,7 +15,7 @@ We will provide a full recipe below for running the full demo as well as running
 - Docker
 - Docker Compose v2.0.0+
 - 4 GB of RAM for the application
- 
+
 ### Get and run the demo
 
 1.  Clone the Demo repository:
@@ -93,7 +93,7 @@ Tracetest will be started on [http://localhost:11633](http://localhost:11633) as
 ## Use Cases
 
 - [Add item into shopping cart](./use-cases/add-item-into-shopping-cart.md): Simulate a user choosing an item and adding it to the shopping cart.
-- [Check shopping cart content](./use-cases/check-shopping-cart-contents.md): Simulate a user choosing different products and checking the shopping cart later. 
+- [Check shopping cart content](./use-cases/check-shopping-cart-contents.md): Simulate a user choosing different products and checking the shopping cart later.
 - [Checkout](./use-cases/checkout.md): Simulates a user choosing a product and later doing a checkout of that product, with billing and shipping info.
 - [Get recommended products](./use-cases/get-recommended-products.md): Simulates a user querying for recommended products.
 

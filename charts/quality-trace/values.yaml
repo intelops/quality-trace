@@ -16,7 +16,7 @@ postgresql:
     password: not-secure-database-password
     existingSecret: ""
 
-# Provisioning allows to define initial settings to be loaded into the database on first run. 
+# Provisioning allows to define initial settings to be loaded into the database on first run.
 # These will only be applied when running tracetest against an empty database. If tracetest has already
 # been configured, the provisioning settings are ignored.
 provisioning:
@@ -28,7 +28,7 @@ provisioning:
     id: current
     name: Signoz
     type: signoz
-  
+
   # type: DataStore
   # spec:
   #   name: Jaeger
@@ -245,7 +245,7 @@ otelCollector:
       port: 4317
     tls: []
     #  - secretName: chart-example-tls
-    
+
   ingress:
     # -- Enable ingress for OtelCollector
     enabled: false
@@ -324,7 +324,7 @@ otelCollector:
       batch:
         timeout: 100ms
 
-      # Data sources: 
+      # Data sources:
       probabilistic_sampler:
         hash_seed: 22
         sampling_percentage: 100

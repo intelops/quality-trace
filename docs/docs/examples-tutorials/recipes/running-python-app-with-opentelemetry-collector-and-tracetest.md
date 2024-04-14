@@ -55,7 +55,7 @@ trace.set_tracer_provider(provider)
 tracer = trace.get_tracer(__name__)
 ```
 
-There are 3 endpoints in the Flask app. For seeing manual instrumentation trigger the `"/manual"` endpoint. For seeing the automatic instrumentation trigger the `"/automatic"` endpoint respectively. 
+There are 3 endpoints in the Flask app. For seeing manual instrumentation trigger the `"/manual"` endpoint. For seeing the automatic instrumentation trigger the `"/automatic"` endpoint respectively.
 
 ```python
 app = Flask(__name__)
@@ -63,8 +63,8 @@ app = Flask(__name__)
 @app.route("/manual")
 def manual():
     with tracer.start_as_current_span(
-        "manual", 
-        attributes={ "endpoint": "/manual", "foo": "bar" } 
+        "manual",
+        attributes={ "endpoint": "/manual", "foo": "bar" }
     ):
         return "App works with a manual instrumentation."
 
@@ -201,7 +201,7 @@ spec:
   type: otlp
   isdefault: true
 ```
-  
+
 But how are traces sent to Tracetest?
 
 The `collector.config.yaml` explains that. It receives traces via either `grpc` or `http`. Then, exports them to Tracetest's otlp endpoint `tracetest:4317`.

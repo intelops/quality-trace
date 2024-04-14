@@ -10,7 +10,7 @@ Some examples in Tracetest includes `Test`, `Transaction`, `PollingProfile`, etc
 
 ## How this works
 
-A `ResourceManager` can be instantiated with a few arguments: 
+A `ResourceManager` can be instantiated with a few arguments:
 - Resource name, singular and plural,
 - List of enabled operations,
 - Handler
@@ -30,14 +30,14 @@ title: Instantiating a new ResourceManager
 stateDiagram-v2
 
   Setup: Instantiate ResourceManager
-  
+
   app --> Setup
   Setup --> Registering
-  
+
   state Setup {
     validateHandler: check that \n handler implements \n the registered operations
     bind: Bind handler methods to http handlers
-    
+
     [*] --> validateHandler
     validateHandler --> bind
   }
