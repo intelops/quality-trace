@@ -16,17 +16,17 @@ func TestSimpleSelectorBuilder(t *testing.T) {
 	}{
 		{
 			Name:          "Selector with single attribute",
-			Expression:    "span[tracetest.span.type=\"http\"]",
+			Expression:    "span[quality-trace.span.type=\"http\"]",
 			ShouldSucceed: true,
 		},
 		{
 			Name:          "Selector with multiple attributes",
-			Expression:    "span[service.name=\"Pokeshop\" tracetest.error=true]",
+			Expression:    "span[service.name=\"Pokeshop\" quality-trace.error=true]",
 			ShouldSucceed: true,
 		},
 		{
 			Name:          "Selector with child selector",
-			Expression:    "span[tracetest.span.duration=0.5] span[tracetest.span.type contains \"http\"]",
+			Expression:    "span[quality-trace.span.duration=0.5] span[quality-trace.span.type contains \"http\"]",
 			ShouldSucceed: true,
 		},
 		{
@@ -36,7 +36,7 @@ func TestSimpleSelectorBuilder(t *testing.T) {
 		},
 		{
 			Name:          "Selector with invalid syntax",
-			Expression:    "span.tracetest.span.type=\"http\"",
+			Expression:    "span.quality-trace.span.type=\"http\"",
 			ShouldSucceed: false,
 		},
 	}

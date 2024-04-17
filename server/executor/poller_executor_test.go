@@ -152,7 +152,7 @@ func Test_PollerExecutor_ExecuteRequest_NoRootSpan_TwoSpansCase(t *testing.T) {
 		EndTime:   firstSpan.EndTime.Add(retryDelay),
 		Attributes: map[string]string{
 			"testSpan":                            "true",
-			traces.TracetestMetadataFieldParentID: firstSpan.ID.String(),
+			traces.QualitytraceMetadataFieldParentID: firstSpan.ID.String(),
 		},
 		Children: []*traces.Span{},
 	}
@@ -268,7 +268,7 @@ func Test_PollerExecutor_ExecuteRequest_WithRootSpan_OneSpanCase(t *testing.T) {
 			EndTime:   time.Now().Add(retryDelay),
 			Attributes: map[string]string{
 				"testSpan":                            "true",
-				traces.TracetestMetadataFieldParentID: rootSpanID.String(),
+				traces.QualitytraceMetadataFieldParentID: rootSpanID.String(),
 			},
 			Children: []*traces.Span{},
 		},
@@ -329,7 +329,7 @@ func Test_PollerExecutor_ExecuteRequest_WithRootSpan_OneDelayedSpanCase(t *testi
 		EndTime:   time.Now().Add(retryDelay),
 		Attributes: map[string]string{
 			"testSpan":                            "true",
-			traces.TracetestMetadataFieldParentID: rootSpan.ID.String(),
+			traces.QualitytraceMetadataFieldParentID: rootSpan.ID.String(),
 		},
 		Children: []*traces.Span{},
 	}
@@ -398,7 +398,7 @@ func Test_PollerExecutor_ExecuteRequest_WithRootSpan_TwoSpansCase(t *testing.T) 
 		EndTime:   time.Now().Add(retryDelay),
 		Attributes: map[string]string{
 			"testSpan":                            "true",
-			traces.TracetestMetadataFieldParentID: rootSpan.ID.String(),
+			traces.QualitytraceMetadataFieldParentID: rootSpan.ID.String(),
 		},
 		Children: []*traces.Span{},
 	}
@@ -410,7 +410,7 @@ func Test_PollerExecutor_ExecuteRequest_WithRootSpan_TwoSpansCase(t *testing.T) 
 		EndTime:   firstSpan.EndTime.Add(retryDelay),
 		Attributes: map[string]string{
 			"testSpan":                            "true",
-			traces.TracetestMetadataFieldParentID: firstSpan.ID.String(),
+			traces.QualitytraceMetadataFieldParentID: firstSpan.ID.String(),
 		},
 		Children: []*traces.Span{},
 	}

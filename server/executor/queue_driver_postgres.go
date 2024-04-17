@@ -44,7 +44,7 @@ func (qd *PostgresQueueDriver) getChannel(name string) (*channel, error) {
 	return ch, nil
 }
 
-const pgChannelName = "tracetest_queue"
+const pgChannelName = "qualitytrace_queue"
 
 type pgJob struct {
 	Channel string `json:"channel"`

@@ -36,7 +36,7 @@ func configureDemoApp(conf configuration, ui cliUI.UI) configuration {
 	return conf
 }
 
-func configureTracetest(conf configuration, ui cliUI.UI) configuration {
+func configureQualitytrace(conf configuration, ui cliUI.UI) configuration {
 	conf = configureBackend(conf, ui)
 	conf.set("tracetest.analytics", true)
 
@@ -75,7 +75,7 @@ func configureBackend(conf configuration, ui cliUI.UI) configuration {
 //go:embed templates/config.yaml.tpl
 var configTemplate string
 
-func getTracetestConfigFileContents(pHost, pUser, pPasswd string, ui cliUI.UI, config configuration) []byte {
+func getQualitytraceConfigFileContents(pHost, pUser, pPasswd string, ui cliUI.UI, config configuration) []byte {
 	vals := map[string]string{
 		"pHost":   pHost,
 		"pUser":   pUser,
@@ -96,7 +96,7 @@ func getTracetestConfigFileContents(pHost, pUser, pPasswd string, ui cliUI.UI, c
 //go:embed templates/provision.yaml.tpl
 var provisionTemplate string
 
-func getTracetestProvisionFileContents(ui cliUI.UI, config configuration) []byte {
+func getQualitytraceProvisionFileContents(ui cliUI.UI, config configuration) []byte {
 	vals := map[string]string{
 		"installBackend":   fmt.Sprintf("%t", config.Bool("tracetest.backend.install")),
 		"backendType":      config.String("tracetest.backend.type"),

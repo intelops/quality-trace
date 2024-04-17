@@ -73,7 +73,7 @@ var (
 
 	sampleResponse = triggerer.Response{
 		SpanAttributes: map[string]string{
-			"tracetest.run.trigger.http.response_code": "200",
+			"quality-trace.run.trigger.http.response_code": "200",
 		},
 		Result: trigger.TriggerResult{
 			Type: trigger.TriggerTypeHTTP,

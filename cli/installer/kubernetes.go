@@ -21,7 +21,7 @@ var kubernetes = installer{
 	},
 	configs: []configurator{
 		configureKubernetes,
-		configureTracetest,
+		configureQualitytrace,
 		configureIngress,
 		configureDemoApp,
 	},
@@ -70,7 +70,7 @@ func kubernetesInstaller(config configuration, ui cliUI.UI) {
 	if !config.Bool("installer.only_tracetest") {
 		installCollector(config, ui)
 	}
-	installTracetest(config, ui)
+	installQualitytrace(config, ui)
 }
 
 func installCollector(config configuration, ui cliUI.UI) {
@@ -82,11 +82,11 @@ func installCollector(config configuration, ui cliUI.UI) {
 	ui.Println(ui.Green("✔ collector ready"))
 }
 
-func installTracetest(conf configuration, ui cliUI.UI) {
+func installQualitytrace(conf configuration, ui cliUI.UI) {
 	setupHelmRepo(conf, ui)
 
-	installTracetestChart(conf, ui)
-	fixTracetestConfiguration(conf, ui)
+	installQualitytraceChart(conf, ui)
+	fixQualitytraceConfiguration(conf, ui)
 
 	if !conf.Bool("installer.only_tracetest") {
 		installOtelCollector(conf, ui)
@@ -138,12 +138,12 @@ func installOtelCollector(conf configuration, ui cliUI.UI) {
 	execCmd(kubectlNamespaceCmd(conf, "delete pods -l app.kubernetes.io/name=otel-collector"), ui)
 }
 
-func fixTracetestConfiguration(conf configuration, ui cliUI.UI) {
-	c := getTracetestConfigFileContents("tracetest-postgresql", "tracetest", "not-secure-database-password", ui, conf)
+func fixQualitytraceConfiguration(conf configuration, ui cliUI.UI) {
+	c := getQualitytraceConfigFileContents("tracetest-postgresql", "tracetest", "not-secure-database-password", ui, conf)
 	ttc := createTmpFile("tracetest-config", string(c), ui)
 	defer os.Remove(ttc.Name())
 
-	p := getTracetestProvisionFileContents(ui, conf)
+	p := getQualitytraceProvisionFileContents(ui, conf)
 	ttp := createTmpFile("tracetest-provisioning", string(p), ui)
 	defer os.Remove(ttp.Name())
 
@@ -158,7 +158,7 @@ func fixTracetestConfiguration(conf configuration, ui cliUI.UI) {
 	)
 }
 
-func installTracetestChart(conf configuration, ui cliUI.UI) {
+func installQualitytraceChart(conf configuration, ui cliUI.UI) {
 	cmd := []string{
 		"upgrade --install tracetest kubeshop/tracetest",
 		"--namespace " + conf.String("k8s.namespace") + " --create-namespace",
@@ -168,7 +168,7 @@ func installTracetestChart(conf configuration, ui cliUI.UI) {
 		cmd = append(cmd, "--set image.tag=latest")
 	}
 
-	if os.Getenv("TRACETEST_DEV") != "" {
+	if os.Getenv("QUALITYTRACE_DEV") != "" {
 		cmd = append(cmd, "--set env.tracetestDev=true")
 	}
 

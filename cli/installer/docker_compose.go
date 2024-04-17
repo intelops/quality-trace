@@ -29,7 +29,7 @@ var dockerCompose = installer{
 	},
 	configs: []configurator{
 		configureDockerCompose,
-		configureTracetest,
+		configureQualitytrace,
 		configureDemoApp,
 		configureDockerComposeOutput,
 	},
@@ -44,15 +44,15 @@ func configureDockerCompose(conf configuration, ui cliUI.UI) configuration {
 }
 
 func configureDockerComposeOutput(conf configuration, ui cliUI.UI) configuration {
-	conf.set("output.dir", "tracetest/")
+	conf.set("output.dir", "quality-trace/")
 
 	return conf
 }
 
 const (
 	dockerComposeFilename       = "docker-compose.yaml"
-	tracetestConfigFilename     = "tracetest.yaml"
-	tracetestProvisionFilename  = "tracetest-provision.yaml"
+	qualitytraceConfigFilename     = "qualitytrace.yaml"
+	qualitytraceProvisionFilename  = "qualitytrace-provision.yaml"
 	otelCollectorConfigFilename = "collector.config.yaml"
 )
 
@@ -64,7 +64,7 @@ func dockerComposeInstaller(config configuration, ui cliUI.UI) {
 		ui.Exit(err.Error())
 	}
 
-	tracetestConfigFile := getTracetestConfigFileContents("postgres", "postgres", "postgres", ui, config)
+	qualitytraceConfigFile := getQualitytraceConfigFileContents("postgres", "postgres", "postgres", ui, config)
 
 	dockerComposeFile := getDockerComposeFileContents(ui, config)
 	dockerComposeFName := filepath.Join(dir, dockerComposeFilename)
@@ -76,12 +76,12 @@ func dockerComposeInstaller(config configuration, ui cliUI.UI) {
 
 	createDir(ui, dir)
 	saveFile(ui, dockerComposeFName, dockerComposeFile)
-	saveFile(ui, filepath.Join(dir, tracetestConfigFilename), tracetestConfigFile)
+	saveFile(ui, filepath.Join(dir, qualitytraceConfigFilename), qualitytraceConfigFile)
 
-	tracetestProvisionFile := getTracetestProvisionFileContents(ui, config)
-	saveFile(ui, filepath.Join(dir, tracetestProvisionFilename), tracetestProvisionFile)
+	qualitytraceProvisionFile := getQualitytraceProvisionFileContents(ui, config)
+	saveFile(ui, filepath.Join(dir, qualitytraceProvisionFilename), qualitytraceProvisionFile)
 
-	if !config.Bool("installer.only_tracetest") {
+	if !config.Bool("installer.only_qualitytrace") {
 		collectorConfigFile := getCollectorConfigFileContents(ui, config)
 		saveFile(ui, filepath.Join(dir, otelCollectorConfigFilename), collectorConfigFile)
 	}
@@ -258,9 +258,9 @@ func fixTracetestContainer(config configuration, project *types.Project, version
 
 	tts.Image = "kubeshop/tracetest:" + version
 	tts.Build = nil
-	tts.Volumes[0].Source = tracetestConfigFilename
-	tracetestDevEnv := "${TRACETEST_DEV}"
-	tts.Environment["TRACETEST_DEV"] = &tracetestDevEnv
+	tts.Volumes[0].Source = qualitytraceConfigFilename
+	qualitytraceDevEnv := "${TRACETEST_DEV}"
+	tts.Environment["TRACETEST_DEV"] = &qualitytraceDevEnv
 
 	replaceService(project, serviceName, tts)
 

@@ -203,7 +203,7 @@ func (r Run) GenerateRequiredGateResult(gates []testrunner.RequiredGate) testrun
 	return requiredGatesResult
 }
 
-func NewTracetestRootSpan(run Run) traces.Span {
+func NewQualitytraceRootSpan(run Run) traces.Span {
 	return traces.AugmentRootSpan(traces.Span{
 		ID:         id.NewRandGenerator().SpanID(),
 		Name:       traces.TriggerSpanName,

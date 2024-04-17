@@ -11,8 +11,8 @@ postgresql:
 
   # credentials for accessing the database
   auth:
-    database: "tracetest"
-    username: "tracetest"
+    database: "qualitytrace"
+    username: "qualitytrace"
     password: not-secure-database-password
     existingSecret: ""
 
@@ -106,7 +106,7 @@ image:
   tag: latest
 
 env:
-  tracetestDev: ""
+  qualitytraceDev: ""
 
 imagePullSecrets: []
 nameOverride: ""

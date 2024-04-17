@@ -50,10 +50,10 @@ func (db *opensearchDB) TestConnection(ctx context.Context) model.ConnectionResu
 		connection.WithAuthenticationTest(connection.NewTestStep(func(ctx context.Context) (string, error) {
 			_, err := db.GetTraceByID(ctx, trace.TraceID{}.String())
 			if strings.Contains(strings.ToLower(err.Error()), "unauthorized") {
-				return "Tracetest tried to execute an OpenSearch API request but it failed due to authentication issues", err
+				return "Qualitytrace tried to execute an OpenSearch API request but it failed due to authentication issues", err
 			}
 
-			return "Tracetest managed to authenticate with OpenSearch", nil
+			return "Qualitytrace managed to authenticate with OpenSearch", nil
 		})),
 	)
 
@@ -161,8 +161,8 @@ func convertOpensearchSpanIntoSpan(input map[string]interface{}) traces.Span {
 		attributes[name] = fmt.Sprintf("%v", attrValue)
 	}
 
-	attributes[traces.TracetestMetadataFieldKind] = input["kind"].(string)
-	attributes[traces.TracetestMetadataFieldKind] = input["parentSpanId"].(string)
+	attributes[traces.QualitytraceMetadataFieldKind] = input["kind"].(string)
+	attributes[traces.QualitytraceMetadataFieldKind] = input["parentSpanId"].(string)
 
 	return traces.Span{
 		ID:         spanId,

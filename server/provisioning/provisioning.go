@@ -42,18 +42,18 @@ func (p *Provisioner) AddResourceProvisioner(prov resourcemanager.Provisioner) {
 }
 
 var (
-	ErrEnvEmpty = errors.New("cannot read provisioning from env variable TRACETEST_PROVISIONING: variable is empty")
+	ErrEnvEmpty = errors.New("cannot read provisioning from env variable QUALITYTRACE_PROVISIONING: variable is empty")
 )
 
 func (p Provisioner) FromEnv() error {
-	envVar := os.Getenv("TRACETEST_PROVISIONING")
+	envVar := os.Getenv("QUALITYTRACE_PROVISIONING")
 	if envVar == "" {
 		return ErrEnvEmpty
 	}
 
 	data, err := base64.StdEncoding.DecodeString(envVar)
 	if err != nil {
-		return fmt.Errorf("cannot decode env variable TRACETEST_PROVISIONING: %w", err)
+		return fmt.Errorf("cannot decode env variable QUALITYTRACE_PROVISIONING: %w", err)
 	}
 	return p.do(data)
 }
