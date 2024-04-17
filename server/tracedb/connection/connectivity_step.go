@@ -32,7 +32,7 @@ func (s *connectivityTestStep) TestConnection(_ context.Context) model.Connectio
 
 	if len(s.endpoints) == 0 {
 		return model.ConnectionTestStep{
-			Message: "Tracetest tried to connect but no endpoints were provided",
+			Message: "Qualitytrace tried to connect but no endpoints were provided",
 			Error:   fmt.Errorf("no endpoints provided"),
 		}
 	}
@@ -40,7 +40,7 @@ func (s *connectivityTestStep) TestConnection(_ context.Context) model.Connectio
 	if connectionErr != nil {
 		endpoints := strings.Join(unreachableEndpoints, ", ")
 		return model.ConnectionTestStep{
-			Message: fmt.Sprintf("Tracetest tried to connect to the following endpoints and failed: %s", endpoints),
+			Message: fmt.Sprintf("Qualitytrace tried to connect to the following endpoints and failed: %s", endpoints),
 			Status:  model.StatusFailed,
 			Error:   connectionErr,
 		}
@@ -48,7 +48,7 @@ func (s *connectivityTestStep) TestConnection(_ context.Context) model.Connectio
 
 	endpoints := strings.Join(s.endpoints, ", ")
 	return model.ConnectionTestStep{
-		Message: fmt.Sprintf(`Tracetest connected to %s`, endpoints),
+		Message: fmt.Sprintf(`Qualitytrace connected to %s`, endpoints),
 		Status:  model.StatusPassed,
 	}
 }

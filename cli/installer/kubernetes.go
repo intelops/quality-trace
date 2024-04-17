@@ -88,19 +88,19 @@ func installQualitytrace(conf configuration, ui cliUI.UI) {
 	installQualitytraceChart(conf, ui)
 	fixQualitytraceConfiguration(conf, ui)
 
-	if !conf.Bool("installer.only_tracetest") {
+	if !conf.Bool("installer.only_quality-trace") {
 		installOtelCollector(conf, ui)
 	}
 
-	execCmd(kubectlNamespaceCmd(conf, "delete pods -l app.kubernetes.io/name=tracetest"), ui)
+	execCmd(kubectlNamespaceCmd(conf, "delete pods -l app.kubernetes.io/name=quality-trace"), ui)
 
-	if !conf.Bool("installer.only_tracetest") {
+	if !conf.Bool("installer.only_quality-trace") {
 		installDemo(conf, ui)
 	}
 
 	ui.Success("Install successful!")
 	ui.Println(fmt.Sprintf(`
-To access tracetest:
+To access quality-trace:
 
 	%s
 
@@ -109,14 +109,14 @@ Then, use your browser to navigate to:
   http://localhost:11633
 
 Happy TraceTesting =)
-`, kubectlNamespaceCmd(conf, "port-forward svc/tracetest 11633")))
+`, kubectlNamespaceCmd(conf, "port-forward svc/quality-trace 11633")))
 
 }
 
 func installDemo(conf configuration, ui cliUI.UI) {
 	helm := helmCmd(conf, "")
 	script := strings.ReplaceAll(demoScript, "#helm#", helm)
-	script = fmt.Sprintf(script, conf.String("tracetest.backend.endpoint.collector"))
+	script = fmt.Sprintf(script, conf.String("quality-trace.backend.endpoint.collector"))
 
 	execCmd(script, ui)
 }
@@ -139,17 +139,17 @@ func installOtelCollector(conf configuration, ui cliUI.UI) {
 }
 
 func fixQualitytraceConfiguration(conf configuration, ui cliUI.UI) {
-	c := getQualitytraceConfigFileContents("tracetest-postgresql", "tracetest", "not-secure-database-password", ui, conf)
-	ttc := createTmpFile("tracetest-config", string(c), ui)
+	c := getQualitytraceConfigFileContents("quality-trace-postgresql", "quality-trace", "not-secure-database-password", ui, conf)
+	ttc := createTmpFile("quality-trace-config", string(c), ui)
 	defer os.Remove(ttc.Name())
 
 	p := getQualitytraceProvisionFileContents(ui, conf)
-	ttp := createTmpFile("tracetest-provisioning", string(p), ui)
+	ttp := createTmpFile("quality-trace-provisioning", string(p), ui)
 	defer os.Remove(ttp.Name())
 
 	execCmd(
 		kubectlNamespaceCmd(conf,
-			"create configmap tracetest --from-file="+ttc.Name()+" --from-file="+ttp.Name()+" -o yaml --dry-run=client",
+			"create configmap quality-trace --from-file="+ttc.Name()+" --from-file="+ttp.Name()+" -o yaml --dry-run=client",
 			"| sed 's#"+path.Base(ttc.Name())+"#config.yaml#'",
 			"| sed 's#"+path.Base(ttp.Name())+"#provisioning.yaml#' |",
 			kubectlNamespaceCmd(conf, "replace -f -"),
@@ -160,7 +160,7 @@ func fixQualitytraceConfiguration(conf configuration, ui cliUI.UI) {
 
 func installQualitytraceChart(conf configuration, ui cliUI.UI) {
 	cmd := []string{
-		"upgrade --install tracetest kubeshop/tracetest",
+		"upgrade --install quality-trace kubeshop/quality-trace",
 		"--namespace " + conf.String("k8s.namespace") + " --create-namespace",
 	}
 
@@ -169,7 +169,7 @@ func installQualitytraceChart(conf configuration, ui cliUI.UI) {
 	}
 
 	if os.Getenv("QUALITYTRACE_DEV") != "" {
-		cmd = append(cmd, "--set env.tracetestDev=true")
+		cmd = append(cmd, "--set env.qualitytraceDev=true")
 	}
 
 	execCmd(helmCmd(conf, cmd...), ui)
@@ -312,14 +312,14 @@ func getKubernetesContext(conf configuration, ui cliUI.UI) string {
 	}
 
 	if KubernetesContext != "" && kubernetesContextExists(KubernetesContext, contexts) {
-		ui.Println("On which kubectl context do you want to install Tracetest?")
+		ui.Println("On which kubectl context do you want to install Qualitytrace?")
 		ui.Println(fmt.Sprintf("  > %s", KubernetesContext))
 
 		return KubernetesContext
 	}
 
 	if len(contexts) == 1 {
-		ui.Println("On which kubectl context do you want to install Tracetest?")
+		ui.Println("On which kubectl context do you want to install Qualitytrace?")
 		ui.Println(fmt.Sprintf("  > %s", contexts[0].name))
 
 		return contexts[0].name
@@ -334,7 +334,7 @@ func getKubernetesContext(conf configuration, ui cliUI.UI) string {
 		options = append(options, cliUI.Option{Text: c.name, Fn: func(ui cliUI.UI) {}})
 	}
 
-	selected := ui.Select("On which kubectl context do you want to install Tracetest?", options, defaultIndex)
+	selected := ui.Select("On which kubectl context do you want to install Qualitytrace?", options, defaultIndex)
 	return selected.Text
 }
 
@@ -344,12 +344,12 @@ func configureKubernetes(conf configuration, ui cliUI.UI) configuration {
 	context := getKubernetesContext(conf, ui)
 	conf.set("k8s.context", context)
 
-	conf.set("k8s.namespace", "tracetest")
+	conf.set("k8s.namespace", "quality-trace")
 	return conf
 }
 
 func configureIngress(conf configuration, ui cliUI.UI) configuration {
-	conf.set("k8s.ingress-host", "tracetest")
+	conf.set("k8s.ingress-host", "quality-trace")
 	return conf
 }
 

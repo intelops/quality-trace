@@ -111,7 +111,7 @@ func provision(provisioner *provisioning.Provisioner, file string) {
 		if !errors.Is(err, provisioning.ErrEnvEmpty) {
 			log.Fatalf("[provisioning] error: %s", err.Error())
 		}
-		log.Println("[provisioning] TRACETEST_PROVISIONING env var is empty")
+		log.Println("[provisioning] QUALITYTRACE_PROVISIONING env var is empty")
 	}
 	fmt.Println("[Provisioning]: success")
 }
@@ -297,7 +297,7 @@ func (app *App) Start(opts ...appOption) error {
 	registerTestRunner(testRunnerRepo, apiRouter, provisioner, tracer)
 	registerTestResource(testRepo, apiRouter, provisioner, tracer)
 
-	isQualitytraceDev := os.Getenv("TRACETEST_DEV") != ""
+	isQualitytraceDev := os.Getenv("QUALITYTRACE_DEV") != ""
 	registerSPAHandler(router, app.cfg, configFromDB.IsAnalyticsEnabled(), serverID, isQualitytraceDev)
 
 	if isNewInstall {
@@ -604,7 +604,7 @@ func tracesConversionConfig() traces.ConversionConfig {
 	tcc := traces.NewConversionConfig()
 	// hardcoded for now. In the future we will get those values from the database
 	tcc.AddTimeFields(
-		"tracetest.span.duration",
+		"quality-trace.span.duration",
 	)
 
 	return tcc

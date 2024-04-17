@@ -11,7 +11,7 @@ import (
 )
 
 func configureDemoApp(conf configuration, ui cliUI.UI) configuration {
-	conf.set("demo.enable.pokeshop", !conf.Bool("installer.only_tracetest"))
+	conf.set("demo.enable.pokeshop", !conf.Bool("installer.only_quality-trace"))
 	conf.set("demo.enable.otel", false)
 
 	switch conf.String("installer") {
@@ -38,35 +38,35 @@ func configureDemoApp(conf configuration, ui cliUI.UI) configuration {
 
 func configureQualitytrace(conf configuration, ui cliUI.UI) configuration {
 	conf = configureBackend(conf, ui)
-	conf.set("tracetest.analytics", true)
+	conf.set("quality-trace.analytics", true)
 
 	return conf
 }
 
 func configureBackend(conf configuration, ui cliUI.UI) configuration {
-	installBackend := !conf.Bool("installer.only_tracetest")
-	conf.set("tracetest.backend.install", installBackend)
+	installBackend := !conf.Bool("installer.only_quality-trace")
+	conf.set("quality-trace.backend.install", installBackend)
 
 	if !installBackend {
-		conf.set("tracetest.backend.type", "")
+		conf.set("quality-trace.backend.type", "")
 		return conf
 	}
 
 	// default values
 	switch conf.String("installer") {
 	case "docker-compose":
-		conf.set("tracetest.backend.type", "otlp")
-		conf.set("tracetest.backend.tls.insecure", true)
-		conf.set("tracetest.backend.endpoint.collector", "http://otel-collector:4317")
-		conf.set("tracetest.backend.endpoint", "tracetest:4317")
+		conf.set("quality-trace.backend.type", "otlp")
+		conf.set("quality-trace.backend.tls.insecure", true)
+		conf.set("quality-trace.backend.endpoint.collector", "http://otel-collector:4317")
+		conf.set("quality-trace.backend.endpoint", "quality-trace:4317")
 	case "kubernetes":
-		conf.set("tracetest.backend.type", "otlp")
-		conf.set("tracetest.backend.tls.insecure", true)
-		conf.set("tracetest.backend.endpoint.collector", "http://otel-collector.tracetest:4317")
-		conf.set("tracetest.backend.endpoint", "tracetest:4317")
+		conf.set("quality-trace.backend.type", "otlp")
+		conf.set("quality-trace.backend.tls.insecure", true)
+		conf.set("quality-trace.backend.endpoint.collector", "http://otel-collector.quality-trace:4317")
+		conf.set("quality-trace.backend.endpoint", "quality-trace:4317")
 
 	default:
-		conf.set("tracetest.backend.type", "")
+		conf.set("quality-trace.backend.type", "")
 	}
 
 	return conf
@@ -98,16 +98,16 @@ var provisionTemplate string
 
 func getQualitytraceProvisionFileContents(ui cliUI.UI, config configuration) []byte {
 	vals := map[string]string{
-		"installBackend":   fmt.Sprintf("%t", config.Bool("tracetest.backend.install")),
-		"backendType":      config.String("tracetest.backend.type"),
-		"backendEndpoint":  config.String("tracetest.backend.endpoint.query"),
-		"backendInsecure":  config.String("tracetest.backend.tls.insecure"),
-		"backendAddresses": config.String("tracetest.backend.addresses"),
-		"backendIndex":     config.String("tracetest.backend.index"),
-		"backendToken":     config.String("tracetest.backend.token"),
-		"backendRealm":     config.String("tracetest.backend.realm"),
+		"installBackend":   fmt.Sprintf("%t", config.Bool("quality-trace.backend.install")),
+		"backendType":      config.String("quality-trace.backend.type"),
+		"backendEndpoint":  config.String("quality-trace.backend.endpoint.query"),
+		"backendInsecure":  config.String("quality-trace.backend.tls.insecure"),
+		"backendAddresses": config.String("quality-trace.backend.addresses"),
+		"backendIndex":     config.String("quality-trace.backend.index"),
+		"backendToken":     config.String("quality-trace.backend.token"),
+		"backendRealm":     config.String("quality-trace.backend.realm"),
 
-		"analyticsEnabled": fmt.Sprintf("%t", config.Bool("tracetest.analytics")),
+		"analyticsEnabled": fmt.Sprintf("%t", config.Bool("quality-trace.analytics")),
 
 		"enablePokeshopDemo": fmt.Sprintf("%t", config.Bool("demo.enable.pokeshop")),
 		"enableOtelDemo":     fmt.Sprintf("%t", config.Bool("demo.enable.otel")),

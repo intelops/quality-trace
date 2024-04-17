@@ -30,20 +30,20 @@ or reach us on Discord https://discord.gg/6zupCZFQbe
 `)
 
 	if RunEnvironment == DockerRunEnvironmentType { // check if docker was previously chosen as a CLI arg
-		ui.Println("How do you want to run TraceTest?")
+		ui.Println("How do you want to run QualityTrace?")
 		ui.Println("  > Using Docker Compose")
 		dockerCompose.Install(ui)
 		return
 	}
 
 	if RunEnvironment == KubernetesRunEnvironmentType { // check if kubernetes was previously chosen as a CLI arg
-		ui.Println("How do you want to run TraceTest?")
+		ui.Println("How do you want to run QualityTrace?")
 		ui.Println("  > Using Kubernetes")
 		kubernetes.Install(ui)
 		return
 	}
 
-	option := ui.Select("How do you want to run TraceTest?", []cliUI.Option{
+	option := ui.Select("How do you want to run QualityTrace?", []cliUI.Option{
 		{Text: "Using Docker Compose", Fn: dockerCompose.Install},
 		{Text: "Using Kubernetes", Fn: kubernetes.Install},
 	}, 0)
@@ -96,23 +96,23 @@ func setInstallationType(ui cliUI.UI, config configuration) {
 	if InstallationMode == WithoutDemoInstallationModeType { // check if it was previously chosen
 		ui.Println("Do you have OpenTelemetry based tracing already set up, or would you like us to install a demo tracing environment and app?")
 		ui.Println("  > I have a tracing environment already. Just install Tracetest")
-		config.set("installer.only_tracetest", true)
+		config.set("installer.only_quality-trace", true)
 		return
 	}
 
 	if InstallationMode == WithDemoInstallationModeType { // check if it was previously chosen
 		ui.Println("Do you have OpenTelemetry based tracing already set up, or would you like us to install a demo tracing environment and app?")
 		ui.Println("  > Just learning tracing! Install Tracetest, OpenTelemetry Collector and the sample app.")
-		config.set("installer.only_tracetest", false)
+		config.set("installer.only_quality-trace", false)
 		return
 	}
 
 	option := ui.Select("Do you have OpenTelemetry based tracing already set up, or would you like us to install a demo tracing environment and app?", []cliUI.Option{
 		{Text: "I have a tracing environment already. Just install Tracetest", Fn: func(ui cliUI.UI) {
-			config.set("installer.only_tracetest", true)
+			config.set("installer.only_quality-trace", true)
 		}},
 		{Text: "Just learning tracing! Install Tracetest, OpenTelemetry Collector and the sample app.", Fn: func(ui cliUI.UI) {
-			config.set("installer.only_tracetest", false)
+			config.set("installer.only_quality-trace", false)
 		}},
 	}, 0)
 

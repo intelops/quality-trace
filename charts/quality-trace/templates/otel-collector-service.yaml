@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "tracetest.fullname" . }}-otel-collector
+  name: {{ include "quality-trace.fullname" . }}-otel-collector
   labels:
     {{- include "otelCollector.labels" . | nindent 4 }}
   {{- with .Values.otelCollector.service.annotations }}

@@ -16,7 +16,7 @@ var dashboardCmd = &cobra.Command{
 	PreRun:  setupCommand(),
 	Run: WithResultHandler(func(_ *cobra.Command, _ []string) (string, error) {
 		if cliConfig.IsEmpty() {
-			return "", fmt.Errorf("missing Tracetest endpoint configuration")
+			return "", fmt.Errorf("missing Qualitytrace endpoint configuration")
 		}
 
 		err := openBrowser(cliConfig.URL())
