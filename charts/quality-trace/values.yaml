@@ -103,7 +103,7 @@ image:
   repository: ghcr.io/intelops/quality-trace
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: latest
+  tag: pr-62
 
 env:
   qualitytraceDev: ""

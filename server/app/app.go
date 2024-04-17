@@ -66,7 +66,7 @@ func New(config *config.AppConfig) (*App, error) {
 }
 
 func (app *App) Version() string {
-	return fmt.Sprintf("tracetest-server %s (%s)", Version, Env)
+	return fmt.Sprintf("quality-trace-server %s (%s)", Version, Env)
 }
 
 func (app *App) Stop() {
