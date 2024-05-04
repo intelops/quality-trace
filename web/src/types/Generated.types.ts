@@ -809,7 +809,6 @@ export interface external {
           spec?: {
             id?: string;
             name?: string;
-            /** @default false */
             enabled?: boolean;
             minimumScore?: number;
             plugins?: external["linters.yaml"]["components"]["schemas"]["LinterResourcePlugin"][];

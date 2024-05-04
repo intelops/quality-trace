@@ -48,7 +48,7 @@ function Linter({
   return {
     id,
     name,
-    enabled,
+    enabled: false,
     minimumScore,
     plugins: plugins.map(plugin => LinterPlugin(plugin)),
   };
