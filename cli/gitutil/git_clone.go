@@ -29,11 +29,11 @@ func CloneGitFile(ctx context.Context, gitParams RunParameters) ([]byte, error) 
 	// Set up Basic Authentication using custom BasicAuth struct
 	auth := &http.BasicAuth{
 		Username: gitParams.GitUsername,
-		Password:    gitParams.GitToken,
+		Password: gitParams.GitToken,
 	}
 
 	repo, err := git.PlainCloneContext(ctx, "/tmp/new_01", false, &git.CloneOptions{
-		URL: gitParams.GitRepo,
+		URL:  gitParams.GitRepo,
 		Auth: auth,
 	})
 	if err != nil {
@@ -62,14 +62,14 @@ func CloneGitFile(ctx context.Context, gitParams RunParameters) ([]byte, error) 
 // CleanupClonedRepo deletes the cloned repository file.
 func CleanupClonedRepo(filePath string) error {
 	// Get the directory containing the file
-    dirPath := filepath.Dir(filePath)
+	dirPath := filepath.Dir(filePath)
 
-    // Remove the directory containing the file
-    if err := os.RemoveAll(dirPath); err != nil {
-        logger.Info("Failed to delete directory:", err)
-        return err
-    }
+	// Remove the directory containing the file
+	if err := os.RemoveAll(dirPath); err != nil {
+		logger.Info("Failed to delete directory:", err)
+		return err
+	}
 
-    logger.Info("Cloned repository file and its directory deleted successfully.")
-    return nil
+	logger.Info("Cloned repository file and its directory deleted successfully.")
+	return nil
 }

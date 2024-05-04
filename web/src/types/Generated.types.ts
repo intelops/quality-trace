@@ -3,1134 +3,398 @@
  * Do not make direct changes to the file.
  */
 
+
 export interface paths {
   "/testsuites": {
-    /** get testsuites */
+    /**
+     * Get testsuites
+     * @description get testsuites
+     */
     get: operations["getTestSuites"];
-    /** Create new TestSuite */
+    /**
+     * Create new TestSuite
+     * @description Create new TestSuite
+     */
     post: operations["createTestSuite"];
   };
   "/testsuites/{testSuiteId}": {
-    /** get TestSuite */
+    /**
+     * get TestSuite
+     * @description get TestSuite
+     */
     get: operations["getTestSuite"];
-    /** update TestSuite action */
+    /**
+     * update TestSuite
+     * @description update TestSuite action
+     */
     put: operations["updateTestSuite"];
-    /** delete a TestSuite */
+    /**
+     * delete a TestSuite
+     * @description delete a TestSuite
+     */
     delete: operations["deleteTestSuite"];
   };
   "/testsuites/{testSuiteId}/version/{version}": {
-    /** get a TestSuite specific version */
+    /**
+     * get a TestSuite specific version
+     * @description get a TestSuite specific version
+     */
     get: operations["getTestSuiteVersion"];
   };
   "/testsuites/{testSuiteId}/run": {
-    /** Get all runs from a particular TestSuite */
+    /**
+     * Get all runs from a particular TestSuite
+     * @description Get all runs from a particular TestSuite
+     */
     get: operations["getTestSuiteRuns"];
-    /** run a particular TestSuite */
+    /**
+     * run TestSuite
+     * @description run a particular TestSuite
+     */
     post: operations["runTestSuite"];
   };
   "/testsuites/{testSuiteId}/run/{runId}": {
-    /** Get a specific run from a particular TestSuite */
+    /**
+     * Get a specific run from a particular TestSuite
+     * @description Get a specific run from a particular TestSuite
+     */
     get: operations["getTestSuiteRun"];
-    /** Delete a specific run from a particular TestSuite */
+    /**
+     * Delete a specific run from a particular TestSuite
+     * @description Delete a specific run from a particular TestSuite
+     */
     delete: operations["deleteTestSuiteRun"];
   };
   "/tests": {
-    /** get tests */
+    /**
+     * Get tests
+     * @description get tests
+     */
     get: operations["getTests"];
-    /** Create new test action */
+    /**
+     * Create new test
+     * @description Create new test action
+     */
     post: operations["createTest"];
   };
   "/tests/{testId}": {
-    /** get test */
+    /**
+     * get test
+     * @description get test
+     */
     get: {
-      parameters: {};
+      parameters: {
+        path: {
+          testId: external["parameters.yaml"]["components"]["parameters"]["testId"];
+        };
+      };
       responses: {
-        /** successful operation */
+        /** @description successful operation */
         200: {
           content: {
             "application/json": external["tests.yaml"]["components"]["schemas"]["TestResource"];
           };
         };
-        /** problem with getting a test */
-        500: unknown;
+        /** @description problem with getting a test */
+        500: {
+          content: never;
+        };
       };
     };
-    /** update test action */
+    /**
+     * update test
+     * @description update test action
+     */
     put: operations["updateTest"];
-    /** delete a test */
+    /**
+     * delete a test
+     * @description delete a test
+     */
     delete: operations["deleteTest"];
   };
   "/tests/{testId}/run": {
-    /** get the runs from a particular test */
+    /**
+     * get the runs for a test
+     * @description get the runs from a particular test
+     */
     get: operations["getTestRuns"];
-    /** run a particular test */
+    /**
+     * run test
+     * @description run a particular test
+     */
     post: operations["runTest"];
   };
   "/tests/{testId}/run/{runId}/select": {
-    /** get the spans ids that would be selected by a specific selector query */
+    /**
+     * retrieve spans that will be selected by selector
+     * @description get the spans ids that would be selected by a specific selector query
+     */
     get: operations["getTestResultSelectedSpans"];
   };
   "/tests/{testId}/run/{runId}/dry-run": {
-    /** use this method to test a definition against an actual trace without creating a new version or persisting anything */
+    /**
+     * run given assertions against the traces from the given run without persisting anything
+     * @description use this method to test a definition against an actual trace without creating a new version or persisting anything
+     */
     put: operations["dryRunAssertion"];
   };
   "/tests/{testId}/run/{runId}/rerun": {
-    /** rerun a test run */
+    /**
+     * rerun a test run
+     * @description rerun a test run
+     */
     post: operations["rerunTestRun"];
   };
   "/tests/{testId}/run/{runId}/junit.xml": {
-    /** get test run results in JUnit xml format */
+    /**
+     * get test run results in JUnit xml format
+     * @description get test run results in JUnit xml format
+     */
     get: operations["getRunResultJUnit"];
   };
   "/tests/{testId}/run/{runId}/export": {
-    /** export test and test run information for debugging */
+    /**
+     * export test and test run information
+     * @description export test and test run information for debugging
+     */
     get: operations["exportTestRun"];
   };
   "/tests/import": {
-    /** import test and test run information for debugging */
+    /**
+     * import test and test run information
+     * @description import test and test run information for debugging
+     */
     post: operations["importTestRun"];
   };
   "/tests/{testId}/run/{runId}": {
-    /** get a particular test Run */
+    /**
+     * get test Run
+     * @description get a particular test Run
+     */
     get: operations["getTestRun"];
-    /** delete a test run */
+    /**
+     * delete a test run
+     * @description delete a test run
+     */
     delete: operations["deleteTestRun"];
   };
   "/tests/{testId}/definition": {
-    /** Gets definition for a test */
+    /**
+     * Get definition for a test
+     * @description Gets definition for a test
+     */
     get: operations["getTestSpecs"];
   };
   "/tests/{testId}/version/{version}": {
-    /** get a test specific version */
+    /**
+     * get a test specific version
+     * @description get a test specific version
+     */
     get: operations["getTestVersion"];
   };
   "/tests/{testId}/run/{runId}/stop": {
-    /** stops the execution of a test run */
+    /**
+     * stops the execution of a test run
+     * @description stops the execution of a test run
+     */
     post: operations["stopTestRun"];
   };
   "/tests/{testId}/run/{runId}/events": {
-    /** get events from a test run */
+    /**
+     * get events from a test run
+     * @description get events from a test run
+     */
     get: operations["getTestRunEvents"];
   };
   "/expressions/resolve": {
-    /** resolves an expression and returns the result string */
+    /**
+     * resolves an expression and returns the result string
+     * @description resolves an expression and returns the result string
+     */
     post: operations["ExpressionResolve"];
   };
   "/resources": {
-    /** get resources */
+    /**
+     * Get resources
+     * @description get resources
+     */
     get: operations["getResources"];
   };
   "/config/connection": {
-    /** Tests the config data store/exporter connection */
+    /**
+     * Tests the config data store/exporter connection
+     * @description Tests the config data store/exporter connection
+     */
     post: operations["testConnection"];
   };
   "/configs": {
-    /** List Tracetest configuration */
+    /**
+     * List Tracetest configuration
+     * @description List Tracetest configuration
+     */
     get: operations["listConfiguration"];
   };
   "/configs/{configId}": {
-    /** Get Tracetest configuration */
+    /**
+     * Get Tracetest configuration
+     * @description Get Tracetest configuration
+     */
     get: operations["getConfiguration"];
-    /** Update Tracetest configuration */
+    /**
+     * Update Tracetest configuration
+     * @description Update Tracetest configuration
+     */
     put: operations["updateConfiguration"];
   };
   "/pollingprofiles": {
-    /** List Polling Profile configuration */
+    /**
+     * List Polling Profile Configuration
+     * @description List Polling Profile configuration
+     */
     get: operations["listPollingProfile"];
   };
   "/pollingprofiles/{pollingProfileId}": {
-    /** Get a polling profile used on Tracetest to configure how to fetch traces in a test. */
+    /**
+     * Get Polling Profile
+     * @description Get a polling profile used on Tracetest to configure how to fetch traces in a test.
+     */
     get: operations["getPollingProfile"];
-    /** Update a polling profile used on Tracetest to configure how to fetch traces in a test. */
+    /**
+     * Update a Polling Profile
+     * @description Update a polling profile used on Tracetest to configure how to fetch traces in a test.
+     */
     put: operations["updatePollingProfile"];
   };
   "/demos": {
-    /** List demonstrations used on Tracetest as quick start examples. */
+    /**
+     * List Demonstrations
+     * @description List demonstrations used on Tracetest as quick start examples.
+     */
     get: operations["listDemos"];
-    /** Create a demonstration used on Tracetest as quick start examples. */
+    /**
+     * Create a Demonstration setting
+     * @description Create a demonstration used on Tracetest as quick start examples.
+     */
     post: operations["createDemo"];
   };
   "/demos/{demoId}": {
-    /** Get a demonstration used on Tracetest as quick start examples. */
+    /**
+     * Get Demonstration setting
+     * @description Get a demonstration used on Tracetest as quick start examples.
+     */
     get: operations["getDemo"];
-    /** Update a demonstration used on Tracetest as quick start examples. */
+    /**
+     * Update a Demonstration setting
+     * @description Update a demonstration used on Tracetest as quick start examples.
+     */
     put: operations["updateDemo"];
-    /** Delete a demonstration used on Tracetest as quick start examples. */
+    /**
+     * Delete a Demonstration setting
+     * @description Delete a demonstration used on Tracetest as quick start examples.
+     */
     delete: operations["deleteDemo"];
   };
   "/datastores": {
-    /** List Data Store */
+    /**
+     * List Data Store
+     * @description List Data Store
+     */
     get: operations["listDataStore"];
   };
   "/datastores/{dataStoreId}": {
-    /** Get a Data Store */
+    /**
+     * Get a Data Store
+     * @description Get a Data Store
+     */
     get: operations["getDataStore"];
-    /** Update a Data Store */
+    /**
+     * Update a Data Store
+     * @description Update a Data Store
+     */
     put: operations["updateDataStore"];
-    /** Delete a Data Store */
+    /**
+     * Delete a Data Store
+     * @description Delete a Data Store
+     */
     delete: operations["deleteDataStore"];
   };
   "/variableSets": {
-    /** List VariableSets available in Tracetest. */
+    /**
+     * List VariableSets
+     * @description List VariableSets available in Tracetest.
+     */
     get: operations["listVariableSets"];
-    /** Create a VariableSet that can be used by tests and test suites */
+    /**
+     * Create a VariableSet
+     * @description Create a VariableSet that can be used by tests and test suites
+     */
     post: operations["createVariableSet"];
   };
   "/variableSets/{variableSetId}": {
-    /** Get one VariableSet by its id */
+    /**
+     * Get a specific VariableSet
+     * @description Get one VariableSet by its id
+     */
     get: operations["getVariableSet"];
-    /** Update a VariableSet used on Tracetest */
+    /**
+     * Update a VariableSet
+     * @description Update a VariableSet used on Tracetest
+     */
     put: operations["updateVariableSet"];
-    /** Delete a variable set from Tracetest */
+    /**
+     * Delete a variable set
+     * @description Delete a variable set from Tracetest
+     */
     delete: operations["deleteVariableSet"];
   };
   "/version": {
-    /** Get the version of the API */
+    /**
+     * Get the version of the API
+     * @description Get the version of the API
+     */
     get: operations["getVersion"];
   };
   "/linters": {
-    /** List Linters available in Tracetest. */
+    /**
+     * List Linters
+     * @description List Linters available in Tracetest.
+     */
     get: operations["listLinters"];
-    /** Create an Linter that can be used by tests and Linters */
+    /**
+     * Create an Linter
+     * @description Create an Linter that can be used by tests and Linters
+     */
     post: operations["createLinter"];
   };
   "/linters/{LinterId}": {
-    /** Get one Linter by its id */
+    /**
+     * Get a specific Linter
+     * @description Get one Linter by its id
+     */
     get: operations["getLinter"];
-    /** Update a Linter used on Tracetest */
+    /**
+     * Update a Linter
+     * @description Update a Linter used on Tracetest
+     */
     put: operations["updateLinter"];
-    /** Delete an Linter from Tracetest */
+    /**
+     * Delete an Linter
+     * @description Delete an Linter from Tracetest
+     */
     delete: operations["deleteLinter"];
   };
 }
 
-export interface components {}
+export type webhooks = Record<string, never>;
 
-export interface operations {
-  /** get testsuites */
-  getTestSuites: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          "application/json": external["testsuites.yaml"]["components"]["schemas"]["TestSuiteResourceList"];
-          "text/yaml": {
-            count?: number;
-            items?: external["testsuites.yaml"]["components"]["schemas"]["TestSuiteResource"][];
-          };
-        };
-      };
-      /** invalid query for testsuites, some data was sent in incorrect format. */
-      400: unknown;
-      /** problem with getting testsuites */
-      500: unknown;
-    };
-  };
-  /** Create new TestSuite */
-  createTestSuite: {
-    responses: {
-      /** successful operation */
-      201: {
-        content: {
-          "application/json": external["testsuites.yaml"]["components"]["schemas"]["TestSuiteResource"];
-          "text/yaml": external["testsuites.yaml"]["components"]["schemas"]["TestSuiteResource"];
-        };
-      };
-      /** trying to create a TestSuite with an already existing ID */
-      400: unknown;
-      /** problem creating a TestSuite */
-      500: unknown;
-    };
-    requestBody: {
-      content: {
-        "application/json": external["testsuites.yaml"]["components"]["schemas"]["TestSuiteResource"];
-        "text/yaml": external["testsuites.yaml"]["components"]["schemas"]["TestSuiteResource"];
-      };
-    };
-  };
-  /** get TestSuite */
-  getTestSuite: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          "application/json": external["testsuites.yaml"]["components"]["schemas"]["TestSuiteResource"];
-          "text/yaml": external["testsuites.yaml"]["components"]["schemas"]["TestSuiteResource"];
-        };
-      };
-      /** TestSuite not found */
-      404: unknown;
-      /** problem getting an TestSuite */
-      500: unknown;
-    };
-  };
-  /** update TestSuite action */
-  updateTestSuite: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          "application/json": external["testsuites.yaml"]["components"]["schemas"]["TestSuiteResource"];
-          "text/yaml": external["testsuites.yaml"]["components"]["schemas"]["TestSuiteResource"];
-        };
-      };
-      /** invalid TestSuite, some data was sent in incorrect format. */
-      400: unknown;
-      /** TestSuite not found */
-      404: unknown;
-      /** problem updating a TestSuite */
-      500: unknown;
-    };
-    requestBody: {
-      content: {
-        "application/json": external["testsuites.yaml"]["components"]["schemas"]["TestSuiteResource"];
-        "text/yaml": external["testsuites.yaml"]["components"]["schemas"]["TestSuiteResource"];
-      };
-    };
-  };
-  /** delete a TestSuite */
-  deleteTestSuite: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      204: never;
-      /** TestSuite not found */
-      404: unknown;
-      /** problem deleting a TestSuite */
-      500: unknown;
-    };
-  };
-  /** get a TestSuite specific version */
-  getTestSuiteVersion: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          "application/json": external["testsuites.yaml"]["components"]["schemas"]["TestSuite"];
-        };
-      };
-      /** problem with getting a test */
-      500: unknown;
-    };
-  };
-  /** Get all runs from a particular TestSuite */
-  getTestSuiteRuns: {
-    parameters: {};
-    responses: {
-      /** OK */
-      200: {
-        content: {
-          "application/json": external["testsuites.yaml"]["components"]["schemas"]["TestSuiteRun"][];
-        };
-      };
-    };
-  };
-  /** run a particular TestSuite */
-  runTestSuite: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          "application/json": external["testsuites.yaml"]["components"]["schemas"]["TestSuiteRun"];
-        };
-      };
-    };
-    requestBody: {
-      content: {
-        "application/json": external["tests.yaml"]["components"]["schemas"]["RunInformation"];
-      };
-    };
-  };
-  /** Get a specific run from a particular TestSuite */
-  getTestSuiteRun: {
-    parameters: {};
-    responses: {
-      /** OK */
-      200: {
-        content: {
-          "application/json": external["testsuites.yaml"]["components"]["schemas"]["TestSuiteRun"];
-        };
-      };
-      /** TestSuite run not found */
-      404: unknown;
-    };
-  };
-  /** Delete a specific run from a particular TestSuite */
-  deleteTestSuiteRun: {
-    parameters: {};
-    responses: {
-      /** OK */
-      204: never;
-      /** TestSuite run not found */
-      404: unknown;
-    };
-  };
-  /** get tests */
-  getTests: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          "application/json": external["tests.yaml"]["components"]["schemas"]["TestResourceList"];
-          "text/yaml": external["tests.yaml"]["components"]["schemas"]["TestResourceList"];
-        };
-      };
-      /** invalid query for test, some data was sent in incorrect format. */
-      400: unknown;
-      /** problem with getting tests */
-      500: unknown;
-    };
-  };
-  /** Create new test action */
-  createTest: {
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          "application/json": external["tests.yaml"]["components"]["schemas"]["Test"];
-        };
-      };
-      /** trying to create a test with an already existing ID */
-      400: unknown;
-    };
-    requestBody: {
-      content: {
-        "application/json": external["tests.yaml"]["components"]["schemas"]["Test"];
-      };
-    };
-  };
-  /** update test action */
-  updateTest: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      204: never;
-      /** problem with updating test */
-      500: unknown;
-    };
-    requestBody: {
-      content: {
-        "application/json": external["tests.yaml"]["components"]["schemas"]["Test"];
-      };
-    };
-  };
-  /** delete a test */
-  deleteTest: {
-    parameters: {};
-    responses: {
-      /** OK */
-      204: never;
-    };
-  };
-  /** get the runs from a particular test */
-  getTestRuns: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      200: {
-        headers: {
-          /** Total records count */
-          "X-Total-Count"?: number;
-        };
-        content: {
-          "application/json": external["tests.yaml"]["components"]["schemas"]["TestRun"][];
-        };
-      };
-    };
-  };
-  /** run a particular test */
-  runTest: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          "application/json": external["tests.yaml"]["components"]["schemas"]["TestRun"];
-        };
-      };
-      /** some variables are missing */
-      422: {
-        content: {
-          "application/json": external["variables.yaml"]["components"]["schemas"]["MissingVariablesError"];
-        };
-      };
-    };
-    requestBody: {
-      content: {
-        "application/json": external["tests.yaml"]["components"]["schemas"]["RunInformation"];
-      };
-    };
-  };
-  /** get the spans ids that would be selected by a specific selector query */
-  getTestResultSelectedSpans: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          "application/json": external["tests.yaml"]["components"]["schemas"]["SelectedSpansResult"];
-        };
-      };
-    };
-  };
-  /** use this method to test a definition against an actual trace without creating a new version or persisting anything */
-  dryRunAssertion: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          "application/json": external["tests.yaml"]["components"]["schemas"]["AssertionResults"];
-        };
-      };
-    };
-    requestBody: {
-      content: {
-        "application/json": external["tests.yaml"]["components"]["schemas"]["TestSpecs"];
-      };
-    };
-  };
-  /** rerun a test run */
-  rerunTestRun: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          "application/json": external["tests.yaml"]["components"]["schemas"]["TestRun"];
-        };
-      };
-    };
-  };
-  /** get test run results in JUnit xml format */
-  getRunResultJUnit: {
-    parameters: {};
-    responses: {
-      /** JUnit formatted file */
-      200: {
-        content: {
-          "application/xml": string;
-        };
-      };
-    };
-  };
-  /** export test and test run information for debugging */
-  exportTestRun: {
-    parameters: {};
-    responses: {
-      /** successfuly exported test and test run information */
-      200: {
-        content: {
-          "application/json": external["tests.yaml"]["components"]["schemas"]["ExportedTestInformation"];
-        };
-      };
-    };
-  };
-  /** import test and test run information for debugging */
-  importTestRun: {
-    responses: {
-      /** successfuly imported test and test run information */
-      200: {
-        content: {
-          "application/json": external["tests.yaml"]["components"]["schemas"]["ExportedTestInformation"];
-        };
-      };
-    };
-    requestBody: {
-      content: {
-        "application/json": external["tests.yaml"]["components"]["schemas"]["ExportedTestInformation"];
-      };
-    };
-  };
-  /** get a particular test Run */
-  getTestRun: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          "application/json": external["tests.yaml"]["components"]["schemas"]["TestRun"];
-        };
-      };
-    };
-  };
-  /** delete a test run */
-  deleteTestRun: {
-    parameters: {};
-    responses: {
-      /** OK */
-      204: never;
-    };
-  };
-  /** Gets definition for a test */
-  getTestSpecs: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      201: {
-        content: {
-          "application/json": external["tests.yaml"]["components"]["schemas"]["TestSpecs"][];
-        };
-      };
-    };
-  };
-  /** get a test specific version */
-  getTestVersion: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          "application/json": external["tests.yaml"]["components"]["schemas"]["Test"];
-        };
-      };
-      /** problem with getting a test */
-      500: unknown;
-    };
-  };
-  /** stops the execution of a test run */
-  stopTestRun: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      200: unknown;
-      /** could not stop execution, probably it's not running anymore */
-      422: unknown;
-    };
-  };
-  /** get events from a test run */
-  getTestRunEvents: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          "application/json": external["testEvents.yaml"]["components"]["schemas"]["TestRunEvent"][];
-        };
-      };
-    };
-  };
-  /** resolves an expression and returns the result string */
-  ExpressionResolve: {
-    responses: {
-      /** successfully resolved the expression */
-      200: {
-        content: {
-          "application/json": external["expressions.yaml"]["components"]["schemas"]["ResolveResponseInfo"];
-        };
-      };
-    };
-    requestBody: {
-      content: {
-        "application/json": external["expressions.yaml"]["components"]["schemas"]["ResolveRequestInfo"];
-      };
-    };
-  };
-  /** get resources */
-  getResources: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      200: {
-        headers: {
-          /** Total records count */
-          "X-Total-Count"?: number;
-        };
-        content: {
-          "application/json": external["resources.yaml"]["components"]["schemas"]["Resource"][];
-        };
-      };
-    };
-  };
-  /** Tests the config data store/exporter connection */
-  testConnection: {
-    responses: {
-      /** Test connection Result */
-      201: {
-        content: {
-          "application/json": external["config.yaml"]["components"]["schemas"]["TestConnectionResponse"];
-        };
-      };
-    };
-    requestBody: {
-      content: {
-        "text/json": external["dataStores.yaml"]["components"]["schemas"]["DataStore"];
-      };
-    };
-  };
-  /** List Tracetest configuration */
-  listConfiguration: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          "application/json": external["config.yaml"]["components"]["schemas"]["ConfigurationResourceList"];
-          "text/yaml": external["config.yaml"]["components"]["schemas"]["ConfigurationResourceList"];
-        };
-      };
-      /** problem getting the configuration list */
-      500: unknown;
-    };
-  };
-  /** Get Tracetest configuration */
-  getConfiguration: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          "application/json": external["config.yaml"]["components"]["schemas"]["ConfigurationResource"];
-          "text/yaml": external["config.yaml"]["components"]["schemas"]["ConfigurationResource"];
-        };
-      };
-      /** problem getting a configuration */
-      500: unknown;
-    };
-  };
-  /** Update Tracetest configuration */
-  updateConfiguration: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          "application/json": external["config.yaml"]["components"]["schemas"]["ConfigurationResource"];
-          "text/yaml": external["config.yaml"]["components"]["schemas"]["ConfigurationResource"];
-        };
-      };
-      /** problem updating configuration */
-      500: unknown;
-    };
-    requestBody: {
-      content: {
-        "application/json": external["config.yaml"]["components"]["schemas"]["ConfigurationResource"];
-        "text/yaml": external["config.yaml"]["components"]["schemas"]["ConfigurationResource"];
-      };
-    };
-  };
-  /** List Polling Profile configuration */
-  listPollingProfile: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          "application/json": external["config.yaml"]["components"]["schemas"]["PollingProfileList"];
-          "text/yaml": external["config.yaml"]["components"]["schemas"]["PollingProfileList"];
-        };
-      };
-      /** problem getting the polling profile list */
-      500: unknown;
-    };
-  };
-  /** Get a polling profile used on Tracetest to configure how to fetch traces in a test. */
-  getPollingProfile: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          "application/json": external["config.yaml"]["components"]["schemas"]["PollingProfile"];
-          "text/yaml": external["config.yaml"]["components"]["schemas"]["PollingProfile"];
-        };
-      };
-      /** polling profile not found */
-      404: unknown;
-      /** problem getting a polling profile */
-      500: unknown;
-    };
-  };
-  /** Update a polling profile used on Tracetest to configure how to fetch traces in a test. */
-  updatePollingProfile: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          "application/json": external["config.yaml"]["components"]["schemas"]["PollingProfile"];
-          "text/yaml": external["config.yaml"]["components"]["schemas"]["PollingProfile"];
-        };
-      };
-      /** invalid polling profile, some data was sent in incorrect format. */
-      400: unknown;
-      /** polling profile not found */
-      404: unknown;
-      /** problem updating a polling profile */
-      500: unknown;
-    };
-    requestBody: {
-      content: {
-        "application/json": external["config.yaml"]["components"]["schemas"]["PollingProfile"];
-        "text/yaml": external["config.yaml"]["components"]["schemas"]["PollingProfile"];
-      };
-    };
-  };
-  /** List demonstrations used on Tracetest as quick start examples. */
-  listDemos: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          "application/json": external["config.yaml"]["components"]["schemas"]["DemoList"];
-          "text/yaml": {
-            count?: number;
-            items?: external["config.yaml"]["components"]["schemas"]["Demo"][];
-          };
-        };
-      };
-      /** invalid query for demos, some data was sent in incorrect format. */
-      400: unknown;
-      /** problem listing demos */
-      500: unknown;
-    };
-  };
-  /** Create a demonstration used on Tracetest as quick start examples. */
-  createDemo: {
-    responses: {
-      /** successful operation */
-      201: {
-        content: {
-          "application/json": external["config.yaml"]["components"]["schemas"]["Demo"];
-          "text/yaml": external["config.yaml"]["components"]["schemas"]["Demo"];
-        };
-      };
-      /** problem creating a demo */
-      500: unknown;
-    };
-    requestBody: {
-      content: {
-        "application/json": external["config.yaml"]["components"]["schemas"]["Demo"];
-        "text/yaml": external["config.yaml"]["components"]["schemas"]["Demo"];
-      };
-    };
-  };
-  /** Get a demonstration used on Tracetest as quick start examples. */
-  getDemo: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          "application/json": external["config.yaml"]["components"]["schemas"]["Demo"];
-          "text/yaml": external["config.yaml"]["components"]["schemas"]["Demo"];
-        };
-      };
-      /** demo not found */
-      404: unknown;
-      /** problem getting a demo */
-      500: unknown;
-    };
-  };
-  /** Update a demonstration used on Tracetest as quick start examples. */
-  updateDemo: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          "application/json": external["config.yaml"]["components"]["schemas"]["Demo"];
-          "text/yaml": external["config.yaml"]["components"]["schemas"]["Demo"];
-        };
-      };
-      /** invalid demo, some data was sent in incorrect format. */
-      400: unknown;
-      /** demo not found */
-      404: unknown;
-      /** problem updating a demo */
-      500: unknown;
-    };
-    requestBody: {
-      content: {
-        "application/json": external["config.yaml"]["components"]["schemas"]["Demo"];
-        "text/yaml": external["config.yaml"]["components"]["schemas"]["Demo"];
-      };
-    };
-  };
-  /** Delete a demonstration used on Tracetest as quick start examples. */
-  deleteDemo: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      204: never;
-      /** invalid demo, some data was sent in incorrect format. */
-      400: unknown;
-      /** demo not found */
-      404: unknown;
-      /** problem deleting a demo */
-      500: unknown;
-    };
-  };
-  /** List Data Store */
-  listDataStore: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          "application/json": external["dataStores.yaml"]["components"]["schemas"]["DataStoreList"];
-          "text/yaml": external["dataStores.yaml"]["components"]["schemas"]["DataStoreList"];
-        };
-      };
-      /** problem getting the data store list */
-      500: unknown;
-    };
-  };
-  /** Get a Data Store */
-  getDataStore: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          "application/json": external["dataStores.yaml"]["components"]["schemas"]["DataStoreResource"];
-        };
-      };
-      /** data store not found */
-      404: unknown;
-      /** problem with getting a data store */
-      500: unknown;
-    };
-  };
-  /** Update a Data Store */
-  updateDataStore: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      204: never;
-      /** invalid data store, some data was sent in incorrect format. */
-      400: unknown;
-      /** problem with updating data store */
-      500: unknown;
-    };
-    requestBody: {
-      content: {
-        "application/json": external["dataStores.yaml"]["components"]["schemas"]["DataStore"];
-      };
-    };
-  };
-  /** Delete a Data Store */
-  deleteDataStore: {
-    parameters: {};
-    responses: {
-      /** OK */
-      204: never;
-    };
-  };
-  /** List VariableSets available in Tracetest. */
-  listVariableSets: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          "application/json": external["variableSets.yaml"]["components"]["schemas"]["VariableSetResourceList"];
-          "text/yaml": {
-            count?: number;
-            items?: external["variableSets.yaml"]["components"]["schemas"]["VariableSetResource"][];
-          };
-        };
-      };
-      /** invalid query for VariableSets, some data was sent in incorrect format. */
-      400: unknown;
-      /** problem listing VariableSets */
-      500: unknown;
-    };
-  };
-  /** Create a VariableSet that can be used by tests and test suites */
-  createVariableSet: {
-    responses: {
-      /** successful operation */
-      201: {
-        content: {
-          "application/json": external["variableSets.yaml"]["components"]["schemas"]["VariableSetResource"];
-          "text/yaml": external["variableSets.yaml"]["components"]["schemas"]["VariableSetResource"];
-        };
-      };
-      /** problem creating an VariableSet */
-      500: unknown;
-    };
-    requestBody: {
-      content: {
-        "application/json": external["variableSets.yaml"]["components"]["schemas"]["VariableSetResource"];
-        "text/yaml": external["variableSets.yaml"]["components"]["schemas"]["VariableSetResource"];
-      };
-    };
-  };
-  /** Get one VariableSet by its id */
-  getVariableSet: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          "application/json": external["variableSets.yaml"]["components"]["schemas"]["VariableSetResource"];
-          "text/yaml": external["variableSets.yaml"]["components"]["schemas"]["VariableSetResource"];
-        };
-      };
-      /** VariableSet not found */
-      404: unknown;
-      /** problem getting an VariableSet */
-      500: unknown;
-    };
-  };
-  /** Update a VariableSet used on Tracetest */
-  updateVariableSet: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          "application/json": external["variableSets.yaml"]["components"]["schemas"]["VariableSetResource"];
-          "text/yaml": external["variableSets.yaml"]["components"]["schemas"]["VariableSetResource"];
-        };
-      };
-      /** invalid VariableSet, some data was sent in incorrect format. */
-      400: unknown;
-      /** VariableSet not found */
-      404: unknown;
-      /** problem updating an VariableSet */
-      500: unknown;
-    };
-    requestBody: {
-      content: {
-        "application/json": external["variableSets.yaml"]["components"]["schemas"]["VariableSetResource"];
-        "text/yaml": external["variableSets.yaml"]["components"]["schemas"]["VariableSetResource"];
-      };
-    };
-  };
-  /** Delete a variable set from Tracetest */
-  deleteVariableSet: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      204: never;
-      /** invalid VariableSet, some data was sent in incorrect format. */
-      400: unknown;
-      /** VariableSet not found */
-      404: unknown;
-      /** problem deleting an variable set */
-      500: unknown;
-    };
-  };
-  /** Get the version of the API */
-  getVersion: {
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          "application/json": external["version.yaml"]["components"]["schemas"]["Version"];
-        };
-      };
-      /** problem getting the version of the API */
-      500: unknown;
-    };
-  };
-  /** List Linters available in Tracetest. */
-  listLinters: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          "application/json": external["linters.yaml"]["components"]["schemas"]["LinterResourceList"];
-          "text/yaml": external["linters.yaml"]["components"]["schemas"]["LinterResourceList"];
-        };
-      };
-      /** invalid query for Linters, some data was sent in incorrect format. */
-      400: unknown;
-      /** problem listing Linters */
-      500: unknown;
-    };
-  };
-  /** Create an Linter that can be used by tests and Linters */
-  createLinter: {
-    responses: {
-      /** successful operation */
-      201: {
-        content: {
-          "application/json": external["linters.yaml"]["components"]["schemas"]["LinterResource"];
-          "text/yaml": external["linters.yaml"]["components"]["schemas"]["LinterResource"];
-        };
-      };
-      /** problem creating an Linter */
-      500: unknown;
-    };
-    requestBody: {
-      content: {
-        "application/json": external["linters.yaml"]["components"]["schemas"]["LinterResource"];
-        "text/yaml": external["linters.yaml"]["components"]["schemas"]["LinterResource"];
-      };
-    };
-  };
-  /** Get one Linter by its id */
-  getLinter: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          "application/json": external["linters.yaml"]["components"]["schemas"]["LinterResource"];
-          "text/yaml": external["linters.yaml"]["components"]["schemas"]["LinterResource"];
-        };
-      };
-      /** Linter not found */
-      404: unknown;
-      /** problem getting a Linter */
-      500: unknown;
-    };
-  };
-  /** Update a Linter used on Tracetest */
-  updateLinter: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          "application/json": external["linters.yaml"]["components"]["schemas"]["LinterResource"];
-          "text/yaml": external["linters.yaml"]["components"]["schemas"]["LinterResource"];
-        };
-      };
-      /** invalid Linter, some data was sent in incorrect format. */
-      400: unknown;
-      /** Linter not found */
-      404: unknown;
-      /** problem updating an Linter */
-      500: unknown;
-    };
-    requestBody: {
-      content: {
-        "application/json": external["linters.yaml"]["components"]["schemas"]["LinterResource"];
-        "text/yaml": external["linters.yaml"]["components"]["schemas"]["LinterResource"];
-      };
-    };
-  };
-  /** Delete an Linter from Tracetest */
-  deleteLinter: {
-    parameters: {};
-    responses: {
-      /** successful operation */
-      204: never;
-      /** invalid Linter, some data was sent in incorrect format. */
-      400: unknown;
-      /** Linter not found */
-      404: unknown;
-      /** problem deleting an Linter */
-      500: unknown;
-    };
-  };
-}
+export type components = Record<string, never>;
+
+export type $defs = Record<string, never>;
 
 export interface external {
   "config.yaml": {
-    paths: {};
+    paths: Record<string, never>;
+    webhooks: Record<string, never>;
     components: {
       schemas: {
         TestConnectionResponse: {
@@ -1258,11 +522,17 @@ export interface external {
           items?: external["config.yaml"]["components"]["schemas"]["Demo"][];
         };
       };
+      responses: never;
+      parameters: never;
+      requestBodies: never;
+      headers: never;
+      pathItems: never;
     };
-    operations: {};
+    $defs: Record<string, never>;
   };
   "dataStores.yaml": {
-    paths: {};
+    paths: Record<string, never>;
+    webhooks: Record<string, never>;
     components: {
       schemas: {
         DataStoreList: {
@@ -1325,7 +595,9 @@ export interface external {
         };
         HTTPClientSettings: {
           url?: string;
-          headers?: { [key: string]: string };
+          headers?: {
+            [key: string]: string;
+          };
           tls?: external["dataStores.yaml"]["components"]["schemas"]["TLS"];
           auth?: external["http.yaml"]["components"]["schemas"]["HTTPAuth"];
         };
@@ -1334,17 +606,12 @@ export interface external {
           readBufferSize?: number;
           writeBufferSize?: number;
           waitForReady?: boolean;
-          headers?: { [key: string]: string };
+          headers?: {
+            [key: string]: string;
+          };
           balancerName?: string;
           /** @enum {string} */
-          compression?:
-            | "gzip"
-            | "zlib"
-            | "deflate"
-            | "snappy"
-            | "zstd"
-            | "none"
-            | "";
+          compression?: "gzip" | "zlib" | "deflate" | "snappy" | "zstd" | "none" | "";
           tls?: external["dataStores.yaml"]["components"]["schemas"]["TLS"];
           auth?: external["http.yaml"]["components"]["schemas"]["HTTPAuth"];
         };
@@ -1362,31 +629,23 @@ export interface external {
           maxVersion?: string;
         };
         /** @enum {string} */
-        SupportedDataStores:
-          | "jaeger"
-          | "opensearch"
-          | "tempo"
-          | "signalfx"
-          | "otlp"
-          | "elasticapm"
-          | "newrelic"
-          | "lightstep"
-          | "datadog"
-          | "awsxray"
-          | "honeycomb"
-          | "azureappinsights"
-          | "signoz"
-          | "dynatrace";
+        SupportedDataStores: "jaeger" | "opensearch" | "tempo" | "signalfx" | "otlp" | "elasticapm" | "newrelic" | "lightstep" | "datadog" | "awsxray" | "honeycomb" | "azureappinsights" | "signoz" | "dynatrace";
         /** @enum {string} */
         SupportedClients: "http" | "grpc";
         /** @enum {string} */
         SupportedConnectionTypes: "direct" | "collector";
       };
+      responses: never;
+      parameters: never;
+      requestBodies: never;
+      headers: never;
+      pathItems: never;
     };
-    operations: {};
+    $defs: Record<string, never>;
   };
   "expressions.yaml": {
-    paths: {};
+    paths: Record<string, never>;
+    webhooks: Record<string, never>;
     components: {
       schemas: {
         ResolveRequestInfo: {
@@ -1404,11 +663,17 @@ export interface external {
           resolvedValues?: string[];
         };
       };
+      responses: never;
+      parameters: never;
+      requestBodies: never;
+      headers: never;
+      pathItems: never;
     };
-    operations: {};
+    $defs: Record<string, never>;
   };
   "grpc.yaml": {
-    paths: {};
+    paths: Record<string, never>;
+    webhooks: Record<string, never>;
     components: {
       schemas: {
         GRPCHeader: {
@@ -1425,16 +690,23 @@ export interface external {
           request?: string;
         };
         GRPCResponse: {
+          /** @default 0 */
           statusCode: number;
           metadata?: external["grpc.yaml"]["components"]["schemas"]["GRPCHeader"][];
           body?: string;
         };
       };
+      responses: never;
+      parameters: never;
+      requestBodies: never;
+      headers: never;
+      pathItems: never;
     };
-    operations: {};
+    $defs: Record<string, never>;
   };
   "http.yaml": {
-    paths: {};
+    paths: Record<string, never>;
+    webhooks: Record<string, never>;
     components: {
       schemas: {
         HTTPHeader: {
@@ -1444,25 +716,11 @@ export interface external {
         HTTPRequest: {
           url?: string;
           /** @enum {string} */
-          method?:
-            | "GET"
-            | "PUT"
-            | "POST"
-            | "PATCH"
-            | "DELETE"
-            | "COPY"
-            | "HEAD"
-            | "OPTIONS"
-            | "LINK"
-            | "UNLINK"
-            | "PURGE"
-            | "LOCK"
-            | "UNLOCK"
-            | "PROPFIND"
-            | "VIEW";
+          method?: "GET" | "PUT" | "POST" | "PATCH" | "DELETE" | "COPY" | "HEAD" | "OPTIONS" | "LINK" | "UNLINK" | "PURGE" | "LOCK" | "UNLOCK" | "PROPFIND" | "VIEW";
           headers?: external["http.yaml"]["components"]["schemas"]["HTTPHeader"][];
           body?: string;
           auth?: external["http.yaml"]["components"]["schemas"]["HTTPAuth"];
+          /** @default false */
           sslVerification?: boolean;
         };
         HTTPResponse: {
@@ -1489,17 +747,24 @@ export interface external {
           };
         };
       };
+      responses: never;
+      parameters: never;
+      requestBodies: never;
+      headers: never;
+      pathItems: never;
     };
-    operations: {};
+    $defs: Record<string, never>;
   };
   "kafka.yaml": {
-    paths: {};
+    paths: Record<string, never>;
+    webhooks: Record<string, never>;
     components: {
       schemas: {
         KafkaRequest: {
           brokerUrls?: string[];
           topic?: string;
           authentication?: external["kafka.yaml"]["components"]["schemas"]["KafkaAuthentication"];
+          /** @default false */
           sslVerification?: boolean;
           headers?: external["kafka.yaml"]["components"]["schemas"]["KafkaMessageHeader"][];
           messageKey?: string;
@@ -1522,11 +787,17 @@ export interface external {
           };
         };
       };
+      responses: never;
+      parameters: never;
+      requestBodies: never;
+      headers: never;
+      pathItems: never;
     };
-    operations: {};
+    $defs: Record<string, never>;
   };
   "linters.yaml": {
-    paths: {};
+    paths: Record<string, never>;
+    webhooks: Record<string, never>;
     components: {
       schemas: {
         LinterResourceList: {
@@ -1538,6 +809,7 @@ export interface external {
           spec?: {
             id?: string;
             name?: string;
+            /** @default false */
             enabled?: boolean;
             minimumScore?: number;
             plugins?: external["linters.yaml"]["components"]["schemas"]["LinterResourcePlugin"][];
@@ -1556,7 +828,7 @@ export interface external {
           name?: string;
           description?: string;
           errorDescription?: string;
-          tips?: string[];
+          tips?: readonly string[];
           /** @enum {string} */
           errorLevel?: "error" | "warning" | "disabled";
         };
@@ -1599,12 +871,20 @@ export interface external {
           suggestions?: string[];
         };
       };
+      responses: never;
+      parameters: never;
+      requestBodies: never;
+      headers: never;
+      pathItems: never;
     };
-    operations: {};
+    $defs: Record<string, never>;
   };
   "parameters.yaml": {
-    paths: {};
+    paths: Record<string, never>;
+    webhooks: Record<string, never>;
     components: {
+      schemas: never;
+      responses: never;
       parameters: {
         /** @description id of the test */
         testId: string;
@@ -1615,19 +895,19 @@ export interface external {
         /** @description id of the TestSuite */
         testSuiteId: string;
         /** @description indicates how many resources can be returned by each page */
-        take: number;
+        take?: number;
         /** @description indicates how many resources will be skipped when paginating */
-        skip: number;
+        skip?: number;
         /** @description query to search resources */
-        query: string;
+        query?: string;
         /** @description indicates the sort field for the resources */
-        runnableResourceSortBy: "created" | "name" | "last_run";
+        runnableResourceSortBy?: "created" | "name" | "last_run";
         /** @description indicates the sort field for the resources */
-        sortBy: "created" | "name";
+        sortBy?: "created" | "name";
         /** @description indicates the sort field for the resources */
-        switchableResourceSortBy: "type" | "enabled";
+        switchableResourceSortBy?: "type" | "enabled";
         /** @description indicates the sort direction for the resources */
-        sortDirection: "asc" | "desc";
+        sortDirection?: "asc" | "desc";
         /** @description ID of the configuration resource used on Tracetest. It should be set as 'current' */
         configId: string;
         /** @description ID of a demonstration used on Tracetest as quick start examples */
@@ -1641,11 +921,15 @@ export interface external {
         /** @description ID of an Linter */
         LinterId: string;
       };
+      requestBodies: never;
+      headers: never;
+      pathItems: never;
     };
-    operations: {};
+    $defs: Record<string, never>;
   };
   "resources.yaml": {
-    paths: {};
+    paths: Record<string, never>;
+    webhooks: Record<string, never>;
     components: {
       schemas: {
         Resource: {
@@ -1653,11 +937,17 @@ export interface external {
           item: unknown;
         };
       };
+      responses: never;
+      parameters: never;
+      requestBodies: never;
+      headers: never;
+      pathItems: never;
     };
-    operations: {};
+    $defs: Record<string, never>;
   };
   "testEvents.yaml": {
-    paths: {};
+    paths: Record<string, never>;
+    webhooks: Record<string, never>;
     components: {
       schemas: {
         TestRunEvent: {
@@ -1690,11 +980,17 @@ export interface external {
           outputName?: string;
         };
       };
+      responses: never;
+      parameters: never;
+      requestBodies: never;
+      headers: never;
+      pathItems: never;
     };
-    operations: {};
+    $defs: Record<string, never>;
   };
   "testRunner.yaml": {
-    paths: {};
+    paths: Record<string, never>;
+    webhooks: Record<string, never>;
     components: {
       schemas: {
         TestRunnerResource: {
@@ -1723,11 +1019,17 @@ export interface external {
         /** @enum {string} */
         SupportedGates: "analyzer-score" | "analyzer-rules" | "test-specs";
       };
+      responses: never;
+      parameters: never;
+      requestBodies: never;
+      headers: never;
+      pathItems: never;
     };
-    operations: {};
+    $defs: Record<string, never>;
   };
   "tests.yaml": {
-    paths: {};
+    paths: Record<string, never>;
+    webhooks: Record<string, never>;
     components: {
       schemas: {
         TestResourceList: {
@@ -1756,7 +1058,18 @@ export interface external {
           specs?: external["tests.yaml"]["components"]["schemas"]["TestSpec"][];
           /**
            * @description define test outputs, in a key/value format. The value is processed as an expression
-           * @example [object Object],[object Object]
+           * @example [
+           *   {
+           *     "name": "USER_ID",
+           *     "selector": "span[name=\"user_signup\" result=\"success\"]",
+           *     "value": "attr:myapp.signup.user_id"
+           *   },
+           *   {
+           *     "name": "PROFILE_URL",
+           *     "selector": "span[tracetest.span.type=\"general\" name=\"Tracetest trigger\"]",
+           *     "value": "${attr:tracetest.response.body | json_path '.user.profileUrl' }"
+           *   }
+           * ]
            */
           outputs?: external["tests.yaml"]["components"]["schemas"]["TestOutput"][];
           /** @description summary of test data */
@@ -1772,13 +1085,46 @@ export interface external {
           runs?: number;
           lastRun?: {
             /** Format: date-time */
-            time?: string | null;
-            passes?: number;
-            fails?: number;
-            analyzerScore?: number;
+            readonly time?: string | null;
+            readonly passes?: number;
+            readonly fails?: number;
+            readonly analyzerScore?: number;
           };
         };
-        /** @example [object Object] */
+        /**
+         * @example {
+         *   "specs": [
+         *     {
+         *       "selector": {
+         *         "query": "span[tracetest.span.type=\"http\"]",
+         *         "structure": [
+         *           {
+         *             "filters": [
+         *               {
+         *                 "property": "tracetest.span.type",
+         *                 "operator": "=",
+         *                 "value": "http"
+         *               }
+         *             ]
+         *           }
+         *         ]
+         *       },
+         *       "assertions": [
+         *         {
+         *           "attribute": "tracetest.span.duration",
+         *           "comparator": "<",
+         *           "expected": "2000"
+         *         },
+         *         {
+         *           "attribute": "http.status_code",
+         *           "comparator": "=",
+         *           "expected": "200"
+         *         }
+         *       ]
+         *     }
+         *   ]
+         * }
+         */
         TestSpecs: {
           specs?: external["tests.yaml"]["components"]["schemas"]["TestSpec"][];
         };
@@ -1798,18 +1144,7 @@ export interface external {
            * @description Current execution state
            * @enum {string}
            */
-          state?:
-            | "CREATED"
-            | "EXECUTING"
-            | "AWAITING_TRACE"
-            | "AWAITING_TEST_RESULTS"
-            | "ANALYZING_TRACE"
-            | "ANALYZING_ERROR"
-            | "FINISHED"
-            | "STOPPED"
-            | "TRIGGER_FAILED"
-            | "TRACE_FAILED"
-            | "ASSERTION_FAILED";
+          state?: "CREATED" | "EXECUTING" | "AWAITING_TRACE" | "AWAITING_TEST_RESULTS" | "ANALYZING_TRACE" | "ANALYZING_ERROR" | "FINISHED" | "STOPPED" | "TRIGGER_FAILED" | "TRACE_FAILED" | "ASSERTION_FAILED";
           /** @description Details of the cause for the last `FAILED` state */
           lastErrorState?: string;
           /** @description time in seconds it took for the test to complete, either success or fail. If the test is still running, it will show the time up to the time of the request */
@@ -1832,31 +1167,87 @@ export interface external {
           result?: external["tests.yaml"]["components"]["schemas"]["AssertionResults"];
           linter?: external["linters.yaml"]["components"]["schemas"]["LinterResult"];
           outputs?: {
-            name?: string;
-            spanId?: string;
-            value?: string;
-            error?: string;
-          }[];
+              name?: string;
+              spanId?: string;
+              value?: string;
+              error?: string;
+            }[];
           requiredGatesResult?: external["testRunner.yaml"]["components"]["schemas"]["RequiredGatesResult"];
-          metadata?: { [key: string]: string };
+          metadata?: {
+            [key: string]: string;
+          };
           testSuiteId?: string;
           testSuiteRunId?: string;
         };
         RunInformation: {
-          metadata?: { [key: string]: string } | null;
+          metadata?: {
+            [key: string]: string;
+          } | null;
           variableSetId?: string;
           variables?: external["variableSets.yaml"]["components"]["schemas"]["VariableSetValue"][];
-          requiredGates?:
-            | external["testRunner.yaml"]["components"]["schemas"]["SupportedGates"][]
-            | null;
+          requiredGates?: external["testRunner.yaml"]["components"]["schemas"]["SupportedGates"][] | null;
         };
-        /** @example [object Object] */
+        /**
+         * @example {
+         *   "allPassed": true,
+         *   "results": [
+         *     {
+         *       "selector": {
+         *         "query": "span[tracetest.span.type=\"http\"]",
+         *         "structure": [
+         *           {
+         *             "filters": [
+         *               {
+         *                 "property": "tracetest.span.type",
+         *                 "operator": "=",
+         *                 "value": "http"
+         *               }
+         *             ]
+         *           }
+         *         ]
+         *       },
+         *       "results": [
+         *         {
+         *           "assertion": {
+         *             "attribute": "http.status_code",
+         *             "comparator": "=",
+         *             "expected": "200"
+         *           },
+         *           "allPassed": true,
+         *           "spanResults": [
+         *             {
+         *               "spanId": "123",
+         *               "observedValue": "test",
+         *               "passed": true
+         *             }
+         *           ]
+         *         },
+         *         {
+         *           "assertion": {
+         *             "attribute": "http.status_code",
+         *             "comparator": "=",
+         *             "expected": "200"
+         *           },
+         *           "allPassed": true,
+         *           "spanResults": [
+         *             {
+         *               "spanId": "123",
+         *               "observedValue": "test",
+         *               "passed": true
+         *             }
+         *           ]
+         *         }
+         *       ]
+         *     }
+         *   ]
+         * }
+         */
         AssertionResults: {
           allPassed?: boolean;
           results?: {
-            selector?: external["tests.yaml"]["components"]["schemas"]["Selector"];
-            results?: external["tests.yaml"]["components"]["schemas"]["AssertionResult"][];
-          }[];
+              selector?: external["tests.yaml"]["components"]["schemas"]["Selector"];
+              results?: external["tests.yaml"]["components"]["schemas"]["AssertionResult"][];
+            }[];
         };
         AssertionResult: {
           assertion?: string;
@@ -1899,11 +1290,17 @@ export interface external {
           run: external["tests.yaml"]["components"]["schemas"]["TestRun"];
         };
       };
+      responses: never;
+      parameters: never;
+      requestBodies: never;
+      headers: never;
+      pathItems: never;
     };
-    operations: {};
+    $defs: Record<string, never>;
   };
   "testsuites.yaml": {
-    paths: {};
+    paths: Record<string, never>;
+    webhooks: Record<string, never>;
     components: {
       schemas: {
         TestSuiteResourceList: {
@@ -1945,17 +1342,25 @@ export interface external {
           state?: "CREATED" | "EXECUTING" | "FINISHED" | "FAILED";
           steps?: external["tests.yaml"]["components"]["schemas"]["TestRun"][];
           variableSet?: external["variableSets.yaml"]["components"]["schemas"]["VariableSet"];
-          metadata?: { [key: string]: string };
+          metadata?: {
+            [key: string]: string;
+          };
           pass?: number;
           fail?: number;
           allStepsRequiredGatesPassed?: boolean;
         };
       };
+      responses: never;
+      parameters: never;
+      requestBodies: never;
+      headers: never;
+      pathItems: never;
     };
-    operations: {};
+    $defs: Record<string, never>;
   };
   "trace.yaml": {
-    paths: {};
+    paths: Record<string, never>;
+    webhooks: Record<string, never>;
     components: {
       schemas: {
         Trace: {
@@ -1963,9 +1368,7 @@ export interface external {
           tree?: external["trace.yaml"]["components"]["schemas"]["Span"];
           /** @description falttened version, mapped as spanId -> span{} */
           flat?: {
-            [
-              key: string
-            ]: external["trace.yaml"]["components"]["schemas"]["Span"];
+            [key: string]: external["trace.yaml"]["components"]["schemas"]["Span"];
           };
         };
         Span: {
@@ -1987,17 +1390,29 @@ export interface external {
           endTime?: number;
           /**
            * @description Key-Value of span attributes
-           * @example [object Object]
+           * @example {
+           *   "span.name": "POST /create",
+           *   "tracetest.span.type": "http",
+           *   "tracetest.span.duration": "2000"
+           * }
            */
-          attributes?: { [key: string]: string };
+          attributes?: {
+            [key: string]: string;
+          };
           children?: external["trace.yaml"]["components"]["schemas"]["Span"][];
         };
       };
+      responses: never;
+      parameters: never;
+      requestBodies: never;
+      headers: never;
+      pathItems: never;
     };
-    operations: {};
+    $defs: Record<string, never>;
   };
   "traceid.yaml": {
-    paths: {};
+    paths: Record<string, never>;
+    webhooks: Record<string, never>;
     components: {
       schemas: {
         TRACEIDRequest: {
@@ -2007,11 +1422,17 @@ export interface external {
           id?: string;
         };
       };
+      responses: never;
+      parameters: never;
+      requestBodies: never;
+      headers: never;
+      pathItems: never;
     };
-    operations: {};
+    $defs: Record<string, never>;
   };
   "triggers.yaml": {
-    paths: {};
+    paths: Record<string, never>;
+    webhooks: Record<string, never>;
     components: {
       schemas: {
         Trigger: {
@@ -2033,11 +1454,17 @@ export interface external {
           };
         };
       };
+      responses: never;
+      parameters: never;
+      requestBodies: never;
+      headers: never;
+      pathItems: never;
     };
-    operations: {};
+    $defs: Record<string, never>;
   };
   "variables.yaml": {
-    paths: {};
+    paths: Record<string, never>;
+    webhooks: Record<string, never>;
     components: {
       schemas: {
         MissingVariablesError: {
@@ -2052,11 +1479,17 @@ export interface external {
           defaultValue?: string;
         };
       };
+      responses: never;
+      parameters: never;
+      requestBodies: never;
+      headers: never;
+      pathItems: never;
     };
-    operations: {};
+    $defs: Record<string, never>;
   };
   "variableSets.yaml": {
-    paths: {};
+    paths: Record<string, never>;
+    webhooks: Record<string, never>;
     components: {
       schemas: {
         VariableSetResourceList: {
@@ -2083,11 +1516,17 @@ export interface external {
           value?: string;
         };
       };
+      responses: never;
+      parameters: never;
+      requestBodies: never;
+      headers: never;
+      pathItems: never;
     };
-    operations: {};
+    $defs: Record<string, never>;
   };
   "version.yaml": {
-    paths: {};
+    paths: Record<string, never>;
+    webhooks: Record<string, never>;
     components: {
       schemas: {
         Version: {
@@ -2095,7 +1534,1510 @@ export interface external {
           version?: string;
         };
       };
+      responses: never;
+      parameters: never;
+      requestBodies: never;
+      headers: never;
+      pathItems: never;
     };
-    operations: {};
+    $defs: Record<string, never>;
+  };
+}
+
+export interface operations {
+
+  /**
+   * Get testsuites
+   * @description get testsuites
+   */
+  getTestSuites: {
+    parameters: {
+      query?: {
+        take?: external["parameters.yaml"]["components"]["parameters"]["take"];
+        skip?: external["parameters.yaml"]["components"]["parameters"]["skip"];
+        query?: external["parameters.yaml"]["components"]["parameters"]["query"];
+        sortBy?: external["parameters.yaml"]["components"]["parameters"]["runnableResourceSortBy"];
+        sortDirection?: external["parameters.yaml"]["components"]["parameters"]["sortDirection"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      200: {
+        content: {
+          "application/json": external["testsuites.yaml"]["components"]["schemas"]["TestSuiteResourceList"];
+          "text/yaml": {
+            count?: number;
+            items?: external["testsuites.yaml"]["components"]["schemas"]["TestSuiteResource"][];
+          };
+        };
+      };
+      /** @description invalid query for testsuites, some data was sent in incorrect format. */
+      400: {
+        content: never;
+      };
+      /** @description problem with getting testsuites */
+      500: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Create new TestSuite
+   * @description Create new TestSuite
+   */
+  createTestSuite: {
+    requestBody?: {
+      content: {
+        "application/json": external["testsuites.yaml"]["components"]["schemas"]["TestSuiteResource"];
+        "text/yaml": external["testsuites.yaml"]["components"]["schemas"]["TestSuiteResource"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      201: {
+        content: {
+          "application/json": external["testsuites.yaml"]["components"]["schemas"]["TestSuiteResource"];
+          "text/yaml": external["testsuites.yaml"]["components"]["schemas"]["TestSuiteResource"];
+        };
+      };
+      /** @description trying to create a TestSuite with an already existing ID */
+      400: {
+        content: never;
+      };
+      /** @description problem creating a TestSuite */
+      500: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * get TestSuite
+   * @description get TestSuite
+   */
+  getTestSuite: {
+    parameters: {
+      path: {
+        testSuiteId: external["parameters.yaml"]["components"]["parameters"]["testSuiteId"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      200: {
+        content: {
+          "application/json": external["testsuites.yaml"]["components"]["schemas"]["TestSuiteResource"];
+          "text/yaml": external["testsuites.yaml"]["components"]["schemas"]["TestSuiteResource"];
+        };
+      };
+      /** @description TestSuite not found */
+      404: {
+        content: never;
+      };
+      /** @description problem getting an TestSuite */
+      500: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * update TestSuite
+   * @description update TestSuite action
+   */
+  updateTestSuite: {
+    parameters: {
+      path: {
+        testSuiteId: external["parameters.yaml"]["components"]["parameters"]["testSuiteId"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": external["testsuites.yaml"]["components"]["schemas"]["TestSuiteResource"];
+        "text/yaml": external["testsuites.yaml"]["components"]["schemas"]["TestSuiteResource"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      200: {
+        content: {
+          "application/json": external["testsuites.yaml"]["components"]["schemas"]["TestSuiteResource"];
+          "text/yaml": external["testsuites.yaml"]["components"]["schemas"]["TestSuiteResource"];
+        };
+      };
+      /** @description invalid TestSuite, some data was sent in incorrect format. */
+      400: {
+        content: never;
+      };
+      /** @description TestSuite not found */
+      404: {
+        content: never;
+      };
+      /** @description problem updating a TestSuite */
+      500: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * delete a TestSuite
+   * @description delete a TestSuite
+   */
+  deleteTestSuite: {
+    parameters: {
+      path: {
+        testSuiteId: external["parameters.yaml"]["components"]["parameters"]["testSuiteId"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      204: {
+        content: never;
+      };
+      /** @description TestSuite not found */
+      404: {
+        content: never;
+      };
+      /** @description problem deleting a TestSuite */
+      500: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * get a TestSuite specific version
+   * @description get a TestSuite specific version
+   */
+  getTestSuiteVersion: {
+    parameters: {
+      path: {
+        testSuiteId: external["parameters.yaml"]["components"]["parameters"]["testSuiteId"];
+        version: external["parameters.yaml"]["components"]["parameters"]["version"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      200: {
+        content: {
+          "application/json": external["testsuites.yaml"]["components"]["schemas"]["TestSuite"];
+        };
+      };
+      /** @description problem with getting a test */
+      500: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Get all runs from a particular TestSuite
+   * @description Get all runs from a particular TestSuite
+   */
+  getTestSuiteRuns: {
+    parameters: {
+      query?: {
+        take?: external["parameters.yaml"]["components"]["parameters"]["take"];
+        skip?: external["parameters.yaml"]["components"]["parameters"]["skip"];
+      };
+      path: {
+        testSuiteId: external["parameters.yaml"]["components"]["parameters"]["testSuiteId"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": external["testsuites.yaml"]["components"]["schemas"]["TestSuiteRun"][];
+        };
+      };
+    };
+  };
+  /**
+   * run TestSuite
+   * @description run a particular TestSuite
+   */
+  runTestSuite: {
+    parameters: {
+      path: {
+        testSuiteId: external["parameters.yaml"]["components"]["parameters"]["testSuiteId"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": external["tests.yaml"]["components"]["schemas"]["RunInformation"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      200: {
+        content: {
+          "application/json": external["testsuites.yaml"]["components"]["schemas"]["TestSuiteRun"];
+        };
+      };
+    };
+  };
+  /**
+   * Get a specific run from a particular TestSuite
+   * @description Get a specific run from a particular TestSuite
+   */
+  getTestSuiteRun: {
+    parameters: {
+      path: {
+        testSuiteId: external["parameters.yaml"]["components"]["parameters"]["testSuiteId"];
+        runId: external["parameters.yaml"]["components"]["parameters"]["runId"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": external["testsuites.yaml"]["components"]["schemas"]["TestSuiteRun"];
+        };
+      };
+      /** @description TestSuite run not found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Delete a specific run from a particular TestSuite
+   * @description Delete a specific run from a particular TestSuite
+   */
+  deleteTestSuiteRun: {
+    parameters: {
+      path: {
+        testSuiteId: external["parameters.yaml"]["components"]["parameters"]["testSuiteId"];
+        runId: external["parameters.yaml"]["components"]["parameters"]["runId"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      204: {
+        content: never;
+      };
+      /** @description TestSuite run not found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Get tests
+   * @description get tests
+   */
+  getTests: {
+    parameters: {
+      query?: {
+        take?: external["parameters.yaml"]["components"]["parameters"]["take"];
+        skip?: external["parameters.yaml"]["components"]["parameters"]["skip"];
+        query?: external["parameters.yaml"]["components"]["parameters"]["query"];
+        sortBy?: external["parameters.yaml"]["components"]["parameters"]["runnableResourceSortBy"];
+        sortDirection?: external["parameters.yaml"]["components"]["parameters"]["sortDirection"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      200: {
+        content: {
+          "application/json": external["tests.yaml"]["components"]["schemas"]["TestResourceList"];
+          "text/yaml": external["tests.yaml"]["components"]["schemas"]["TestResourceList"];
+        };
+      };
+      /** @description invalid query for test, some data was sent in incorrect format. */
+      400: {
+        content: never;
+      };
+      /** @description problem with getting tests */
+      500: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Create new test
+   * @description Create new test action
+   */
+  createTest: {
+    requestBody?: {
+      content: {
+        "application/json": external["tests.yaml"]["components"]["schemas"]["Test"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      200: {
+        content: {
+          "application/json": external["tests.yaml"]["components"]["schemas"]["Test"];
+        };
+      };
+      /** @description trying to create a test with an already existing ID */
+      400: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * update test
+   * @description update test action
+   */
+  updateTest: {
+    parameters: {
+      path: {
+        testId: external["parameters.yaml"]["components"]["parameters"]["testId"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": external["tests.yaml"]["components"]["schemas"]["Test"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      204: {
+        content: never;
+      };
+      /** @description problem with updating test */
+      500: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * delete a test
+   * @description delete a test
+   */
+  deleteTest: {
+    parameters: {
+      path: {
+        testId: external["parameters.yaml"]["components"]["parameters"]["testId"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      204: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * get the runs for a test
+   * @description get the runs from a particular test
+   */
+  getTestRuns: {
+    parameters: {
+      query?: {
+        take?: external["parameters.yaml"]["components"]["parameters"]["take"];
+        skip?: external["parameters.yaml"]["components"]["parameters"]["skip"];
+      };
+      path: {
+        testId: external["parameters.yaml"]["components"]["parameters"]["testId"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      200: {
+        headers: {
+          /** @description Total records count */
+          "X-Total-Count"?: number;
+        };
+        content: {
+          "application/json": external["tests.yaml"]["components"]["schemas"]["TestRun"][];
+        };
+      };
+    };
+  };
+  /**
+   * run test
+   * @description run a particular test
+   */
+  runTest: {
+    parameters: {
+      path: {
+        testId: external["parameters.yaml"]["components"]["parameters"]["testId"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": external["tests.yaml"]["components"]["schemas"]["RunInformation"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      200: {
+        content: {
+          "application/json": external["tests.yaml"]["components"]["schemas"]["TestRun"];
+        };
+      };
+      /** @description some variables are missing */
+      422: {
+        content: {
+          "application/json": external["variables.yaml"]["components"]["schemas"]["MissingVariablesError"];
+        };
+      };
+    };
+  };
+  /**
+   * retrieve spans that will be selected by selector
+   * @description get the spans ids that would be selected by a specific selector query
+   */
+  getTestResultSelectedSpans: {
+    parameters: {
+      query?: {
+        query?: external["parameters.yaml"]["components"]["parameters"]["query"];
+      };
+      path: {
+        testId: external["parameters.yaml"]["components"]["parameters"]["testId"];
+        runId: external["parameters.yaml"]["components"]["parameters"]["runId"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      200: {
+        content: {
+          "application/json": external["tests.yaml"]["components"]["schemas"]["SelectedSpansResult"];
+        };
+      };
+    };
+  };
+  /**
+   * run given assertions against the traces from the given run without persisting anything
+   * @description use this method to test a definition against an actual trace without creating a new version or persisting anything
+   */
+  dryRunAssertion: {
+    parameters: {
+      path: {
+        testId: external["parameters.yaml"]["components"]["parameters"]["testId"];
+        runId: external["parameters.yaml"]["components"]["parameters"]["runId"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": external["tests.yaml"]["components"]["schemas"]["TestSpecs"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      200: {
+        content: {
+          "application/json": external["tests.yaml"]["components"]["schemas"]["AssertionResults"];
+        };
+      };
+    };
+  };
+  /**
+   * rerun a test run
+   * @description rerun a test run
+   */
+  rerunTestRun: {
+    parameters: {
+      path: {
+        testId: external["parameters.yaml"]["components"]["parameters"]["testId"];
+        runId: external["parameters.yaml"]["components"]["parameters"]["runId"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      200: {
+        content: {
+          "application/json": external["tests.yaml"]["components"]["schemas"]["TestRun"];
+        };
+      };
+    };
+  };
+  /**
+   * get test run results in JUnit xml format
+   * @description get test run results in JUnit xml format
+   */
+  getRunResultJUnit: {
+    parameters: {
+      path: {
+        testId: external["parameters.yaml"]["components"]["parameters"]["testId"];
+        runId: external["parameters.yaml"]["components"]["parameters"]["runId"];
+      };
+    };
+    responses: {
+      /** @description JUnit formatted file */
+      200: {
+        content: {
+          "application/xml": string;
+        };
+      };
+    };
+  };
+  /**
+   * export test and test run information
+   * @description export test and test run information for debugging
+   */
+  exportTestRun: {
+    parameters: {
+      path: {
+        testId: external["parameters.yaml"]["components"]["parameters"]["testId"];
+        runId: external["parameters.yaml"]["components"]["parameters"]["runId"];
+      };
+    };
+    responses: {
+      /** @description successfuly exported test and test run information */
+      200: {
+        content: {
+          "application/json": external["tests.yaml"]["components"]["schemas"]["ExportedTestInformation"];
+        };
+      };
+    };
+  };
+  /**
+   * import test and test run information
+   * @description import test and test run information for debugging
+   */
+  importTestRun: {
+    requestBody?: {
+      content: {
+        "application/json": external["tests.yaml"]["components"]["schemas"]["ExportedTestInformation"];
+      };
+    };
+    responses: {
+      /** @description successfuly imported test and test run information */
+      200: {
+        content: {
+          "application/json": external["tests.yaml"]["components"]["schemas"]["ExportedTestInformation"];
+        };
+      };
+    };
+  };
+  /**
+   * get test Run
+   * @description get a particular test Run
+   */
+  getTestRun: {
+    parameters: {
+      path: {
+        testId: external["parameters.yaml"]["components"]["parameters"]["testId"];
+        runId: external["parameters.yaml"]["components"]["parameters"]["runId"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      200: {
+        content: {
+          "application/json": external["tests.yaml"]["components"]["schemas"]["TestRun"];
+        };
+      };
+    };
+  };
+  /**
+   * delete a test run
+   * @description delete a test run
+   */
+  deleteTestRun: {
+    parameters: {
+      path: {
+        testId: external["parameters.yaml"]["components"]["parameters"]["testId"];
+        runId: external["parameters.yaml"]["components"]["parameters"]["runId"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      204: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Get definition for a test
+   * @description Gets definition for a test
+   */
+  getTestSpecs: {
+    parameters: {
+      path: {
+        testId: external["parameters.yaml"]["components"]["parameters"]["testId"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      201: {
+        content: {
+          "application/json": external["tests.yaml"]["components"]["schemas"]["TestSpecs"][];
+        };
+      };
+    };
+  };
+  /**
+   * get a test specific version
+   * @description get a test specific version
+   */
+  getTestVersion: {
+    parameters: {
+      path: {
+        testId: external["parameters.yaml"]["components"]["parameters"]["testId"];
+        version: external["parameters.yaml"]["components"]["parameters"]["version"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      200: {
+        content: {
+          "application/json": external["tests.yaml"]["components"]["schemas"]["Test"];
+        };
+      };
+      /** @description problem with getting a test */
+      500: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * stops the execution of a test run
+   * @description stops the execution of a test run
+   */
+  stopTestRun: {
+    parameters: {
+      path: {
+        testId: external["parameters.yaml"]["components"]["parameters"]["testId"];
+        runId: external["parameters.yaml"]["components"]["parameters"]["runId"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      200: {
+        content: never;
+      };
+      /** @description could not stop execution, probably it's not running anymore */
+      422: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * get events from a test run
+   * @description get events from a test run
+   */
+  getTestRunEvents: {
+    parameters: {
+      path: {
+        testId: external["parameters.yaml"]["components"]["parameters"]["testId"];
+        runId: external["parameters.yaml"]["components"]["parameters"]["runId"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      200: {
+        content: {
+          "application/json": external["testEvents.yaml"]["components"]["schemas"]["TestRunEvent"][];
+        };
+      };
+    };
+  };
+  /**
+   * resolves an expression and returns the result string
+   * @description resolves an expression and returns the result string
+   */
+  ExpressionResolve: {
+    requestBody?: {
+      content: {
+        "application/json": external["expressions.yaml"]["components"]["schemas"]["ResolveRequestInfo"];
+      };
+    };
+    responses: {
+      /** @description successfully resolved the expression */
+      200: {
+        content: {
+          "application/json": external["expressions.yaml"]["components"]["schemas"]["ResolveResponseInfo"];
+        };
+      };
+    };
+  };
+  /**
+   * Get resources
+   * @description get resources
+   */
+  getResources: {
+    parameters: {
+      query?: {
+        take?: external["parameters.yaml"]["components"]["parameters"]["take"];
+        skip?: external["parameters.yaml"]["components"]["parameters"]["skip"];
+        query?: external["parameters.yaml"]["components"]["parameters"]["query"];
+        sortBy?: external["parameters.yaml"]["components"]["parameters"]["runnableResourceSortBy"];
+        sortDirection?: external["parameters.yaml"]["components"]["parameters"]["sortDirection"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      200: {
+        headers: {
+          /** @description Total records count */
+          "X-Total-Count"?: number;
+        };
+        content: {
+          "application/json": external["resources.yaml"]["components"]["schemas"]["Resource"][];
+        };
+      };
+    };
+  };
+  /**
+   * Tests the config data store/exporter connection
+   * @description Tests the config data store/exporter connection
+   */
+  testConnection: {
+    requestBody?: {
+      content: {
+        "text/json": external["dataStores.yaml"]["components"]["schemas"]["DataStore"];
+      };
+    };
+    responses: {
+      /** @description Test connection Result */
+      201: {
+        content: {
+          "application/json": external["config.yaml"]["components"]["schemas"]["TestConnectionResponse"];
+        };
+      };
+    };
+  };
+  /**
+   * List Tracetest configuration
+   * @description List Tracetest configuration
+   */
+  listConfiguration: {
+    parameters: {
+      query?: {
+        take?: external["parameters.yaml"]["components"]["parameters"]["take"];
+        skip?: external["parameters.yaml"]["components"]["parameters"]["skip"];
+        sortBy?: external["parameters.yaml"]["components"]["parameters"]["switchableResourceSortBy"];
+        sortDirection?: external["parameters.yaml"]["components"]["parameters"]["sortDirection"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      200: {
+        content: {
+          "application/json": external["config.yaml"]["components"]["schemas"]["ConfigurationResourceList"];
+          "text/yaml": external["config.yaml"]["components"]["schemas"]["ConfigurationResourceList"];
+        };
+      };
+      /** @description problem getting the configuration list */
+      500: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Get Tracetest configuration
+   * @description Get Tracetest configuration
+   */
+  getConfiguration: {
+    parameters: {
+      path: {
+        configId: external["parameters.yaml"]["components"]["parameters"]["configId"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      200: {
+        content: {
+          "application/json": external["config.yaml"]["components"]["schemas"]["ConfigurationResource"];
+          "text/yaml": external["config.yaml"]["components"]["schemas"]["ConfigurationResource"];
+        };
+      };
+      /** @description problem getting a configuration */
+      500: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Update Tracetest configuration
+   * @description Update Tracetest configuration
+   */
+  updateConfiguration: {
+    parameters: {
+      path: {
+        configId: external["parameters.yaml"]["components"]["parameters"]["configId"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": external["config.yaml"]["components"]["schemas"]["ConfigurationResource"];
+        "text/yaml": external["config.yaml"]["components"]["schemas"]["ConfigurationResource"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      200: {
+        content: {
+          "application/json": external["config.yaml"]["components"]["schemas"]["ConfigurationResource"];
+          "text/yaml": external["config.yaml"]["components"]["schemas"]["ConfigurationResource"];
+        };
+      };
+      /** @description problem updating configuration */
+      500: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * List Polling Profile Configuration
+   * @description List Polling Profile configuration
+   */
+  listPollingProfile: {
+    parameters: {
+      query?: {
+        take?: external["parameters.yaml"]["components"]["parameters"]["take"];
+        skip?: external["parameters.yaml"]["components"]["parameters"]["skip"];
+        sortBy?: external["parameters.yaml"]["components"]["parameters"]["switchableResourceSortBy"];
+        sortDirection?: external["parameters.yaml"]["components"]["parameters"]["sortDirection"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      200: {
+        content: {
+          "application/json": external["config.yaml"]["components"]["schemas"]["PollingProfileList"];
+          "text/yaml": external["config.yaml"]["components"]["schemas"]["PollingProfileList"];
+        };
+      };
+      /** @description problem getting the polling profile list */
+      500: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Get Polling Profile
+   * @description Get a polling profile used on Tracetest to configure how to fetch traces in a test.
+   */
+  getPollingProfile: {
+    parameters: {
+      path: {
+        pollingProfileId: external["parameters.yaml"]["components"]["parameters"]["pollingProfileId"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      200: {
+        content: {
+          "application/json": external["config.yaml"]["components"]["schemas"]["PollingProfile"];
+          "text/yaml": external["config.yaml"]["components"]["schemas"]["PollingProfile"];
+        };
+      };
+      /** @description polling profile not found */
+      404: {
+        content: never;
+      };
+      /** @description problem getting a polling profile */
+      500: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Update a Polling Profile
+   * @description Update a polling profile used on Tracetest to configure how to fetch traces in a test.
+   */
+  updatePollingProfile: {
+    parameters: {
+      path: {
+        pollingProfileId: external["parameters.yaml"]["components"]["parameters"]["pollingProfileId"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": external["config.yaml"]["components"]["schemas"]["PollingProfile"];
+        "text/yaml": external["config.yaml"]["components"]["schemas"]["PollingProfile"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      200: {
+        content: {
+          "application/json": external["config.yaml"]["components"]["schemas"]["PollingProfile"];
+          "text/yaml": external["config.yaml"]["components"]["schemas"]["PollingProfile"];
+        };
+      };
+      /** @description invalid polling profile, some data was sent in incorrect format. */
+      400: {
+        content: never;
+      };
+      /** @description polling profile not found */
+      404: {
+        content: never;
+      };
+      /** @description problem updating a polling profile */
+      500: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * List Demonstrations
+   * @description List demonstrations used on Tracetest as quick start examples.
+   */
+  listDemos: {
+    parameters: {
+      query?: {
+        take?: external["parameters.yaml"]["components"]["parameters"]["take"];
+        skip?: external["parameters.yaml"]["components"]["parameters"]["skip"];
+        sortBy?: external["parameters.yaml"]["components"]["parameters"]["switchableResourceSortBy"];
+        sortDirection?: external["parameters.yaml"]["components"]["parameters"]["sortDirection"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      200: {
+        content: {
+          "application/json": external["config.yaml"]["components"]["schemas"]["DemoList"];
+          "text/yaml": {
+            count?: number;
+            items?: external["config.yaml"]["components"]["schemas"]["Demo"][];
+          };
+        };
+      };
+      /** @description invalid query for demos, some data was sent in incorrect format. */
+      400: {
+        content: never;
+      };
+      /** @description problem listing demos */
+      500: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Create a Demonstration setting
+   * @description Create a demonstration used on Tracetest as quick start examples.
+   */
+  createDemo: {
+    requestBody?: {
+      content: {
+        "application/json": external["config.yaml"]["components"]["schemas"]["Demo"];
+        "text/yaml": external["config.yaml"]["components"]["schemas"]["Demo"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      201: {
+        content: {
+          "application/json": external["config.yaml"]["components"]["schemas"]["Demo"];
+          "text/yaml": external["config.yaml"]["components"]["schemas"]["Demo"];
+        };
+      };
+      /** @description problem creating a demo */
+      500: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Get Demonstration setting
+   * @description Get a demonstration used on Tracetest as quick start examples.
+   */
+  getDemo: {
+    parameters: {
+      path: {
+        demoId: external["parameters.yaml"]["components"]["parameters"]["demoId"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      200: {
+        content: {
+          "application/json": external["config.yaml"]["components"]["schemas"]["Demo"];
+          "text/yaml": external["config.yaml"]["components"]["schemas"]["Demo"];
+        };
+      };
+      /** @description demo not found */
+      404: {
+        content: never;
+      };
+      /** @description problem getting a demo */
+      500: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Update a Demonstration setting
+   * @description Update a demonstration used on Tracetest as quick start examples.
+   */
+  updateDemo: {
+    parameters: {
+      path: {
+        demoId: external["parameters.yaml"]["components"]["parameters"]["demoId"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": external["config.yaml"]["components"]["schemas"]["Demo"];
+        "text/yaml": external["config.yaml"]["components"]["schemas"]["Demo"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      200: {
+        content: {
+          "application/json": external["config.yaml"]["components"]["schemas"]["Demo"];
+          "text/yaml": external["config.yaml"]["components"]["schemas"]["Demo"];
+        };
+      };
+      /** @description invalid demo, some data was sent in incorrect format. */
+      400: {
+        content: never;
+      };
+      /** @description demo not found */
+      404: {
+        content: never;
+      };
+      /** @description problem updating a demo */
+      500: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Delete a Demonstration setting
+   * @description Delete a demonstration used on Tracetest as quick start examples.
+   */
+  deleteDemo: {
+    parameters: {
+      path: {
+        demoId: external["parameters.yaml"]["components"]["parameters"]["demoId"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      204: {
+        content: never;
+      };
+      /** @description invalid demo, some data was sent in incorrect format. */
+      400: {
+        content: never;
+      };
+      /** @description demo not found */
+      404: {
+        content: never;
+      };
+      /** @description problem deleting a demo */
+      500: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * List Data Store
+   * @description List Data Store
+   */
+  listDataStore: {
+    parameters: {
+      query?: {
+        take?: external["parameters.yaml"]["components"]["parameters"]["take"];
+        skip?: external["parameters.yaml"]["components"]["parameters"]["skip"];
+        sortBy?: external["parameters.yaml"]["components"]["parameters"]["switchableResourceSortBy"];
+        sortDirection?: external["parameters.yaml"]["components"]["parameters"]["sortDirection"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      200: {
+        content: {
+          "application/json": external["dataStores.yaml"]["components"]["schemas"]["DataStoreList"];
+          "text/yaml": external["dataStores.yaml"]["components"]["schemas"]["DataStoreList"];
+        };
+      };
+      /** @description problem getting the data store list */
+      500: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Get a Data Store
+   * @description Get a Data Store
+   */
+  getDataStore: {
+    parameters: {
+      path: {
+        dataStoreId: external["parameters.yaml"]["components"]["parameters"]["dataStoreId"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      200: {
+        content: {
+          "application/json": external["dataStores.yaml"]["components"]["schemas"]["DataStoreResource"];
+        };
+      };
+      /** @description data store not found */
+      404: {
+        content: never;
+      };
+      /** @description problem with getting a data store */
+      500: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Update a Data Store
+   * @description Update a Data Store
+   */
+  updateDataStore: {
+    parameters: {
+      path: {
+        dataStoreId: external["parameters.yaml"]["components"]["parameters"]["dataStoreId"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": external["dataStores.yaml"]["components"]["schemas"]["DataStore"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      204: {
+        content: never;
+      };
+      /** @description invalid data store, some data was sent in incorrect format. */
+      400: {
+        content: never;
+      };
+      /** @description problem with updating data store */
+      500: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Delete a Data Store
+   * @description Delete a Data Store
+   */
+  deleteDataStore: {
+    parameters: {
+      path: {
+        dataStoreId: external["parameters.yaml"]["components"]["parameters"]["dataStoreId"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      204: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * List VariableSets
+   * @description List VariableSets available in Tracetest.
+   */
+  listVariableSets: {
+    parameters: {
+      query?: {
+        take?: external["parameters.yaml"]["components"]["parameters"]["take"];
+        skip?: external["parameters.yaml"]["components"]["parameters"]["skip"];
+        sortBy?: external["parameters.yaml"]["components"]["parameters"]["switchableResourceSortBy"];
+        sortDirection?: external["parameters.yaml"]["components"]["parameters"]["sortDirection"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      200: {
+        content: {
+          "application/json": external["variableSets.yaml"]["components"]["schemas"]["VariableSetResourceList"];
+          "text/yaml": {
+            count?: number;
+            items?: external["variableSets.yaml"]["components"]["schemas"]["VariableSetResource"][];
+          };
+        };
+      };
+      /** @description invalid query for VariableSets, some data was sent in incorrect format. */
+      400: {
+        content: never;
+      };
+      /** @description problem listing VariableSets */
+      500: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Create a VariableSet
+   * @description Create a VariableSet that can be used by tests and test suites
+   */
+  createVariableSet: {
+    requestBody?: {
+      content: {
+        "application/json": external["variableSets.yaml"]["components"]["schemas"]["VariableSetResource"];
+        "text/yaml": external["variableSets.yaml"]["components"]["schemas"]["VariableSetResource"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      201: {
+        content: {
+          "application/json": external["variableSets.yaml"]["components"]["schemas"]["VariableSetResource"];
+          "text/yaml": external["variableSets.yaml"]["components"]["schemas"]["VariableSetResource"];
+        };
+      };
+      /** @description problem creating an VariableSet */
+      500: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Get a specific VariableSet
+   * @description Get one VariableSet by its id
+   */
+  getVariableSet: {
+    parameters: {
+      path: {
+        variableSetId: external["parameters.yaml"]["components"]["parameters"]["variableSetId"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      200: {
+        content: {
+          "application/json": external["variableSets.yaml"]["components"]["schemas"]["VariableSetResource"];
+          "text/yaml": external["variableSets.yaml"]["components"]["schemas"]["VariableSetResource"];
+        };
+      };
+      /** @description VariableSet not found */
+      404: {
+        content: never;
+      };
+      /** @description problem getting an VariableSet */
+      500: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Update a VariableSet
+   * @description Update a VariableSet used on Tracetest
+   */
+  updateVariableSet: {
+    parameters: {
+      path: {
+        variableSetId: external["parameters.yaml"]["components"]["parameters"]["variableSetId"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": external["variableSets.yaml"]["components"]["schemas"]["VariableSetResource"];
+        "text/yaml": external["variableSets.yaml"]["components"]["schemas"]["VariableSetResource"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      200: {
+        content: {
+          "application/json": external["variableSets.yaml"]["components"]["schemas"]["VariableSetResource"];
+          "text/yaml": external["variableSets.yaml"]["components"]["schemas"]["VariableSetResource"];
+        };
+      };
+      /** @description invalid VariableSet, some data was sent in incorrect format. */
+      400: {
+        content: never;
+      };
+      /** @description VariableSet not found */
+      404: {
+        content: never;
+      };
+      /** @description problem updating an VariableSet */
+      500: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Delete a variable set
+   * @description Delete a variable set from Tracetest
+   */
+  deleteVariableSet: {
+    parameters: {
+      path: {
+        variableSetId: external["parameters.yaml"]["components"]["parameters"]["variableSetId"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      204: {
+        content: never;
+      };
+      /** @description invalid VariableSet, some data was sent in incorrect format. */
+      400: {
+        content: never;
+      };
+      /** @description VariableSet not found */
+      404: {
+        content: never;
+      };
+      /** @description problem deleting an variable set */
+      500: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Get the version of the API
+   * @description Get the version of the API
+   */
+  getVersion: {
+    responses: {
+      /** @description successful operation */
+      200: {
+        content: {
+          "application/json": external["version.yaml"]["components"]["schemas"]["Version"];
+        };
+      };
+      /** @description problem getting the version of the API */
+      500: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * List Linters
+   * @description List Linters available in Tracetest.
+   */
+  listLinters: {
+    parameters: {
+      query?: {
+        take?: external["parameters.yaml"]["components"]["parameters"]["take"];
+        skip?: external["parameters.yaml"]["components"]["parameters"]["skip"];
+        sortBy?: external["parameters.yaml"]["components"]["parameters"]["switchableResourceSortBy"];
+        sortDirection?: external["parameters.yaml"]["components"]["parameters"]["sortDirection"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      200: {
+        content: {
+          "application/json": external["linters.yaml"]["components"]["schemas"]["LinterResourceList"];
+          "text/yaml": external["linters.yaml"]["components"]["schemas"]["LinterResourceList"];
+        };
+      };
+      /** @description invalid query for Linters, some data was sent in incorrect format. */
+      400: {
+        content: never;
+      };
+      /** @description problem listing Linters */
+      500: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Create an Linter
+   * @description Create an Linter that can be used by tests and Linters
+   */
+  createLinter: {
+    requestBody?: {
+      content: {
+        "application/json": external["linters.yaml"]["components"]["schemas"]["LinterResource"];
+        "text/yaml": external["linters.yaml"]["components"]["schemas"]["LinterResource"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      201: {
+        content: {
+          "application/json": external["linters.yaml"]["components"]["schemas"]["LinterResource"];
+          "text/yaml": external["linters.yaml"]["components"]["schemas"]["LinterResource"];
+        };
+      };
+      /** @description problem creating an Linter */
+      500: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Get a specific Linter
+   * @description Get one Linter by its id
+   */
+  getLinter: {
+    parameters: {
+      path: {
+        LinterId: external["parameters.yaml"]["components"]["parameters"]["LinterId"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      200: {
+        content: {
+          "application/json": external["linters.yaml"]["components"]["schemas"]["LinterResource"];
+          "text/yaml": external["linters.yaml"]["components"]["schemas"]["LinterResource"];
+        };
+      };
+      /** @description Linter not found */
+      404: {
+        content: never;
+      };
+      /** @description problem getting a Linter */
+      500: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Update a Linter
+   * @description Update a Linter used on Tracetest
+   */
+  updateLinter: {
+    parameters: {
+      path: {
+        LinterId: external["parameters.yaml"]["components"]["parameters"]["LinterId"];
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": external["linters.yaml"]["components"]["schemas"]["LinterResource"];
+        "text/yaml": external["linters.yaml"]["components"]["schemas"]["LinterResource"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      200: {
+        content: {
+          "application/json": external["linters.yaml"]["components"]["schemas"]["LinterResource"];
+          "text/yaml": external["linters.yaml"]["components"]["schemas"]["LinterResource"];
+        };
+      };
+      /** @description invalid Linter, some data was sent in incorrect format. */
+      400: {
+        content: never;
+      };
+      /** @description Linter not found */
+      404: {
+        content: never;
+      };
+      /** @description problem updating an Linter */
+      500: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Delete an Linter
+   * @description Delete an Linter from Tracetest
+   */
+  deleteLinter: {
+    parameters: {
+      path: {
+        LinterId: external["parameters.yaml"]["components"]["parameters"]["LinterId"];
+      };
+    };
+    responses: {
+      /** @description successful operation */
+      204: {
+        content: never;
+      };
+      /** @description invalid Linter, some data was sent in incorrect format. */
+      400: {
+        content: never;
+      };
+      /** @description Linter not found */
+      404: {
+        content: never;
+      };
+      /** @description problem deleting an Linter */
+      500: {
+        content: never;
+      };
+    };
   };
 }

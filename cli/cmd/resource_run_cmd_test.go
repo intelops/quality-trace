@@ -2,11 +2,11 @@ package cmd
 
 import (
 	"context"
+	"errors"
+	"fmt"
+	"log"
 	"os"
 	"testing"
-	"errors"
-	"log"
-	"fmt"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -21,10 +21,10 @@ func runResourceCommand(ctx context.Context, params *runParameters) (int, error)
 	}
 
 	if params.GitRepo == "https://github.com/InvalidRepo/test" {
-        return 1, errors.New("simulated error") // Simulating an error scenario
-    }
+		return 1, errors.New("simulated error") // Simulating an error scenario
+	}
 
-    return 0, nil
+	return 0, nil
 }
 
 // Mock the exitCodeSuccess variable
@@ -60,21 +60,21 @@ func TestRunCmd_Positive(t *testing.T) {
 }
 
 func TestRunCmd_Negative(t *testing.T) {
-    // Set up test parameters for a scenario where the command should fail
-    runParams := &runParameters{
-        GitRepo:     "https://github.com/InvalidRepo/test", // Using an intentionally invalid repository
-        GitUsername: "InvalidUser",
-        GitToken:    "invalidToken",
-        Branch:      "main",
-        GitFile:     "ml-server.yaml",
-    }
+	// Set up test parameters for a scenario where the command should fail
+	runParams := &runParameters{
+		GitRepo:     "https://github.com/InvalidRepo/test", // Using an intentionally invalid repository
+		GitUsername: "InvalidUser",
+		GitToken:    "invalidToken",
+		Branch:      "main",
+		GitFile:     "ml-server.yaml",
+	}
 
-    // Execute the Resource Run command
-    exitCode, err := runResourceCommand(context.Background(), runParams)
+	// Execute the Resource Run command
+	exitCode, err := runResourceCommand(context.Background(), runParams)
 
-    // Assertions
-    assert.Error(t, err, "Resource Run command should encounter an error")
-    assert.NotEqual(t, exitCodeSuccess, exitCode, "Resource Run command should not exit with success code")
+	// Assertions
+	assert.Error(t, err, "Resource Run command should encounter an error")
+	assert.NotEqual(t, exitCodeSuccess, exitCode, "Resource Run command should not exit with success code")
 
 }
 

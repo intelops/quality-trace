@@ -32,6 +32,8 @@ type LinterResourceSpec struct {
 // will change when the set of required properties is changed
 func NewLinterResourceSpec() *LinterResourceSpec {
 	this := LinterResourceSpec{}
+	var enabled bool = false
+	this.Enabled = &enabled
 	return &this
 }
 
@@ -40,6 +42,8 @@ func NewLinterResourceSpec() *LinterResourceSpec {
 // but it doesn't guarantee that properties required by API are set
 func NewLinterResourceSpecWithDefaults() *LinterResourceSpec {
 	this := LinterResourceSpec{}
+	var enabled bool = false
+	this.Enabled = &enabled
 	return &this
 }
 

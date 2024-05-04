@@ -87,41 +87,41 @@ func (p applyParameters) Validate(cmd *cobra.Command, args []string) []error {
 }
 
 func (p applyParameters) validateGitParameters() []error {
-    gitErrors := make([]error, 0)
+	gitErrors := make([]error, 0)
 
-    // Add specific validation checks for Git parameters
-    if p.GitRepo == "" {
-        gitErrors = append(gitErrors, paramError{
-            Parameter: "git-repo",
-            Message:   "Git repository is required",
-        })
-    }
+	// Add specific validation checks for Git parameters
+	if p.GitRepo == "" {
+		gitErrors = append(gitErrors, paramError{
+			Parameter: "git-repo",
+			Message:   "Git repository is required",
+		})
+	}
 	if p.GitUsername == "" {
-        gitErrors = append(gitErrors, paramError{
-            Parameter: "gitusername",
-            Message:   "Git username is required",
-        })
-    }
+		gitErrors = append(gitErrors, paramError{
+			Parameter: "gitusername",
+			Message:   "Git username is required",
+		})
+	}
 
-    if p.GitToken == "" {
-        gitErrors = append(gitErrors, paramError{
-            Parameter: "gittoken",
-            Message:   "Git token is required",
-        })
-    }
+	if p.GitToken == "" {
+		gitErrors = append(gitErrors, paramError{
+			Parameter: "gittoken",
+			Message:   "Git token is required",
+		})
+	}
 
-    if p.Branch == "" {
-        gitErrors = append(gitErrors, paramError{
-            Parameter: "branch",
-            Message:   "Branch name is required",
-        })
-    }
+	if p.Branch == "" {
+		gitErrors = append(gitErrors, paramError{
+			Parameter: "branch",
+			Message:   "Branch name is required",
+		})
+	}
 
-    if p.GitFile == "" {
-        gitErrors = append(gitErrors, paramError{
-            Parameter: "gitfile",
-            Message:   "Git file name is required",
-        })
-    }
+	if p.GitFile == "" {
+		gitErrors = append(gitErrors, paramError{
+			Parameter: "gitfile",
+			Message:   "Git file name is required",
+		})
+	}
 	return gitErrors
 }
