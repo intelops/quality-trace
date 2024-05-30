@@ -27,6 +27,23 @@ spec:
       serviceAccountName: {{ include "tracetest.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- if and (not .Values.postgresql.enabled) (.Values.externalPostgresql.qualitytrace.existingSecret) }}
+      initContainers:
+      - name: init-config
+        image: ghcr.io/kube-tarian/helmrepo-supporting-tools/envsubst:latest
+        command: ['sh', '-c', 'envsubst < /app/config/config.yaml > /processed-config/config.yaml']
+        env:
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.externalPostgresql.qualitytrace.existingSecret.name }}
+              key: {{ .Values.externalPostgresql.qualitytrace.existingSecret.passwordKey }}
+        volumeMounts:
+        - name: config
+          mountPath: /app/config
+        - name: processed-config-volume
+          mountPath: /processed-config
+      {{- end}}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -35,11 +52,19 @@ spec:
           env:
           - name: TRACETEST_DEV
             value: "{{ .Values.env.tracetestDev }}"
+          {{- if and (not .Values.postgresql.enabled) (.Values.externalPostgresql.qualitytrace.existingSecret) }}
+          args:
+          - --config
+          - '/processed-config/config.yaml'
+          - --provisioning-file
+          - '/app/config/provisioning.yaml'
+          {{- else }}
           args:
           - --config
           - '/app/config/config.yaml'
           - --provisioning-file
           - '/app/config/provisioning.yaml'
+          {{- end }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
@@ -64,10 +89,18 @@ spec:
           volumeMounts:
           - name: config
             mountPath: /app/config
+          {{- if and (not .Values.postgresql.enabled) (.Values.externalPostgresql.qualitytrace.existingSecret) }}
+          - name: processed-config-volume
+            mountPath: /processed-config
+          {{- end}}
       volumes:
       - name: config
         configMap:
           name: {{ include "tracetest.fullname" . }}
+      {{- if and (not .Values.postgresql.enabled) (.Values.externalPostgresql.qualitytrace.existingSecret) }}
+      - name: processed-config-volume
+        emptyDir: {}
+      {{- end}}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
