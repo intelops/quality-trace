@@ -12,34 +12,14 @@ spec:
     metadata:
       name: create-user-database
     spec:
-    {{- if .Values.externalPostgresql.qualitytrace.existingSecret }}
-      initContainers:
-      - name: init-secret
-        image: ghcr.io/kube-tarian/helmrepo-supporting-tools/busybox:1.34.1
-        command: ['sh', '-c', 'echo "$(cat /mnt/secrets/password)" > /mnt/config/password']
-        volumeMounts:
-        - name: secret-volume
-          mountPath: /mnt/secrets
-          readOnly: true
-        - name: config-volume
-          mountPath: /mnt/config
-    {{- end }}
       containers:
       - name: postgresql-client
         image: {{ .Values.postgresql.image.registry }}/{{ .Values.postgresql.image.repository }}:{{ .Values.postgresql.image.tag }}
         command:
-        {{- if not .Values.externalPostgresql.qualitytrace.existingSecret }}
           - "/bin/bash"
           - "-c"
           - |
-            psql -h {{ .Values.externalPostgresql.host }} -p 5432 -U postgres -f /script/create-database.sql
-        {{- else }}
-          - "/bin/bash"
-          - "-c"
-          - |
-            export DB_PASSWORD=$(cat /mnt/config/password) &&
             psql -h {{ .Values.externalPostgresql.host }} -p 5432 -U postgres -v db_password=$DB_PASSWORD -f /script/create-database.sql
-        {{- end }}
         env:
           - name: PGPASSWORD
             {{- if not .Values.externalPostgresql.existingSecret }}
@@ -50,26 +30,23 @@ spec:
                 name: {{ .Values.externalPostgresql.existingSecret.name }}
                 key: {{ .Values.externalPostgresql.existingSecret.passwordKey }}
             {{- end }}
+          - name: DB_PASSWORD
+            {{- if not .Values.externalPostgresql.qualitytrace.existingSecret }}
+            value: "{{ .Values.externalPostgresql.qualitytrace.password }}"
+            {{- else }}
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.externalPostgresql.qualitytrace.existingSecret.name }}
+                key: {{ .Values.externalPostgresql.qualitytrace.existingSecret.passwordKey }}
+            {{- end }}
         volumeMounts:
-          {{- if .Values.externalPostgresql.qualitytrace.existingSecret }}
-          - name: config-volume
-            mountPath: /mnt/config
-          {{- end }}
           - name: script-volume
             mountPath: /script
             readOnly: true
       restartPolicy: Never
       volumes:
-        {{- if .Values.externalPostgresql.qualitytrace.existingSecret }}
-        - name: secret-volume
-          secret:
-            secretName: {{.Values.externalPostgresql.qualitytrace.existingSecret.name }}
-        - name: config-volume
-          emptyDir: {}
-        {{- end }}
         - name: script-volume
           configMap:
             name: postgresql-query
 {{- end }}
-
 

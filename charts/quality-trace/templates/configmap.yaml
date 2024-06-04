@@ -21,7 +21,7 @@ data:
       {{- if not .Values.externalPostgresql.qualitytrace.existingSecret }}
       password: {{ .Values.externalPostgresql.qualitytrace.password }}
       {{- else }}
-      password: $DB_PASSWORD
+      password: 'db_password'
       {{- end }}
     {{- end }}
       port: 5432
