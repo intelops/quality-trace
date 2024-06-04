@@ -372,6 +372,6 @@ externalPostgresql:
     # password for accessing the database. Ignored if existingSecret is set
     password: ""   
     # -- Name and key of an existing Kubernetes secret object containing the password
-    existingSecret: 
+    existingSecret: {}
       # name: 
       # passwordKey: 
