@@ -17,8 +17,12 @@ data:
       password: {{.Values.postgresql.auth.password}}
     {{- else }}
       host: {{ .Values.externalPostgresql.host }}
-      user: {{ .Values.externalPostgresql.username }}
-      password: {{ .Values.externalPostgresql.password }}
+      user: {{ .Values.externalPostgresql.qualitytrace.username }}
+      {{- if not .Values.externalPostgresql.qualitytrace.existingSecret }}
+      password: {{ .Values.externalPostgresql.qualitytrace.password }}
+      {{- else }}
+      password: 'db_password'
+      {{- end }}
     {{- end }}
       port: 5432
       params: sslmode=disable

@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: create-users-databases
+  name: create-user-database
   annotations:
     "helm.sh/hook": pre-install
     "helm.sh/hook-weight": "2"
@@ -10,7 +10,7 @@ metadata:
 spec:
   template:
     metadata:
-      name: create-users-databases
+      name: create-user-database
     spec:
       containers:
       - name: postgresql-client
@@ -19,8 +19,7 @@ spec:
           - "/bin/bash"
           - "-c"
           - |
-            psql -h {{ .Values.externalPostgresql.host }} -p 5432 -U postgres -f /scripts/create-database.sql
-
+            psql -h {{ .Values.externalPostgresql.host }} -p 5432 -U postgres -v db_password=$DB_PASSWORD -f /script/create-database.sql
         env:
           - name: PGPASSWORD
             {{- if not .Values.externalPostgresql.existingSecret }}
@@ -31,9 +30,18 @@ spec:
                 name: {{ .Values.externalPostgresql.existingSecret.name }}
                 key: {{ .Values.externalPostgresql.existingSecret.passwordKey }}
             {{- end }}
+          - name: DB_PASSWORD
+            {{- if not .Values.externalPostgresql.qualitytrace.existingSecret }}
+            value: "{{ .Values.externalPostgresql.qualitytrace.password }}"
+            {{- else }}
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.externalPostgresql.qualitytrace.existingSecret.name }}
+                key: {{ .Values.externalPostgresql.qualitytrace.existingSecret.passwordKey }}
+            {{- end }}
         volumeMounts:
           - name: script-volume
-            mountPath: /scripts
+            mountPath: /script
             readOnly: true
       restartPolicy: Never
       volumes:
@@ -41,5 +49,4 @@ spec:
           configMap:
             name: postgresql-query
 {{- end }}
-
 

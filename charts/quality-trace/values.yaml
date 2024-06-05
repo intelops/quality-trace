@@ -185,8 +185,8 @@ affinity: {}
 otelCollector:
   name: "otel-collector"
   image:
-    repository: otel/opentelemetry-collector-contrib
-    tag: 0.70.0
+    repository: ghcr.io/kube-tarian/helmrepo-supporting-tools/opentelemetry-collector-contrib
+    tag: 0.79.0
     pullPolicy: Always
 
   # -- Image Registry Secret Names for OtelCollector
@@ -358,10 +358,20 @@ otelCollector:
 
 externalPostgresql:
   host: postgresql
-  database: ""
-  username: ""
-  password: ""
+  # password for accessing the postgres user. Ignored if existingSecret is set
   postgresqlPassword: ""
+  # -- Name and key of an existing Kubernetes secret object containing the password
   existingSecret: {}
-    # name:
-    # passwordKey:
+    # name:      
+    # passwordKey:  
+
+  # User and database creation 
+  qualitytrace:
+    database: "tracetest"
+    username: "tracetest"
+    # password for accessing the database. Ignored if existingSecret is set
+    password: ""   
+    # -- Name and key of an existing Kubernetes secret object containing the password
+    existingSecret: {}
+      # name: 
+      # passwordKey: 
