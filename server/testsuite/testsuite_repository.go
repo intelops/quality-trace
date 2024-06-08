@@ -421,7 +421,7 @@ func (r *Repository) readRows(ctx context.Context, rows *sql.Rows, augmented boo
 	for rows.Next() {
 		transaction, err := r.readRow(ctx, rows, augmented)
 		if err != nil {
-			return []TestSuite{}, fmt.Errorf("cannot read rows: %w", err)
+			return []TestSuite{}, fmt.Errorf("testsuite repo 1 cannot read rows: %w", err)
 		}
 
 		transactions = append(transactions, transaction)
@@ -465,7 +465,7 @@ func (r *Repository) readRow(ctx context.Context, row scanner, augmented bool) (
 			return suite, err
 		}
 
-		return TestSuite{}, fmt.Errorf("cannot read row: %w", err)
+		return TestSuite{}, fmt.Errorf("testsuite repo 2 cannot read row: %w", err)
 	}
 
 	if stepIDs != nil && *stepIDs != "" {
@@ -495,7 +495,7 @@ func (r *Repository) readRow(ctx context.Context, row scanner, augmented bool) (
 	} else {
 		steps, err := r.stepRepository.GetTestSuiteSteps(ctx, suite.ID, *suite.Version)
 		if err != nil {
-			return TestSuite{}, fmt.Errorf("cannot read row: %w", err)
+			return TestSuite{}, fmt.Errorf("testsuite repo 3 cannot read row: %w", err)
 		}
 
 		suite.Steps = steps

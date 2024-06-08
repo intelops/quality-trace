@@ -119,6 +119,7 @@ func (r *repository) ListAugmented(ctx context.Context, take, skip int, query, s
 }
 
 func (r *repository) list(ctx context.Context, take, skip int, query, sortBy, sortDirection string) ([]Test, error) {
+	fmt.Println("query1")
 	sql := getTestSQL + testMaxVersionQuery
 	params := []any{take, skip}
 	paramNumber := len(params) + 1
@@ -193,6 +194,7 @@ func (r *repository) GetAugmented(ctx context.Context, id id.ID) (Test, error) {
 const sortQuery = `ORDER BY t.version DESC LIMIT 1`
 
 func (r *repository) get(ctx context.Context, id id.ID) (Test, error) {
+	fmt.Println("query2")
 	query, params := sqlutil.TenantWithPrefix(ctx, getTestSQL+" WHERE t.id = $1", "t.", id)
 
 	test, err := r.readRow(ctx, r.db.QueryRowContext(ctx, query+sortQuery, params...))
@@ -284,7 +286,7 @@ func (r *repository) readRow(ctx context.Context, row scanner) (Test, error) {
 			return Test{}, err
 		}
 
-		return Test{}, fmt.Errorf("cannot read row: %w", err)
+		return Test{}, fmt.Errorf("test repo - cannot read row: %w", err)
 	}
 
 	err = json.Unmarshal(jsonServiceUnderTest, &test.Trigger)
